@@ -15,16 +15,16 @@ interface Brand {
 const brands: Brand[] = [
   {
     id: 'anthem',
-    topTitle: 'ANTHEM EDITION',
-    mainTitle: 'ANTHEM',
-    bottomTitle: 'TSPORT',
+    topTitle: '',
+    mainTitle: 'TSPORT',
+    bottomTitle: '',
     image: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&h=600&fit=crop&crop=center&auto=format&q=80',
     alt: 'Red lifted Ford F-150 style pickup truck with black accents',
     description: 'Performance and custom sport trucks engineered for power and style'
   },
   {
     id: 'alpine',
-    topTitle: 'MOUNTAIN COMMAND',
+    topTitle: '',
     mainTitle: 'ALPINE',
     bottomTitle: '',
     image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop&crop=center&auto=format&q=80',
@@ -33,7 +33,7 @@ const brands: Brand[] = [
   },
   {
     id: 'timberline',
-    topTitle: 'EXPEDITION READY',
+    topTitle: '',
     mainTitle: 'TIMBERLINE',
     bottomTitle: '',
     image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&h=600&fit=crop&crop=center&auto=format&q=80',
@@ -44,11 +44,11 @@ const brands: Brand[] = [
 
 export default function BrandsSection() {
   return (
-    <section className="w-full bg-gray-800 border-t border-gray-600 py-16 lg:py-24">
+    <section className="w-full bg-amber-50 border-t border-amber-200 py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-sm font-normal text-gray-300 mb-4 leading-none tracking-normal">
+          <h2 className="text-sm font-normal text-amber-800 mb-4 leading-none tracking-normal">
             Three distinct vehicle platforms engineered for specific mission requirements
           </h2>
         </div>
@@ -58,7 +58,7 @@ export default function BrandsSection() {
           {brands.map((brand, index) => (
             <div
               key={brand.id}
-              className="relative group overflow-hidden rounded-lg border border-gray-600 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-80 sm:h-96 lg:h-[28rem]"
+              className="relative group overflow-hidden rounded-lg border border-amber-300 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-80 sm:h-96 lg:h-[28rem]"
             >
               {/* Vehicle Image */}
               <div className="relative w-full h-full">
@@ -69,10 +69,10 @@ export default function BrandsSection() {
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/40" />
+                {/* Earthy Overlay */}
+                <div className="absolute inset-0 bg-amber-900/30" />
                 {/* Gradient Overlay for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 via-transparent to-transparent" />
               </div>
 
               {/* Content Overlay */}
@@ -80,7 +80,7 @@ export default function BrandsSection() {
                 {/* Top Title */}
                 <div className="text-left">
                   <h3 className={`text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2 ${
-                    brand.id === 'anthem' ? 'text-white' : 'text-black'
+                    brand.id === 'anthem' ? 'text-amber-50' : 'text-amber-900'
                   }`}>
                     {brand.topTitle}
                   </h3>
@@ -90,26 +90,26 @@ export default function BrandsSection() {
                 <div className="text-left">
                   {/* Main Title */}
                   <h4 className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 ${
-                    brand.id === 'anthem' ? 'text-red-500' : 'text-white'
+                    brand.id === 'anthem' ? 'text-red-600' : 'text-amber-50'
                   }`}>
                     {brand.mainTitle}
                   </h4>
                   
                   {/* Bottom Title (only for Anthem) */}
                   {brand.bottomTitle && (
-                    <h5 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+                    <h5 className="text-xl sm:text-2xl lg:text-3xl font-bold text-amber-50">
                       {brand.bottomTitle}
                     </h5>
                   )}
                   
-                  {/* Orange underline for all brands */}
-                  <div className="w-8 h-0.5 bg-orange-500 mt-2"></div>
+                  {/* Orange-brown underline for all brands */}
+                  <div className="w-8 h-0.5 bg-orange-600 mt-2"></div>
                 </div>
               </div>
 
               {/* Hover Description */}
-              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-                <p className="text-white text-sm sm:text-base text-center leading-relaxed">
+              <div className="absolute inset-0 bg-amber-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                <p className="text-amber-50 text-sm sm:text-base text-center leading-relaxed">
                   {brand.description}
                 </p>
               </div>
@@ -119,7 +119,7 @@ export default function BrandsSection() {
 
         {/* Call to Action */}
         <div className="text-center mt-12 lg:mt-16">
-          <button className="bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-8 sm:py-4 sm:px-12 text-sm sm:text-base transition-all duration-300 transform hover:scale-105 shadow-lg">
+          <button className="bg-amber-800 hover:bg-amber-900 text-amber-50 font-semibold py-3 px-8 sm:py-4 sm:px-12 text-sm sm:text-base transition-all duration-300 transform hover:scale-105 shadow-lg">
             EXPLORE ALL BRANDS
           </button>
         </div>
