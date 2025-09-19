@@ -44,11 +44,11 @@ const brands: Brand[] = [
 
 export default function BrandsSection() {
   return (
-    <section className="w-full bg-white py-16 lg:py-24">
+    <section className="w-full bg-gray-800 border-t border-gray-600 py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-sm font-normal text-gray-900 mb-4 leading-none tracking-normal">
+          <h2 className="text-sm font-normal text-gray-300 mb-4 leading-none tracking-normal">
             Three distinct vehicle platforms engineered for specific mission requirements
           </h2>
         </div>
@@ -58,10 +58,10 @@ export default function BrandsSection() {
           {brands.map((brand, index) => (
             <div
               key={brand.id}
-              className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              className="relative group overflow-hidden rounded-lg border border-gray-600 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-80 sm:h-96 lg:h-[28rem]"
             >
               {/* Vehicle Image */}
-              <div className="relative h-64 sm:h-72 lg:h-80">
+              <div className="relative w-full h-full">
                 <Image
                   src={brand.image}
                   alt={brand.alt}
@@ -69,15 +69,19 @@ export default function BrandsSection() {
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/40" />
+                {/* Gradient Overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               </div>
 
               {/* Content Overlay */}
               <div className="absolute inset-0 flex flex-col justify-between p-4 sm:p-6">
                 {/* Top Title */}
                 <div className="text-left">
-                  <h3 className="text-xs sm:text-sm font-semibold text-white/90 uppercase tracking-wider mb-2">
+                  <h3 className={`text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2 ${
+                    brand.id === 'anthem' ? 'text-white' : 'text-black'
+                  }`}>
                     {brand.topTitle}
                   </h3>
                 </div>
@@ -97,6 +101,9 @@ export default function BrandsSection() {
                       {brand.bottomTitle}
                     </h5>
                   )}
+                  
+                  {/* Orange underline for all brands */}
+                  <div className="w-8 h-0.5 bg-orange-500 mt-2"></div>
                 </div>
               </div>
 
