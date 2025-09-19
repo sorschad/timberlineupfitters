@@ -14,31 +14,31 @@ interface HeroSlide {
 const heroSlides: HeroSlide[] = [
   {
     id: 1,
-    title: 'Premium Outdoor Gear',
-    subtitle: 'Discover our curated collection of high-quality outdoor equipment',
-    image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-    alt: 'Mountain landscape with outdoor gear'
+    title: 'ELEVATE YOUR JOURNEY',
+    subtitle: 'Premium vehicle customization for the discerning adventurer. Crafted with precision, designed for exploration.',
+    image: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
+    alt: 'Luxury vehicle on road at dusk'
   },
   {
     id: 2,
-    title: 'Expert Guidance',
-    subtitle: 'Get personalized recommendations from our outdoor specialists',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-    alt: 'Expert guide helping with outdoor equipment'
+    title: 'CRAFTED WITH PRECISION',
+    subtitle: 'Every detail meticulously designed to enhance your vehicle\'s performance and aesthetic appeal.',
+    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
+    alt: 'Custom vehicle modification work'
   },
   {
     id: 3,
-    title: 'Adventure Ready',
-    subtitle: 'Everything you need for your next outdoor adventure',
-    image: 'https://images.unsplash.com/photo-1464822759844-d150baec0b0b?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-    alt: 'Adventure gear and equipment setup'
+    title: 'DESIGNED FOR EXPLORATION',
+    subtitle: 'Transform your vehicle into the ultimate adventure companion with our premium upfitting solutions.',
+    image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
+    alt: 'Adventure vehicle in rugged terrain'
   },
   {
     id: 4,
-    title: 'Quality Assured',
-    subtitle: 'Trusted by outdoor enthusiasts for over two decades',
-    image: 'https://images.unsplash.com/photo-1551524164-6cf2ac5313c2?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-    alt: 'Quality outdoor equipment display'
+    title: 'PREMIUM CUSTOMIZATION',
+    subtitle: 'Experience the pinnacle of vehicle upfitting with our expert craftsmanship and attention to detail.',
+    image: 'https://images.unsplash.com/photo-1549317336-206569e8475c?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
+    alt: 'Custom vehicle interior and exterior'
   }
 ]
 
@@ -106,22 +106,27 @@ export default function Hero() {
                 quality={90}
               />
               {/* Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-40" />
+              <div className="absolute inset-0 bg-black bg-opacity-50" />
             </div>
 
             {/* Content */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto text-center text-white">
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+                <div className="max-w-5xl mx-auto text-center text-white">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-tight tracking-tight">
                     {slide.title}
                   </h1>
-                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-10 sm:mb-16 max-w-4xl mx-auto leading-relaxed">
                     {slide.subtitle}
                   </p>
-                  <button className="bg-brand hover:bg-brand/90 text-white font-semibold py-3 px-8 sm:py-4 sm:px-12 text-lg sm:text-xl rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Shop Now
-                  </button>
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+                    <button className="bg-brand hover:bg-brand/90 text-white font-semibold py-4 px-10 sm:py-5 sm:px-12 text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg min-w-[200px]">
+                      EXPLORE MODELS
+                    </button>
+                    <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-semibold py-4 px-10 sm:py-5 sm:px-12 text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 min-w-[200px]">
+                      BOOK CONSULTATION
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
