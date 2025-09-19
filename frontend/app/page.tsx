@@ -3,6 +3,7 @@ import Link from 'next/link'
 import {PortableText} from '@portabletext/react'
 
 import {AllPosts} from '@/app/components/Posts'
+import BrandsSection from '@/app/components/BrandsSection'
 import GetStartedCode from '@/app/components/GetStartedCode'
 import Hero from '@/app/components/Hero'
 import {settingsQuery} from '@/sanity/lib/queries'
@@ -17,6 +18,9 @@ export default async function Page() {
     <>
       {/* Hero Section */}
       <Hero />
+      
+      {/* Brands Section */}
+      <BrandsSection />
       
       {/* Content Section */}
       <div className="flex flex-col items-center">
