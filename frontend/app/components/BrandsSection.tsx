@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface Brand {
   id: string
@@ -119,9 +120,28 @@ export default function BrandsSection() {
 
         {/* Call to Action */}
         <div className="text-center mt-12 lg:mt-16">
-          <button className="bg-amber-800 hover:bg-amber-900 text-amber-50 font-semibold py-3 px-8 sm:py-4 sm:px-12 text-sm sm:text-base transition-all duration-300 transform hover:scale-105 shadow-lg">
-            EXPLORE ALL BRANDS
-          </button>
+          <Link 
+            href="/our-brands"
+            className="group inline-flex items-center gap-2 text-green-600 hover:text-green-500 font-medium text-sm transition-all duration-300 hover:gap-3"
+          >
+            <span className="relative">
+              Explore all brands
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 transition-all duration-300 group-hover:w-full"></span>
+            </span>
+            <svg 
+              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M9 5l7 7-7 7" 
+              />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>
