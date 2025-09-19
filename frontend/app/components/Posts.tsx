@@ -1,19 +1,19 @@
 import Link from 'next/link'
 
 import {sanityFetch} from '@/sanity/lib/live'
-import {morePostsQuery, allPostsQuery} from '@/sanity/lib/queries'
-import {Post as PostType, AllPostsQueryResult} from '@/sanity.types'
+import {moreBrandsQuery, allBrandsQuery} from '@/sanity/lib/queries'
+import {Brand as BrandType, AllBrandsQueryResult} from '@/sanity.types'
 import DateComponent from '@/app/components/Date'
 import OnBoarding from '@/app/components/Onboarding'
 import Avatar from '@/app/components/Avatar'
 import {createDataAttribute} from 'next-sanity'
 
-const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
-  const {_id, title, slug, excerpt, date, author} = post
+const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
+  const {_id, title, slug, excerpt, date, author} = brand
 
   const attr = createDataAttribute({
     id: _id,
-    type: 'post',
+    type: 'brand',
     path: 'title',
   })
 
@@ -23,7 +23,7 @@ const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
       key={_id}
       className="border border-gray-200 rounded-sm p-6 bg-gray-50 flex flex-col justify-between transition-colors hover:bg-white relative"
     >
-      <Link className="hover:text-brand underline transition-colors" href={`/posts/${slug}`}>
+      <Link className="hover:text-brand underline transition-colors" href={`/brands/${slug}`}>
         <span className="absolute inset-0 z-10" />
       </Link>
       <div>
@@ -45,7 +45,7 @@ const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
   )
 }
 
-const Posts = ({
+const Brands = ({
   children,
   heading,
   subHeading,
@@ -65,9 +65,9 @@ const Posts = ({
   </div>
 )
 
-export const MorePosts = async ({skip, limit}: {skip: string; limit: number}) => {
+export const MoreBrands = async ({skip, limit}: {skip: string; limit: number}) => {
   const {data} = await sanityFetch({
-    query: morePostsQuery,
+    query: moreBrandsQuery,
     params: {skip, limit},
   })
 
@@ -76,29 +76,29 @@ export const MorePosts = async ({skip, limit}: {skip: string; limit: number}) =>
   }
 
   return (
-    <Posts heading={`Recent Posts (${data?.length})`}>
-      {data?.map((post: any) => (
-        <Post key={post._id} post={post} />
+    <Brands heading={`Recent Brands (${data?.length})`}>
+      {data?.map((brand: any) => (
+        <Brand key={brand._id} brand={brand} />
       ))}
-    </Posts>
+    </Brands>
   )
 }
 
-export const AllPosts = async () => {
-  const {data} = await sanityFetch({query: allPostsQuery})
+export const AllBrands = async () => {
+  const {data} = await sanityFetch({query: allBrandsQuery})
 
   if (!data || data.length === 0) {
     return <OnBoarding />
   }
 
   return (
-    <Posts
-      heading="Recent Posts"
-      subHeading={`${data.length === 1 ? 'This blog post is' : `These ${data.length} blog posts are`} populated from your Sanity Studio.`}
+    <Brands
+      heading="Recent Brands"
+      subHeading={`${data.length === 1 ? 'This blog brand is' : `These ${data.length} blog brands are`} populated from your Sanity Studio.`}
     >
-      {data.map((post: any) => (
-        <Post key={post._id} post={post} />
+      {data.map((brand: any) => (
+        <Brand key={brand._id} brand={brand} />
       ))}
-    </Posts>
+    </Brands>
   )
 }

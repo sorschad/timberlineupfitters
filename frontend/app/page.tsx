@@ -2,7 +2,7 @@ import {Suspense} from 'react'
 import Link from 'next/link'
 import {PortableText} from '@portabletext/react'
 
-import {AllPosts} from '@/app/components/Posts'
+import {AllBrands} from '@/app/components/Brands'
 import BrandsSection from '@/app/components/BrandsSection'
 import GetStartedCode from '@/app/components/GetStartedCode'
 import Hero from '@/app/components/Hero'
@@ -52,7 +52,7 @@ export default async function Page() {
       <div className="border-t border-gray-100 bg-gray-50">
         <div className="container">
           <aside className="py-12 sm:py-20">
-            <Suspense>{await AllPosts()}</Suspense>
+            <Suspense>{await AllBrands()}</Suspense>
           </aside>
         </div>
       </div>

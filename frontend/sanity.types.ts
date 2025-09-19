@@ -23,7 +23,7 @@ export type CallToAction = {
 
 export type Link = {
   _type: 'link'
-  linkType?: 'href' | 'page' | 'post'
+  linkType?: 'href' | 'page' | 'brand'
   href?: string
   page?: {
     _ref: string
@@ -31,11 +31,11 @@ export type Link = {
     _weak?: boolean
     [internalGroqTypeReferenceTo]?: 'page'
   }
-  post?: {
+  brand?: {
     _ref: string
     _type: 'reference'
     _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'post'
+    [internalGroqTypeReferenceTo]?: 'brand'
   }
   openInNewTab?: boolean
 }
@@ -54,7 +54,7 @@ export type InfoSection = {
     style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
     listItem?: 'bullet' | 'number'
     markDefs?: Array<{
-      linkType?: 'href' | 'page' | 'post'
+      linkType?: 'href' | 'page' | 'brand'
       href?: string
       page?: {
         _ref: string
@@ -62,11 +62,11 @@ export type InfoSection = {
         _weak?: boolean
         [internalGroqTypeReferenceTo]?: 'page'
       }
-      post?: {
+      brand?: {
         _ref: string
         _type: 'reference'
         _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'post'
+        [internalGroqTypeReferenceTo]?: 'brand'
       }
       openInNewTab?: boolean
       _type: 'link'
@@ -88,7 +88,7 @@ export type BlockContent = Array<{
   style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
   listItem?: 'bullet' | 'number'
   markDefs?: Array<{
-    linkType?: 'href' | 'page' | 'post'
+    linkType?: 'href' | 'page' | 'brand'
     href?: string
     page?: {
       _ref: string
@@ -96,11 +96,11 @@ export type BlockContent = Array<{
       _weak?: boolean
       [internalGroqTypeReferenceTo]?: 'page'
     }
-    post?: {
+    brand?: {
       _ref: string
       _type: 'reference'
       _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'post'
+      [internalGroqTypeReferenceTo]?: 'brand'
     }
     openInNewTab?: boolean
     _type: 'link'
@@ -128,7 +128,7 @@ export type Settings = {
     style?: 'normal'
     listItem?: never
     markDefs?: Array<{
-      linkType?: 'href' | 'page' | 'post'
+      linkType?: 'href' | 'page' | 'brand'
       href?: string
       page?: {
         _ref: string
@@ -136,11 +136,11 @@ export type Settings = {
         _weak?: boolean
         [internalGroqTypeReferenceTo]?: 'page'
       }
-      post?: {
+      brand?: {
         _ref: string
         _type: 'reference'
         _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'post'
+        [internalGroqTypeReferenceTo]?: 'brand'
       }
       openInNewTab?: boolean
       _type: 'link'
@@ -186,9 +186,9 @@ export type Page = {
   >
 }
 
-export type Post = {
+export type Brand = {
   _id: string
-  _type: 'post'
+  _type: 'brand'
   _createdAt: string
   _updatedAt: string
   _rev: string
@@ -501,7 +501,7 @@ export type AllSanitySchemaTypes =
   | BlockContent
   | Settings
   | Page
-  | Post
+  | Brand
   | Person
   | SanityAssistInstructionTask
   | SanityAssistTaskStatus
@@ -547,7 +547,7 @@ export type SettingsQueryResult = {
     style?: 'normal'
     listItem?: never
     markDefs?: Array<{
-      linkType?: 'href' | 'page' | 'post'
+      linkType?: 'href' | 'page' | 'brand'
       href?: string
       page?: {
         _ref: string
@@ -555,11 +555,11 @@ export type SettingsQueryResult = {
         _weak?: boolean
         [internalGroqTypeReferenceTo]?: 'page'
       }
-      post?: {
+      brand?: {
         _ref: string
         _type: 'reference'
         _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'post'
+        [internalGroqTypeReferenceTo]?: 'brand'
       }
       openInNewTab?: boolean
       _type: 'link'
@@ -585,7 +585,7 @@ export type SettingsQueryResult = {
   }
 } | null
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },    },  }
+// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }          }        }      },    },  }
 export type GetPageQueryResult = {
   _id: string
   _type: 'page'
@@ -602,11 +602,17 @@ export type GetPageQueryResult = {
         buttonText?: string
         link: {
           _type: 'link'
-          linkType?: 'href' | 'page' | 'post'
+          linkType?: 'href' | 'page' | 'brand'
           href?: string
           page: string | null
-          post: string | null
+          brand?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'brand'
+          }
           openInNewTab?: boolean
+          brand: null
         } | null
       }
     | {
@@ -624,13 +630,19 @@ export type GetPageQueryResult = {
           style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
           listItem?: 'bullet' | 'number'
           markDefs: Array<{
-            linkType?: 'href' | 'page' | 'post'
+            linkType?: 'href' | 'page' | 'brand'
             href?: string
             page: string | null
-            post: string | null
+            brand?: {
+              _ref: string
+              _type: 'reference'
+              _weak?: boolean
+              [internalGroqTypeReferenceTo]?: 'brand'
+            }
             openInNewTab?: boolean
             _type: 'link'
             _key: string
+            brand: null
           }> | null
           level?: number
           _type: 'block'
@@ -640,166 +652,24 @@ export type GetPageQueryResult = {
   > | null
 } | null
 // Variable: sitemapData
-// Query: *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
-export type SitemapDataResult = Array<
-  | {
-      slug: string
-      _type: 'page'
-      _updatedAt: string
-    }
-  | {
-      slug: string
-      _type: 'post'
-      _updatedAt: string
-    }
->
-// Variable: allPostsQuery
-// Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
-export type AllPostsQueryResult = Array<{
-  _id: string
-  status: 'draft' | 'published'
-  title: string
+// Query: *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
+export type SitemapDataResult = Array<{
   slug: string
-  excerpt: string | null
-  coverImage: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-  date: string
-  author: {
-    firstName: string
-    lastName: string
-    picture: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      media?: unknown
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      alt?: string
-      _type: 'image'
-    }
-  } | null
+  _type: 'page'
+  _updatedAt: string
 }>
-// Variable: morePostsQuery
-// Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
-export type MorePostsQueryResult = Array<{
-  _id: string
-  status: 'draft' | 'published'
-  title: string
-  slug: string
-  excerpt: string | null
-  coverImage: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-  date: string
-  author: {
-    firstName: string
-    lastName: string
-    picture: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      media?: unknown
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      alt?: string
-      _type: 'image'
-    }
-  } | null
-}>
-// Variable: postQuery
-// Query: *[_type == "post" && slug.current == $slug] [0] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
-export type PostQueryResult = {
-  content: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-    listItem?: 'bullet' | 'number'
-    markDefs: Array<{
-      linkType?: 'href' | 'page' | 'post'
-      href?: string
-      page: string | null
-      post: string | null
-      openInNewTab?: boolean
-      _type: 'link'
-      _key: string
-    }> | null
-    level?: number
-    _type: 'block'
-    _key: string
-  }> | null
-  _id: string
-  status: 'draft' | 'published'
-  title: string
-  slug: string
-  excerpt: string | null
-  coverImage: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-  date: string
-  author: {
-    firstName: string
-    lastName: string
-    picture: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      media?: unknown
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      alt?: string
-      _type: 'image'
-    }
-  } | null
-} | null
-// Variable: postPagesSlugs
-// Query: *[_type == "post" && defined(slug.current)]  {"slug": slug.current}
-export type PostPagesSlugsResult = Array<{
-  slug: string
-}>
+// Variable: allBrandsQuery
+// Query: *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  category,  features,  "launchDate": coalesce(launchDate, _updatedAt),  status,  }
+export type AllBrandsQueryResult = Array<never>
+// Variable: moreBrandsQuery
+// Query: *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  category,  features,  "launchDate": coalesce(launchDate, _updatedAt),  status,  }
+export type MoreBrandsQueryResult = Array<never>
+// Variable: brandQuery
+// Query: *[_type == "brand" && slug.current == $slug] [0] {    description[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  category,  features,  "launchDate": coalesce(launchDate, _updatedAt),  status,  }
+export type BrandQueryResult = null
+// Variable: brandPagesSlugs
+// Query: *[_type == "brand" && defined(slug.current)]  {"slug": slug.current}
+export type BrandPagesSlugsResult = Array<never>
 // Variable: pagesSlugs
 // Query: *[_type == "page" && defined(slug.current)]  {"slug": slug.current}
 export type PagesSlugsResult = Array<{
@@ -811,12 +681,12 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]': SettingsQueryResult
-    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
-    '\n  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
-    '\n  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': AllPostsQueryResult
-    '\n  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': MorePostsQueryResult
-    '\n  *[_type == "post" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': PostQueryResult
-    '\n  *[_type == "post" && defined(slug.current)]\n  {"slug": slug.current}\n': PostPagesSlugsResult
+    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
+    '\n  *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
+    '\n  *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  category,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  status,\n\n  }\n': AllBrandsQueryResult
+    '\n  *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  category,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  status,\n\n  }\n': MoreBrandsQueryResult
+    '\n  *[_type == "brand" && slug.current == $slug] [0] {\n    description[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  category,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  status,\n\n  }\n': BrandQueryResult
+    '\n  *[_type == "brand" && defined(slug.current)]\n  {"slug": slug.current}\n': BrandPagesSlugsResult
     '\n  *[_type == "page" && defined(slug.current)]\n  {"slug": slug.current}\n': PagesSlugsResult
   }
 }

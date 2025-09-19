@@ -34,8 +34,8 @@ const homeLocation = {
 // path for different document types and used in the presentation tool.
 function resolveHref(documentType?: string, slug?: string): string | undefined {
   switch (documentType) {
-    case 'post':
-      return slug ? `/posts/${slug}` : undefined
+    case 'brand':
+      return slug ? `/brands/${slug}` : undefined
     case 'page':
       return slug ? `/${slug}` : undefined
     default:
@@ -73,8 +73,8 @@ export default defineConfig({
             filter: `_type == "page" && slug.current == $slug || _id == $slug`,
           },
           {
-            route: '/posts/:slug',
-            filter: `_type == "post" && slug.current == $slug || _id == $slug`,
+            route: '/brands/:slug',
+            filter: `_type == "brand" && slug.current == $slug || _id == $slug`,
           },
         ]),
         // Locations Resolver API allows you to define where data is being used in your application. https://www.sanity.io/docs/presentation-resolver-api#8d8bca7bfcd7
@@ -98,7 +98,7 @@ export default defineConfig({
               ],
             }),
           }),
-          post: defineLocations({
+          brand: defineLocations({
             select: {
               title: 'title',
               slug: 'slug.current',
@@ -107,7 +107,7 @@ export default defineConfig({
               locations: [
                 {
                   title: doc?.title || 'Untitled',
-                  href: resolveHref('post', doc?.slug)!,
+                  href: resolveHref('brand', doc?.slug)!,
                 },
                 {
                   title: 'Home',

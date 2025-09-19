@@ -1,6 +1,6 @@
 import {person} from './documents/person'
 import {page} from './documents/page'
-import {post} from './documents/post'
+import {brand} from './documents/brand'
 import {callToAction} from './objects/callToAction'
 import {infoSection} from './objects/infoSection'
 import {settings} from './singletons/settings'
@@ -14,7 +14,7 @@ export const schemaTypes = [
   settings,
   // Documents
   page,
-  post,
+  brand,
   person,
   // Objects
   blockContent,
