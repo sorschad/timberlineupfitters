@@ -113,18 +113,15 @@ export default function Hero() {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-5xl mx-auto text-center text-white">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-tight tracking-tight">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-none tracking-tight">
                     {slide.title}
                   </h1>
                   <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-10 sm:mb-16 max-w-4xl mx-auto leading-relaxed">
                     {slide.subtitle}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-                    <button className="bg-brand hover:bg-brand/90 text-white font-semibold py-4 px-10 sm:py-5 sm:px-12 text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg min-w-[200px]">
-                      EXPLORE MODELS
-                    </button>
-                    <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-semibold py-4 px-10 sm:py-5 sm:px-12 text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 min-w-[200px]">
-                      BOOK CONSULTATION
+                  <div className="flex justify-center items-center">
+                    <button className="bg-brand hover:bg-brand/90 text-white font-semibold py-4 px-16 sm:py-5 sm:px-20 text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg w-full max-w-md">
+                      EXPLORE OUR BRANDS
                     </button>
                   </div>
                 </div>
