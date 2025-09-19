@@ -80,6 +80,16 @@ export default function Hero() {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
   }
 
+  const scrollToBrands = () => {
+    const brandsSection = document.getElementById('brands-section')
+    if (brandsSection) {
+      brandsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
+
   return (
     <div 
       className="relative w-full overflow-hidden"
@@ -119,9 +129,29 @@ export default function Hero() {
                   <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-10 sm:mb-16 max-w-4xl mx-auto leading-relaxed">
                     {slide.subtitle}
                   </p>
-                  <div className="flex justify-center items-center">
-                    <button className="bg-brand hover:bg-brand/90 text-white font-semibold py-4 px-16 sm:py-5 sm:px-20 text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg w-full max-w-md">
-                      EXPLORE OUR BRANDS
+                  <div className="flex flex-col justify-center items-center">
+                    <button 
+                      onClick={scrollToBrands}
+                      className="group relative bg-brand hover:bg-brand/90 text-white font-semibold py-4 px-16 sm:py-5 sm:px-20 text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg w-full max-w-md animate-float-bounce"
+                    >
+                      <span className="flex items-center justify-center gap-3">
+                        EXPLORE OUR BRANDS
+                        <svg 
+                          className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-y-1" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+                          />
+                        </svg>
+                      </span>
+                      {/* Pulsing ring effect */}
+                      <div className="absolute inset-0 rounded-lg bg-brand/20 animate-ping opacity-75"></div>
                     </button>
                   </div>
                 </div>
