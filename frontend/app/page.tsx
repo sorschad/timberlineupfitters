@@ -5,7 +5,6 @@ import {PortableText} from '@portabletext/react'
 import {AllPosts} from '@/app/components/Posts'
 import GetStartedCode from '@/app/components/GetStartedCode'
 import Hero from '@/app/components/Hero'
-import SideBySideIcons from '@/app/components/SideBySideIcons'
 import {settingsQuery} from '@/sanity/lib/queries'
 import {sanityFetch} from '@/sanity/lib/live'
 
@@ -21,7 +20,6 @@ export default async function Page() {
       
       {/* Content Section */}
       <div className="flex flex-col items-center">
-        <SideBySideIcons />
         <div className="container relative mx-auto max-w-2xl pb-20 pt-10 space-y-6 lg:max-w-4xl lg:px-12 flex flex-col items-center">
           <div className="prose sm:prose-lg md:prose-xl xl:prose-2xl text-gray-700 prose-a:text-gray-700 font-light text-center">
             {settings?.description && <PortableText value={settings.description} />}
