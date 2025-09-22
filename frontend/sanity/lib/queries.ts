@@ -2,21 +2,23 @@ import {defineQuery} from 'next-sanity'
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 
-const postFields = /* groq */ `
+const brandFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),
-  "title": coalesce(title, "Untitled"),
+  "name": coalesce(name, "Untitled"),
   "slug": slug.current,
   excerpt,
   coverImage,
-  "date": coalesce(date, _updatedAt),
-  "author": author->{firstName, lastName, picture},
+  category,
+  features,
+  "launchDate": coalesce(launchDate, _updatedAt),
+  status,
 `
 
 const linkReference = /* groq */ `
   _type == "link" => {
     "page": page->slug.current,
-    "post": post->slug.current
+    "brand": brand->slug.current
   }
 `
 
@@ -54,40 +56,40 @@ export const getPageQuery = defineQuery(`
 `)
 
 export const sitemapData = defineQuery(`
-  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {
+  *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {
     "slug": slug.current,
     _type,
     _updatedAt,
   }
 `)
 
-export const allPostsQuery = defineQuery(`
-  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {
-    ${postFields}
+export const allBrandsQuery = defineQuery(`
+  *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {
+    ${brandFields}
   }
 `)
 
-export const morePostsQuery = defineQuery(`
-  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
-    ${postFields}
+export const moreBrandsQuery = defineQuery(`
+  *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {
+    ${brandFields}
   }
 `)
 
-export const postQuery = defineQuery(`
-  *[_type == "post" && slug.current == $slug] [0] {
-    content[]{
+export const brandQuery = defineQuery(`
+  *[_type == "brand" && slug.current == $slug] [0] {
+    description[]{
     ...,
     markDefs[]{
       ...,
       ${linkReference}
     }
   },
-    ${postFields}
+    ${brandFields}
   }
 `)
 
-export const postPagesSlugs = defineQuery(`
-  *[_type == "post" && defined(slug.current)]
+export const brandPagesSlugs = defineQuery(`
+  *[_type == "brand" && defined(slug.current)]
   {"slug": slug.current}
 `)
 

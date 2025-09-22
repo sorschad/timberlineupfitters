@@ -1,21 +1,21 @@
-import {DocumentTextIcon} from '@sanity/icons'
+// import {CarIcon} from '@sanity/icons'
 import {format, parseISO} from 'date-fns'
 import {defineField, defineType} from 'sanity'
 
 /**
- * Brand schema.  Define and edit the fields for the 'brand' content type.
+ * Brand schema. Define and edit the fields for the 'brand' content type.
  * Learn more: https://www.sanity.io/docs/schema-types
  */
 
 export const brand = defineType({
   name: 'brand',
   title: 'Brand',
-  icon: DocumentTextIcon,
+  icon: null,
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
+      name: 'name',
+      title: 'Brand Name',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
@@ -25,21 +25,22 @@ export const brand = defineType({
       type: 'slug',
       description: 'A slug is required for the brand to show up in the preview',
       options: {
-        source: 'title',
+        source: 'name',
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'content',
-      title: 'Content',
+      name: 'description',
+      title: 'Description',
       type: 'blockContent',
     }),
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
+      description: 'Short description for brand listings',
     }),
     defineField({
       name: 'coverImage',
@@ -71,34 +72,65 @@ export const brand = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'date',
-      title: 'Date',
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Anthem Edition', value: 'anthem'},
+          {title: 'Mountain Command', value: 'alpine'},
+          {title: 'Expedition Ready', value: 'timberline'},
+        ],
+        layout: 'radio',
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'features',
+      title: 'Key Features',
+      type: 'array',
+      of: [{type: 'string'}],
+      description: 'List of key features for this brand',
+    }),
+    defineField({
+      name: 'launchDate',
+      title: 'Launch Date',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
     }),
     defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: [{type: 'person'}],
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Active', value: 'active'},
+          {title: 'Coming Soon', value: 'coming-soon'},
+          {title: 'Discontinued', value: 'discontinued'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'active',
+      validation: (rule) => rule.required(),
     }),
   ],
   // List preview configuration. https://www.sanity.io/docs/previews-list-views
   preview: {
     select: {
-      title: 'title',
-      authorFirstName: 'author.firstName',
-      authorLastName: 'author.lastName',
-      date: 'date',
+      name: 'name',
+      category: 'category',
+      launchDate: 'launchDate',
       media: 'coverImage',
+      status: 'status',
     },
-    prepare({title, media, authorFirstName, authorLastName, date}) {
+    prepare({name, media, category, launchDate, status}) {
       const subtitles = [
-        authorFirstName && authorLastName && `by ${authorFirstName} ${authorLastName}`,
-        date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
+        category && `Category: ${category}`,
+        status && `Status: ${status}`,
+        launchDate && `Launched: ${format(parseISO(launchDate), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 
-      return {title, media, subtitle: subtitles.join(' ')}
+      return {title: name, media, subtitle: subtitles.join(' • ')}
     },
   },
 })

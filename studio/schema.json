@@ -72,7 +72,7 @@
               },
               {
                 "type": "string",
-                "value": "post"
+                "value": "brand"
               }
             ]
           },
@@ -115,7 +115,7 @@
           },
           "optional": true
         },
-        "post": {
+        "brand": {
           "type": "objectAttribute",
           "value": {
             "type": "object",
@@ -141,7 +141,7 @@
                 "optional": true
               }
             },
-            "dereferencesTo": "post"
+            "dereferencesTo": "brand"
           },
           "optional": true
         },
@@ -316,7 +316,7 @@
                               },
                               {
                                 "type": "string",
-                                "value": "post"
+                                "value": "brand"
                               }
                             ]
                           },
@@ -359,7 +359,7 @@
                           },
                           "optional": true
                         },
-                        "post": {
+                        "brand": {
                           "type": "objectAttribute",
                           "value": {
                             "type": "object",
@@ -385,7 +385,7 @@
                                 "optional": true
                               }
                             },
-                            "dereferencesTo": "post"
+                            "dereferencesTo": "brand"
                           },
                           "optional": true
                         },
@@ -587,7 +587,7 @@
                         },
                         {
                           "type": "string",
-                          "value": "post"
+                          "value": "brand"
                         }
                       ]
                     },
@@ -630,7 +630,7 @@
                     },
                     "optional": true
                   },
-                  "post": {
+                  "brand": {
                     "type": "objectAttribute",
                     "value": {
                       "type": "object",
@@ -656,7 +656,7 @@
                           "optional": true
                         }
                       },
-                      "dereferencesTo": "post"
+                      "dereferencesTo": "brand"
                     },
                     "optional": true
                   },
@@ -858,7 +858,7 @@
                             },
                             {
                               "type": "string",
-                              "value": "post"
+                              "value": "brand"
                             }
                           ]
                         },
@@ -901,7 +901,7 @@
                         },
                         "optional": true
                       },
-                      "post": {
+                      "brand": {
                         "type": "objectAttribute",
                         "value": {
                           "type": "object",
@@ -927,7 +927,7 @@
                               "optional": true
                             }
                           },
-                          "dereferencesTo": "post"
+                          "dereferencesTo": "brand"
                         },
                         "optional": true
                       },
@@ -1185,7 +1185,7 @@
     }
   },
   {
-    "name": "post",
+    "name": "brand",
     "type": "document",
     "attributes": {
       "_id": {
@@ -1198,7 +1198,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "post"
+          "value": "brand"
         }
       },
       "_createdAt": {
