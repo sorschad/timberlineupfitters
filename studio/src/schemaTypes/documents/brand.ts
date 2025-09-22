@@ -26,7 +26,7 @@ export const brand = defineType({
       description: 'A slug is required for the brand to show up in the preview',
       options: {
         source: 'name',
-        maxLength: 96,
+        maxLength: 255,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),

@@ -26,7 +26,7 @@ export const page = defineType({
       validation: (Rule) => Rule.required(),
       options: {
         source: 'name',
-        maxLength: 96,
+        maxLength: 255,
       },
     }),
     defineField({
