@@ -71,20 +71,7 @@ export const brand = defineType({
       ],
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'category',
-      title: 'Category',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Anthem Edition', value: 'anthem'},
-          {title: 'Mountain Command', value: 'alpine'},
-          {title: 'Expedition Ready', value: 'timberline'},
-        ],
-        layout: 'radio',
-      },
-      validation: (rule) => rule.required(),
-    }),
+    
     defineField({
       name: 'features',
       title: 'Key Features',
@@ -118,14 +105,12 @@ export const brand = defineType({
   preview: {
     select: {
       name: 'name',
-      category: 'category',
       launchDate: 'launchDate',
       media: 'coverImage',
       status: 'status',
     },
-    prepare({name, media, category, launchDate, status}) {
+    prepare({name, media, launchDate, status}) {
       const subtitles = [
-        category && `Category: ${category}`,
         status && `Status: ${status}`,
         launchDate && `Launched: ${format(parseISO(launchDate), 'LLL d, yyyy')}`,
       ].filter(Boolean)
