@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
-import {AllBrands} from '@/app/components/Brands'
-import BrandsSection from '@/app/components/BrandsSection'
+import {AllBrands, HomepageBrands} from '@/app/components/Brands'
 import Hero from '@/app/components/Hero'
 
 export default function HomePage() {
@@ -11,7 +10,7 @@ export default function HomePage() {
       <Hero />
       
       {/* Brands Section */}
-      <BrandsSection />
+      <HomepageBrands />
       
       {/* All Brands Section */}
       <div className="border-t border-gray-100 bg-gray-50">
