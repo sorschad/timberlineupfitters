@@ -1,19 +1,10 @@
-import {Suspense} from 'react'
 import Link from 'next/link'
-import {PortableText} from '@portabletext/react'
 
 import {AllBrands} from '@/app/components/Brands'
 import BrandsSection from '@/app/components/BrandsSection'
-import GetStartedCode from '@/app/components/GetStartedCode'
 import Hero from '@/app/components/Hero'
-import {settingsQuery} from '@/sanity/lib/queries'
-import {sanityFetch} from '@/sanity/lib/live'
 
-export default async function Page() {
-  const {data: settings} = await sanityFetch({
-    query: settingsQuery,
-  })
-
+export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
@@ -22,37 +13,77 @@ export default async function Page() {
       {/* Brands Section */}
       <BrandsSection />
       
-      {/* Content Section */}
-      <div className="flex flex-col items-center">
-        <div className="container relative mx-auto max-w-2xl pb-20 pt-10 space-y-6 lg:max-w-4xl lg:px-12 flex flex-col items-center">
-          <div className="prose sm:prose-lg md:prose-xl xl:prose-2xl text-gray-700 prose-a:text-gray-700 font-light text-center">
-            {settings?.description && <PortableText value={settings.description} />}
-            <div className="flex items-center flex-col gap-4">
-              <GetStartedCode />
+      {/* About Section */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
+              Premium Vehicle Upfitting
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 mb-12 leading-relaxed">
+              At Timberline Upfitters, we specialize in transforming your vehicle into the ultimate adventure companion. 
+              Our expert craftsmen combine precision engineering with premium materials to deliver custom solutions 
+              that enhance both performance and aesthetics.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-brand rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Expert Craftsmanship</h3>
+                <p className="text-gray-600">Professional installation with attention to every detail</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-brand rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Premium Materials</h3>
+                <p className="text-gray-600">Only the highest quality components and accessories</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-brand rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Custom Solutions</h3>
+                <p className="text-gray-600">Tailored to your specific needs and adventure goals</p>
+              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="https://www.sanity.io/docs"
-                className="inline-flex text-brand text-xs md:text-sm underline hover:text-gray-900"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-4 bg-brand text-white font-semibold rounded-lg hover:bg-brand/90 transition-colors duration-300"
               >
-                Sanity Documentation
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="w-4 h-4 ml-1 inline"
-                  fill="currentColor"
-                >
-                  <path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path>
+                Get Started Today
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
+              </Link>
+              <Link
+                href="/our-brands"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-brand text-brand font-semibold rounded-lg hover:bg-brand hover:text-white transition-colors duration-300"
+              >
+                View Our Brands
               </Link>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+      
+      {/* All Brands Section */}
       <div className="border-t border-gray-100 bg-gray-50">
         <div className="container">
           <aside className="py-12 sm:py-20">
-            <Suspense>{await AllBrands()}</Suspense>
+            <AllBrands />
           </aside>
         </div>
       </div>
