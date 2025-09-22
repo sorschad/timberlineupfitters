@@ -11,15 +11,7 @@ export default function HomePage() {
       
       {/* Brands Section */}
       <HomepageBrands />
-      
-      {/* All Brands Section */}
-      <div className="border-t border-gray-100 bg-gray-50">
-        <div className="container">
-          <aside className="py-12 sm:py-20">
-            <AllBrands />
-          </aside>
-        </div>
-      </div>
+
     </>
   )
 }
