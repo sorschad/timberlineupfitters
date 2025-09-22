@@ -74,15 +74,9 @@ export const moreBrandsQuery = defineQuery(`
 `)
 
 export const homepageBrandsQuery = defineQuery(`
-  *[_type == "brand" && slug.current in ["anthem", "alpine", "timberline"] && defined(slug.current)]{
+  *[_type == "brand" && defined(slug.current)] | order(name asc) {
     ${brandFields}
-    "order": select(
-      slug.current == "anthem" => 0,
-      slug.current == "alpine" => 1,
-      slug.current == "timberline" => 2,
-      99
-    )
-  } | order(order asc)
+  }
 `)
 
 export const brandQuery = defineQuery(`
@@ -102,6 +96,7 @@ export const brandPagesSlugs = defineQuery(`
   *[_type == "brand" && defined(slug.current)]
   {"slug": slug.current}
 `)
+
 
 export const pagesSlugs = defineQuery(`
   *[_type == "page" && defined(slug.current)]
