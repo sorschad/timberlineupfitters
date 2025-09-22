@@ -11,7 +11,6 @@ const brandFields = /* groq */ `
   coverImage,
   features,
   "launchDate": coalesce(launchDate, _updatedAt),
-  status,
 `
 
 const linkReference = /* groq */ `

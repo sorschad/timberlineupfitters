@@ -10,7 +10,7 @@ import {createDataAttribute} from 'next-sanity'
 import {urlForImage} from '@/sanity/lib/utils'
 
 const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
-  const {_id, name, slug, excerpt, launchDate, status, features} = brand
+  const {_id, name, slug, excerpt, launchDate, features} = brand
   const featuresList: string[] = Array.isArray(features) ? (features as unknown as string[]) : []
 
   const attr = createDataAttribute({
@@ -21,18 +21,6 @@ const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
 
   
 
-  const getStatusColor = (statusValue: string | undefined) => {
-    switch (statusValue) {
-      case 'active':
-        return 'bg-green-100 text-green-800'
-      case 'coming-soon':
-        return 'bg-yellow-100 text-yellow-800'
-      case 'discontinued':
-        return 'bg-red-100 text-red-800'
-      default:
-        return 'bg-gray-100 text-gray-800'
-    }
-  }
 
   return (
     <article
@@ -47,9 +35,6 @@ const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
       <div>
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors">{name}</h3>
-          <span className={`px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(status ?? undefined)}`}>
-            {(status || '').replace('-', ' ')}
-          </span>
         </div>
 
         
