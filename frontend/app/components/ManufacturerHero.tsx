@@ -9,6 +9,10 @@ interface Manufacturer {
   logo?: any
   description?: string
   vehicles?: any[]
+  heroImage?: any
+  heroTitle?: string
+  heroSubtitle?: string
+  heroCtaText?: string
 }
 
 interface ManufacturerHeroProps {
@@ -33,7 +37,9 @@ export default function ManufacturerHero({ manufacturer }: ManufacturerHeroProps
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/images/manufacturer-hero-${manufacturer.name.toLowerCase()}.jpg')`,
+          backgroundImage: manufacturer.heroImage 
+            ? `url('${manufacturer.heroImage.asset.url}')`
+            : `url('/images/manufacturer-hero-${manufacturer.name.toLowerCase()}.jpg')`,
           transform: `translateY(${scrollY * 0.5}px)`,
         }}
       >
@@ -56,11 +62,11 @@ export default function ManufacturerHero({ manufacturer }: ManufacturerHeroProps
           )}
           
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            {manufacturer.name}
+            {manufacturer.heroTitle || manufacturer.name}
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-gray-200">
-            {manufacturer.description || `Explore ${vehicleCount} ${manufacturer.name} vehicles designed for every adventure.`}
+            {manufacturer.heroSubtitle || manufacturer.description || `Explore ${vehicleCount} ${manufacturer.name} vehicles designed for every adventure.`}
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm">
@@ -81,7 +87,7 @@ export default function ManufacturerHero({ manufacturer }: ManufacturerHeroProps
             }}
             className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 animate-bounce-slow"
           >
-            Explore Vehicles
+            {manufacturer.heroCtaText || 'Explore Vehicles'}
           </button>
         </div>
       </div>

@@ -53,6 +53,11 @@ export default function VehicleShowcase({ group, index, manufacturer }: VehicleS
   const primaryVehicle = group.vehicles[0]
   const packageCount = group.vehicles.length
 
+  // Find matching showcase image for this model
+  const showcaseImage = manufacturer.showcaseImages?.find(
+    img => img.model.toLowerCase() === group.model.toLowerCase()
+  )
+
   return (
     <section 
       ref={sectionRef}
@@ -63,7 +68,9 @@ export default function VehicleShowcase({ group, index, manufacturer }: VehicleS
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/images/vehicle-showcase-${manufacturer.name.toLowerCase()}-${group.model.toLowerCase().replace(/\s+/g, '-')}.jpg')`,
+          backgroundImage: showcaseImage 
+            ? `url('${showcaseImage.image.asset.url}')`
+            : `url('/images/vehicle-showcase-${manufacturer.name.toLowerCase()}-${group.model.toLowerCase().replace(/\s+/g, '-')}.jpg')`,
           transform: `translateY(${scrollY * 0.3}px)`,
         }}
       >

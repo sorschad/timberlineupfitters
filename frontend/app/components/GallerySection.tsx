@@ -7,6 +7,12 @@ interface Manufacturer {
   _id: string
   name: string
   vehicles?: any[]
+  galleryImages?: Array<{
+    image: any
+    caption: string
+    category: string
+    altText?: string
+  }>
 }
 
 interface GallerySectionProps {
@@ -21,56 +27,47 @@ interface GalleryImage {
   category: string
 }
 
-// Mock gallery data - in a real app, this would come from your CMS
-const getGalleryImages = (manufacturerName: string): GalleryImage[] => {
-  const baseImages = [
-    {
-      id: '1',
-      src: '/images/gallery/action-shot-1.jpg',
-      alt: `${manufacturerName} vehicle in action`,
-      caption: 'Conquering mountain trails with confidence',
-      category: 'adventure'
-    },
-    {
-      id: '2',
-      src: '/images/gallery/worksite-1.jpg',
-      alt: `${manufacturerName} at worksite`,
-      caption: 'Built for the toughest jobs',
-      category: 'work'
-    },
-    {
-      id: '3',
-      src: '/images/gallery/camping-1.jpg',
-      alt: `${manufacturerName} camping setup`,
-      caption: 'Your adventure basecamp',
-      category: 'lifestyle'
-    },
-    {
-      id: '4',
-      src: '/images/gallery/desert-1.jpg',
-      alt: `${manufacturerName} in desert terrain`,
-      caption: 'Mastering any terrain',
-      category: 'adventure'
-    },
-    {
-      id: '5',
-      src: '/images/gallery/forest-1.jpg',
-      alt: `${manufacturerName} in forest`,
-      caption: 'Built for the wild',
-      category: 'lifestyle'
-    },
-    {
-      id: '6',
-      src: '/images/gallery/construction-1.jpg',
-      alt: `${manufacturerName} on construction site`,
-      caption: 'Professional grade performance',
-      category: 'work'
-    }
-  ]
+// Convert CMS gallery images to component format
+const getGalleryImages = (manufacturer: Manufacturer): GalleryImage[] => {
+  if (!manufacturer.galleryImages || manufacturer.galleryImages.length === 0) {
+    // Fallback to mock data if no CMS images
+    const baseImages = [
+      {
+        id: '1',
+        src: '/images/gallery/action-shot-1.jpg',
+        alt: `${manufacturer.name} vehicle in action`,
+        caption: 'Conquering mountain trails with confidence',
+        category: 'adventure'
+      },
+      {
+        id: '2',
+        src: '/images/gallery/worksite-1.jpg',
+        alt: `${manufacturer.name} at worksite`,
+        caption: 'Built for the toughest jobs',
+        category: 'work'
+      },
+      {
+        id: '3',
+        src: '/images/gallery/camping-1.jpg',
+        alt: `${manufacturer.name} camping setup`,
+        caption: 'Your adventure basecamp',
+        category: 'lifestyle'
+      }
+    ]
 
-  return baseImages.map(img => ({
-    ...img,
-    src: img.src.replace('manufacturer', manufacturerName.toLowerCase())
+    return baseImages.map(img => ({
+      ...img,
+      src: img.src.replace('manufacturer', manufacturer.name.toLowerCase())
+    }))
+  }
+
+  // Convert CMS images to component format
+  return manufacturer.galleryImages.map((img, index) => ({
+    id: `cms-${index}`,
+    src: img.image.asset.url,
+    alt: img.altText || `${manufacturer.name} ${img.caption}`,
+    caption: img.caption,
+    category: img.category
   }))
 }
 
@@ -78,7 +75,7 @@ export default function GallerySection({ manufacturer }: GallerySectionProps) {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   
-  const images = getGalleryImages(manufacturer.name)
+  const images = getGalleryImages(manufacturer)
   const categories = ['all', ...new Set(images.map(img => img.category))]
   
   const filteredImages = selectedCategory === 'all' 

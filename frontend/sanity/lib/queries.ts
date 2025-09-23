@@ -111,6 +111,45 @@ export const manufacturerQuery = defineQuery(`
     slug,
     logo,
     description,
+    
+    // Hero Section
+    heroImage,
+    heroTitle,
+    heroSubtitle,
+    heroCtaText,
+    
+    // Showcase Images
+    showcaseImages[] {
+      model,
+      image,
+      altText
+    },
+    
+    // Gallery Images
+    galleryImages[] {
+      image,
+      caption,
+      category,
+      altText
+    },
+    
+    // CTA Section
+    ctaTitle,
+    ctaDescription,
+    ctaStats[] {
+      value,
+      label
+    },
+    additionalLinks[] {
+      text,
+      url
+    },
+    
+    // SEO
+    seoTitle,
+    seoDescription,
+    seoImage,
+    
     "vehicles": *[_type == "vehicle" && references(^._id)] {
       _id,
       title,

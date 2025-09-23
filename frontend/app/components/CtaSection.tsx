@@ -4,6 +4,16 @@ interface Manufacturer {
   _id: string
   name: string
   vehicles?: any[]
+  ctaTitle?: string
+  ctaDescription?: string
+  ctaStats?: Array<{
+    value: string
+    label: string
+  }>
+  additionalLinks?: Array<{
+    text: string
+    url: string
+  }>
 }
 
 interface CtaSectionProps {
@@ -23,40 +33,54 @@ export default function CtaSection({ manufacturer }: CtaSectionProps) {
       <div className="relative z-10 container text-center">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Ready to Find Your {manufacturer.name}?
+            {manufacturer.ctaTitle || `Ready to Find Your ${manufacturer.name}?`}
           </h2>
           
           <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
-            Explore {vehicleCount} {manufacturer.name} vehicles and packages designed for your specific needs. 
-            From rugged worksites to epic adventures, we have the perfect vehicle for you.
+            {manufacturer.ctaDescription || `Explore ${vehicleCount} ${manufacturer.name} vehicles and packages designed for your specific needs. From rugged worksites to epic adventures, we have the perfect vehicle for you.`}
           </p>
 
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-brand mb-2">
-                {vehicleCount}
-              </div>
-              <div className="text-gray-300">
-                Available Packages
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-brand mb-2">
-                100%
-              </div>
-              <div className="text-gray-300">
-                Custom Built
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-brand mb-2">
-                24/7
-              </div>
-              <div className="text-gray-300">
-                Support
-              </div>
-            </div>
+            {manufacturer.ctaStats && manufacturer.ctaStats.length > 0 ? (
+              manufacturer.ctaStats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-4xl font-bold text-brand mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-gray-300">
+                    {stat.label}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-brand mb-2">
+                    {vehicleCount}
+                  </div>
+                  <div className="text-gray-300">
+                    Available Packages
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-brand mb-2">
+                    100%
+                  </div>
+                  <div className="text-gray-300">
+                    Custom Built
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-brand mb-2">
+                    24/7
+                  </div>
+                  <div className="text-gray-300">
+                    Support
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           {/* CTA Buttons */}
@@ -79,30 +103,44 @@ export default function CtaSection({ manufacturer }: CtaSectionProps) {
           {/* Additional Links */}
           <div className="mt-12 pt-8 border-t border-gray-700">
             <div className="flex flex-wrap justify-center gap-8 text-gray-400">
-              <Link 
-                href="/financing" 
-                className="hover:text-white transition-colors duration-300"
-              >
-                Financing Options
-              </Link>
-              <Link 
-                href="/warranty" 
-                className="hover:text-white transition-colors duration-300"
-              >
-                Warranty Info
-              </Link>
-              <Link 
-                href="/service" 
-                className="hover:text-white transition-colors duration-300"
-              >
-                Service & Support
-              </Link>
-              <Link 
-                href="/accessories" 
-                className="hover:text-white transition-colors duration-300"
-              >
-                Accessories
-              </Link>
+              {manufacturer.additionalLinks && manufacturer.additionalLinks.length > 0 ? (
+                manufacturer.additionalLinks.map((link, index) => (
+                  <Link 
+                    key={index}
+                    href={link.url} 
+                    className="hover:text-white transition-colors duration-300"
+                  >
+                    {link.text}
+                  </Link>
+                ))
+              ) : (
+                <>
+                  <Link 
+                    href="/financing" 
+                    className="hover:text-white transition-colors duration-300"
+                  >
+                    Financing Options
+                  </Link>
+                  <Link 
+                    href="/warranty" 
+                    className="hover:text-white transition-colors duration-300"
+                  >
+                    Warranty Info
+                  </Link>
+                  <Link 
+                    href="/service" 
+                    className="hover:text-white transition-colors duration-300"
+                  >
+                    Service & Support
+                  </Link>
+                  <Link 
+                    href="/accessories" 
+                    className="hover:text-white transition-colors duration-300"
+                  >
+                    Accessories
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

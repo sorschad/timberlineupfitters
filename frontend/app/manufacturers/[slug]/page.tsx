@@ -45,8 +45,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${manufacturer.name} Vehicles`,
-    description: manufacturer.description || `Explore ${manufacturer.name} vehicles and packages available through Timberline Upfitters.`,
+    title: manufacturer.seoTitle || `${manufacturer.name} Vehicles`,
+    description: manufacturer.seoDescription || manufacturer.description || `Explore ${manufacturer.name} vehicles and packages available through Timberline Upfitters.`,
+    openGraph: {
+      images: manufacturer.seoImage ? [manufacturer.seoImage.asset.url] : [],
+    },
   }
 }
 
