@@ -113,7 +113,11 @@ export const manufacturerQuery = defineQuery(`
     description,
     
     // Hero Section
-    heroImage,
+    heroImage {
+      asset-> {
+        url
+      }
+    },
     heroTitle,
     heroSubtitle,
     heroCtaText,
@@ -121,13 +125,21 @@ export const manufacturerQuery = defineQuery(`
     // Showcase Images
     showcaseImages[] {
       model,
-      image,
+      image {
+        asset-> {
+          url
+        }
+      },
       altText
     },
     
     // Gallery Images
     galleryImages[] {
-      image,
+      image {
+        asset-> {
+          url
+        }
+      },
       caption,
       category,
       altText
@@ -148,7 +160,11 @@ export const manufacturerQuery = defineQuery(`
     // SEO
     seoTitle,
     seoDescription,
-    seoImage,
+    seoImage {
+      asset-> {
+        url
+      }
+    },
     
     "vehicles": *[_type == "vehicle" && references(^._id)] {
       _id,

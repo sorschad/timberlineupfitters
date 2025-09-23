@@ -68,7 +68,7 @@ export default function VehicleShowcase({ group, index, manufacturer }: VehicleS
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: showcaseImage 
+          backgroundImage: showcaseImage?.image?.asset?.url
             ? `url('${showcaseImage.image.asset.url}')`
             : `url('/images/vehicle-showcase-${manufacturer.name.toLowerCase()}-${group.model.toLowerCase().replace(/\s+/g, '-')}.jpg')`,
           transform: `translateY(${scrollY * 0.3}px)`,

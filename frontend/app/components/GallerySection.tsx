@@ -64,7 +64,7 @@ const getGalleryImages = (manufacturer: Manufacturer): GalleryImage[] => {
   // Convert CMS images to component format
   return manufacturer.galleryImages.map((img, index) => ({
     id: `cms-${index}`,
-    src: img.image.asset.url,
+    src: img.image?.asset?.url || '',
     alt: img.altText || `${manufacturer.name} ${img.caption}`,
     caption: img.caption,
     category: img.category

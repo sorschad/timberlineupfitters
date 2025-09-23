@@ -31,13 +31,20 @@ export default function ManufacturerHero({ manufacturer }: ManufacturerHeroProps
   const vehicleCount = manufacturer.vehicles?.length || 0
   const models = [...new Set(manufacturer.vehicles?.map(v => v.model) || [])]
 
+  // Debug: Log the hero image data
+  console.log('Manufacturer Hero Image Data:', {
+    heroImage: manufacturer.heroImage,
+    hasAsset: !!manufacturer.heroImage?.asset,
+    assetUrl: manufacturer.heroImage?.asset?.url
+  })
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Parallax Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: manufacturer.heroImage 
+          backgroundImage: manufacturer.heroImage?.asset?.url
             ? `url('${manufacturer.heroImage.asset.url}')`
             : `url('/images/manufacturer-hero-${manufacturer.name.toLowerCase()}.jpg')`,
           transform: `translateY(${scrollY * 0.5}px)`,
