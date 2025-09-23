@@ -145,13 +145,6 @@ export default async function BrandPage(props: Props) {
           </div>
         </div>
       </div>
-      <div className="border-t border-gray-100 bg-gray-50">
-        <div className="container py-12 lg:py-24 grid gap-12">
-          <aside>
-            <Suspense>{await MoreBrands({skip: brand._id, limit: 2})}</Suspense>
-          </aside>
-        </div>
-      </div>
     </>
   )
 }

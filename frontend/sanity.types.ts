@@ -654,10 +654,10 @@ export type SitemapDataResult = Array<
     }
 >
 // Variable: allBrandsQuery
-// Query: *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  category,  features,  "launchDate": coalesce(launchDate, _updatedAt),  status,  }
+// Query: *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
 export type AllBrandsQueryResult = Array<{
   _id: string
-  status: null
+  status: 'draft' | 'published'
   name: 'Untitled'
   slug: string
   excerpt: string | null
@@ -674,15 +674,14 @@ export type AllBrandsQueryResult = Array<{
     alt?: string
     _type: 'image'
   }
-  category: null
   features: null
   launchDate: string
 }>
 // Variable: moreBrandsQuery
-// Query: *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  category,  features,  "launchDate": coalesce(launchDate, _updatedAt),  status,  }
+// Query: *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
 export type MoreBrandsQueryResult = Array<{
   _id: string
-  status: null
+  status: 'draft' | 'published'
   name: 'Untitled'
   slug: string
   excerpt: string | null
@@ -699,16 +698,39 @@ export type MoreBrandsQueryResult = Array<{
     alt?: string
     _type: 'image'
   }
-  category: null
+  features: null
+  launchDate: string
+}>
+// Variable: homepageBrandsQuery
+// Query: *[_type == "brand" && defined(slug.current)] | order(name asc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
+export type HomepageBrandsQueryResult = Array<{
+  _id: string
+  status: 'draft' | 'published'
+  name: 'Untitled'
+  slug: string
+  excerpt: string | null
+  coverImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
   features: null
   launchDate: string
 }>
 // Variable: brandQuery
-// Query: *[_type == "brand" && slug.current == $slug] [0] {    description[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  category,  features,  "launchDate": coalesce(launchDate, _updatedAt),  status,  }
+// Query: *[_type == "brand" && slug.current == $slug] [0] {    description[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
 export type BrandQueryResult = {
   description: null
   _id: string
-  status: null
+  status: 'draft' | 'published'
   name: 'Untitled'
   slug: string
   excerpt: string | null
@@ -725,7 +747,6 @@ export type BrandQueryResult = {
     alt?: string
     _type: 'image'
   }
-  category: null
   features: null
   launchDate: string
 } | null
@@ -747,9 +768,10 @@ declare module '@sanity/client' {
     '*[_type == "settings"][0]': SettingsQueryResult
     '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
-    '\n  *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  category,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  status,\n\n  }\n': AllBrandsQueryResult
-    '\n  *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  category,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  status,\n\n  }\n': MoreBrandsQueryResult
-    '\n  *[_type == "brand" && slug.current == $slug] [0] {\n    description[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  category,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  status,\n\n  }\n': BrandQueryResult
+    '\n  *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': AllBrandsQueryResult
+    '\n  *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': MoreBrandsQueryResult
+    '\n  *[_type == "brand" && defined(slug.current)] | order(name asc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': HomepageBrandsQueryResult
+    '\n  *[_type == "brand" && slug.current == $slug] [0] {\n    description[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': BrandQueryResult
     '\n  *[_type == "brand" && defined(slug.current)]\n  {"slug": slug.current}\n': BrandPagesSlugsResult
     '\n  *[_type == "page" && defined(slug.current)]\n  {"slug": slug.current}\n': PagesSlugsResult
   }

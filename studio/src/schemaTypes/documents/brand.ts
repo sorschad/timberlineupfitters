@@ -71,20 +71,7 @@ export const brand = defineType({
       ],
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'category',
-      title: 'Category',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Anthem Edition', value: 'anthem'},
-          {title: 'Mountain Command', value: 'alpine'},
-          {title: 'Expedition Ready', value: 'timberline'},
-        ],
-        layout: 'radio',
-      },
-      validation: (rule) => rule.required(),
-    }),
+    
     defineField({
       name: 'features',
       title: 'Key Features',
@@ -98,35 +85,16 @@ export const brand = defineType({
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
     }),
-    defineField({
-      name: 'status',
-      title: 'Status',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Active', value: 'active'},
-          {title: 'Coming Soon', value: 'coming-soon'},
-          {title: 'Discontinued', value: 'discontinued'},
-        ],
-        layout: 'radio',
-      },
-      initialValue: 'active',
-      validation: (rule) => rule.required(),
-    }),
   ],
   // List preview configuration. https://www.sanity.io/docs/previews-list-views
   preview: {
     select: {
       name: 'name',
-      category: 'category',
       launchDate: 'launchDate',
       media: 'coverImage',
-      status: 'status',
     },
-    prepare({name, media, category, launchDate, status}) {
+    prepare({name, media, launchDate}) {
       const subtitles = [
-        category && `Category: ${category}`,
-        status && `Status: ${status}`,
         launchDate && `Launched: ${format(parseISO(launchDate), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 

@@ -9,10 +9,8 @@ const brandFields = /* groq */ `
   "slug": slug.current,
   excerpt,
   coverImage,
-  category,
   features,
   "launchDate": coalesce(launchDate, _updatedAt),
-  status,
 `
 
 const linkReference = /* groq */ `
@@ -75,6 +73,12 @@ export const moreBrandsQuery = defineQuery(`
   }
 `)
 
+export const homepageBrandsQuery = defineQuery(`
+  *[_type == "brand" && defined(slug.current)] | order(name asc) {
+    ${brandFields}
+  }
+`)
+
 export const brandQuery = defineQuery(`
   *[_type == "brand" && slug.current == $slug] [0] {
     description[]{
@@ -92,6 +96,7 @@ export const brandPagesSlugs = defineQuery(`
   *[_type == "brand" && defined(slug.current)]
   {"slug": slug.current}
 `)
+
 
 export const pagesSlugs = defineQuery(`
   *[_type == "page" && defined(slug.current)]
