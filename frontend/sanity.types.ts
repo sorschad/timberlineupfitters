@@ -760,6 +760,15 @@ export type BrandPagesSlugsResult = Array<{
 export type PagesSlugsResult = Array<{
   slug: string
 }>
+// Variable: manufacturerQuery
+// Query: *[_type == "manufacturer" && slug.current == $slug][0] {    _id,    name,    slug,    logo,    description,    "vehicles": *[_type == "vehicle" && references(^._id)] {      _id,      title,      slug,      model,      vehicleType,      modelYear,      upfitter,      package,      "manufacturer": manufacturer->name    } | order(model asc, upfitter asc, package asc)  }
+export type ManufacturerQueryResult = null
+// Variable: manufacturerSlugs
+// Query: *[_type == "manufacturer" && defined(slug.current)]  {"slug": slug.current}
+export type ManufacturerSlugsResult = Array<never>
+// Variable: allManufacturersQuery
+// Query: *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {    _id,    name,    slug,    logo,    "vehicleCount": count(*[_type == "vehicle" && references(^._id)])  }
+export type AllManufacturersQueryResult = Array<never>
 
 // Query TypeMap
 import '@sanity/client'
@@ -774,5 +783,8 @@ declare module '@sanity/client' {
     '\n  *[_type == "brand" && slug.current == $slug] [0] {\n    description[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': BrandQueryResult
     '\n  *[_type == "brand" && defined(slug.current)]\n  {"slug": slug.current}\n': BrandPagesSlugsResult
     '\n  *[_type == "page" && defined(slug.current)]\n  {"slug": slug.current}\n': PagesSlugsResult
+    '\n  *[_type == "manufacturer" && slug.current == $slug][0] {\n    _id,\n    name,\n    slug,\n    logo,\n    description,\n    "vehicles": *[_type == "vehicle" && references(^._id)] {\n      _id,\n      title,\n      slug,\n      model,\n      vehicleType,\n      modelYear,\n      upfitter,\n      package,\n      "manufacturer": manufacturer->name\n    } | order(model asc, upfitter asc, package asc)\n  }\n': ManufacturerQueryResult
+    '\n  *[_type == "manufacturer" && defined(slug.current)]\n  {"slug": slug.current}\n': ManufacturerSlugsResult
+    '\n  *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {\n    _id,\n    name,\n    slug,\n    logo,\n    "vehicleCount": count(*[_type == "vehicle" && references(^._id)])\n  }\n': AllManufacturersQueryResult
   }
 }
