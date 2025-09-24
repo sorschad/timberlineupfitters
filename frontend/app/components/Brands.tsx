@@ -19,9 +19,6 @@ const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
     path: 'name',
   })
 
-  
-
-
   return (
     <article
       data-sanity={attr()}
@@ -36,8 +33,6 @@ const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors">{name}</h3>
         </div>
-
-        
 
         <p className="line-clamp-3 text-sm leading-6 text-gray-600 max-w-[70ch] mb-4">{excerpt}</p>
 
