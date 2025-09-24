@@ -143,8 +143,9 @@ export const HomepageBrands = async () => {
     <section id="brands-section" className="w-full bg-brown border-t border-amber-200 py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-sm font-normal text-amber-800 mb-4 leading-none tracking-normal">
-            Three distinct vehicle platforms engineered for specific mission requirements
+          <h2 className="relative inline-block text-transparent text-[#cabba8] bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#5a3e2b] text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-[0_0_1px_rgba(0,0,0,0.15)]">
+            Three platforms engineered for different mission specs
+            <span className="block mt-3 h-[3px] w-32 sm:w-40 mx-auto rounded-full bg-gradient-to-r from-[#ff6a00] to-[#5a3e2b]"></span>
           </h2>
         </div>
 
@@ -192,30 +193,6 @@ export const HomepageBrands = async () => {
           })}
         </div>
 
-        <div className="text-center mt-12 lg:mt-16">
-          <Link 
-            href="/our-brands"
-            className="group inline-flex items-center gap-2 text-green-600 hover:text-green-500 font-medium text-sm transition-all duration-300 hover:gap-3"
-          >
-            <span className="relative">
-              Explore all brands
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 transition-all duration-300 group-hover:w-full"></span>
-            </span>
-            <svg 
-              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M9 5l7 7-7 7" 
-              />
-            </svg>
-          </Link>
-        </div>
       </div>
     </section>
   )

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import {AllBrands, HomepageBrands} from '@/app/components/Brands'
+import {HomepageBrands} from '@/app/components/Brands'
 import Hero from '@/app/components/Hero'
 import HomepageCta from '@/app/components/HomepageCta'
 

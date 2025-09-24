@@ -49,8 +49,8 @@ export default function BrandsSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-sm font-normal text-amber-800 mb-4 leading-none tracking-normal">
-            Three distinct vehicle platforms engineered for specific mission requirements
+          <h2 className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#2db79a] via-[#ff6a00] to-[#5a3e2b] text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-[0_0_1px_rgba(0,0,0,0.15)]">
+            <span className="block mt-3 h-[3px] w-32 sm:w-40 mx-auto rounded-full bg-gradient-to-r from-[#2db79a] via-[#ff6a00] to-[#5a3e2b] animate-pulse"></span>
           </h2>
         </div>
 
