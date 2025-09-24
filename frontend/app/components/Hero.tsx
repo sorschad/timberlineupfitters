@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { Montserrat } from 'next/font/google'
 
 interface HeroSlide {
   id: number
@@ -41,6 +42,12 @@ const heroSlides: HeroSlide[] = [
     alt: 'Custom vehicle interior and exterior'
   }
 ]
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '800'],
+  display: 'swap',
+})
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -123,10 +130,10 @@ export default function Hero() {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-5xl mx-auto text-center text-white pt-20 sm:pt-24">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-none tracking-tight">
+                  <h1 className={`${montserrat.className} uppercase antialiased text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-6 sm:mb-8 leading-[0.95] tracking-[0.05em]`}>
                     {slide.title}
                   </h1>
-                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-10 sm:mb-16 max-w-4xl mx-auto leading-relaxed">
+                  <p className={`${montserrat.className} antialiased text-base sm:text-lg md:text-xl lg:text-2xl font-light mb-10 sm:mb-16 max-w-3xl sm:max-w-4xl mx-auto leading-relaxed tracking-[0.01em]`}>
                     {slide.subtitle}
                   </p>
                   <div className="flex flex-col justify-center items-center">
