@@ -38,9 +38,10 @@ export default function HeaderClient({
 
   return (
     <header
-      className={`${isSticky ? 'fixed' : 'absolute'} left-0 right-0 top-0 z-50 h-24 flex items-center transition-colors duration-[1200ms] ease-in-out ${
-        isSticky ? 'bg-[#ff5500]/95 shadow-lg backdrop-blur-[2px]' : 'bg-transparent'
+      className={`fixed left-0 right-0 top-0 z-50 h-24 flex items-center transition-all duration-700 ease-out ${
+        isSticky ? 'bg-[#ff5500]/95 shadow-lg backdrop-blur-[2px]' : 'bg-transparent shadow-none backdrop-blur-0'
       }`}
+      style={{willChange: 'background-color, filter, box-shadow'}}
     >
       <div className="container py-6 px-2 sm:px-6">
         <div className="flex items-center justify-between gap-5">
