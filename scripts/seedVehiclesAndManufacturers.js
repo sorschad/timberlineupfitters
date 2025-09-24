@@ -25,7 +25,6 @@ const vehicles = [
   { manufacturer: 'Ford', model: 'F-150', upfitter: 'TSport', package: 'Valor' },
   { manufacturer: 'Ford', model: 'F-150', upfitter: 'TSport', package: 'Anthem' },
   { manufacturer: 'Ford', model: 'F-150', upfitter: 'TSport', package: 'Lowered Sportsman' },
-  { manufacturer: 'Ford', model: 'F-150', upfitter: 'Timberline', package: null },
   { manufacturer: 'Ford', model: 'SuperDuty', upfitter: 'TSport', package: 'Sportsman' },
   { manufacturer: 'Ford', model: 'SuperDuty', upfitter: 'TSport', package: 'Valor' },
   { manufacturer: 'Ford', model: 'Bronco', upfitter: 'TSport', package: 'Sportsman' },
