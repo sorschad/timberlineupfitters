@@ -98,7 +98,7 @@ export default function HeaderClient({
                 </div>
               </li>
 
-              <li className="sm:before:w-[1px] sm:before:bg-white/30 before:block flex sm:gap-4 md:gap-6">
+              <li className="flex sm:gap-4 md:gap-6">
                 <Link
                   className="rounded-full flex items-center bg-brown/90 hover:bg-[#1a130e] py-3 px-6 justify-center sm:py-3 sm:px-8 text-white text-xs uppercase tracking-wide transition-colors duration-200"
                   href="https://github.com/sanity-io/sanity-template-nextjs-clean"

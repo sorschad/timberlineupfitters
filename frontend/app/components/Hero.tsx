@@ -122,7 +122,7 @@ export default function Hero() {
             {/* Content */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-5xl mx-auto text-center text-white">
+                <div className="max-w-5xl mx-auto text-center text-white pt-20 sm:pt-24">
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-none tracking-tight">
                     {slide.title}
                   </h1>
