@@ -171,40 +171,44 @@ export default function Hero() {
       {/* Navigation Arrows */}
       <button
         onClick={goToPrevious}
-        className="absolute left-4 sm:left-6 lg:left-8 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+        className="absolute left-4 sm:left-6 lg:left-8 top-1/2 transform -translate-y-1/2 text-[#4ee3c0] p-2 cursor-pointer transition-colors transition-opacity duration-300 ease-out opacity-80 hover:text-[#2db79a] hover:opacity-100"
         aria-label="Previous slide"
       >
         <svg
-          className="w-5 h-5 sm:w-6 sm:h-6"
+          className="w-4 h-20 sm:w-5 sm:h-16 transition-colors duration-300 ease-out"
           fill="none"
           stroke="currentColor"
-          viewBox="0 0 24 24"
+          viewBox="0 0 10 40"
+          preserveAspectRatio="none"
         >
           <path
+            d="M7 36 L3 20 L7 4"
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 19l-7-7 7-7"
+            vectorEffect="non-scaling-stroke"
+            strokeWidth={1.5}
           />
         </svg>
       </button>
 
       <button
         onClick={goToNext}
-        className="absolute right-4 sm:right-6 lg:right-8 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+        className="absolute right-4 sm:right-6 lg:right-8 top-1/2 transform -translate-y-1/2 text-[#4ee3c0] p-2 cursor-pointer transition-colors transition-opacity duration-300 ease-out opacity-80 hover:text-[#2db79a] hover:opacity-100"
         aria-label="Next slide"
       >
         <svg
-          className="w-5 h-5 sm:w-6 sm:h-6"
+          className="w-4 h-20 sm:w-5 sm:h-16 transition-colors duration-300 ease-out"
           fill="none"
           stroke="currentColor"
-          viewBox="0 0 24 24"
+          viewBox="0 0 10 40"
+          preserveAspectRatio="none"
         >
           <path
+            d="M3 4 L7 20 L3 36"
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
+            vectorEffect="non-scaling-stroke"
+            strokeWidth={1.5}
           />
         </svg>
       </button>
