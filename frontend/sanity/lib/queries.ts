@@ -102,3 +102,95 @@ export const pagesSlugs = defineQuery(`
   *[_type == "page" && defined(slug.current)]
   {"slug": slug.current}
 `)
+
+// Manufacturer queries
+export const manufacturerQuery = defineQuery(`
+  *[_type == "manufacturer" && slug.current == $slug][0] {
+    _id,
+    name,
+    slug,
+    logo,
+    description,
+    
+    // Hero Section
+    heroImage {
+      asset-> {
+        url
+      }
+    },
+    heroTitle,
+    heroSubtitle,
+    heroCtaText,
+    
+    // Showcase Images
+    showcaseImages[] {
+      model,
+      image {
+        asset-> {
+          url
+        }
+      },
+      altText
+    },
+    
+    // Gallery Images
+    galleryImages[] {
+      image {
+        asset-> {
+          url
+        }
+      },
+      caption,
+      category,
+      altText
+    },
+    
+    // CTA Section
+    ctaTitle,
+    ctaDescription,
+    ctaStats[] {
+      value,
+      label
+    },
+    additionalLinks[] {
+      text,
+      url
+    },
+    
+    // SEO
+    seoTitle,
+    seoDescription,
+    seoImage {
+      asset-> {
+        url
+      }
+    },
+    
+    "vehicles": *[_type == "vehicle" && references(^._id)] {
+      _id,
+      title,
+      slug,
+      model,
+      vehicleType,
+      modelYear,
+      upfitter,
+      package,
+      "manufacturer": manufacturer->name
+    } | order(model asc, upfitter asc, package asc)
+  }
+`)
+
+export const manufacturerSlugs = defineQuery(`
+  *[_type == "manufacturer" && defined(slug.current)]
+  {"slug": slug.current}
+`)
+
+export const allManufacturersQuery = defineQuery(`
+  *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {
+    _id,
+    name,
+    slug,
+    logo,
+    "vehicleCount": count(*[_type == "vehicle" && references(^._id)])
+  }
+`)

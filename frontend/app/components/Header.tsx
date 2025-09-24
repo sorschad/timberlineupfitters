@@ -1,11 +1,20 @@
 import Link from 'next/link'
-import {settingsQuery} from '@/sanity/lib/queries'
+import {settingsQuery, allManufacturersQuery} from '@/sanity/lib/queries'
 import {sanityFetch} from '@/sanity/lib/live'
 
+interface Manufacturer {
+  _id: string
+  name: string
+  slug: { current: string }
+  logo?: any
+  vehicleCount: number
+}
+
 export default async function Header() {
-  const {data: settings} = await sanityFetch({
-    query: settingsQuery,
-  })
+  const [{data: settings}, {data: manufacturers}] = await Promise.all([
+    sanityFetch({ query: settingsQuery }),
+    sanityFetch({ query: allManufacturersQuery })
+  ])
 
   return (
     <header className="fixed z-50 h-24 inset-0 bg-white/80 flex items-center backdrop-blur-lg">
@@ -26,6 +35,31 @@ export default async function Header() {
                 <Link href="/about" className="hover:underline">
                   About
                 </Link>
+              </li>
+              
+              <li className="relative group">
+                <button className="hover:underline flex items-center gap-1">
+                  Manufacturers
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="py-2">
+                    {manufacturers?.map((manufacturer: Manufacturer) => (
+                      <Link
+                        key={manufacturer._id}
+                        href={`/manufacturers/${manufacturer.slug.current}`}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200"
+                      >
+                        {manufacturer.name}
+                        <span className="text-xs text-gray-500 ml-2">
+                          ({manufacturer.vehicleCount} vehicles)
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </li>
 
               <li className="sm:before:w-[1px] sm:before:bg-gray-200 before:block flex sm:gap-4 md:gap-6">
