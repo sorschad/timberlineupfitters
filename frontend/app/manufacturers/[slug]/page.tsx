@@ -82,6 +82,9 @@ export default async function ManufacturerPage(props: Props) {
 
   return (
     <div className="min-h-screen">
+      {/* Hero Section */}
+      <ManufacturerHero manufacturer={manufacturer} />
+
       {/* Breadcrumb Navigation */}
       <Breadcrumb 
         items={[
@@ -90,10 +93,7 @@ export default async function ManufacturerPage(props: Props) {
           { label: manufacturer.name, href: `/manufacturers/${manufacturer.slug}` }
         ]} 
       />
-
-      {/* Hero Section */}
-      <ManufacturerHero manufacturer={manufacturer} />
-
+      
       {/* Vehicle Showcase Sections */}
       {vehicleGroups.map((group: any, index: number) => (
         <VehicleShowcase 
