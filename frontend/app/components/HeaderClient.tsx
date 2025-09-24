@@ -38,7 +38,7 @@ export default function HeaderClient({
 
   return (
     <header
-      className={`fixed inset-0 z-50 h-24 flex items-center transition-colors duration-[1200ms] ease-in-out ${
+      className={`${isSticky ? 'fixed' : 'absolute'} left-0 right-0 top-0 z-50 h-24 flex items-center transition-colors duration-[1200ms] ease-in-out ${
         isSticky ? 'bg-[#ff5500]/95 shadow-lg backdrop-blur-[2px]' : 'bg-transparent'
       }`}
     >
@@ -70,13 +70,13 @@ export default function HeaderClient({
               className="flex items-center gap-4 md:gap-6 leading-5 text-xs sm:text-base tracking-tight font-mono"
             >
               <li>
-                <Link href="/about" className={`hover:underline ${isSticky ? 'text-white/90 hover:text-white' : 'text-brown hover:text-black'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'}`}>
+                <Link href="/about" className={`hover:underline ${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'}`}>
                   About
                 </Link>
               </li>
 
               <li className="relative group">
-                <button className={`hover:underline flex items-center gap-1 ${isSticky ? 'text-white/90 hover:text-white' : 'text-brown hover:text-black'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'}`}>
+                <button className={`hover:underline flex items-center gap-1 ${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'}`}>
                   Manufacturers
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
