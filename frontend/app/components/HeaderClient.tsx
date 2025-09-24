@@ -46,16 +46,16 @@ export default function HeaderClient({
         <div className="flex items-center justify-between gap-5">
           <Link className="flex items-center gap-2" href="/" aria-label={settingsTitle}>
             <span className="sr-only">{settingsTitle}</span>
-            <div className="flex items-baseline gap-1">
+            <div className="flex items-baseline">
               <span
-                className={`${orbitron.className} select-none tracking-[0.18em] text-white text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
+                className={`${orbitron.className} select-none tracking-[0.06em] antialiased text-white text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
                   isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,1)]'
                 }`}
               >
                 TIMBERLINE
               </span>
               <span
-                className={`${orbitron.className} select-none tracking-[0.18em] text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
+                className={`${orbitron.className} select-none tracking-[0.05em] antialiased text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
                   isSticky ? 'text-white' : 'text-[#ff5500]'
                 }`}
               >
