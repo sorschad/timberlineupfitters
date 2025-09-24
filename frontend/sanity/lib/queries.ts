@@ -5,6 +5,14 @@ export const settingsQuery = defineQuery(`*[_type == "settings"][0]{
   appLogo
 }`)
 
+export const homepageSettingsQuery = defineQuery(`*[_type == "homepageSettings"][0]{
+  heroSlides[]{
+    title,
+    subtitle,
+    image,
+  }
+}`)
+
 const brandFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),

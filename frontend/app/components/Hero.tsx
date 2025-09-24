@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Montserrat } from 'next/font/google'
+import { urlForImage } from '@/sanity/lib/utils'
 
 interface HeroSlide {
   id: number
@@ -13,34 +14,34 @@ interface HeroSlide {
 }
 
 const heroSlides: HeroSlide[] = [
-  {
-    id: 1,
-    title: 'ELEVATE YOUR JOURNEY',
-    subtitle: 'Premium vehicle customization for the discerning adventurer. Crafted with precision, designed for exploration.',
-    image: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-    alt: 'Luxury vehicle on road at dusk'
-  },
-  {
-    id: 2,
-    title: 'CRAFTED WITH PRECISION',
-    subtitle: 'Every detail meticulously designed to enhance your vehicle\'s performance and aesthetic appeal.',
-    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-    alt: 'Custom vehicle modification work'
-  },
-  {
-    id: 3,
-    title: 'DESIGNED FOR EXPLORATION',
-    subtitle: 'Transform your vehicle into the ultimate adventure companion with our premium upfitting solutions.',
-    image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-    alt: 'Adventure vehicle in rugged terrain'
-  },
-  {
-    id: 4,
-    title: 'PREMIUM CUSTOMIZATION',
-    subtitle: 'Experience the pinnacle of vehicle upfitting with our expert craftsmanship and attention to detail.',
-    image: 'https://images.unsplash.com/photo-1549317336-206569e8475c?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-    alt: 'Custom vehicle interior and exterior'
-  }
+  // {
+  //   id: 1,
+  //   title: 'ELEVATE YOUR JOURNEY',
+  //   subtitle: 'Premium vehicle customization for the discerning adventurer. Crafted with precision, designed for exploration.',
+  //   image: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
+  //   alt: 'Luxury vehicle on road at dusk'
+  // },
+  // {
+  //   id: 2,
+  //   title: 'CRAFTED WITH PRECISION',
+  //   subtitle: 'Every detail meticulously designed to enhance your vehicle\'s performance and aesthetic appeal.',
+  //   image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
+  //   alt: 'Custom vehicle modification work'
+  // },
+  // {
+  //   id: 3,
+  //   title: 'DESIGNED FOR EXPLORATION',
+  //   subtitle: 'Transform your vehicle into the ultimate adventure companion with our premium upfitting solutions.',
+  //   image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
+  //   alt: 'Adventure vehicle in rugged terrain'
+  // },
+  // {
+  //   id: 4,
+  //   title: 'PREMIUM CUSTOMIZATION',
+  //   subtitle: 'Experience the pinnacle of vehicle upfitting with our expert craftsmanship and attention to detail.',
+  //   image: 'https://images.unsplash.com/photo-1549317336-206569e8475c?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
+  //   alt: 'Custom vehicle interior and exterior'
+  // }
 ]
 
 const montserrat = Montserrat({
@@ -51,6 +52,7 @@ const montserrat = Montserrat({
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [slides, setSlides] = useState<HeroSlide[]>([])
   const [heroHeight, setHeroHeight] = useState('80vh')
 
   // Calculate hero height (20% less than device fold)
@@ -66,14 +68,43 @@ export default function Hero() {
     return () => window.removeEventListener('resize', updateHeight)
   }, [])
 
+  // Load slides from API to avoid server-only in client components
+  useEffect(() => {
+    let isMounted = true
+    ;(async () => {
+      try {
+        const res = await fetch('/api/homepage-settings', {cache: 'no-store'})
+        const json = await res.json()
+        console.log('Fetched slides:', json?.slides)
+        const fetched = (json?.slides || []).map((s: any, idx: number) => ({
+          id: idx + 1,
+          title: s?.title || '',
+          subtitle: s?.subtitle || '',
+          image: s?.image || '',
+          alt: s?.alt || 'Hero background',
+        })) as HeroSlide[]
+        if (isMounted && fetched.length > 0) {
+          console.log('Setting slides:', fetched)
+          setSlides(fetched)
+        }
+      } catch (e) {
+        console.error('Error loading slides:', e)
+      }
+    })()
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
   // Auto-advance slides
   useEffect(() => {
+    const total = (slides.length || heroSlides.length)
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+      setCurrentSlide((prev) => (prev + 1) % total)
     }, 5000) // Change slide every 5 seconds
 
     return () => clearInterval(interval)
-  }, [])
+  }, [slides])
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index)
@@ -104,7 +135,7 @@ export default function Hero() {
     >
       {/* Slides Container */}
       <div className="relative w-full h-full">
-        {heroSlides.map((slide, index) => (
+        {(slides.length > 0 ? slides : heroSlides).map((slide, index) => (
           <div
             key={slide.id}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
@@ -113,17 +144,13 @@ export default function Hero() {
           >
             {/* Background Image */}
             <div className="relative w-full h-full">
-              <Image
-                src={slide.image}
-                alt={slide.alt}
-                fill
-                priority={index === 0}
-                className="object-cover"
-                sizes="100vw"
-                quality={90}
+              <div
+                className="absolute inset-0 bg-center bg-cover"
+                style={{backgroundImage: `url(${slide.image})`}}
+                aria-hidden="true"
               />
               {/* Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-50" />
+              <div className="absolute inset-0 bg-black/50" />
             </div>
 
             {/* Content */}
@@ -218,7 +245,7 @@ export default function Hero() {
         <div
           className="h-full bg-white transition-all duration-100 ease-linear"
           style={{
-            width: `${((currentSlide + 1) / heroSlides.length) * 100}%`
+            width: `${((currentSlide + 1) / ((slides.length || heroSlides.length))) * 100}%`
           }}
         />
       </div>

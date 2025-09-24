@@ -529,7 +529,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0]
+// Query: *[_type == "settings"][0]{  ...,  appLogo}
 export type SettingsQueryResult = {
   _id: string
   _type: 'settings'
@@ -583,7 +583,11 @@ export type SettingsQueryResult = {
     metadataBase?: string
     _type: 'image'
   }
+  appLogo: null
 } | null
+// Variable: homepageSettingsQuery
+// Query: *[_type == "homepageSettings"][0]{  heroSlides[]{    title,    subtitle,    image,  }}
+export type HomepageSettingsQueryResult = null
 // Variable: getPageQuery
 // Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }          }        }      },    },  }
 export type GetPageQueryResult = {
@@ -774,7 +778,8 @@ export type AllManufacturersQueryResult = Array<never>
 import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type == "settings"][0]': SettingsQueryResult
+    '*[_type == "settings"][0]{\n  ...,\n  appLogo\n}': SettingsQueryResult
+    '*[_type == "homepageSettings"][0]{\n  heroSlides[]{\n    title,\n    subtitle,\n    image,\n  }\n}': HomepageSettingsQueryResult
     '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
     '\n  *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': AllBrandsQueryResult

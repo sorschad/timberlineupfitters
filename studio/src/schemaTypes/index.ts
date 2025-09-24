@@ -5,6 +5,7 @@ import {vehicle} from './documents/vehicle'
 import {callToAction} from './objects/callToAction'
 import {infoSection} from './objects/infoSection'
 import {settings} from './singletons/settings'
+import {homepageSettings} from './singletons/homepageSettings'
 import {link} from './objects/link'
 import {blockContent} from './objects/blockContent'
 
@@ -13,6 +14,7 @@ import {blockContent} from './objects/blockContent'
 export const schemaTypes = [
   // Singletons
   settings,
+  homepageSettings,
   // Documents
   page,
   brand,
