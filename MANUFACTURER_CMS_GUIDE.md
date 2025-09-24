@@ -70,7 +70,7 @@ Alt Text: "Ford SuperDuty truck at construction site"
 
 **Category Guidelines**:
 - **Adventure**: Off-road, outdoor activities, recreational use
-- **Work**: Construction sites, commercial use, professional applications
+- **Work**: Construction sites, utility use, professional applications
 - **Lifestyle**: Family use, daily driving, personal transportation
 
 ### Call-to-Action Section
