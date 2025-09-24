@@ -151,6 +151,28 @@ export const settings = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'appLogo',
+      title: 'Application Logo',
+      type: 'image',
+      description: 'Logo shown in the center of the global header when provided.',
+      options: {hotspot: true},
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt text',
+          type: 'string',
+          validation: (rule) => {
+            return rule.custom((alt, context) => {
+              if ((context.document?.appLogo as any)?.asset?._ref && !alt) {
+                return 'Required'
+              }
+              return true
+            })
+          },
+        }),
+      ],
+    }),
   ],
   preview: {
     prepare() {

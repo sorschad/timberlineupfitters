@@ -15,5 +15,11 @@ export default async function Header() {
     sanityFetch({ query: settingsQuery }),
     sanityFetch({ query: allManufacturersQuery })
   ])
-  return <HeaderClient settingsTitle={settings?.title} manufacturers={manufacturers as unknown as Manufacturer[]} />
+  return (
+    <HeaderClient
+      settingsTitle={settings?.title}
+      appLogo={(settings as any)?.appLogo}
+      manufacturers={manufacturers as unknown as Manufacturer[]}
+    />
+  )
 }

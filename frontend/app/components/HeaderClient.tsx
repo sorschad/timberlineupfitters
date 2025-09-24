@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import {Orbitron} from 'next/font/google'
+import {urlForImage} from '@/sanity/lib/utils'
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -20,9 +21,11 @@ interface Manufacturer {
 
 export default function HeaderClient({
   settingsTitle,
+  appLogo,
   manufacturers,
 }: {
   settingsTitle?: string
+  appLogo?: any
   manufacturers?: Manufacturer[]
 }) {
   const [isSticky, setIsSticky] = useState(false)
@@ -44,10 +47,17 @@ export default function HeaderClient({
       style={{willChange: 'background-color, filter, box-shadow'}}
     >
       <div className="container py-6 px-2 sm:px-6">
-        <div className="flex items-center justify-between gap-5">
-          <Link className="flex items-center gap-2" href="/" aria-label={settingsTitle}>
+        <div className="grid grid-cols-3 items-center gap-5">
+          <Link className="flex items-center gap-0.5" href="/" aria-label={settingsTitle}>
             <span className="sr-only">{settingsTitle}</span>
-            <div className="flex items-baseline">
+            {appLogo?.asset?._ref && (
+              <img
+                src={`${urlForImage(appLogo)?.url()}`}
+                alt={appLogo?.alt || 'Application Logo'}
+                className="w-[120px] h-auto object-contain select-none shrink-0"
+              />
+            )}
+            <div className="flex items-baseline -ml-[23px]">
               <span
                 className={`${orbitron.className} select-none tracking-[0.06em] antialiased text-white text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
                   isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,1)]'
@@ -65,7 +75,9 @@ export default function HeaderClient({
             </div>
           </Link>
 
-          <nav>
+          <nav className="justify-self-center" />
+
+          <nav className="justify-self-end">
             <ul
               role="list"
               className="flex items-center gap-5 md:gap-8 leading-5 text-sm tracking-[0.18em] font-semibold font-sans"
