@@ -37,10 +37,9 @@ export default function Footer() {
         <div className="border-t border-[rgba(255,255,255,0.08)]" />
 
         <div className="flex flex-col items-center justify-between gap-6 py-6 text-sm text-[var(--color-gray-400)] md:flex-row">
-          <div className="order-3 md:order-1 md:flex-1">© {new Date().getFullYear()} Timberline Upfitters</div>
 
           {/* Social icons centered between left and right blocks */}
-          <div className="order-1 md:order-2 md:flex-none md:mx-auto flex items-center gap-4">
+          <div className="order-1 md:order-1 md:flex-none md:mx-auto flex items-center gap-4">
             <a aria-label="Facebook" href="#" className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)]">
               <svg viewBox="0 0 24 24" className="h-4 w-4 fill-[var(--color-gray-100)] opacity-90 group-hover:opacity-100" aria-hidden="true">
                 <path d="M22 12.06C22 6.49 17.52 2 12 2S2 6.49 2 12.06c0 5.01 3.66 9.16 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.88 3.76-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.78 8.44-4.93 8.44-9.94Z" />
@@ -58,7 +57,7 @@ export default function Footer() {
             </a>
           </div>
 
-          <nav className="order-2 md:order-3 md:flex-1 flex items-center gap-6 md:justify-end">
+          <nav className="order-2 md:order-2 md:flex-1 flex items-center gap-6 md:justify-end">
             <a className="hover:text-[var(--color-white)] transition-colors" href="/privacy-policy">Privacy Policy</a>
             <a className="hover:text-[var(--color-white)] transition-colors" href="/terms-of-service">Terms of Service</a>
             <a className="hover:text-[var(--color-white)] transition-colors" href="/warranty">Warranty</a>
