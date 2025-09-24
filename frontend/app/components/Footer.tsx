@@ -33,7 +33,7 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h3 className="text-lg font-semibold text-[var(--color-gray-100)]">Links</h3>
             <ul className="mt-4 space-y-3 text-[var(--color-gray-300)]">
-              <li><a className="hover:text-[var(--color-white)] transition-colors" href="#">Heritage</a></li>
+              <li><a className="hover:text-[var(--color-white)] transition-colors" href="/heritage">Heritage</a></li>
               <li><a className="hover:text-[var(--color-white)] transition-colors" href="#">Order Form</a></li>
               <li><a className="hover:text-[var(--color-white)] transition-colors" href="#">Vehicle Models</a></li>
               <li><a className="hover:text-[var(--color-white)] transition-colors" href="#">Dealer Packets</a></li>
@@ -56,9 +56,9 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-6 py-6 text-sm text-[var(--color-gray-400)] md:flex-row">
           <div className="order-2 md:order-1">© {new Date().getFullYear()} Timberline Upfitters</div>
           <nav className="order-1 flex items-center gap-6 md:order-2">
-            <a className="hover:text-[var(--color-white)] transition-colors" href="#">Privacy Policy</a>
-            <a className="hover:text-[var(--color-white)] transition-colors" href="#">Terms of Service</a>
-            <a className="hover:text-[var(--color-white)] transition-colors" href="#">Warranty</a>
+            <a className="hover:text-[var(--color-white)] transition-colors" href="/privacy-policy">Privacy Policy</a>
+            <a className="hover:text-[var(--color-white)] transition-colors" href="/terms-of-service">Terms of Service</a>
+            <a className="hover:text-[var(--color-white)] transition-colors" href="/warranty">Warranty</a>
           </nav>
         </div>
       </div>
