@@ -1,0 +1,358 @@
+import type {Metadata} from 'next'
+import Link from 'next/link'
+import Image from 'next/image'
+import {notFound} from 'next/navigation'
+
+import {sanityFetch} from '@/sanity/lib/live'
+import {client} from '@/sanity/lib/client'
+import {vehicleQuery, vehicleSlugs} from '@/sanity/lib/queries'
+import Breadcrumb from '@/app/components/Breadcrumb'
+import SpecsTable from '@/app/components/SpecsTable'
+
+interface Vehicle {
+  _id: string
+  title: string
+  slug: { current: string }
+  model: string
+  vehicleType: string
+  modelYear: number
+  trim?: string
+  manufacturer: {
+    _id: string
+    name: string
+    logo?: any
+  }
+  coverImage?: any
+  gallery?: any[]
+  videoTour?: any
+  specifications?: any
+  features?: any
+  customizationOptions?: any[]
+  inventory?: any
+  description?: any[]
+  tags?: string[]
+  seo?: any
+}
+
+interface VehiclePageProps {
+  params: {
+    slug: string
+  }
+}
+
+/**
+ * Generate metadata for the page.
+ */
+export async function generateMetadata({params}: VehiclePageProps): Promise<Metadata> {
+  const vehicle = await client.fetch(vehicleQuery, {slug: params.slug})
+  
+  if (!vehicle) {
+    return {
+      title: 'Vehicle Not Found',
+    }
+  }
+
+  return {
+    title: vehicle.seo?.metaTitle || vehicle.title,
+    description: vehicle.seo?.metaDescription || `Explore the ${vehicle.title} - ${vehicle.manufacturer.name} ${vehicle.model} ${vehicle.modelYear}. Find specifications, features, and customization options.`,
+  }
+}
+
+/**
+ * Generate static params for all vehicle slugs.
+ */
+export async function generateStaticParams() {
+  const slugs = await client.fetch(vehicleSlugs)
+  return slugs.map((slug: any) => ({
+    slug: slug.slug,
+  }))
+}
+
+export default async function VehiclePage({params}: VehiclePageProps) {
+  const vehicle = await client.fetch(vehicleQuery, {slug: params.slug})
+
+  if (!vehicle) {
+    notFound()
+  }
+
+  return (
+    <div className="min-h-screen">
+      {/* Breadcrumb Navigation */}
+      <Breadcrumb 
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Vehicles', href: '/vehicles' },
+          { label: vehicle.title, href: `/vehicles/${vehicle.slug.current}` }
+        ]} 
+      />
+
+      {/* Hero Section */}
+      <section className="relative py-40 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+        {/* Background Image */}
+        {vehicle.coverImage && (
+          <div className="absolute inset-0">
+            <Image
+              src={vehicle.coverImage.asset.url}
+              alt={vehicle.title}
+              fill
+              className="object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-black/50" />
+          </div>
+        )}
+        
+        <div className="relative z-10 container">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Vehicle Info */}
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                {vehicle.manufacturer.logo && (
+                  <Image
+                    src={vehicle.manufacturer.logo.asset.url}
+                    alt={`${vehicle.manufacturer.name} Logo`}
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                  />
+                )}
+                <div>
+                  <h1 className="text-4xl md:text-6xl font-bold mb-2">
+                    {vehicle.title}
+                  </h1>
+                  <p className="text-xl text-gray-300">
+                    {vehicle.manufacturer.name} • {vehicle.modelYear}
+                  </p>
+                </div>
+              </div>
+              
+              {/* Key Stats */}
+              <div className="grid grid-cols-3 gap-6 mb-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-white mb-1">
+                    {vehicle.modelYear}
+                  </div>
+                  <div className="text-sm text-gray-300">Model Year</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-white mb-1 capitalize">
+                    {vehicle.vehicleType}
+                  </div>
+                  <div className="text-sm text-gray-300">Vehicle Type</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-white mb-1">
+                    {vehicle.trim || 'Base'}
+                  </div>
+                  <div className="text-sm text-gray-300">Trim Level</div>
+                </div>
+              </div>
+              
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
+                  Get Quote
+                </button>
+                <button className="bg-white/20 hover:bg-white/30 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 border border-white/30">
+                  Schedule Test Drive
+                </button>
+              </div>
+            </div>
+            
+            {/* Vehicle Image */}
+            <div className="relative">
+              {vehicle.coverImage ? (
+                <Image
+                  src={vehicle.coverImage.asset.url}
+                  alt={vehicle.title}
+                  width={600}
+                  height={400}
+                  className="rounded-2xl shadow-2xl"
+                />
+              ) : (
+                <div className="bg-gray-800 rounded-2xl h-96 flex items-center justify-center">
+                  <span className="text-6xl font-bold text-gray-400">
+                    {vehicle.manufacturer.name.charAt(0)}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Specifications Section */}
+      {vehicle.specifications && (
+        <section className="py-20 bg-white">
+          <div className="container">
+            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+              Technical Specifications
+            </h2>
+            <SpecsTable specifications={vehicle.specifications} />
+          </div>
+        </section>
+      )}
+
+      {/* Features Section */}
+      {vehicle.features && (
+        <section className="py-20 bg-gray-50">
+          <div className="container">
+            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+              Features & Amenities
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {Object.entries(vehicle.features).map(([category, features]: [string, any]) => (
+                <div key={category} className="bg-white rounded-2xl p-6 shadow-lg">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 capitalize">
+                    {category.replace(/([A-Z])/g, ' $1').trim()}
+                  </h3>
+                  <ul className="space-y-2">
+                    {features.map((feature: string, idx: number) => (
+                      <li key={idx} className="flex items-center text-gray-600">
+                        <div className="w-2 h-2 bg-brand rounded-full mr-3" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Gallery Section */}
+      {vehicle.gallery && vehicle.gallery.length > 0 && (
+        <section className="py-20 bg-white">
+          <div className="container">
+            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+              Image Gallery
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {vehicle.gallery.map((image: any, idx: number) => (
+                <div key={idx} className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src={image.asset.url}
+                    alt={image.alt || `${vehicle.title} Gallery Image ${idx + 1}`}
+                    fill
+                    className="object-cover hover:scale-110 transition-transform duration-500"
+                  />
+                  {image.caption && (
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">
+                      <p className="text-sm">{image.caption}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Customization Options */}
+      {vehicle.customizationOptions && vehicle.customizationOptions.length > 0 && (
+        <section className="py-20 bg-gray-50">
+          <div className="container">
+            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+              Customization Options
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {vehicle.customizationOptions.map((category: any, idx: number) => (
+                <div key={idx} className="bg-white rounded-2xl p-6 shadow-lg">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    {category.category}
+                  </h3>
+                  <div className="space-y-4">
+                    {category.options.map((option: any, optionIdx: number) => (
+                      <div key={optionIdx} className="border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-start mb-2">
+                          <h4 className="font-semibold text-gray-900">{option.name}</h4>
+                          {option.price && (
+                            <span className="text-brand font-bold">${option.price.toLocaleString()}</span>
+                          )}
+                        </div>
+                        {option.description && (
+                          <p className="text-gray-600 text-sm">{option.description}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Inventory Information */}
+      {vehicle.inventory && (
+        <section className="py-20 bg-white">
+          <div className="container">
+            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+              Availability & Information
+            </h2>
+            <div className="bg-gray-50 rounded-2xl p-8 max-w-2xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-6">
+                {vehicle.inventory.stockNumber && (
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Stock Number</h3>
+                    <p className="text-gray-600">{vehicle.inventory.stockNumber}</p>
+                  </div>
+                )}
+                {vehicle.inventory.availability && (
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Availability</h3>
+                    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                      vehicle.inventory.availability === 'In Stock' 
+                        ? 'bg-green-100 text-green-700' 
+                        : 'bg-yellow-100 text-yellow-700'
+                    }`}>
+                      {vehicle.inventory.availability}
+                    </span>
+                  </div>
+                )}
+                {vehicle.inventory.location && (
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Location</h3>
+                    <p className="text-gray-600">{vehicle.inventory.location}</p>
+                  </div>
+                )}
+                {vehicle.inventory.mileage && (
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Mileage</h3>
+                    <p className="text-gray-600">{vehicle.inventory.mileage.toLocaleString()} miles</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            Ready to Make This Vehicle Yours?
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Contact our team to schedule a test drive, get a quote, or discuss customization options.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+            >
+              Contact Us
+            </Link>
+            <Link
+              href="/custom-build"
+              className="bg-white hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-full font-semibold transition-all duration-300 border border-gray-200"
+            >
+              Custom Build
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

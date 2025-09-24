@@ -39,7 +39,7 @@ export default async function ManufacturersPage() {
       />
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+      <section className="py-40 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
         <div className="container text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             Our Manufacturers
