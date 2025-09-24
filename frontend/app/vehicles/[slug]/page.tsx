@@ -77,15 +77,6 @@ export default async function VehiclePage({params}: VehiclePageProps) {
 
   return (
     <div className="min-h-screen">
-      {/* Breadcrumb Navigation */}
-      <Breadcrumb 
-        items={[
-          { label: 'Home', href: '/' },
-          { label: 'Vehicles', href: '/vehicles' },
-          { label: vehicle.title, href: `/vehicles/${vehicle.slug.current}` }
-        ]} 
-      />
-
       {/* Hero Section */}
       <section className="relative py-40 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
         {/* Background Image */}
@@ -179,6 +170,15 @@ export default async function VehiclePage({params}: VehiclePageProps) {
           </div>
         </div>
       </section>
+
+      {/* Breadcrumb Navigation */}
+      <Breadcrumb 
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Vehicles', href: '/vehicles' },
+          { label: vehicle.title, href: `/vehicles/${vehicle.slug.current}` }
+        ]} 
+      />
 
       {/* Specifications Section */}
       {vehicle.specifications && (
