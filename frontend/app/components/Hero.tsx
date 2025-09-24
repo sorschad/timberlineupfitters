@@ -13,36 +13,7 @@ interface HeroSlide {
   alt: string
 }
 
-const heroSlides: HeroSlide[] = [
-  // {
-  //   id: 1,
-  //   title: 'ELEVATE YOUR JOURNEY',
-  //   subtitle: 'Premium vehicle customization for the discerning adventurer. Crafted with precision, designed for exploration.',
-  //   image: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-  //   alt: 'Luxury vehicle on road at dusk'
-  // },
-  // {
-  //   id: 2,
-  //   title: 'CRAFTED WITH PRECISION',
-  //   subtitle: 'Every detail meticulously designed to enhance your vehicle\'s performance and aesthetic appeal.',
-  //   image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-  //   alt: 'Custom vehicle modification work'
-  // },
-  // {
-  //   id: 3,
-  //   title: 'DESIGNED FOR EXPLORATION',
-  //   subtitle: 'Transform your vehicle into the ultimate adventure companion with our premium upfitting solutions.',
-  //   image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-  //   alt: 'Adventure vehicle in rugged terrain'
-  // },
-  // {
-  //   id: 4,
-  //   title: 'PREMIUM CUSTOMIZATION',
-  //   subtitle: 'Experience the pinnacle of vehicle upfitting with our expert craftsmanship and attention to detail.',
-  //   image: 'https://images.unsplash.com/photo-1549317336-206569e8475c?w=5120&h=2880&fit=crop&crop=center&auto=format&q=80',
-  //   alt: 'Custom vehicle interior and exterior'
-  // }
-]
+const heroSlides: HeroSlide[] = []
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -111,11 +82,13 @@ export default function Hero() {
   }
 
   const goToPrevious = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+    const total = slides.length || heroSlides.length
+    setCurrentSlide((prev) => (prev - 1 + total) % total)
   }
 
   const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+    const total = slides.length || heroSlides.length
+    setCurrentSlide((prev) => (prev + 1) % total)
   }
 
   const scrollToBrands = () => {
