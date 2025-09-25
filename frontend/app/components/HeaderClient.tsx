@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import {useEffect, useState} from 'react'
+import {useEffect, useMemo, useState} from 'react'
 import {Orbitron} from 'next/font/google'
 import {urlForImage} from '@/sanity/lib/utils'
 
@@ -23,12 +23,38 @@ export default function HeaderClient({
   settingsTitle,
   appLogo,
   manufacturers,
+  timberlineVehicles,
 }: {
   settingsTitle?: string
   appLogo?: any
   manufacturers?: Manufacturer[]
+  timberlineVehicles?: Array<{
+    _id: string
+    title: string
+    slug: { current: string }
+    model?: string
+    vehicleType?: string
+    modelYear?: number
+    trim?: string
+  }>
 }) {
   const [isSticky, setIsSticky] = useState(false)
+  const [isMegaOpen, setIsMegaOpen] = useState(false)
+
+  const groupedByManufacturer = useMemo(() => {
+    const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string }>> = {}
+    ;(timberlineVehicles || []).forEach((v: any) => {
+      const name = v?.manufacturer?.name || 'Other'
+      if (!groups[name]) groups[name] = []
+      groups[name].push(v)
+    })
+
+    const sortedManufacturerNames = Object.keys(groups).sort((a, b) => a.localeCompare(b))
+    return sortedManufacturerNames.map((name) => ({
+      name,
+      vehicles: groups[name].sort((a, b) => (a.title || '').localeCompare(b.title || '')),
+    }))
+  }, [timberlineVehicles])
 
   useEffect(() => {
     const onScroll = () => {
@@ -48,7 +74,11 @@ export default function HeaderClient({
     >
       <div className="container py-6 px-2 sm:px-6">
         <div className="grid grid-cols-3 items-center gap-5">
-          <Link className="flex items-center gap-0.5" href="/" aria-label={settingsTitle}>
+          <Link
+            className="flex items-center gap-0.5"
+            href="/"
+            aria-label={settingsTitle}
+          >
             <span className="sr-only">{settingsTitle}</span>
             {appLogo?.asset?._ref && (
               <img
@@ -57,7 +87,7 @@ export default function HeaderClient({
                 className="w-[120px] h-auto object-contain select-none shrink-0"
               />
             )}
-            <div className="flex items-baseline -ml-[23px]">
+            <div className="flex items-baseline -ml-[23px] select-none">
               <span
                 className={`${orbitron.className} select-none tracking-[0.06em] antialiased text-white text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
                   isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,1)]'
@@ -83,9 +113,15 @@ export default function HeaderClient({
               className="flex items-center gap-5 md:gap-8 leading-5 text-sm tracking-[0.18em] font-semibold font-sans"
             >
               <li>
-                <Link href="/vehicles" className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase`}>
+                <button
+                  type="button"
+                  onClick={() => setIsMegaOpen((v) => !v)}
+                  aria-expanded={isMegaOpen}
+                  aria-controls="sidebar-mega-menu"
+                  className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase`}
+                >
                   Vehicles
-                </Link>
+                </button>
               </li>
 
               <li className="relative group">
@@ -129,6 +165,65 @@ export default function HeaderClient({
               </li>
             </ul>
           </nav>
+        </div>
+      </div>
+
+      {/* Sidebar Mega Menu */}
+      <div
+        id="sidebar-mega-menu"
+        className={`fixed top-0 left-0 bottom-0 z-[60] w-full max-w-[500px] transform transition-transform duration-500 ease-in-out
+        ${isMegaOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        aria-hidden={!isMegaOpen}
+      >
+        <div className="grid grid-cols-1 h-full">
+          <div className="bg-[#2f3236]/98 backdrop-blur-md text-white relative">
+            <div className="h-24 px-6 flex items-center justify-between border-b border-white/10 bg-gradient-to-b from-[#c67a3d] to-[#8f5b2e]">
+              <div>
+                <div className={`${orbitron.className} uppercase tracking-[0.18em] text-white`}>Vehicle Models</div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsMegaOpen(false)}
+                className="w-10 h-10 grid place-items-center rounded-full text-white/90 hover:text-white/100 hover:bg-white/10 transition"
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="p-4 md:p-6 overflow-y-auto h-[calc(100%-6rem)]">
+              <div className="space-y-6">
+                {groupedByManufacturer.map((group) => (
+                  <div key={group.name}>
+                    <h3 className={`${orbitron.className} uppercase tracking-[0.14em] text-white/90 mb-3`}>{group.name}</h3>
+                    <div className="grid grid-cols-1 gap-3">
+                      {group.vehicles.map((v) => (
+                        <Link
+                          key={v._id}
+                          href={`/vehicles/${(v as any).slug?.current}`}
+                          onClick={() => setIsMegaOpen(false)}
+                          className="rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 transition-colors p-4 focus:outline-none focus:ring-2 focus:ring-[#ff5500]/60 w-full"
+                        >
+                          <div className="text-white font-semibold">{v.title}</div>
+                          <div className="text-white/70 text-xs mt-0.5">{(v as any).vehicleType || (v as any).model || 'Platform'}</div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 flex justify-end">
+                <Link
+                  href="/vehicles"
+                  onClick={() => setIsMegaOpen(false)}
+                  className="inline-flex items-center justify-center border border-white/20 text-white/70 hover:text-white hover:border-white/40 rounded-lg px-4 py-2 text-sm transition-colors"
+                >
+                  Explore Our Models
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </header>
