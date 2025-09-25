@@ -48,16 +48,20 @@ export default function HeaderClient({
   const [isSticky, setIsSticky] = useState(false)
   const [isMegaOpen, setIsMegaOpen] = useState(false)
   const [activeBrand, setActiveBrand] = useState<string | null>(null)
+  const [isLoadingVehicles, setIsLoadingVehicles] = useState(false)
 
   const filteredVehicles = useMemo(() => {
     if (!activeBrand) return timberlineVehicles || []
     
     return (timberlineVehicles || []).filter((vehicle: any) => {
-      // Check if the vehicle has tags that include the active brand name
+      // Check if the vehicle has tags that match the active brand name exactly or contains it
       const vehicleTags = vehicle.tags || []
-      return vehicleTags.some((tag: string) => 
-        tag.toLowerCase().includes(activeBrand.toLowerCase())
-      )
+      return vehicleTags.some((tag: string) => {
+        const tagLower = tag.toLowerCase().trim()
+        const brandLower = activeBrand.toLowerCase().trim()
+        // Check for exact match or if the tag contains the brand name
+        return tagLower === brandLower || tagLower.includes(brandLower)
+      })
     })
   }, [timberlineVehicles, activeBrand])
 
@@ -249,7 +253,15 @@ export default function HeaderClient({
                       ? 'bg-[#ff8c42]/20 border-[#ff8c42]/40' 
                       : 'bg-white/5 hover:bg-black'
                   }`}
-                  onClick={() => setActiveBrand(activeBrand === brand.name ? null : brand.name)}
+                  onClick={() => {
+                    const newActiveBrand = activeBrand === brand.name ? null : brand.name
+                    setActiveBrand(newActiveBrand)
+                    if (newActiveBrand) {
+                      setIsLoadingVehicles(true)
+                      // Simulate loading time for better UX
+                      setTimeout(() => setIsLoadingVehicles(false), 300)
+                    }
+                  }}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
@@ -279,31 +291,40 @@ export default function HeaderClient({
 
             {/* Vehicle Content - Using filtered vehicle data */}
             <div className="p-6 overflow-y-auto h-[calc(100%-6rem)]">
-              <div className="space-y-4">
-                {groupedByManufacturer.map((group) => (
-                  <div key={group.name}>
-                    <h3 className={`${orbitron.className} text-right uppercase tracking-[0.14em] text-white/90 mb-3`}>{group.name}</h3>
-                    {group.vehicles.map((v) => (
-                      <Link
-                        key={v._id}
-                        href={`/vehicles/${(v as any).slug?.current}`}
-                        onClick={() => setIsMegaOpen(false)}
-                        className="block rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors mb-2"
-                      >
-                        <div className="flex items-start gap-4">
-                          <div className="flex-1">
-                            <div className="text-white text-sm font-bold uppercase leading-tight">{v.title}</div>
-                            <div className="text-[#ff8c42] text-sm font-semibold mt-1">FROM $XX,XXX</div>
-                          </div>
-                          <div className="w-16 h-12 bg-gray-700 rounded flex items-center justify-center">
-                            <span className="text-white/50 text-xs">IMG</span>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
+              {isLoadingVehicles ? (
+                <div className="flex items-center justify-center h-32">
+                  <div className="flex flex-col items-center space-y-3">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#ff8c42]"></div>
+                    <div className="text-white/70 text-sm">Loading vehicles...</div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {groupedByManufacturer.map((group) => (
+                    <div key={group.name}>
+                      <h3 className={`${orbitron.className} text-right uppercase tracking-[0.14em] text-white/90 mb-3`}>{group.name}</h3>
+                      {group.vehicles.map((v) => (
+                        <Link
+                          key={v._id}
+                          href={`/vehicles/${(v as any).slug?.current}`}
+                          onClick={() => setIsMegaOpen(false)}
+                          className="block rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors mb-2"
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="flex-1">
+                              <div className="text-white text-sm font-bold uppercase leading-tight">{v.title}</div>
+                              <div className="text-[#ff8c42] text-sm font-semibold mt-1">FROM $XX,XXX</div>
+                            </div>
+                            <div className="w-16 h-12 bg-gray-700 rounded flex items-center justify-center">
+                              <span className="text-white/50 text-xs">IMG</span>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

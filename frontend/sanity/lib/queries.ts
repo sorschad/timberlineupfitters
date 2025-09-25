@@ -243,7 +243,7 @@ export const allVehiclesQuery = defineQuery(`
 
 // Timberline tagged vehicles (used by sidebar mega menu)
 export const timberlineVehiclesQuery = defineQuery(`
-  *[_type == "vehicle" && defined(slug.current) && "Timberline" in tags] | order(modelYear desc, title asc) {
+  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {
     _id,
     title,
     slug,
