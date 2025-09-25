@@ -281,10 +281,10 @@ export default function HeaderClient({
             <div className="h-24 px-6 flex items-center border-b border-white/10 bg-black/20 backdrop-blur-xl">
               <div>
                 <div className={`${orbitron.className} uppercase tracking-[0.18em] text-[#ff8c42] text-lg`}>
-                  {activeBrand ? `${activeBrand} Vehicles` : 'Vehicles'}
+                  {activeBrand ? `${activeBrand}` : 'Vehicles'}
                 </div>
                 <div className="uppercase text-white text-xs tracking-widest mt-1">
-                  {activeBrand ? `${activeBrand} Brand Vehicles` : 'Models Lineup'}
+                  {activeBrand ? 'Brand Vehicles' : 'Models Lineup'}
                 </div>
               </div>
             </div>
