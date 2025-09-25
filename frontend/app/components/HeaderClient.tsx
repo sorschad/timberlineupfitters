@@ -196,56 +196,99 @@ export default function HeaderClient({
       {/* Sidebar Mega Menu */}
       <div
         id="sidebar-mega-menu"
-        className={`fixed top-0 left-0 bottom-0 z-[60] w-full max-w-[500px] transform transition-transform duration-500 ease-in-out
+        className={`fixed top-0 left-0 bottom-0 z-[60] w-full max-w-[1400px] transform transition-transform duration-500 ease-in-out
         ${isMegaOpen ? 'translate-x-0' : '-translate-x-full'}`}
         aria-hidden={!isMegaOpen}
       >
-        <div className="grid grid-cols-1 h-full">
-          <div className="bg-black/20 backdrop-blur-xl text-white relative border border-white/20">
-            <div className="h-24 px-6 flex items-center justify-between border-b border-white/10 bg-black/40 backdrop-blur-2xl">
+        <div className="grid grid-cols-2 h-full border border-white/20">
+          {/* Left Section: Brands */}
+          <div className="bg-black/20 backdrop-blur-xl text-white">
+            {/* Header */}
+            <div className="h-24 px-6 flex items-center justify-between border-b border-white/10 bg-black/20 backdrop-blur-xl">
               <div>
-                <div className={`${orbitron.className} uppercase tracking-[0.18em] text-[#ff8c42]`}>Vehicles</div>
+                <div className={`${orbitron.className} uppercase tracking-[0.18em] text-[#ff8c42] text-lg`}>Brands</div>
+                <div className="uppercase text-white text-xs tracking-widest mt-1">Tactical Vehicle Brands</div>
               </div>
               <button
                 type="button"
                 onClick={() => setIsMegaOpen(false)}
-                className="w-10 h-10 grid place-items-center rounded-full text-[#ff8c42] hover:text-white/100 hover:bg-white/10 transition"
+                className="w-10 h-10 grid place-items-center rounded-full text-white hover:bg-white/10 transition"
                 aria-label="Close menu"
               >
                 ✕
               </button>
             </div>
 
-            <div className="p-4 md:p-6 overflow-y-auto h-[calc(100%-6rem)]">
-              <div className="space-y-6">
+            {/* Brand Cards */}
+            <div className="p-6 space-y-4">
+              <div className="rounded-lg border border-white/20 bg-black p-4 hover:bg-white/5 transition-colors cursor-pointer">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-white text-xl font-bold">TSPORT</div>
+                    <div className="text-white/70 text-sm">High-speed tactical response platform</div>
+                  </div>
+                  <span className="text-[#ff8c42]">&gt;</span>
+                </div>
+              </div>
+              
+              <div className="rounded-lg border border-white/20 bg-black p-4 hover:bg-white/5 transition-colors cursor-pointer">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-white text-xl font-bold">ALPINE</div>
+                    <div className="text-white/70 text-sm">All-terrain mountain command vehicle</div>
+                  </div>
+                  <span className="text-[#ff8c42]">&gt;</span>
+                </div>
+              </div>
+              
+              <div className="rounded-lg border border-white/20 bg-black p-4 hover:bg-white/5 transition-colors cursor-pointer">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-white text-xl font-bold">TIMBERLINE</div>
+                    <div className="text-white/70 text-sm">Heavy-duty expedition platform</div>
+                  </div>
+                  <span className="text-[#ff8c42]">&gt;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Section: TSPORT Lineup */}
+          <div className="bg-black/20 backdrop-blur-xl text-white border-l border-white/10 relative">
+            {/* Header */}
+            <div className="h-24 px-6 flex items-center border-b border-white/10 bg-black/20 backdrop-blur-xl">
+              <div>
+                <div className={`${orbitron.className} uppercase tracking-[0.18em] text-[#ff8c42] text-lg`}>TSPORT Lineup</div>
+                <div className="uppercase text-white text-xs tracking-widest mt-1">Racing-Inspired Performance Vehicles</div>
+              </div>
+            </div>
+
+            {/* Vehicle Content - Using existing vehicle data */}
+            <div className="p-6 overflow-y-auto h-[calc(100%-6rem)]">
+              <div className="space-y-4">
                 {groupedByManufacturer.map((group) => (
                   <div key={group.name}>
-                    <h3 className={`${orbitron.className} uppercase tracking-[0.14em] text-white/90 mb-3`}>{group.name}</h3>
-                    <div className="grid grid-cols-1 gap-3">
-                      {group.vehicles.map((v) => (
-                        <Link
-                          key={v._id}
-                          href={`/vehicles/${(v as any).slug?.current}`}
-                          onClick={() => setIsMegaOpen(false)}
-                          className="rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 transition-colors p-4 focus:outline-none focus:ring-2 focus:ring-[#ff5500]/60 w-full"
-                        >
-                          <div className="text-white font-semibold">{v.title}</div>
-                          <div className="text-white/70 text-xs mt-0.5">{(v as any).vehicleType || (v as any).model || 'Platform'}</div>
-                        </Link>
-                      ))}
-                    </div>
+                    {group.vehicles.map((v) => (
+                      <Link
+                        key={v._id}
+                        href={`/vehicles/${(v as any).slug?.current}`}
+                        onClick={() => setIsMegaOpen(false)}
+                        className="block rounded-lg border border-white/20 bg-black p-4 hover:bg-white/5 transition-colors mb-4"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="w-16 h-12 bg-gray-700 rounded flex items-center justify-center">
+                            <span className="text-white/50 text-xs">IMG</span>
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-white text-lg font-bold uppercase">{v.title}</div>
+                            <div className="text-white/70 text-sm">{(v as any).vehicleType || (v as any).model || 'Platform'}</div>
+                            <div className="text-[#ff8c42] text-sm font-semibold mt-1">FROM $XX,XXX</div>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
                 ))}
-              </div>
-
-              <div className="mt-6 flex justify-end">
-                <Link
-                  href="/vehicles"
-                  onClick={() => setIsMegaOpen(false)}
-                  className="inline-flex items-center justify-center border border-white/20 text-white/70 hover:text-white hover:border-white/40 rounded-lg px-4 py-2 text-sm transition-colors"
-                >
-                  Explore Our Models
-                </Link>
               </div>
             </div>
           </div>
