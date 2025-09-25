@@ -248,34 +248,36 @@ export default function HeaderClient({
         ${isMegaOpen ? 'translate-x-0' : '-translate-x-full'}`}
         aria-hidden={!isMegaOpen}
       >
-        <div className="grid grid-cols-[1fr_1.8fr] sm:grid-cols-[1.2fr_1.8fr] md:grid-cols-[1.3fr_1.7fr] lg:grid-cols-[1.4fr_1.6fr] h-full border border-white/20">
+        <div className="grid grid-cols-[1fr_1.8fr] sm:grid-cols-[1.2fr_1.8fr] md:grid-cols-[1.3fr_1.7fr] lg:grid-cols-[1.4fr_1.6fr] h-full border border-white/30 shadow-2xl">
           {/* Left Section: Brands */}
-          <div className="bg-black/20 backdrop-blur-xl text-white">
+          <div className="bg-black/25 backdrop-blur-2xl text-white border-r border-white/20">
             {/* Header */}
-            <div className="h-24 px-6 flex items-center justify-between border-b border-white/10 bg-black/20 backdrop-blur-xl">
+            <div className="h-20 px-6 flex items-center justify-between border-b border-white/20 bg-gradient-to-r from-black/30 to-black/10">
               <div>
-                <div className={`${orbitron.className} uppercase tracking-[0.18em] text-[#ff8c42] text-lg`}>Brands</div>
-                        <div className="uppercase text-white text-xs tracking-widest mt-1">Timberline Built</div>
+                <div className={`${orbitron.className} uppercase tracking-[0.2em] text-[#ff8c42] text-lg font-bold`}>BRANDS</div>
+                <div className="uppercase text-white/80 text-xs tracking-[0.15em] mt-1 font-medium">TIMBERLINE BUILT</div>
               </div>
               <button
                 type="button"
                 onClick={() => setIsMegaOpen(false)}
-                className="w-10 h-10 grid place-items-center rounded-full text-[#ff8c42] hover:bg-white/10 transition"
+                className="w-8 h-8 grid place-items-center rounded-full text-[#ff8c42] hover:bg-[#ff8c42]/20 transition-all duration-200 hover:scale-110"
                 aria-label="Close menu"
               >
-                ✕
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 
             {/* Brand Cards */}
-            <div className="p-6 space-y-2">
+            <div className="p-6 space-y-3">
               {brands?.map((brand) => (
                 <div 
                   key={brand._id} 
-                  className={`rounded-lg border border-white/20 p-4 transition-colors cursor-pointer relative ${
+                  className={`rounded-xl border transition-all duration-300 cursor-pointer relative group ${
                     activeBrand === brand.name 
-                      ? 'bg-[#ff8c42]/20 border-[#ff8c42]/40' 
-                      : 'bg-white/5 hover:bg-black'
+                      ? 'bg-[#ff8c42]/15 border-[#ff8c42]/50 shadow-lg shadow-[#ff8c42]/10' 
+                      : 'bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30'
                   }`}
                   onClick={() => {
                     const newActiveBrand = activeBrand === brand.name ? null : brand.name
@@ -288,39 +290,47 @@ export default function HeaderClient({
                     }
                   }}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="text-white text-xl font-bold">{brand.name}</div>
-                      <div className="text-white/70 text-sm">{brand.slogan || 'Tactical vehicle platform'}</div>
+                  <div className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="text-white text-lg font-bold mb-1">{brand.name}</div>
+                        <div className="text-white/60 text-sm leading-relaxed">{brand.slogan || 'Tactical vehicle platform'}</div>
+                      </div>
+                      <div className="ml-3">
+                        <svg className={`w-5 h-5 transition-all duration-200 ${
+                          activeBrand === brand.name ? 'text-[#ff8c42] rotate-0' : 'text-white/40 group-hover:text-[#ff8c42] group-hover:translate-x-1'
+                        }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
                     </div>
-                    <span className="text-[#ff8c42] absolute top-4 right-4">&gt;</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right Section: TSPORT Lineup */}
-          <div className="bg-black/20 backdrop-blur-xl text-white border-l border-white/10 relative">
+          {/* Right Section: Vehicles */}
+          <div className="bg-black/25 backdrop-blur-2xl text-white relative">
             {/* Header */}
-            <div className="h-24 px-6 flex items-center border-b border-white/10 bg-black/20 backdrop-blur-xl">
+            <div className="h-20 px-6 flex items-center border-b border-white/20 bg-gradient-to-r from-black/30 to-black/10">
               <div>
-                <div className={`${orbitron.className} uppercase tracking-[0.18em] text-[#ff8c42] text-lg`}>
-                  {activeBrand ? `${activeBrand}` : 'Vehicles'}
+                <div className={`${orbitron.className} uppercase tracking-[0.2em] text-[#ff8c42] text-lg font-bold`}>
+                  {activeBrand ? activeBrand.toUpperCase() : 'VEHICLES'}
                 </div>
-                <div className="uppercase text-white text-xs tracking-widest mt-1">
-                  {activeBrand ? 'Vehicles' : 'Lineup'}
+                <div className="uppercase text-white/80 text-xs tracking-[0.15em] mt-1 font-medium">
+                  {activeBrand ? 'VEHICLES' : 'LINEUP'}
                 </div>
               </div>
             </div>
 
             {/* Manufacturers Filter Section */}
             {activeBrand && brands?.find(b => b.name === activeBrand)?.manufacturers && (
-              <div className="px-6 py-4 border-b border-white/10 bg-black/10">
-                <div className="mb-3">
-                  <p className="text-white/70 text-xs">Click to filter vehicles by manufacturer</p>
+              <div className="px-6 py-5 border-b border-white/20 bg-gradient-to-r from-black/20 to-black/5">
+                <div className="mb-4">
+                  <p className="text-white/70 text-sm font-medium mb-3">Filter by manufacturer</p>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3">
                   {brands?.find(b => b.name === activeBrand)?.manufacturers?.map((manufacturer) => (
                     <button
                       key={manufacturer._id}
@@ -331,10 +341,10 @@ export default function HeaderClient({
                             : [...prev, manufacturer._id]
                         )
                       }}
-                      className={`px-3 py-2 rounded-full text-xs font-medium transition-colors ${
+                      className={`px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
                         selectedManufacturers.includes(manufacturer._id)
-                          ? 'bg-[#ff8c42] text-black'
-                          : 'bg-white/10 text-white hover:bg-white/20'
+                          ? 'bg-[#ff8c42] text-black shadow-lg shadow-[#ff8c42]/20 transform scale-105'
+                          : 'bg-white/10 text-white hover:bg-white/20 hover:scale-105 border border-white/20'
                       }`}
                     >
                       {manufacturer.name}
@@ -345,36 +355,38 @@ export default function HeaderClient({
             )}
 
             {/* Vehicle Content - Using filtered vehicle data */}
-            <div className="p-6 overflow-y-auto h-[calc(100%-8rem)]">
+            <div className="p-6 overflow-y-auto h-[calc(100%-8rem)] scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent hover:scrollbar-thumb-white/30">
               {isLoadingVehicles ? (
                 <div className="flex items-center justify-center h-32">
-                  <div className="flex flex-col items-center space-y-3">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#ff8c42]"></div>
-                    <div className="text-white/70 text-sm">Loading vehicles...</div>
+                  <div className="flex flex-col items-center space-y-4">
+                    <div className="animate-spin rounded-full h-10 w-10 border-2 border-[#ff8c42]/30 border-t-[#ff8c42]"></div>
+                    <div className="text-white/70 text-sm font-medium">Loading vehicles...</div>
                   </div>
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {groupedByManufacturer.map((group) => (
                     <div key={group.name}>
-                      <h3 className={`${orbitron.className} text-right uppercase tracking-[0.14em] text-white/90 mb-3`}>{group.name}</h3>
-                      {group.vehicles.map((v) => (
-                        <Link
-                          key={v._id}
-                          href={`/vehicles/${(v as any).slug?.current}`}
-                          onClick={() => setIsMegaOpen(false)}
-                          className="block rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors mb-2"
-                        >
-                          <div className="flex items-start gap-4">
-                            <div className="flex-1">
-                              <div className="text-white text-sm font-bold uppercase leading-tight">{v.title}</div>
+                      <h3 className={`${orbitron.className} uppercase tracking-[0.2em] text-[#ff8c42] text-sm font-bold mb-4 pb-2 border-b border-white/20`}>{group.name}</h3>
+                      <div className="space-y-3">
+                        {group.vehicles.map((v) => (
+                          <Link
+                            key={v._id}
+                            href={`/vehicles/${(v as any).slug?.current}`}
+                            onClick={() => setIsMegaOpen(false)}
+                            className="block rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/30 p-4 transition-all duration-300 group"
+                          >
+                            <div className="flex items-center gap-4">
+                              <div className="flex-1">
+                                <div className="text-white text-sm font-bold uppercase leading-tight group-hover:text-[#ff8c42] transition-colors duration-200">{v.title}</div>
+                              </div>
+                              <div className="w-16 h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg flex items-center justify-center border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-200">
+                                <span className="text-white/40 text-xs font-medium">IMG</span>
+                              </div>
                             </div>
-                            <div className="w-16 h-12 bg-gray-700 rounded flex items-center justify-center">
-                              <span className="text-white/50 text-xs">IMG</span>
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>
