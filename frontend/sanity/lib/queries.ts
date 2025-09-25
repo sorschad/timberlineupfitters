@@ -262,7 +262,12 @@ export const timberlineVehiclesQuery = defineQuery(`
     "manufacturer": manufacturer->{
       _id,
       name,
-      logo
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
     },
     coverImage,
     specifications,

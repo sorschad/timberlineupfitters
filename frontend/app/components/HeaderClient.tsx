@@ -41,7 +41,12 @@ export default function HeaderClient({
     manufacturer?: {
       _id: string
       name: string
-      logo?: any
+      logo?: {
+        asset?: {
+          _id: string
+          url: string
+        }
+      }
     }
   }>
   brands?: Array<{
@@ -96,7 +101,7 @@ export default function HeaderClient({
   }, [timberlineVehicles, activeBrand, brands, selectedManufacturers])
 
   const groupedByManufacturer = useMemo(() => {
-    const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string; sidebarSortOrder?: number; manufacturer?: { _id: string; name: string; logo?: any } }>> = {}
+    const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string; sidebarSortOrder?: number; manufacturer?: { _id: string; name: string; logo?: { asset?: { _id: string; url: string } } } }>> = {}
     filteredVehicles.forEach((v: any) => {
       const name = v?.manufacturer?.name || 'Other'
       if (!groups[name]) groups[name] = []
@@ -390,13 +395,12 @@ export default function HeaderClient({
                             onClick={() => setIsMegaOpen(false)}
                             className="block rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/30 p-4 transition-all duration-300 group"
                           >
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-start gap-4">
                               <div className="flex-1">
-                                <div className="text-white text-sm font-bold uppercase leading-tight group-hover:text-[#ff8c42] transition-colors duration-200 mb-1">{v.title}</div>
-                                <div className="flex items-center gap-2">
-                                  {v?.manufacturer?.logo ? (
+                                <div className="flex items-center gap-2 mb-2">
+                                  {v?.manufacturer?.logo?.asset?.url ? (
                                     <img 
-                                      src={v.manufacturer.logo.asset?.url} 
+                                      src={v.manufacturer.logo.asset.url} 
                                       alt={`${v.manufacturer.name} logo`}
                                       className="w-5 h-5 object-contain"
                                     />
@@ -407,6 +411,7 @@ export default function HeaderClient({
                                   )}
                                   <span className="text-white/60 text-xs font-medium">{v?.manufacturer?.name || 'Unknown Manufacturer'}</span>
                                 </div>
+                                <div className="text-white text-sm font-bold uppercase leading-tight group-hover:text-[#ff8c42] transition-colors duration-200">{v.title}</div>
                               </div>
                               <div className="w-16 h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg flex items-center justify-center border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-200">
                                 <span className="text-white/40 text-xs font-medium">IMG</span>
