@@ -196,11 +196,11 @@ export default function HeaderClient({
       {/* Sidebar Mega Menu */}
       <div
         id="sidebar-mega-menu"
-        className={`fixed top-0 left-0 bottom-0 z-[60] w-full max-w-[1400px] transform transition-transform duration-500 ease-in-out
+        className={`fixed top-0 left-0 bottom-0 z-[60] w-full max-w-[700px] transform transition-transform duration-500 ease-in-out
         ${isMegaOpen ? 'translate-x-0' : '-translate-x-full'}`}
         aria-hidden={!isMegaOpen}
       >
-        <div className="grid grid-cols-2 h-full border border-white/20">
+        <div className="grid grid-cols-[1fr_1.8fr] sm:grid-cols-[1.2fr_1.8fr] md:grid-cols-[1.3fr_1.7fr] lg:grid-cols-[1.4fr_1.6fr] h-full border border-white/20">
           {/* Left Section: Brands */}
           <div className="bg-black/20 backdrop-blur-xl text-white">
             {/* Header */}
@@ -212,7 +212,7 @@ export default function HeaderClient({
               <button
                 type="button"
                 onClick={() => setIsMegaOpen(false)}
-                className="w-10 h-10 grid place-items-center rounded-full text-white hover:bg-white/10 transition"
+                className="w-10 h-10 grid place-items-center rounded-full text-[#ff8c42] hover:bg-white/10 transition"
                 aria-label="Close menu"
               >
                 ✕
@@ -220,8 +220,8 @@ export default function HeaderClient({
             </div>
 
             {/* Brand Cards */}
-            <div className="p-6 space-y-4">
-              <div className="rounded-lg border border-white/20 bg-black p-4 hover:bg-white/5 transition-colors cursor-pointer">
+            <div className="p-6 space-y-2">
+              <div className="rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-white text-xl font-bold">TSPORT</div>
@@ -231,7 +231,7 @@ export default function HeaderClient({
                 </div>
               </div>
               
-              <div className="rounded-lg border border-white/20 bg-black p-4 hover:bg-white/5 transition-colors cursor-pointer">
+              <div className="rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-white text-xl font-bold">ALPINE</div>
@@ -241,7 +241,7 @@ export default function HeaderClient({
                 </div>
               </div>
               
-              <div className="rounded-lg border border-white/20 bg-black p-4 hover:bg-white/5 transition-colors cursor-pointer">
+              <div className="rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-white text-xl font-bold">TIMBERLINE</div>
@@ -273,16 +273,15 @@ export default function HeaderClient({
                         key={v._id}
                         href={`/vehicles/${(v as any).slug?.current}`}
                         onClick={() => setIsMegaOpen(false)}
-                        className="block rounded-lg border border-white/20 bg-black p-4 hover:bg-white/5 transition-colors mb-4"
+                        className="block rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors mb-2"
                       >
                         <div className="flex items-start gap-4">
+                          <div className="flex-1">
+                            <div className="text-white text-sm font-bold uppercase leading-tight">{v.title}</div>
+                            <div className="text-[#ff8c42] text-sm font-semibold mt-1">FROM $XX,XXX</div>
+                          </div>
                           <div className="w-16 h-12 bg-gray-700 rounded flex items-center justify-center">
                             <span className="text-white/50 text-xs">IMG</span>
-                          </div>
-                          <div className="flex-1">
-                            <div className="text-white text-lg font-bold uppercase">{v.title}</div>
-                            <div className="text-white/70 text-sm">{(v as any).vehicleType || (v as any).model || 'Platform'}</div>
-                            <div className="text-[#ff8c42] text-sm font-semibold mt-1">FROM $XX,XXX</div>
                           </div>
                         </div>
                       </Link>
