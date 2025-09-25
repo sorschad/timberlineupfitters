@@ -43,6 +43,7 @@ export default function HeaderClient({
     name: string
     slug: { current: string }
     slogan?: string
+    logo?: any
     manufacturers?: Array<{
       _id: string
       name: string
@@ -55,6 +56,7 @@ export default function HeaderClient({
   const [isMegaOpen, setIsMegaOpen] = useState(false)
   const [activeBrand, setActiveBrand] = useState<string | null>(null)
   const [isLoadingVehicles, setIsLoadingVehicles] = useState(false)
+  const [selectedManufacturers, setSelectedManufacturers] = useState<string[]>([])
 
   const filteredVehicles = useMemo(() => {
     if (!activeBrand) return timberlineVehicles || []
@@ -74,12 +76,18 @@ export default function HeaderClient({
     }
     
     // Filter vehicles by manufacturer associations
-    const manufacturerIds = activeBrandData.manufacturers.map(m => m._id)
+    let manufacturerIds = activeBrandData.manufacturers.map(m => m._id)
+    
+    // If specific manufacturers are selected, filter by those
+    if (selectedManufacturers.length > 0) {
+      manufacturerIds = manufacturerIds.filter(id => selectedManufacturers.includes(id))
+    }
+    
     return (timberlineVehicles || []).filter((vehicle: any) => {
       const vehicleManufacturerId = vehicle?.manufacturer?._id
       return vehicleManufacturerId && manufacturerIds.includes(vehicleManufacturerId)
     })
-  }, [timberlineVehicles, activeBrand, brands])
+  }, [timberlineVehicles, activeBrand, brands, selectedManufacturers])
 
   const groupedByManufacturer = useMemo(() => {
     const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string }>> = {}
@@ -272,6 +280,7 @@ export default function HeaderClient({
                   onClick={() => {
                     const newActiveBrand = activeBrand === brand.name ? null : brand.name
                     setActiveBrand(newActiveBrand)
+                    setSelectedManufacturers([]) // Reset manufacturer selection when brand changes
                     if (newActiveBrand) {
                       setIsLoadingVehicles(true)
                       // Simulate loading time for better UX
@@ -300,13 +309,43 @@ export default function HeaderClient({
                   {activeBrand ? `${activeBrand}` : 'Vehicles'}
                 </div>
                 <div className="uppercase text-white text-xs tracking-widest mt-1">
-                  {activeBrand ? 'Brand Vehicles' : 'Models Lineup'}
+                  {activeBrand ? 'Vehicles' : 'Lineup'}
                 </div>
               </div>
             </div>
 
+            {/* Manufacturers Filter Section */}
+            {activeBrand && brands?.find(b => b.name === activeBrand)?.manufacturers && (
+              <div className="px-6 py-4 border-b border-white/10 bg-black/10">
+                <div className="mb-3">
+                  <p className="text-white/70 text-xs">Click to filter vehicles by manufacturer</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {brands?.find(b => b.name === activeBrand)?.manufacturers?.map((manufacturer) => (
+                    <button
+                      key={manufacturer._id}
+                      onClick={() => {
+                        setSelectedManufacturers(prev => 
+                          prev.includes(manufacturer._id)
+                            ? prev.filter(id => id !== manufacturer._id)
+                            : [...prev, manufacturer._id]
+                        )
+                      }}
+                      className={`px-3 py-2 rounded-full text-xs font-medium transition-colors ${
+                        selectedManufacturers.includes(manufacturer._id)
+                          ? 'bg-[#ff8c42] text-black'
+                          : 'bg-white/10 text-white hover:bg-white/20'
+                      }`}
+                    >
+                      {manufacturer.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Vehicle Content - Using filtered vehicle data */}
-            <div className="p-6 overflow-y-auto h-[calc(100%-6rem)]">
+            <div className="p-6 overflow-y-auto h-[calc(100%-8rem)]">
               {isLoadingVehicles ? (
                 <div className="flex items-center justify-center h-32">
                   <div className="flex flex-col items-center space-y-3">
@@ -329,7 +368,6 @@ export default function HeaderClient({
                           <div className="flex items-start gap-4">
                             <div className="flex-1">
                               <div className="text-white text-sm font-bold uppercase leading-tight">{v.title}</div>
-                              <div className="text-[#ff8c42] text-sm font-semibold mt-1">FROM $XX,XXX</div>
                             </div>
                             <div className="w-16 h-12 bg-gray-700 rounded flex items-center justify-center">
                               <span className="text-white/50 text-xs">IMG</span>
