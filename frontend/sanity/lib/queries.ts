@@ -31,6 +31,7 @@ const brandFieldsWithSlogan = /* groq */ `
   "slug": slug.current,
   excerpt,
   coverImage,
+  logo,
   features,
   slogan,
   "launchDate": coalesce(launchDate, _updatedAt),

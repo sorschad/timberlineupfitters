@@ -90,6 +90,33 @@ export const brand = defineType({
       ],
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'logo',
+      title: 'Brand Logo',
+      type: 'image',
+      options: {
+        hotspot: true,
+        aiAssist: {
+          imageDescriptionField: 'alt',
+        },
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessibility.',
+          validation: (rule) => {
+            return rule.custom((alt, context) => {
+              if ((context.document?.logo as any)?.asset?._ref && !alt) {
+                return 'Required'
+              }
+              return true
+            })
+          },
+        },
+      ],
+    }),
     
     defineField({
       name: 'features',
