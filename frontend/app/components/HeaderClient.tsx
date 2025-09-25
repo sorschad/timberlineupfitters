@@ -47,10 +47,23 @@ export default function HeaderClient({
 }) {
   const [isSticky, setIsSticky] = useState(false)
   const [isMegaOpen, setIsMegaOpen] = useState(false)
+  const [activeBrand, setActiveBrand] = useState<string | null>(null)
+
+  const filteredVehicles = useMemo(() => {
+    if (!activeBrand) return timberlineVehicles || []
+    
+    return (timberlineVehicles || []).filter((vehicle: any) => {
+      // Check if the vehicle has tags that include the active brand name
+      const vehicleTags = vehicle.tags || []
+      return vehicleTags.some((tag: string) => 
+        tag.toLowerCase().includes(activeBrand.toLowerCase())
+      )
+    })
+  }, [timberlineVehicles, activeBrand])
 
   const groupedByManufacturer = useMemo(() => {
     const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string }>> = {}
-    ;(timberlineVehicles || []).forEach((v: any) => {
+    filteredVehicles.forEach((v: any) => {
       const name = v?.manufacturer?.name || 'Other'
       if (!groups[name]) groups[name] = []
       groups[name].push(v)
@@ -61,7 +74,7 @@ export default function HeaderClient({
       name,
       vehicles: groups[name].sort((a, b) => (a.title || '').localeCompare(b.title || '')),
     }))
-  }, [timberlineVehicles])
+  }, [filteredVehicles])
 
   useEffect(() => {
     const onScroll = () => {
@@ -214,7 +227,7 @@ export default function HeaderClient({
             <div className="h-24 px-6 flex items-center justify-between border-b border-white/10 bg-black/20 backdrop-blur-xl">
               <div>
                 <div className={`${orbitron.className} uppercase tracking-[0.18em] text-[#ff8c42] text-lg`}>Brands</div>
-                <div className="uppercase text-white text-xs tracking-widest mt-1">Tactical Vehicle Brands</div>
+                        <div className="uppercase text-white text-xs tracking-widest mt-1">Timberline Built</div>
               </div>
               <button
                 type="button"
@@ -229,7 +242,15 @@ export default function HeaderClient({
             {/* Brand Cards */}
             <div className="p-6 space-y-2">
               {brands?.map((brand) => (
-                <div key={brand._id} className="rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors cursor-pointer relative">
+                <div 
+                  key={brand._id} 
+                  className={`rounded-lg border border-white/20 p-4 transition-colors cursor-pointer relative ${
+                    activeBrand === brand.name 
+                      ? 'bg-[#ff8c42]/20 border-[#ff8c42]/40' 
+                      : 'bg-white/5 hover:bg-black'
+                  }`}
+                  onClick={() => setActiveBrand(activeBrand === brand.name ? null : brand.name)}
+                >
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <div className="text-white text-xl font-bold">{brand.name}</div>
@@ -247,16 +268,21 @@ export default function HeaderClient({
             {/* Header */}
             <div className="h-24 px-6 flex items-center border-b border-white/10 bg-black/20 backdrop-blur-xl">
               <div>
-                <div className={`${orbitron.className} uppercase tracking-[0.18em] text-[#ff8c42] text-lg`}>TSPORT Lineup</div>
-                <div className="uppercase text-white text-xs tracking-widest mt-1">Racing-Inspired Performance Vehicles</div>
+                <div className={`${orbitron.className} uppercase tracking-[0.18em] text-[#ff8c42] text-lg`}>
+                  {activeBrand ? `${activeBrand} Vehicles` : 'Vehicles'}
+                </div>
+                <div className="uppercase text-white text-xs tracking-widest mt-1">
+                  {activeBrand ? `${activeBrand} Brand Vehicles` : 'Models Lineup'}
+                </div>
               </div>
             </div>
 
-            {/* Vehicle Content - Using existing vehicle data */}
+            {/* Vehicle Content - Using filtered vehicle data */}
             <div className="p-6 overflow-y-auto h-[calc(100%-6rem)]">
               <div className="space-y-4">
                 {groupedByManufacturer.map((group) => (
                   <div key={group.name}>
+                    <h3 className={`${orbitron.className} text-right uppercase tracking-[0.14em] text-white/90 mb-3`}>{group.name}</h3>
                     {group.vehicles.map((v) => (
                       <Link
                         key={v._id}
