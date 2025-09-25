@@ -37,6 +37,12 @@ export default function HeaderClient({
     vehicleType?: string
     modelYear?: number
     trim?: string
+    sidebarSortOrder?: number
+    manufacturer?: {
+      _id: string
+      name: string
+      logo?: any
+    }
   }>
   brands?: Array<{
     _id: string
@@ -90,7 +96,7 @@ export default function HeaderClient({
   }, [timberlineVehicles, activeBrand, brands, selectedManufacturers])
 
   const groupedByManufacturer = useMemo(() => {
-    const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string }>> = {}
+    const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string; sidebarSortOrder?: number; manufacturer?: { _id: string; name: string; logo?: any } }>> = {}
     filteredVehicles.forEach((v: any) => {
       const name = v?.manufacturer?.name || 'Other'
       if (!groups[name]) groups[name] = []
@@ -100,7 +106,16 @@ export default function HeaderClient({
     const sortedManufacturerNames = Object.keys(groups).sort((a, b) => a.localeCompare(b))
     return sortedManufacturerNames.map((name) => ({
       name,
-      vehicles: groups[name].sort((a, b) => (a.title || '').localeCompare(b.title || '')),
+      vehicles: groups[name].sort((a, b) => {
+        // First sort by sidebarSortOrder (lower numbers first)
+        const sortOrderA = a.sidebarSortOrder ?? 999
+        const sortOrderB = b.sidebarSortOrder ?? 999
+        if (sortOrderA !== sortOrderB) {
+          return sortOrderA - sortOrderB
+        }
+        // Then sort by title alphabetically
+        return (a.title || '').localeCompare(b.title || '')
+      }),
     }))
   }, [filteredVehicles])
 
@@ -367,7 +382,6 @@ export default function HeaderClient({
                 <div className="space-y-6">
                   {groupedByManufacturer.map((group) => (
                     <div key={group.name}>
-                      <h3 className={`${orbitron.className} uppercase tracking-[0.2em] text-[#ff8c42] text-sm font-bold mb-4 pb-2 border-b border-white/20`}>{group.name}</h3>
                       <div className="space-y-3">
                         {group.vehicles.map((v) => (
                           <Link
@@ -378,7 +392,21 @@ export default function HeaderClient({
                           >
                             <div className="flex items-center gap-4">
                               <div className="flex-1">
-                                <div className="text-white text-sm font-bold uppercase leading-tight group-hover:text-[#ff8c42] transition-colors duration-200">{v.title}</div>
+                                <div className="text-white text-sm font-bold uppercase leading-tight group-hover:text-[#ff8c42] transition-colors duration-200 mb-1">{v.title}</div>
+                                <div className="flex items-center gap-2">
+                                  {v?.manufacturer?.logo ? (
+                                    <img 
+                                      src={v.manufacturer.logo.asset?.url} 
+                                      alt={`${v.manufacturer.name} logo`}
+                                      className="w-5 h-5 object-contain"
+                                    />
+                                  ) : (
+                                    <div className="w-5 h-5 bg-white/10 rounded flex items-center justify-center">
+                                      <span className="text-white/40 text-xs font-bold">{v?.manufacturer?.name?.charAt(0) || 'M'}</span>
+                                    </div>
+                                  )}
+                                  <span className="text-white/60 text-xs font-medium">{v?.manufacturer?.name || 'Unknown Manufacturer'}</span>
+                                </div>
                               </div>
                               <div className="w-16 h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg flex items-center justify-center border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-200">
                                 <span className="text-white/40 text-xs font-medium">IMG</span>

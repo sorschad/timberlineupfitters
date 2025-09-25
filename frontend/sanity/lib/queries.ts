@@ -258,6 +258,7 @@ export const timberlineVehiclesQuery = defineQuery(`
     vehicleType,
     modelYear,
     trim,
+    sidebarSortOrder,
     "manufacturer": manufacturer->{
       _id,
       name,

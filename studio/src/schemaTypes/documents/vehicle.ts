@@ -379,6 +379,15 @@ export const vehicle = defineType({
       title: 'Published At',
       type: 'datetime',
       initialValue: () => new Date().toISOString()
+    }),
+
+    defineField({
+      name: 'sidebarSortOrder',
+      title: 'Sidebar Sort Order',
+      type: 'number',
+      description: 'Custom sort order for vehicles in the sidebar mega menu. Lower numbers appear first.',
+      validation: (Rule) => Rule.integer().min(0),
+      initialValue: 0
     })
   ],
 
