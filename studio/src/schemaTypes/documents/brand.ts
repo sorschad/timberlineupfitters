@@ -32,6 +32,12 @@ export const brand = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'slogan',
+      title: 'Slogan',
+      type: 'text',
+      description: 'Official slogan for the brand',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',

@@ -24,6 +24,7 @@ export default function HeaderClient({
   appLogo,
   manufacturers,
   timberlineVehicles,
+  brands,
 }: {
   settingsTitle?: string
   appLogo?: any
@@ -36,6 +37,12 @@ export default function HeaderClient({
     vehicleType?: string
     modelYear?: number
     trim?: string
+  }>
+  brands?: Array<{
+    _id: string
+    name: string
+    slug: { current: string }
+    slogan?: string
   }>
 }) {
   const [isSticky, setIsSticky] = useState(false)
@@ -221,35 +228,17 @@ export default function HeaderClient({
 
             {/* Brand Cards */}
             <div className="p-6 space-y-2">
-              <div className="rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors cursor-pointer">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-white text-xl font-bold">TSPORT</div>
-                    <div className="text-white/70 text-sm">High-speed tactical response platform</div>
+              {brands?.map((brand) => (
+                <div key={brand._id} className="rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors cursor-pointer relative">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <div className="text-white text-xl font-bold">{brand.name}</div>
+                      <div className="text-white/70 text-sm">{brand.slogan || 'Tactical vehicle platform'}</div>
+                    </div>
+                    <span className="text-[#ff8c42] absolute top-4 right-4">&gt;</span>
                   </div>
-                  <span className="text-[#ff8c42]">&gt;</span>
                 </div>
-              </div>
-              
-              <div className="rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors cursor-pointer">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-white text-xl font-bold">ALPINE</div>
-                    <div className="text-white/70 text-sm">All-terrain mountain command vehicle</div>
-                  </div>
-                  <span className="text-[#ff8c42]">&gt;</span>
-                </div>
-              </div>
-              
-              <div className="rounded-lg border border-white/20 bg-white/5 hover:bg-black p-4 transition-colors cursor-pointer">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-white text-xl font-bold">TIMBERLINE</div>
-                    <div className="text-white/70 text-sm">Heavy-duty expedition platform</div>
-                  </div>
-                  <span className="text-[#ff8c42]">&gt;</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 

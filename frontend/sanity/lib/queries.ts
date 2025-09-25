@@ -24,6 +24,18 @@ const brandFields = /* groq */ `
   "launchDate": coalesce(launchDate, _updatedAt),
 `
 
+const brandFieldsWithSlogan = /* groq */ `
+  _id,
+  "status": select(_originalId in path("drafts.**") => "draft", "published"),
+  "name": coalesce(name, "Untitled"),
+  "slug": slug.current,
+  excerpt,
+  coverImage,
+  features,
+  slogan,
+  "launchDate": coalesce(launchDate, _updatedAt),
+`
+
 const linkReference = /* groq */ `
   _type == "link" => {
     "page": page->slug.current,
@@ -282,4 +294,11 @@ export const vehicleQuery = defineQuery(`
 export const vehicleSlugs = defineQuery(`
   *[_type == "vehicle" && defined(slug.current)]
   {"slug": slug.current}
+`)
+
+// Brands query for sidebar mega menu with slogans
+export const brandsWithSloganQuery = defineQuery(`
+  *[_type == "brand" && defined(slug.current)] | order(name asc) {
+    ${brandFieldsWithSlogan}
+  }
 `)

@@ -1,4 +1,4 @@
-import {settingsQuery, allManufacturersQuery, timberlineVehiclesQuery} from '@/sanity/lib/queries'
+import {settingsQuery, allManufacturersQuery, timberlineVehiclesQuery, brandsWithSloganQuery} from '@/sanity/lib/queries'
 import {sanityFetch} from '@/sanity/lib/live'
 import HeaderClient from './HeaderClient'
 
@@ -15,10 +15,12 @@ export default async function Header() {
     {data: settings},
     {data: manufacturers},
     {data: timberlineVehicles},
+    {data: brands},
   ] = await Promise.all([
     sanityFetch({ query: settingsQuery }),
     sanityFetch({ query: allManufacturersQuery }),
     sanityFetch({ query: timberlineVehiclesQuery }),
+    sanityFetch({ query: brandsWithSloganQuery }),
   ])
   return (
     <HeaderClient
@@ -26,6 +28,7 @@ export default async function Header() {
       appLogo={(settings as any)?.appLogo}
       manufacturers={manufacturers as unknown as Manufacturer[]}
       timberlineVehicles={timberlineVehicles as any}
+      brands={brands as any}
     />
   )
 }
