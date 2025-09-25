@@ -158,55 +158,46 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
                       <Link
                         key={vehicle._id}
                         href={`/vehicles/${vehicle.slug.current}`}
-                        className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden border border-gray-200 ${heightClass}`}
+                        className={`group relative rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden border border-gray-200 ${heightClass}`}
+                        style={{
+                          backgroundImage: vehicle.coverImage && vehicle.coverImage.asset && vehicle.coverImage.asset.url ? `url(${vehicle.coverImage.asset.url})` : 'none',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          backgroundRepeat: 'no-repeat'
+                        }}
                       >
-                        {/* Vehicle Image */}
-                        <div className="relative h-48 bg-gray-100">
-                          {vehicle.coverImage ? (
-                            <Image
-                              src={vehicle.coverImage.asset.url}
-                              alt={vehicle.title}
-                              fill
-                              className="object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                          ) : (
-                            <div className="flex items-center justify-center h-full">
-                              <span className="text-4xl font-bold text-gray-400">
-                                {vehicle.manufacturer.name.charAt(0)}
-                              </span>
-                            </div>
-                          )}
-                          
-                          {/* Year Badge */}
-                          <div className="absolute top-4 left-4 bg-brand text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            {vehicle.modelYear}
-                          </div>
-                          
-                          {/* Vehicle Type Badge */}
-                          <div className="absolute top-4 right-4 bg-white/90 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold capitalize">
-                            {vehicle.vehicleType}
-                          </div>
+                        {/* Background Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/40 group-hover:from-black/10 group-hover:via-black/5 group-hover:to-black/30 transition-all duration-300" />
+                        
+                        {/* Year Badge */}
+                        <div className="absolute top-4 left-4 bg-brand text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                          {vehicle.modelYear}
+                        </div>
+                        
+                        {/* Vehicle Type Badge */}
+                        <div className="absolute top-4 right-4 bg-white/90 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold capitalize z-10">
+                          {vehicle.vehicleType}
                         </div>
                         
                         {/* Vehicle Info */}
-                        <div className="p-6 flex flex-col h-full">
+                        <div className="p-6 flex flex-col h-full relative z-10">
                           <div className="flex-1">
-                            <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors duration-300">
+                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-brand transition-colors duration-300 drop-shadow-lg">
                               {vehicle.title}
                             </h3>
                             
                             <div className="flex items-center gap-2 mb-3">
-                              <span className="text-sm text-gray-600">
+                              <span className="text-sm text-gray-200">
                                 {vehicle.manufacturer.name}
                               </span>
                               <span className="text-gray-300">•</span>
-                              <span className="text-sm text-gray-600">
+                              <span className="text-sm text-gray-200">
                                 {vehicle.model}
                               </span>
                             </div>
                             
                             {vehicle.trim && (
-                              <p className="text-sm text-gray-500 mb-3">
+                              <p className="text-sm text-gray-300 mb-3">
                                 {vehicle.trim} Trim
                               </p>
                             )}
@@ -216,14 +207,14 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
                               <div className="space-y-2 mb-4">
                                 {vehicle.specifications.towingCapacity && (
                                   <div className="flex justify-between text-sm">
-                                    <span className="text-gray-600">Towing:</span>
-                                    <span className="font-semibold">{vehicle.specifications.towingCapacity.toLocaleString()} lbs</span>
+                                    <span className="text-gray-200">Towing:</span>
+                                    <span className="font-semibold text-white">{vehicle.specifications.towingCapacity.toLocaleString()} lbs</span>
                                   </div>
                                 )}
                                 {vehicle.specifications.payloadCapacity && (
                                   <div className="flex justify-between text-sm">
-                                    <span className="text-gray-600">Payload:</span>
-                                    <span className="font-semibold">{vehicle.specifications.payloadCapacity.toLocaleString()} lbs</span>
+                                    <span className="text-gray-200">Payload:</span>
+                                    <span className="font-semibold text-white">{vehicle.specifications.payloadCapacity.toLocaleString()} lbs</span>
                                   </div>
                                 )}
                               </div>
@@ -233,12 +224,12 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
                             {vehicle.tags && vehicle.tags.length > 0 && (
                               <div className="flex flex-wrap gap-1 mb-4">
                                 {vehicle.tags.slice(0, 3).map((tag, idx) => (
-                                  <span key={idx} className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
+                                  <span key={idx} className="bg-white/20 backdrop-blur-sm text-white px-2 py-1 rounded text-xs border border-white/30">
                                     {tag}
                                   </span>
                                 ))}
                                 {vehicle.tags.length > 3 && (
-                                  <span className="text-gray-400 text-xs">
+                                  <span className="text-gray-300 text-xs">
                                     +{vehicle.tags.length - 3} more
                                   </span>
                                 )}
@@ -249,14 +240,14 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
                           {/* CTA */}
                           <div className="mt-auto">
                             <div className="flex items-center justify-between">
-                              <span className="text-brand font-semibold">
+                              <span className="text-white font-semibold group-hover:text-brand transition-colors duration-300">
                                 View Details →
                               </span>
                               {vehicle.inventory?.availability && (
-                                <span className={`text-xs px-2 py-1 rounded-full ${
+                                <span className={`text-xs px-2 py-1 rounded-full backdrop-blur-sm border ${
                                   vehicle.inventory.availability === 'In Stock' 
-                                    ? 'bg-green-100 text-green-700' 
-                                    : 'bg-yellow-100 text-yellow-700'
+                                    ? 'bg-green-500/20 text-green-200 border-green-400/30' 
+                                    : 'bg-yellow-500/20 text-yellow-200 border-yellow-400/30'
                                 }`}>
                                   {vehicle.inventory.availability}
                                 </span>

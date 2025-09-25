@@ -44,7 +44,7 @@ interface VehiclePageProps {
  * Generate metadata for the page.
  */
 export async function generateMetadata({params}: VehiclePageProps): Promise<Metadata> {
-  const vehicle = await client.fetch(vehicleQuery, {slug: params.slug})
+  const vehicle = await client.fetch(vehicleQuery, {slug: params.slug}) as Vehicle | null
   
   if (!vehicle) {
     return {
@@ -69,7 +69,7 @@ export async function generateStaticParams() {
 }
 
 export default async function VehiclePage({params}: VehiclePageProps) {
-  const vehicle = await client.fetch(vehicleQuery, {slug: params.slug})
+  const vehicle = await client.fetch(vehicleQuery, {slug: params.slug}) as Vehicle | null
 
   if (!vehicle) {
     notFound()
@@ -78,26 +78,24 @@ export default async function VehiclePage({params}: VehiclePageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-40 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-        {/* Background Image */}
-        {vehicle.coverImage && (
-          <div className="absolute inset-0">
-            <Image
-              src={vehicle.coverImage.asset.url}
-              alt={vehicle.title}
-              fill
-              className="object-cover opacity-30"
-            />
-            <div className="absolute inset-0 bg-black/50" />
-          </div>
-        )}
+      <section 
+        className="relative py-40 text-white overflow-hidden"
+        style={{
+          backgroundImage: vehicle.coverImage && vehicle.coverImage.asset && vehicle.coverImage.asset.url ? `url(${vehicle.coverImage.asset.url})` : 'linear-gradient(to bottom right, #1f2937, #111827, #000000)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {/* Background Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70" />
         
         <div className="relative z-10 container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Vehicle Info */}
             <div>
               <div className="flex items-center gap-4 mb-6">
-                {vehicle.manufacturer.logo && (
+                {vehicle.manufacturer.logo && vehicle.manufacturer.logo.asset && vehicle.manufacturer.logo.asset.url && (
                   <Image
                     src={vehicle.manufacturer.logo.asset.url}
                     alt={`${vehicle.manufacturer.name} Logo`}
@@ -151,7 +149,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             
             {/* Vehicle Image */}
             <div className="relative">
-              {vehicle.coverImage ? (
+              {vehicle.coverImage && vehicle.coverImage.asset && vehicle.coverImage.asset.url ? (
                 <Image
                   src={vehicle.coverImage.asset.url}
                   alt={vehicle.title}
@@ -187,7 +185,23 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
               Technical Specifications
             </h2>
-            <SpecsTable specifications={vehicle.specifications} />
+            {vehicle.specifications && (
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Specifications</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {Object.entries(vehicle.specifications).map(([key, value]) => (
+                    <div key={key} className="flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0">
+                      <span className="text-gray-600 font-medium capitalize">
+                        {key.replace(/([A-Z])/g, ' $1').trim()}
+                      </span>
+                      <span className="text-gray-900 font-semibold">
+                        {typeof value === 'number' ? value.toLocaleString() : String(value)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
       )}
@@ -230,12 +244,18 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {vehicle.gallery.map((image: any, idx: number) => (
                 <div key={idx} className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
-                  <Image
-                    src={image.asset.url}
-                    alt={image.alt || `${vehicle.title} Gallery Image ${idx + 1}`}
-                    fill
-                    className="object-cover hover:scale-110 transition-transform duration-500"
-                  />
+                  {image.asset && image.asset.url ? (
+                    <Image
+                      src={image.asset.url}
+                      alt={image.alt || `${vehicle.title} Gallery Image ${idx + 1}`}
+                      fill
+                      className="object-cover hover:scale-110 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                      <span className="text-gray-400">No Image</span>
+                    </div>
+                  )}
                   {image.caption && (
                     <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">
                       <p className="text-sm">{image.caption}</p>
