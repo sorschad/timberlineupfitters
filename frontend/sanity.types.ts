@@ -776,6 +776,9 @@ export type AllManufacturersQueryResult = Array<never>
 // Variable: allVehiclesQuery
 // Query: *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo    },    coverImage,    specifications,    features,    inventory,    tags  }
 export type AllVehiclesQueryResult = Array<never>
+// Variable: timberlineVehiclesQuery
+// Query: *[_type == "vehicle" && defined(slug.current) && "Timberline" in tags] | order(modelYear desc, title asc) {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo    },    coverImage,    specifications,    features,    inventory,    tags  }
+export type TimberlineVehiclesQueryResult = Array<never>
 // Variable: vehicleQuery
 // Query: *[_type == "vehicle" && slug.current == $slug][0] {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo    },    coverImage,    gallery,    videoTour,    specifications,    features,    customizationOptions,    inventory,    description,    tags,    seo  }
 export type VehicleQueryResult = null
@@ -801,6 +804,7 @@ declare module '@sanity/client' {
     '\n  *[_type == "manufacturer" && defined(slug.current)]\n  {"slug": slug.current}\n': ManufacturerSlugsResult
     '\n  *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {\n    _id,\n    name,\n    slug,\n    logo,\n    "vehicleCount": count(*[_type == "vehicle" && references(^._id)])\n  }\n': AllManufacturersQueryResult
     '\n  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': AllVehiclesQueryResult
+    '\n  *[_type == "vehicle" && defined(slug.current) && "Timberline" in tags] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': TimberlineVehiclesQueryResult
     '\n  *[_type == "vehicle" && slug.current == $slug][0] {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    gallery,\n    videoTour,\n    specifications,\n    features,\n    customizationOptions,\n    inventory,\n    description,\n    tags,\n    seo\n  }\n': VehicleQueryResult
     '\n  *[_type == "vehicle" && defined(slug.current)]\n  {"slug": slug.current}\n': VehicleSlugsResult
   }

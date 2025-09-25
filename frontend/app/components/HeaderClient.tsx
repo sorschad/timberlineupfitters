@@ -65,13 +65,38 @@ export default function HeaderClient({
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const sidebar = document.getElementById('sidebar-mega-menu')
+      const vehiclesButton = document.querySelector('[aria-controls="sidebar-mega-menu"]')
+      
+      if (isMegaOpen && sidebar && !sidebar.contains(event.target as Node) && !vehiclesButton?.contains(event.target as Node)) {
+        setIsMegaOpen(false)
+      }
+    }
+
+    if (isMegaOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isMegaOpen])
+
   return (
-    <header
-      className={`fixed left-0 right-0 top-0 z-50 h-24 flex items-center transition-all duration-700 ease-out ${
-        isSticky ? 'bg-[#553920]/85 shadow-lg backdrop-blur-[2px]' : 'bg-transparent shadow-none backdrop-blur-0'
-      }`}
-      style={{willChange: 'background-color, filter, box-shadow'}}
-    >
+    <>
+      {/* Background blur overlay when mega menu is open */}
+      {isMegaOpen && (
+        <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md" />
+      )}
+      
+      <header
+        className={`fixed left-0 right-0 top-0 z-50 h-24 flex items-center transition-all duration-700 ease-out ${
+          isSticky ? 'bg-[#553920]/85 shadow-lg backdrop-blur-[2px]' : 'bg-transparent shadow-none backdrop-blur-0'
+        } ${isMegaOpen ? 'backdrop-blur-md' : ''}`}
+        style={{willChange: 'background-color, filter, box-shadow'}}
+      >
       <div className="container py-6 px-2 sm:px-6">
         <div className="grid grid-cols-3 items-center gap-5">
           <Link
@@ -118,14 +143,14 @@ export default function HeaderClient({
                   onClick={() => setIsMegaOpen((v) => !v)}
                   aria-expanded={isMegaOpen}
                   aria-controls="sidebar-mega-menu"
-                  className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase`}
+                  className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer`}
                 >
                   Vehicles
                 </button>
               </li>
 
               <li className="relative group">
-                <button className={`flex items-center gap-1 ${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase`}>
+                <button className={`flex items-center gap-1 ${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer`}>
                   Manufacturers
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -148,7 +173,7 @@ export default function HeaderClient({
               </li>
 
               <li>
-                <Link href="/about" className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase`}>
+                <Link href="/about" className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer`}>
                   Heritage
                 </Link>
               </li>
@@ -176,15 +201,15 @@ export default function HeaderClient({
         aria-hidden={!isMegaOpen}
       >
         <div className="grid grid-cols-1 h-full">
-          <div className="bg-[#2f3236]/98 backdrop-blur-md text-white relative">
-            <div className="h-24 px-6 flex items-center justify-between border-b border-white/10 bg-gradient-to-b from-[#c67a3d] to-[#8f5b2e]">
+          <div className="bg-black/20 backdrop-blur-xl text-white relative border border-white/20">
+            <div className="h-24 px-6 flex items-center justify-between border-b border-white/10 bg-black/40 backdrop-blur-2xl">
               <div>
-                <div className={`${orbitron.className} uppercase tracking-[0.18em] text-white`}>Vehicle Models</div>
+                <div className={`${orbitron.className} uppercase tracking-[0.18em] text-[#ff8c42]`}>Vehicles</div>
               </div>
               <button
                 type="button"
                 onClick={() => setIsMegaOpen(false)}
-                className="w-10 h-10 grid place-items-center rounded-full text-white/90 hover:text-white/100 hover:bg-white/10 transition"
+                className="w-10 h-10 grid place-items-center rounded-full text-[#ff8c42] hover:text-white/100 hover:bg-white/10 transition"
                 aria-label="Close menu"
               >
                 ✕
@@ -227,6 +252,7 @@ export default function HeaderClient({
         </div>
       </div>
     </header>
+    </>
   )
 }
 
