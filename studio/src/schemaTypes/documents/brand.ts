@@ -38,6 +38,19 @@ export const brand = defineType({
       description: 'Official slogan for the brand',
     }),
     defineField({
+      name: 'manufacturers',
+      title: 'Associated Manufacturers',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'manufacturer'}],
+        },
+      ],
+      description: 'Select one or more manufacturers associated with this brand',
+      validation: (rule) => rule.min(1).error('At least one manufacturer must be selected'),
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',

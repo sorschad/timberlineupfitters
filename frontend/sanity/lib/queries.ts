@@ -34,6 +34,12 @@ const brandFieldsWithSlogan = /* groq */ `
   features,
   slogan,
   "launchDate": coalesce(launchDate, _updatedAt),
+  "manufacturers": manufacturers[]->{
+    _id,
+    name,
+    "slug": slug.current,
+    logo
+  },
 `
 
 const linkReference = /* groq */ `

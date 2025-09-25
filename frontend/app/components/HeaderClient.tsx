@@ -43,6 +43,12 @@ export default function HeaderClient({
     name: string
     slug: { current: string }
     slogan?: string
+    manufacturers?: Array<{
+      _id: string
+      name: string
+      slug: { current: string }
+      logo?: any
+    }>
   }>
 }) {
   const [isSticky, setIsSticky] = useState(false)
@@ -53,17 +59,27 @@ export default function HeaderClient({
   const filteredVehicles = useMemo(() => {
     if (!activeBrand) return timberlineVehicles || []
     
-    return (timberlineVehicles || []).filter((vehicle: any) => {
-      // Check if the vehicle has tags that match the active brand name exactly or contains it
-      const vehicleTags = vehicle.tags || []
-      return vehicleTags.some((tag: string) => {
-        const tagLower = tag.toLowerCase().trim()
-        const brandLower = activeBrand.toLowerCase().trim()
-        // Check for exact match or if the tag contains the brand name
-        return tagLower === brandLower || tagLower.includes(brandLower)
+    // Find the active brand to get its associated manufacturers
+    const activeBrandData = brands?.find(brand => brand.name === activeBrand)
+    if (!activeBrandData?.manufacturers) {
+      // Fallback to tag-based filtering if no manufacturer associations
+      return (timberlineVehicles || []).filter((vehicle: any) => {
+        const vehicleTags = vehicle.tags || []
+        return vehicleTags.some((tag: string) => {
+          const tagLower = tag.toLowerCase().trim()
+          const brandLower = activeBrand.toLowerCase().trim()
+          return tagLower === brandLower || tagLower.includes(brandLower)
+        })
       })
+    }
+    
+    // Filter vehicles by manufacturer associations
+    const manufacturerIds = activeBrandData.manufacturers.map(m => m._id)
+    return (timberlineVehicles || []).filter((vehicle: any) => {
+      const vehicleManufacturerId = vehicle?.manufacturer?._id
+      return vehicleManufacturerId && manufacturerIds.includes(vehicleManufacturerId)
     })
-  }, [timberlineVehicles, activeBrand])
+  }, [timberlineVehicles, activeBrand, brands])
 
   const groupedByManufacturer = useMemo(() => {
     const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string }>> = {}
