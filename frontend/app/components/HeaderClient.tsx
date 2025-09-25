@@ -42,7 +42,7 @@ export default function HeaderClient({
   return (
     <header
       className={`fixed left-0 right-0 top-0 z-50 h-24 flex items-center transition-all duration-700 ease-out ${
-        isSticky ? 'bg-[#553920]/95 shadow-lg backdrop-blur-[2px]' : 'bg-transparent shadow-none backdrop-blur-0'
+        isSticky ? 'bg-[#553920]/85 shadow-lg backdrop-blur-[2px]' : 'bg-transparent shadow-none backdrop-blur-0'
       }`}
       style={{willChange: 'background-color, filter, box-shadow'}}
     >
