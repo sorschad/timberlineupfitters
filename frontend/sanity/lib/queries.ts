@@ -205,3 +205,58 @@ export const allManufacturersQuery = defineQuery(`
     "vehicleCount": count(*[_type == "vehicle" && references(^._id)])
   }
 `)
+
+// Vehicle queries
+export const allVehiclesQuery = defineQuery(`
+  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {
+    _id,
+    title,
+    slug,
+    model,
+    vehicleType,
+    modelYear,
+    trim,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo
+    },
+    coverImage,
+    specifications,
+    features,
+    inventory,
+    tags
+  }
+`)
+
+export const vehicleQuery = defineQuery(`
+  *[_type == "vehicle" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    model,
+    vehicleType,
+    modelYear,
+    trim,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo
+    },
+    coverImage,
+    gallery,
+    videoTour,
+    specifications,
+    features,
+    customizationOptions,
+    inventory,
+    description,
+    tags,
+    seo
+  }
+`)
+
+export const vehicleSlugs = defineQuery(`
+  *[_type == "vehicle" && defined(slug.current)]
+  {"slug": slug.current}
+`)

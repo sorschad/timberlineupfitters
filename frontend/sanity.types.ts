@@ -773,6 +773,15 @@ export type ManufacturerSlugsResult = Array<never>
 // Variable: allManufacturersQuery
 // Query: *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {    _id,    name,    slug,    logo,    "vehicleCount": count(*[_type == "vehicle" && references(^._id)])  }
 export type AllManufacturersQueryResult = Array<never>
+// Variable: allVehiclesQuery
+// Query: *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo    },    coverImage,    specifications,    features,    inventory,    tags  }
+export type AllVehiclesQueryResult = Array<never>
+// Variable: vehicleQuery
+// Query: *[_type == "vehicle" && slug.current == $slug][0] {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo    },    coverImage,    gallery,    videoTour,    specifications,    features,    customizationOptions,    inventory,    description,    tags,    seo  }
+export type VehicleQueryResult = null
+// Variable: vehicleSlugs
+// Query: *[_type == "vehicle" && defined(slug.current)]  {"slug": slug.current}
+export type VehicleSlugsResult = Array<never>
 
 // Query TypeMap
 import '@sanity/client'
@@ -791,5 +800,8 @@ declare module '@sanity/client' {
     '\n  *[_type == "manufacturer" && slug.current == $slug][0] {\n    _id,\n    name,\n    slug,\n    logo,\n    description,\n    \n    // Hero Section\n    heroImage {\n      asset-> {\n        url\n      }\n    },\n    heroTitle,\n    heroSubtitle,\n    heroCtaText,\n    \n    // Showcase Images\n    showcaseImages[] {\n      model,\n      image {\n        asset-> {\n          url\n        }\n      },\n      altText\n    },\n    \n    // Gallery Images\n    galleryImages[] {\n      image {\n        asset-> {\n          url\n        }\n      },\n      caption,\n      category,\n      altText\n    },\n    \n    // CTA Section\n    ctaTitle,\n    ctaDescription,\n    ctaStats[] {\n      value,\n      label\n    },\n    additionalLinks[] {\n      text,\n      url\n    },\n    \n    // SEO\n    seoTitle,\n    seoDescription,\n    seoImage {\n      asset-> {\n        url\n      }\n    },\n    \n    "vehicles": *[_type == "vehicle" && references(^._id)] {\n      _id,\n      title,\n      slug,\n      model,\n      vehicleType,\n      modelYear,\n      upfitter,\n      package,\n      "manufacturer": manufacturer->name\n    } | order(model asc, upfitter asc, package asc)\n  }\n': ManufacturerQueryResult
     '\n  *[_type == "manufacturer" && defined(slug.current)]\n  {"slug": slug.current}\n': ManufacturerSlugsResult
     '\n  *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {\n    _id,\n    name,\n    slug,\n    logo,\n    "vehicleCount": count(*[_type == "vehicle" && references(^._id)])\n  }\n': AllManufacturersQueryResult
+    '\n  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': AllVehiclesQueryResult
+    '\n  *[_type == "vehicle" && slug.current == $slug][0] {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    gallery,\n    videoTour,\n    specifications,\n    features,\n    customizationOptions,\n    inventory,\n    description,\n    tags,\n    seo\n  }\n': VehicleQueryResult
+    '\n  *[_type == "vehicle" && defined(slug.current)]\n  {"slug": slug.current}\n': VehicleSlugsResult
   }
 }

@@ -1,6 +1,6 @@
 import {MetadataRoute} from 'next'
 import {sanityFetch} from '@/sanity/lib/live'
-import {sitemapData} from '@/sanity/lib/queries'
+import {sitemapData, vehicleSlugs} from '@/sanity/lib/queries'
 import {headers} from 'next/headers'
 
 /**
@@ -12,14 +12,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allBrandsAndPages = await sanityFetch({
     query: sitemapData,
   })
+  const vehicleSlugsData = await sanityFetch({
+    query: vehicleSlugs,
+  })
   const headersList = await headers()
   const sitemap: MetadataRoute.Sitemap = []
   const domain: String = headersList.get('host') as string
+  
+  // Add main pages
   sitemap.push({
     url: domain as string,
     lastModified: new Date(),
     priority: 1,
     changeFrequency: 'monthly',
+  })
+  
+  // Add vehicles landing page
+  sitemap.push({
+    url: `${domain}/vehicles`,
+    lastModified: new Date(),
+    priority: 0.9,
+    changeFrequency: 'weekly',
   })
 
   if (allBrandsAndPages != null && allBrandsAndPages.data.length != 0) {
@@ -53,6 +66,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority,
         changeFrequency,
         url,
+      })
+    }
+  }
+
+  // Add vehicle pages
+  if (vehicleSlugsData != null && vehicleSlugsData.data.length != 0) {
+    for (const vehicle of vehicleSlugsData.data) {
+      sitemap.push({
+        url: `${domain}/vehicles/${vehicle.slug}`,
+        lastModified: new Date(),
+        priority: 0.7,
+        changeFrequency: 'monthly',
       })
     }
   }

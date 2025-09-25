@@ -36,7 +36,7 @@ export const vehicle = defineType({
           { title: 'SUV', value: 'suv' },
           { title: 'Car', value: 'car' },
           { title: 'Van', value: 'van' },
-          { title: 'Commercial', value: 'commercial' }
+          { title: 'Utility', value: 'utility' }
         ]
       },
       initialValue: 'truck'
