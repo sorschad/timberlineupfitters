@@ -332,7 +332,7 @@ export default function HeaderClient({
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <div className="text-white text-lg font-bold mb-1">{brand.name}</div>
-                        <div className="text-white/60 text-sm leading-relaxed">{brand.slogan || 'Tactical vehicle platform'}</div>
+                        <div className="text-white/60 text-sm leading-tight">{brand.slogan || 'Tactical vehicle platform'}</div>
                       </div>
                       <div className="ml-3">
                         <svg className={`w-5 h-5 transition-all duration-200 ${
@@ -342,6 +342,37 @@ export default function HeaderClient({
                         </svg>
                       </div>
                     </div>
+                    
+                    {/* Manufacturer Filter - Only show when this brand is active */}
+                    {activeBrand === brand.name && brand.manufacturers && brand.manufacturers.length > 0 && (
+                      <div className="mt-4 pt-4 border-t border-white/20">
+                        <div className="mb-2">
+                          <p className="text-white/70 text-sm font-medium">manufacturers</p>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {brand.manufacturers.map((manufacturer) => (
+                            <button
+                              key={manufacturer._id}
+                              onClick={(e) => {
+                                e.stopPropagation() // Prevent brand deselection
+                                setSelectedManufacturers(prev => 
+                                  prev.includes(manufacturer._id)
+                                    ? prev.filter(id => id !== manufacturer._id)
+                                    : [...prev, manufacturer._id]
+                                )
+                              }}
+                              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                                selectedManufacturers.includes(manufacturer._id)
+                                  ? 'bg-[#ff8c42] text-black shadow-lg shadow-[#ff8c42]/20 transform scale-105'
+                                  : 'bg-white/10 text-white hover:bg-white/20 hover:scale-105 border border-white/20'
+                              }`}
+                            >
+                              {manufacturer.name}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -362,35 +393,6 @@ export default function HeaderClient({
               </div>
             </div>
 
-            {/* Manufacturers Filter Section */}
-            {activeBrand && brands?.find(b => b.name === activeBrand)?.manufacturers && (
-              <div className="px-6 py-5 border-b border-white/20 bg-gradient-to-r from-black/20 to-black/5">
-                <div className="mb-4">
-                  <p className="text-white/70 text-sm font-medium mb-3">Filter by manufacturer</p>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  {brands?.find(b => b.name === activeBrand)?.manufacturers?.map((manufacturer) => (
-                    <button
-                      key={manufacturer._id}
-                      onClick={() => {
-                        setSelectedManufacturers(prev => 
-                          prev.includes(manufacturer._id)
-                            ? prev.filter(id => id !== manufacturer._id)
-                            : [...prev, manufacturer._id]
-                        )
-                      }}
-                      className={`px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
-                        selectedManufacturers.includes(manufacturer._id)
-                          ? 'bg-[#ff8c42] text-black shadow-lg shadow-[#ff8c42]/20 transform scale-105'
-                          : 'bg-white/10 text-white hover:bg-white/20 hover:scale-105 border border-white/20'
-                      }`}
-                    >
-                      {manufacturer.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Vehicle Content - Using filtered vehicle data */}
             <div className="p-6 overflow-y-auto h-[calc(100%-8rem)] scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent hover:scrollbar-thumb-white/30">
