@@ -202,7 +202,7 @@ export default function HeaderClient({
         className={`fixed left-0 right-0 top-0 z-50 h-24 flex items-center transition-all duration-700 ease-out ${
           isSticky 
             ? 'bg-[#553920]/85 shadow-lg backdrop-blur-[2px]' 
-            : `bg-transparent shadow-none backdrop-blur-0 border-t-2 border-b-2 border-dashed ${
+            : `bg-transparent lg:bg-transparent sm:bg-transparent bg-[#ff6b00]/90 shadow-none backdrop-blur-0 border-t-2 border-b-2 border-dashed ${
                 isMegaOpen 
                   ? 'border-[#ff8c42]/12 backdrop-blur-lg' 
                   : 'border-[#ff8c42]/60'
@@ -210,10 +210,11 @@ export default function HeaderClient({
         } ${(isMegaOpen || isSearchOpen) ? 'bg-black/50 backdrop-blur-lg' : ''}`}
         style={{willChange: 'background-color, filter, box-shadow'}}
       >
-      <div className={`container py-6 px-2 sm:px-6 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg blur-lg opacity-[0.12]' : ''}`}>
-        <div className={`grid grid-cols-3 items-center gap-5 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}>
+      <div className={`container py-4 sm:py-6 px-3 sm:px-6 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg blur-lg opacity-[0.12]' : ''}`}>
+        <div className={`flex items-center justify-between ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}>
+          {/* Logo Section */}
           <Link
-            className={`flex items-center gap-0.5 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}
+            className={`flex items-center gap-2 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}
             href="/"
             aria-label={settingsTitle}
           >
@@ -222,10 +223,10 @@ export default function HeaderClient({
               <img
                 src={`${urlForImage(appLogo)?.url()}`}
                 alt={appLogo?.alt || 'Application Logo'}
-                className="w-[120px] h-auto object-contain select-none shrink-0"
+                className="w-21 h-21 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain select-none shrink-0"
               />
             )}
-            <div className="flex items-baseline -ml-[23px] select-none">
+            <div className="hidden lg:flex items-baseline -ml-[23px] select-none">
               <span
                 className={`${orbitron.className} select-none tracking-[0.06em] antialiased text-white text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
                   isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,1)]'
@@ -243,71 +244,82 @@ export default function HeaderClient({
             </div>
           </Link>
 
-          <nav className={`justify-self-center ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`} />
-
-          <nav className={`justify-self-end ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}>
-            <ul
-              role="list"
-              className={`flex items-center gap-5 md:gap-8 leading-5 text-sm tracking-[0.18em] font-semibold font-sans ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}
+          {/* Mobile Navigation */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              onClick={() => setIsMegaOpen((v) => !v)}
+              aria-expanded={isMegaOpen}
+              aria-controls="sidebar-mega-menu"
+              className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-all duration-200"
+              aria-label="Toggle menu"
             >
-              <li>
-                <button
-                  type="button"
-                  onClick={() => setIsMegaOpen((v) => !v)}
-                  aria-expanded={isMegaOpen}
-                  aria-controls="sidebar-mega-menu"
-                  className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}
-                >
-                  Vehicles
-                </button>
-              </li>
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
 
+            {/* Desktop Navigation */}
+            <nav className={`hidden lg:flex items-center gap-6 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}>
+              <button
+                type="button"
+                onClick={() => setIsMegaOpen((v) => !v)}
+                aria-expanded={isMegaOpen}
+                aria-controls="sidebar-mega-menu"
+                className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer text-sm tracking-[0.18em] font-semibold`}
+              >
+                Vehicles
+              </button>
 
-              <li>
-                <Link href="/about" className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer`}>
-                  Heritage
-                </Link>
-              </li>
+              <Link href="/brands" className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer text-sm tracking-[0.18em] font-semibold`}>
+                Brands
+              </Link>
 
-              <li className="flex items-center sm:gap-4 md:gap-6">
-                {/* Dealer Portal Button */}
-                <Link
-                  className="rounded-full flex items-center bg-brown/90 hover:bg-[#1a130e] py-3 px-6 justify-center sm:py-3 sm:px-8 text-white text-xs uppercase tracking-wide transition-colors duration-200"
-                  href="https://github.com/sanity-io/sanity-template-nextjs-clean"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="whitespace-nowrap">Dealer Portal</span>
-                </Link>
-                
-                {/* Search Button */}
-                <button
-                  onClick={() => setIsSearchOpen(true)}
-                  className="p-2 rounded-full hover:bg-white/10 transition-all duration-200 cursor-pointer"
-                  aria-label="Open search"
-                >
-                  <MagnifyingGlassIcon className="w-4 h-4 text-white/70 hover:text-white/90 transition-colors duration-200" />
-                </button>
-              </li>
-            </ul>
-          </nav>
+              <Link href="/about" className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer text-sm tracking-[0.18em] font-semibold`}>
+                Heritage
+              </Link>
+            </nav>
+
+            {/* Action Buttons */}
+            <div className="flex items-center gap-2">
+              {/* Dealer Portal Button - Hidden on mobile, visible on tablet+ */}
+              <Link
+                className="hidden sm:flex items-center bg-brown/90 hover:bg-[#1a130e] py-2 px-4 sm:py-3 sm:px-6 text-white text-xs uppercase tracking-wide transition-colors duration-200 rounded-full"
+                href="https://github.com/sanity-io/sanity-template-nextjs-clean"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="whitespace-nowrap">Dealer Portal</span>
+              </Link>
+              
+              {/* Search Button */}
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="p-2 rounded-full hover:bg-white/10 transition-all duration-200 cursor-pointer"
+                aria-label="Open search"
+              >
+                <MagnifyingGlassIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white/70 hover:text-white/90 transition-colors duration-200" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Sidebar Mega Menu */}
       <div
         id="sidebar-mega-menu"
-        className={`fixed top-0 left-0 bottom-0 z-[60] w-full max-w-[700px] min-h-screen transform transition-transform duration-500 ease-in-out
+        className={`fixed top-0 left-0 bottom-0 z-[60] w-full max-w-full sm:max-w-[700px] min-h-screen transform transition-transform duration-500 ease-in-out
         ${isMegaOpen ? 'translate-x-0' : '-translate-x-full'}`}
         aria-hidden={!isMegaOpen}
       >
-        <div className="grid grid-cols-[1.4fr_2.4fr] sm:grid-cols-[1.6fr_2.4fr] md:grid-cols-[1.7fr_2.3fr] lg:grid-cols-[1.8fr_2.2fr] h-full border border-white/30 shadow-2xl">
+        <div className="flex flex-col sm:grid sm:grid-cols-[1.6fr_2.4fr] md:grid-cols-[1.7fr_2.3fr] lg:grid-cols-[1.8fr_2.2fr] h-full border border-white/30 shadow-2xl">
           {/* Left Section: Brands */}
-          <div className="bg-black/25 backdrop-blur-2xl text-white border-r border-white/20">
+          <div className="bg-black/25 backdrop-blur-2xl text-white border-r-0 sm:border-r border-white/20 flex-shrink-0">
             {/* Header */}
-            <div className="h-20 px-6 flex items-center justify-between border-b border-white/20 bg-gradient-to-r from-black/30 to-black/10">
+            <div className="h-16 sm:h-20 px-4 sm:px-6 flex items-center justify-between border-b border-white/20 bg-gradient-to-r from-black/30 to-black/10">
               <div>
-                <div className={`${orbitron.className} uppercase tracking-[0.2em] text-[#ff8c42] text-lg font-bold`}>BRANDS</div>
+                <div className={`${orbitron.className} uppercase tracking-[0.2em] text-[#ff8c42] text-base sm:text-lg font-bold`}>BRANDS</div>
                 <div className="uppercase text-white/80 text-xs tracking-[0.15em] mt-1 font-medium">TIMBERLINE BUILT</div>
               </div>
               <button
@@ -323,7 +335,7 @@ export default function HeaderClient({
             </div>
 
             {/* Brand Cards */}
-            <div className="p-6 space-y-3">
+            <div className="p-4 sm:p-6 space-y-3 max-h-[50vh] sm:max-h-none overflow-y-auto">
               {brands?.sort((a, b) => {
                 // Define explicit order: Timberline, TSport, Alpine
                 const order = ['Timberline', 'TSport', 'Alpine']
@@ -419,11 +431,11 @@ export default function HeaderClient({
           </div>
 
           {/* Right Section: Vehicles */}
-          <div className="bg-black/25 backdrop-blur-2xl text-white relative">
+          <div className="bg-black/25 backdrop-blur-2xl text-white relative flex-1">
             {/* Header */}
-            <div className="h-20 px-6 flex items-center border-b border-white/20 bg-gradient-to-r from-black/30 to-black/10">
+            <div className="h-16 sm:h-20 px-4 sm:px-6 flex items-center border-b border-white/20 bg-gradient-to-r from-black/30 to-black/10">
               <div>
-                <div className={`${orbitron.className} uppercase tracking-[0.2em] text-[#ff8c42] text-lg font-bold`}>
+                <div className={`${orbitron.className} uppercase tracking-[0.2em] text-[#ff8c42] text-base sm:text-lg font-bold`}>
                   {activeBrand ? activeBrand.toUpperCase() : 'VEHICLES'}
                 </div>
                 <div className="uppercase text-white/80 text-xs tracking-[0.15em] mt-1 font-medium">
@@ -432,9 +444,8 @@ export default function HeaderClient({
               </div>
             </div>
 
-
             {/* Vehicle Content - Using filtered vehicle data */}
-            <div className="p-6 overflow-y-auto h-[calc(100%-8rem)] scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent hover:scrollbar-thumb-white/30">
+            <div className="p-4 sm:p-6 overflow-y-auto h-[calc(100%-4rem)] sm:h-[calc(100%-5rem)] scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent hover:scrollbar-thumb-white/30">
               {isLoadingVehicles ? (
                 <div className="flex items-center justify-center h-32">
                   <div className="flex flex-col items-center space-y-4">
@@ -496,12 +507,12 @@ export default function HeaderClient({
                             onClick={() => setIsMegaOpen(false)}
                             className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden"
                           >
-                            <div className="grid grid-cols-[1fr_1.2fr]">
+                            <div className="flex flex-col sm:grid sm:grid-cols-[1fr_1.2fr]">
                               {/* Left Section - Text Content */}
-                              <div className="flex flex-col justify-center gap-2 p-2">
+                              <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                                 <div>
                                   {/* Vehicle Title */}
-                                  <h3 className="text-white text-base font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                                  <h3 className="text-white text-sm sm:text-base font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
                                     {v.title}
                                   </h3>
                                   
@@ -516,7 +527,7 @@ export default function HeaderClient({
                               
                               {/* Right Section - Vehicle Image */}
                               <div className="relative">
-                                <div className="aspect-[4/2.5] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                                <div className="aspect-[4/2.5] sm:aspect-[4/2.5] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
                                   {v?.coverImage?.asset?.url ? (
                                     <img 
                                       src={v.coverImage.asset.url} 
