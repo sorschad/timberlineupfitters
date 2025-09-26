@@ -164,6 +164,21 @@ export default function HeaderClient({
     }
   }, [isMegaOpen])
 
+  // Auto-select Timberline brand and its manufacturers when mega menu opens
+  useEffect(() => {
+    if (isMegaOpen && !activeBrand && brands) {
+      const timberlineBrand = brands.find(brand => brand.name === 'Timberline')
+      if (timberlineBrand) {
+        setActiveBrand('Timberline')
+        if (timberlineBrand.manufacturers && timberlineBrand.manufacturers.length > 0) {
+          setSelectedManufacturers(timberlineBrand.manufacturers.map(m => m._id))
+        }
+        setIsLoadingVehicles(true)
+        setTimeout(() => setIsLoadingVehicles(false), 300)
+      }
+    }
+  }, [isMegaOpen, activeBrand, brands])
+
   return (
     <>
       {/* Custom CSS for truck rotation animation */}
@@ -187,7 +202,11 @@ export default function HeaderClient({
         className={`fixed left-0 right-0 top-0 z-50 h-24 flex items-center transition-all duration-700 ease-out ${
           isSticky 
             ? 'bg-[#553920]/85 shadow-lg backdrop-blur-[2px]' 
-            : 'bg-transparent shadow-none backdrop-blur-0 border-t-2 border-b-2 border-dashed border-[#ff8c42]/60'
+            : `bg-transparent shadow-none backdrop-blur-0 border-t-2 border-b-2 border-dashed ${
+                isMegaOpen 
+                  ? 'border-[#ff8c42]/12 backdrop-blur-lg' 
+                  : 'border-[#ff8c42]/60'
+              }`
         } ${(isMegaOpen || isSearchOpen) ? 'bg-black/50 backdrop-blur-lg' : ''}`}
         style={{willChange: 'background-color, filter, box-shadow'}}
       >
@@ -216,7 +235,7 @@ export default function HeaderClient({
               </span>
               <span
                 className={`${orbitron.className} select-none tracking-[0.05em] antialiased text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
-                  'text-[#ff5500]'
+                  'text-[#ff8c42]'
                 }`}
               >
                 UPFITTERS
@@ -243,27 +262,10 @@ export default function HeaderClient({
                 </button>
               </li>
 
-              <li className={`relative group ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
-                <button className={`flex items-center gap-1 ${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
-                  Manufacturers
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <div className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
-                  <div className="py-2 max-h-[60vh] overflow-auto">
-                    {manufacturers?.map((manufacturer) => (
-                      <Link
-                        key={manufacturer._id}
-                        href={`/manufacturers/${manufacturer.slug.current}`}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200"
-                      >
-                        {manufacturer.name}
-                        <span className="text-xs text-gray-500 ml-2">({manufacturer.vehicleCount} vehicles)</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+              <li>
+                <Link href="/brands" className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer`}>
+                  Brands
+                </Link>
               </li>
 
               <li>
@@ -304,7 +306,7 @@ export default function HeaderClient({
         ${isMegaOpen ? 'translate-x-0' : '-translate-x-full'}`}
         aria-hidden={!isMegaOpen}
       >
-        <div className="grid grid-cols-[1fr_1.8fr] sm:grid-cols-[1.2fr_1.8fr] md:grid-cols-[1.3fr_1.7fr] lg:grid-cols-[1.4fr_1.6fr] h-full border border-white/30 shadow-2xl">
+        <div className="grid grid-cols-[1.4fr_2.4fr] sm:grid-cols-[1.6fr_2.4fr] md:grid-cols-[1.7fr_2.3fr] lg:grid-cols-[1.8fr_2.2fr] h-full border border-white/30 shadow-2xl">
           {/* Left Section: Brands */}
           <div className="bg-black/25 backdrop-blur-2xl text-white border-r border-white/20">
             {/* Header */}
@@ -499,17 +501,17 @@ export default function HeaderClient({
                             onClick={() => setIsMegaOpen(false)}
                             className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden"
                           >
-                            <div className="grid grid-cols-[1fr_1.2fr] gap-3 p-3">
+                            <div className="grid grid-cols-[1fr_1.2fr]">
                               {/* Left Section - Text Content */}
-                              <div className="flex flex-col justify-between">
+                              <div className="flex flex-col justify-center gap-2 p-2">
                                 <div>
                                   {/* Vehicle Title */}
-                                  <h3 className="text-white text-lg font-bold mb-2 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                                  <h3 className="text-white text-base font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
                                     {v.title}
                                   </h3>
                                   
                                   {/* Vehicle Details */}
-                                  <div className="text-white/60 text-sm leading-relaxed mb-4">
+                                  <div className="text-white/60 text-xs leading-tight">
                                     {v?.model && (
                                       <span className="block">{v.model}</span>
                                     )}
@@ -519,7 +521,7 @@ export default function HeaderClient({
                               
                               {/* Right Section - Vehicle Image */}
                               <div className="relative">
-                                <div className="aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                                <div className="aspect-[4/2.5] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
                                   {v?.coverImage?.asset?.url ? (
                                     <img 
                                       src={v.coverImage.asset.url} 
@@ -541,7 +543,7 @@ export default function HeaderClient({
                                 </div>
                                 
                                 {/* Hover Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               </div>
                             </div>
                           </Link>
