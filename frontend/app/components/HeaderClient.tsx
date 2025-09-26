@@ -225,7 +225,7 @@ export default function HeaderClient({
                 className="w-[120px] h-auto object-contain select-none shrink-0"
               />
             )}
-            <div className="flex items-baseline -ml-[23px] select-none">
+            <div className="hidden sm:flex items-baseline -ml-[23px] select-none">
               <span
                 className={`${orbitron.className} select-none tracking-[0.06em] antialiased text-white text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
                   isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,1)]'
