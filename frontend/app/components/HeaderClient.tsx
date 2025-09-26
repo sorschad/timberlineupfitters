@@ -184,7 +184,11 @@ export default function HeaderClient({
         className={`fixed left-0 right-0 top-0 z-50 h-24 flex items-center transition-all duration-700 ease-out ${
           isSticky 
             ? 'bg-[#553920]/85 shadow-lg backdrop-blur-[2px]' 
-            : 'bg-transparent shadow-none backdrop-blur-0 border-t-2 border-b-2 border-dashed border-[#ff8c42]/60'
+            : `bg-transparent shadow-none backdrop-blur-0 border-t-2 border-b-2 border-dashed ${
+                isMegaOpen 
+                  ? 'border-[#ff8c42]/12 backdrop-blur-lg' 
+                  : 'border-[#ff8c42]/60'
+              }`
         } ${isMegaOpen ? 'bg-black/50 backdrop-blur-lg' : ''}`}
         style={{willChange: 'background-color, filter, box-shadow'}}
       >
@@ -213,7 +217,7 @@ export default function HeaderClient({
               </span>
               <span
                 className={`${orbitron.className} select-none tracking-[0.05em] antialiased text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
-                  'text-[#ff5500]'
+                  'text-[#ff8c42]'
                 }`}
               >
                 UPFITTERS
