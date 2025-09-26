@@ -129,7 +129,7 @@ export default function Hero() {
             {/* Content */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-5xl mx-auto text-center text-white pt-20 sm:pt-24">
+                <div className="max-w-5xl mx-auto text-center text-white pt-32 sm:pt-24">
                   <h1 className={`${montserrat.className} uppercase antialiased text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-6 sm:mb-8 leading-[0.95] tracking-[0.05em]`}>
                     {slide.title}
                   </h1>
@@ -139,12 +139,13 @@ export default function Hero() {
                   <div className="flex flex-col justify-center items-center">
                     <button 
                       onClick={scrollToBrands}
-                      className="group relative bg-brand hover:bg-brand/90 text-white font-semibold py-4 px-16 sm:py-5 sm:px-20 text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg w-full max-w-md animate-float-bounce"
+                      className="group relative bg-brand hover:bg-brand/90 text-white font-semibold py-3 px-8 sm:py-5 sm:px-20 text-base sm:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg w-full max-w-sm sm:max-w-md animate-float-bounce"
                     >
-                      <span className="flex items-center justify-center gap-3">
-                        EXPLORE OUR BRANDS
+                      <span className="flex items-center justify-center gap-2 sm:gap-3">
+                        <span className="sm:hidden">EXPLORE</span>
+                        <span className="hidden sm:inline">EXPLORE OUR BRANDS</span>
                         <svg 
-                          className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-y-1" 
+                          className="w-4 h-4 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-y-1" 
                           fill="none" 
                           stroke="currentColor" 
                           viewBox="0 0 24 24"
