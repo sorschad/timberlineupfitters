@@ -38,6 +38,12 @@ export default function HeaderClient({
     modelYear?: number
     trim?: string
     sidebarSortOrder?: number
+    coverImage?: {
+      asset?: {
+        _id: string
+        url: string
+      }
+    }
     manufacturer?: {
       _id: string
       name: string
@@ -101,7 +107,7 @@ export default function HeaderClient({
   }, [timberlineVehicles, activeBrand, brands, selectedManufacturers])
 
   const groupedByManufacturer = useMemo(() => {
-    const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string; sidebarSortOrder?: number; manufacturer?: { _id: string; name: string; logo?: { asset?: { _id: string; url: string } } } }>> = {}
+    const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string; sidebarSortOrder?: number; coverImage?: { asset?: { _id: string; url: string } }; manufacturer?: { _id: string; name: string; logo?: { asset?: { _id: string; url: string } } } }>> = {}
     filteredVehicles.forEach((v: any) => {
       const name = v?.manufacturer?.name || 'Other'
       if (!groups[name]) groups[name] = []
@@ -162,13 +168,13 @@ export default function HeaderClient({
       <header
         className={`fixed left-0 right-0 top-0 z-50 h-24 flex items-center transition-all duration-700 ease-out ${
           isSticky ? 'bg-[#553920]/85 shadow-lg backdrop-blur-[2px]' : 'bg-transparent shadow-none backdrop-blur-0'
-        } ${isMegaOpen ? 'backdrop-blur-md' : ''}`}
+        } ${isMegaOpen ? 'bg-black/50 backdrop-blur-lg' : ''}`}
         style={{willChange: 'background-color, filter, box-shadow'}}
       >
-      <div className="container py-6 px-2 sm:px-6">
-        <div className="grid grid-cols-3 items-center gap-5">
+      <div className={`container py-6 px-2 sm:px-6 ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
+        <div className={`grid grid-cols-3 items-center gap-5 ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
           <Link
-            className="flex items-center gap-0.5"
+            className={`flex items-center gap-0.5 ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}
             href="/"
             aria-label={settingsTitle}
           >
@@ -198,12 +204,12 @@ export default function HeaderClient({
             </div>
           </Link>
 
-          <nav className="justify-self-center" />
+          <nav className={`justify-self-center ${isMegaOpen ? 'backdrop-blur-lg' : ''}`} />
 
-          <nav className="justify-self-end">
+          <nav className={`justify-self-end ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
             <ul
               role="list"
-              className="flex items-center gap-5 md:gap-8 leading-5 text-sm tracking-[0.18em] font-semibold font-sans"
+              className={`flex items-center gap-5 md:gap-8 leading-5 text-sm tracking-[0.18em] font-semibold font-sans ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}
             >
               <li>
                 <button
@@ -211,20 +217,20 @@ export default function HeaderClient({
                   onClick={() => setIsMegaOpen((v) => !v)}
                   aria-expanded={isMegaOpen}
                   aria-controls="sidebar-mega-menu"
-                  className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer`}
+                  className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}
                 >
                   Vehicles
                 </button>
               </li>
 
-              <li className="relative group">
-                <button className={`flex items-center gap-1 ${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer`}>
+              <li className={`relative group ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
+                <button className={`flex items-center gap-1 ${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
                   Manufacturers
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
                   <div className="py-2 max-h-[60vh] overflow-auto">
                     {manufacturers?.map((manufacturer) => (
                       <Link
@@ -413,8 +419,18 @@ export default function HeaderClient({
                                 </div>
                                 <div className="text-white text-sm font-bold uppercase leading-tight group-hover:text-[#ff8c42] transition-colors duration-200">{v.title}</div>
                               </div>
-                              <div className="w-16 h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg flex items-center justify-center border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-200">
-                                <span className="text-white/40 text-xs font-medium">IMG</span>
+                              <div className="w-16 h-12 rounded-lg overflow-hidden border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-200">
+                                {v?.coverImage?.asset?.url ? (
+                                  <img 
+                                    src={v.coverImage.asset.url} 
+                                    alt={v.title}
+                                    className="w-full h-full object-cover"
+                                  />
+                                ) : (
+                                  <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center">
+                                    <span className="text-white/40 text-xs font-medium">IMG</span>
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </Link>

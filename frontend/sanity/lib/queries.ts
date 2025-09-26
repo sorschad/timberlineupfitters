@@ -269,7 +269,12 @@ export const timberlineVehiclesQuery = defineQuery(`
         }
       }
     },
-    coverImage,
+    coverImage{
+      asset->{
+        _id,
+        url
+      }
+    },
     specifications,
     features,
     inventory,
