@@ -24,29 +24,18 @@ export default function BrandsPage() {
         </div>
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight animate-fade-in-up">
-            Our <span className="text-amber-400 animate-gradient bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">Brand</span> Stories
+            <span className="text-amber-400 animate-gradient bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">Brands We Build</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-amber-100 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            Three partnerships, countless adventures. Discover the relationships that define our commitment to excellence in off-road vehicle customization.
+          <p className="text-xl sm:text-2xl text-amber-400 mb-12 max-w-4xl mx-auto leading-snug animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{animationDelay: '0.4s'}}>
             <Link 
               href="#alpine-rebelx" 
               className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              Explore Our Brands
+              EXPLORE
             </Link>
-            <Link 
-              href="#our-story" 
-              className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg"
-            >
-              Our Story
-            </Link>
-          </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
@@ -112,7 +101,7 @@ export default function BrandsPage() {
               <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
                 <Image
                   src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                  alt="TSport F-150 in action"
+                  alt="TSport and ThorSport in action"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -124,12 +113,12 @@ export default function BrandsPage() {
             <div className="space-y-8 order-1 lg:order-2 animate-fade-in-right">
               <div className="space-y-4">
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
-                  <span className="text-orange-500 animate-gradient bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">TSport</span> F-150
+                  <span className="text-orange-500 animate-gradient bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">TSport</span> and ThorSport
                 </h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
               </div>
               <p className="text-lg text-gray-300 leading-relaxed">
-                The TSport F-150 represents the perfect fusion of American muscle and precision engineering. 
+                TSport and ThorSport represent the perfect fusion of American muscle and precision engineering. 
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>
@@ -155,7 +144,7 @@ export default function BrandsPage() {
                 href="/brands/tsport" 
                 className="inline-flex items-center bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                Explore TSport
+                Explore TSport & ThorSport
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -165,45 +154,54 @@ export default function BrandsPage() {
         </div>
       </section>
 
-      {/* SuperDuty Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-amber-50 to-orange-100">
+      {/* Timberline Brands Section */}
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-[#241e16] to-[#1a130e] text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 animate-fade-in-left">
               <div className="space-y-4">
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">
-                  <span className="text-amber-600 animate-gradient bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">SuperDuty</span> Series
-                </h2>
-                <div className="w-20 h-1 bg-gradient-to-r from-amber-600 to-orange-500 rounded-full"></div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 bg-[#ff8c42] rounded-full flex items-center justify-center">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
+                      <span className="text-[#ff8c42] animate-gradient bg-gradient-to-r from-[#ff8c42] to-[#d0ad66] bg-clip-text text-transparent">Timberline</span>
+                    </h2>
+                    <div className="w-20 h-1 bg-gradient-to-r from-[#ff8c42] to-[#d0ad66] rounded-full"></div>
+                  </div>
+                </div>
               </div>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Our SuperDuty partnership embodies the spirit of American craftsmanship and relentless performance. 
+              <p className="text-lg text-gray-300 leading-relaxed">
+                Our flagship Timberline brand represents the pinnacle of off-road vehicle customization and American craftsmanship. 
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>
               <div className="grid grid-cols-2 gap-6">
-                <div className="space-y-2 p-4 bg-amber-50 rounded-lg hover:bg-amber-100 transition-colors duration-300">
-                  <h4 className="font-semibold text-gray-900">Valor Edition</h4>
-                  <p className="text-sm text-gray-600">Premium luxury with uncompromising power</p>
+                <div className="space-y-2 p-4 bg-[#ff8c42]/10 rounded-lg hover:bg-[#ff8c42]/20 transition-colors duration-300 border border-[#ff8c42]/20">
+                  <h4 className="font-semibold text-[#ff8c42]">Custom Builds</h4>
+                  <p className="text-sm text-gray-300">Bespoke vehicle modifications tailored to your needs</p>
                 </div>
-                <div className="space-y-2 p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors duration-300">
-                  <h4 className="font-semibold text-gray-900">Anthem Edition</h4>
-                  <p className="text-sm text-gray-600">Classic styling meets modern performance</p>
+                <div className="space-y-2 p-4 bg-[#d0ad66]/10 rounded-lg hover:bg-[#d0ad66]/20 transition-colors duration-300 border border-[#d0ad66]/20">
+                  <h4 className="font-semibold text-[#d0ad66]">Premium Parts</h4>
+                  <p className="text-sm text-gray-300">High-quality components engineered for durability</p>
                 </div>
-                <div className="space-y-2 p-4 bg-amber-100 rounded-lg hover:bg-amber-200 transition-colors duration-300">
-                  <h4 className="font-semibold text-gray-900">Sportsman Edition</h4>
-                  <p className="text-sm text-gray-600">Built for the most demanding adventures</p>
+                <div className="space-y-2 p-4 bg-[#ff8c42]/10 rounded-lg hover:bg-[#ff8c42]/20 transition-colors duration-300 border border-[#ff8c42]/20">
+                  <h4 className="font-semibold text-[#ff8c42]">Expert Service</h4>
+                  <p className="text-sm text-gray-300">Professional installation and maintenance support</p>
                 </div>
-                <div className="space-y-2 p-4 bg-orange-100 rounded-lg hover:bg-orange-200 transition-colors duration-300">
-                  <h4 className="font-semibold text-gray-900">4x4 Platform</h4>
-                  <p className="text-sm text-gray-600">Ultimate off-road capability and durability</p>
+                <div className="space-y-2 p-4 bg-[#d0ad66]/10 rounded-lg hover:bg-[#d0ad66]/20 transition-colors duration-300 border border-[#d0ad66]/20">
+                  <h4 className="font-semibold text-[#d0ad66]">Warranty Coverage</h4>
+                  <p className="text-sm text-gray-300">Comprehensive protection for all modifications</p>
                 </div>
               </div>
               <Link 
-                href="/brands/superduty" 
-                className="inline-flex items-center bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                href="/vehicles" 
+                className="inline-flex items-center bg-[#ff8c42] hover:bg-[#d0ad66] text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                Discover SuperDuty
+                Explore Timberline Vehicles
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -213,14 +211,26 @@ export default function BrandsPage() {
               <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
                 <Image
                   src="https://images.unsplash.com/photo-1549317336-206569e8475c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                  alt="SuperDuty truck in rugged terrain"
+                  alt="Timberline custom vehicle in rugged terrain"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#241e16]/80 via-transparent to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-[#ff8c42]/90 backdrop-blur-sm rounded-lg p-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                        <svg className="w-3 h-3 text-[#ff8c42]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-white text-sm font-semibold">Timberline Upfitters Certified</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-amber-100 rounded-full opacity-20 animate-float-bounce"></div>
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-orange-100 rounded-full opacity-30 animate-bounce-slow"></div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#ff8c42]/20 rounded-full opacity-20 animate-float-bounce"></div>
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-[#d0ad66]/20 rounded-full opacity-30 animate-bounce-slow"></div>
             </div>
           </div>
         </div>
@@ -279,31 +289,6 @@ export default function BrandsPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-amber-600 to-orange-600 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-8 animate-fade-in-up">
-            Ready to Start Your Journey?
-          </h2>
-          <p className="text-xl mb-12 max-w-3xl mx-auto animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            Explore our complete lineup of vehicles and discover which brand partnership is perfect for your next adventure.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-            <Link 
-              href="/vehicles" 
-              className="bg-white text-amber-600 hover:bg-gray-100 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              View All Vehicles
-            </Link>
-            <Link 
-              href="/contact" 
-              className="border-2 border-white text-white hover:bg-white hover:text-amber-600 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg"
-            >
-              Get In Touch
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
