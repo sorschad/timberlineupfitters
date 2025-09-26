@@ -202,7 +202,7 @@ export default function HeaderClient({
         className={`fixed left-0 right-0 top-0 z-50 h-24 flex items-center transition-all duration-700 ease-out ${
           isSticky 
             ? 'bg-[#553920]/85 shadow-lg backdrop-blur-[2px]' 
-            : `bg-transparent shadow-none backdrop-blur-0 border-t-2 border-b-2 border-dashed ${
+            : `bg-transparent lg:bg-transparent sm:bg-transparent bg-[#ff6b00]/90 shadow-none backdrop-blur-0 border-t-2 border-b-2 border-dashed ${
                 isMegaOpen 
                   ? 'border-[#ff8c42]/12 backdrop-blur-lg' 
                   : 'border-[#ff8c42]/60'
@@ -223,7 +223,7 @@ export default function HeaderClient({
               <img
                 src={`${urlForImage(appLogo)?.url()}`}
                 alt={appLogo?.alt || 'Application Logo'}
-                className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain select-none shrink-0"
+                className="w-21 h-21 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain select-none shrink-0"
               />
             )}
             <div className="hidden lg:flex items-baseline -ml-[23px] select-none">
