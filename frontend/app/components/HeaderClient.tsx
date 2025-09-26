@@ -320,11 +320,21 @@ export default function HeaderClient({
                   onClick={() => {
                     const newActiveBrand = activeBrand === brand.name ? null : brand.name
                     setActiveBrand(newActiveBrand)
-                    setSelectedManufacturers([]) // Reset manufacturer selection when brand changes
+                    
                     if (newActiveBrand) {
+                      // Check if brand has only one manufacturer and auto-select it
+                      const brandData = brands?.find(b => b.name === newActiveBrand)
+                      if (brandData?.manufacturers && brandData.manufacturers.length === 1) {
+                        setSelectedManufacturers([brandData.manufacturers[0]._id])
+                      } else {
+                        setSelectedManufacturers([]) // Reset manufacturer selection when brand changes
+                      }
+                      
                       setIsLoadingVehicles(true)
                       // Simulate loading time for better UX
                       setTimeout(() => setIsLoadingVehicles(false), 300)
+                    } else {
+                      setSelectedManufacturers([]) // Reset when brand is deselected
                     }
                   }}
                 >
@@ -345,10 +355,7 @@ export default function HeaderClient({
                     
                     {/* Manufacturer Filter - Only show when this brand is active */}
                     {activeBrand === brand.name && brand.manufacturers && brand.manufacturers.length > 0 && (
-                      <div className="mt-4 pt-4 border-t border-white/20">
-                        <div className="mb-2">
-                          <p className="text-white/70 text-sm font-medium">manufacturers</p>
-                        </div>
+                      <div className="mt-1 pt-1">
                         <div className="flex flex-wrap gap-2">
                           {brand.manufacturers.map((manufacturer) => (
                             <button
@@ -455,38 +462,51 @@ export default function HeaderClient({
                             key={v._id}
                             href={`/vehicles/${(v as any).slug?.current}`}
                             onClick={() => setIsMegaOpen(false)}
-                            className="block rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/30 p-4 transition-all duration-300 group"
+                            className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden"
                           >
-                            <div className="flex items-start gap-4">
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-2">
-                                  {v?.manufacturer?.logo?.asset?.url ? (
+                            <div className="grid grid-cols-[1fr_1.2fr] gap-3 p-3">
+                              {/* Left Section - Text Content */}
+                              <div className="flex flex-col justify-between">
+                                <div>
+                                  {/* Vehicle Title */}
+                                  <h3 className="text-white text-lg font-bold mb-2 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                                    {v.title}
+                                  </h3>
+                                  
+                                  {/* Vehicle Details */}
+                                  <div className="text-white/60 text-sm leading-relaxed mb-4">
+                                    {v?.model && (
+                                      <span className="block">{v.model}</span>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              {/* Right Section - Vehicle Image */}
+                              <div className="relative">
+                                <div className="aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                                  {v?.coverImage?.asset?.url ? (
                                     <img 
-                                      src={v.manufacturer.logo.asset.url} 
-                                      alt={`${v.manufacturer.name} logo`}
-                                      className="w-5 h-5 object-contain"
+                                      src={v.coverImage.asset.url} 
+                                      alt={v.title}
+                                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
                                   ) : (
-                                    <div className="w-5 h-5 bg-white/10 rounded flex items-center justify-center">
-                                      <span className="text-white/40 text-xs font-bold">{v?.manufacturer?.name?.charAt(0) || 'M'}</span>
+                                    <div className="w-full h-full flex items-center justify-center">
+                                      <div className="text-center">
+                                        <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-3 mx-auto">
+                                          <svg className="w-6 h-6 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                          </svg>
+                                        </div>
+                                        <span className="text-white/40 text-sm font-medium">Vehicle Image</span>
+                                      </div>
                                     </div>
                                   )}
-                                  <span className="text-white/60 text-xs font-medium">{v?.manufacturer?.name || 'Unknown Manufacturer'}</span>
                                 </div>
-                                <div className="text-white text-sm font-bold uppercase leading-tight group-hover:text-[#ff8c42] transition-colors duration-200">{v.title}</div>
-                              </div>
-                              <div className="w-16 h-12 rounded-lg overflow-hidden border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-200">
-                                {v?.coverImage?.asset?.url ? (
-                                  <img 
-                                    src={v.coverImage.asset.url} 
-                                    alt={v.title}
-                                    className="w-full h-full object-cover"
-                                  />
-                                ) : (
-                                  <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center">
-                                    <span className="text-white/40 text-xs font-medium">IMG</span>
-                                  </div>
-                                )}
+                                
+                                {/* Hover Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
                               </div>
                             </div>
                           </Link>
