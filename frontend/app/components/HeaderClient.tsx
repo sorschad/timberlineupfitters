@@ -161,6 +161,21 @@ export default function HeaderClient({
     }
   }, [isMegaOpen])
 
+  // Auto-select Timberline brand and its manufacturers when mega menu opens
+  useEffect(() => {
+    if (isMegaOpen && !activeBrand && brands) {
+      const timberlineBrand = brands.find(brand => brand.name === 'Timberline')
+      if (timberlineBrand) {
+        setActiveBrand('Timberline')
+        if (timberlineBrand.manufacturers && timberlineBrand.manufacturers.length > 0) {
+          setSelectedManufacturers(timberlineBrand.manufacturers.map(m => m._id))
+        }
+        setIsLoadingVehicles(true)
+        setTimeout(() => setIsLoadingVehicles(false), 300)
+      }
+    }
+  }, [isMegaOpen, activeBrand, brands])
+
   return (
     <>
       {/* Custom CSS for truck rotation animation */}
