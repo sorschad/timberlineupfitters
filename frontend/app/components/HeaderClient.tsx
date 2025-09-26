@@ -322,12 +322,12 @@ export default function HeaderClient({
                     setActiveBrand(newActiveBrand)
                     
                     if (newActiveBrand) {
-                      // Check if brand has only one manufacturer and auto-select it
+                      // Auto-select all manufacturers for the brand
                       const brandData = brands?.find(b => b.name === newActiveBrand)
-                      if (brandData?.manufacturers && brandData.manufacturers.length === 1) {
-                        setSelectedManufacturers([brandData.manufacturers[0]._id])
+                      if (brandData?.manufacturers && brandData.manufacturers.length > 0) {
+                        setSelectedManufacturers(brandData.manufacturers.map(m => m._id))
                       } else {
-                        setSelectedManufacturers([]) // Reset manufacturer selection when brand changes
+                        setSelectedManufacturers([])
                       }
                       
                       setIsLoadingVehicles(true)
