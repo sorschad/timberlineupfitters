@@ -24,6 +24,25 @@ const brandFields = /* groq */ `
   "launchDate": coalesce(launchDate, _updatedAt),
 `
 
+const brandFieldsWithSlogan = /* groq */ `
+  _id,
+  "status": select(_originalId in path("drafts.**") => "draft", "published"),
+  "name": coalesce(name, "Untitled"),
+  "slug": slug.current,
+  excerpt,
+  coverImage,
+  logo,
+  features,
+  slogan,
+  "launchDate": coalesce(launchDate, _updatedAt),
+  "manufacturers": manufacturers[]->{
+    _id,
+    name,
+    "slug": slug.current,
+    logo
+  },
+`
+
 const linkReference = /* groq */ `
   _type == "link" => {
     "page": page->slug.current,
@@ -229,6 +248,40 @@ export const allVehiclesQuery = defineQuery(`
   }
 `)
 
+// Timberline tagged vehicles (used by sidebar mega menu)
+export const timberlineVehiclesQuery = defineQuery(`
+  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {
+    _id,
+    title,
+    slug,
+    model,
+    vehicleType,
+    modelYear,
+    trim,
+    sidebarSortOrder,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    coverImage{
+      asset->{
+        _id,
+        url
+      }
+    },
+    specifications,
+    features,
+    inventory,
+    tags
+  }
+`)
+
 export const vehicleQuery = defineQuery(`
   *[_type == "vehicle" && slug.current == $slug][0] {
     _id,
@@ -259,4 +312,11 @@ export const vehicleQuery = defineQuery(`
 export const vehicleSlugs = defineQuery(`
   *[_type == "vehicle" && defined(slug.current)]
   {"slug": slug.current}
+`)
+
+// Brands query for sidebar mega menu with slogans
+export const brandsWithSloganQuery = defineQuery(`
+  *[_type == "brand" && defined(slug.current)] | order(name asc) {
+    ${brandFieldsWithSlogan}
+  }
 `)
