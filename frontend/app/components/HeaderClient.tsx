@@ -160,6 +160,18 @@ export default function HeaderClient({
 
   return (
     <>
+      {/* Custom CSS for truck rotation animation */}
+      <style jsx>{`
+        @keyframes rotateX {
+          from {
+            transform: rotateX(0deg);
+          }
+          to {
+            transform: rotateX(360deg);
+          }
+        }
+      `}</style>
+      
       {/* Background blur overlay when mega menu is open */}
       {isMegaOpen && (
         <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md" />
@@ -385,8 +397,50 @@ export default function HeaderClient({
               {isLoadingVehicles ? (
                 <div className="flex items-center justify-center h-32">
                   <div className="flex flex-col items-center space-y-4">
-                    <div className="animate-spin rounded-full h-10 w-10 border-2 border-[#ff8c42]/30 border-t-[#ff8c42]"></div>
-                    <div className="text-white/70 text-sm font-medium">Loading vehicles...</div>
+                    {/* Animated Vehicle Icon with Enhanced UX */}
+                    <div className="flex items-center justify-center relative opacity-70">
+                      {/* Background pulsing circle outline */}
+                      <div className="absolute inset-0 rounded-full border-2 border-[#d0ad66]/30 animate-pulse scale-110"></div>
+                      <div className="absolute inset-0 rounded-full border border-[#d0ad66]/15 animate-ping scale-125"></div>
+                      
+                      {/* Main truck icon */}
+                      <div className="relative z-10 flex flex-col items-center justify-center w-16 h-16">
+                        <div className="mt-1">
+                          <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            strokeWidth="2" 
+                            stroke="url(#truckGradient)" 
+                            className="w-10 h-10"
+                            style={{
+                              animation: 'rotateX 2s linear infinite, bounce 1.5s ease-in-out infinite',
+                              transformOrigin: 'center'
+                            }}
+                          >
+                            <defs>
+                              <linearGradient id="truckGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#d0ad66" stopOpacity="0.8" />
+                                <stop offset="50%" stopColor="#c49b5a" stopOpacity="0.8" />
+                                <stop offset="100%" stopColor="#b88a4e" stopOpacity="0.8" />
+                              </linearGradient>
+                            </defs>
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" 
+                          />
+                        </svg>
+                        </div>
+                        
+                        {/* Loading dots animation - now inside the circle */}
+                        <div className="flex space-x-1 -mt-1">
+                          <div className="w-1.5 h-1.5 bg-[#d0ad66]/40 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
+                          <div className="w-1.5 h-1.5 bg-[#c49b5a]/40 rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
+                          <div className="w-1.5 h-1.5 bg-[#b88a4e]/40 rounded-full animate-bounce" style={{animationDelay: '300ms'}}></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : (
