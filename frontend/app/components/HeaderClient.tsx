@@ -80,29 +80,32 @@ export default function HeaderClient({
     
     // Find the active brand to get its associated manufacturers
     const activeBrandData = brands?.find(brand => brand.name === activeBrand)
-    if (!activeBrandData?.manufacturers) {
-      // Fallback to tag-based filtering if no manufacturer associations
-      return (timberlineVehicles || []).filter((vehicle: any) => {
-        const vehicleTags = vehicle.tags || []
-        return vehicleTags.some((tag: string) => {
-          const tagLower = tag.toLowerCase().trim()
-          const brandLower = activeBrand.toLowerCase().trim()
-          return tagLower === brandLower || tagLower.includes(brandLower)
-        })
-      })
-    }
-    
-    // Filter vehicles by manufacturer associations
-    let manufacturerIds = activeBrandData.manufacturers.map(m => m._id)
-    
-    // If specific manufacturers are selected, filter by those
-    if (selectedManufacturers.length > 0) {
-      manufacturerIds = manufacturerIds.filter(id => selectedManufacturers.includes(id))
-    }
     
     return (timberlineVehicles || []).filter((vehicle: any) => {
-      const vehicleManufacturerId = vehicle?.manufacturer?._id
-      return vehicleManufacturerId && manufacturerIds.includes(vehicleManufacturerId)
+      // First check if vehicle has a tag matching the brand
+      const vehicleTags = vehicle.tags || []
+      const hasBrandTag = vehicleTags.some((tag: string) => {
+        const tagLower = tag.toLowerCase().trim()
+        const brandLower = activeBrand.toLowerCase().trim()
+        return tagLower === brandLower || tagLower.includes(brandLower)
+      })
+      
+      // If no brand tag match, exclude the vehicle
+      if (!hasBrandTag) return false
+      
+      // If brand has manufacturer associations, also check manufacturer filter
+      if (activeBrandData?.manufacturers && activeBrandData.manufacturers.length > 0) {
+        // If specific manufacturers are selected, filter by those
+        if (selectedManufacturers.length > 0) {
+          const vehicleManufacturerId = vehicle?.manufacturer?._id
+          return vehicleManufacturerId && selectedManufacturers.includes(vehicleManufacturerId)
+        }
+        // If no manufacturers selected but brand has associations, show all vehicles with brand tag
+        return true
+      }
+      
+      // If brand has no manufacturer associations, just return vehicles with brand tag
+      return true
     })
   }, [timberlineVehicles, activeBrand, brands, selectedManufacturers])
 
