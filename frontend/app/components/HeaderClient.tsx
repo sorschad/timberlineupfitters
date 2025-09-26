@@ -285,7 +285,7 @@ export default function HeaderClient({
       {/* Sidebar Mega Menu */}
       <div
         id="sidebar-mega-menu"
-        className={`fixed top-0 left-0 bottom-0 z-[60] w-full max-w-[700px] transform transition-transform duration-500 ease-in-out
+        className={`fixed top-0 left-0 bottom-0 z-[60] w-full max-w-[700px] min-h-screen transform transition-transform duration-500 ease-in-out
         ${isMegaOpen ? 'translate-x-0' : '-translate-x-full'}`}
         aria-hidden={!isMegaOpen}
       >
