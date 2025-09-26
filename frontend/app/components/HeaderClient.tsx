@@ -4,6 +4,8 @@ import Link from 'next/link'
 import {useEffect, useMemo, useState} from 'react'
 import {Orbitron} from 'next/font/google'
 import {urlForImage} from '@/sanity/lib/utils'
+import {MagnifyingGlassIcon} from '@heroicons/react/24/outline'
+import SearchModal from './SearchModal'
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -71,6 +73,7 @@ export default function HeaderClient({
 }) {
   const [isSticky, setIsSticky] = useState(false)
   const [isMegaOpen, setIsMegaOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [activeBrand, setActiveBrand] = useState<string | null>(null)
   const [isLoadingVehicles, setIsLoadingVehicles] = useState(false)
   const [selectedManufacturers, setSelectedManufacturers] = useState<string[]>([])
@@ -190,8 +193,8 @@ export default function HeaderClient({
         }
       `}</style>
       
-      {/* Background blur overlay when mega menu is open */}
-      {isMegaOpen && (
+      {/* Background blur overlay when mega menu or search is open */}
+      {(isMegaOpen || isSearchOpen) && (
         <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md" />
       )}
       
@@ -204,13 +207,13 @@ export default function HeaderClient({
                   ? 'border-[#ff8c42]/12 backdrop-blur-lg' 
                   : 'border-[#ff8c42]/60'
               }`
-        } ${isMegaOpen ? 'bg-black/50 backdrop-blur-lg' : ''}`}
+        } ${(isMegaOpen || isSearchOpen) ? 'bg-black/50 backdrop-blur-lg' : ''}`}
         style={{willChange: 'background-color, filter, box-shadow'}}
       >
-      <div className={`container py-6 px-2 sm:px-6 ${isMegaOpen ? 'backdrop-blur-lg blur-lg opacity-[0.12]' : ''}`}>
-        <div className={`grid grid-cols-3 items-center gap-5 ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
+      <div className={`container py-6 px-2 sm:px-6 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg blur-lg opacity-[0.12]' : ''}`}>
+        <div className={`grid grid-cols-3 items-center gap-5 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}>
           <Link
-            className={`flex items-center gap-0.5 ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}
+            className={`flex items-center gap-0.5 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}
             href="/"
             aria-label={settingsTitle}
           >
@@ -240,12 +243,12 @@ export default function HeaderClient({
             </div>
           </Link>
 
-          <nav className={`justify-self-center ${isMegaOpen ? 'backdrop-blur-lg' : ''}`} />
+          <nav className={`justify-self-center ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`} />
 
-          <nav className={`justify-self-end ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
+          <nav className={`justify-self-end ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}>
             <ul
               role="list"
-              className={`flex items-center gap-5 md:gap-8 leading-5 text-sm tracking-[0.18em] font-semibold font-sans ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}
+              className={`flex items-center gap-5 md:gap-8 leading-5 text-sm tracking-[0.18em] font-semibold font-sans ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}
             >
               <li>
                 <button
@@ -266,7 +269,8 @@ export default function HeaderClient({
                 </Link>
               </li>
 
-              <li className="flex sm:gap-4 md:gap-6">
+              <li className="flex items-center sm:gap-4 md:gap-6">
+                {/* Dealer Portal Button */}
                 <Link
                   className="rounded-full flex items-center bg-brown/90 hover:bg-[#1a130e] py-3 px-6 justify-center sm:py-3 sm:px-8 text-white text-xs uppercase tracking-wide transition-colors duration-200"
                   href="https://github.com/sanity-io/sanity-template-nextjs-clean"
@@ -275,6 +279,15 @@ export default function HeaderClient({
                 >
                   <span className="whitespace-nowrap">Dealer Portal</span>
                 </Link>
+                
+                {/* Search Button */}
+                <button
+                  onClick={() => setIsSearchOpen(true)}
+                  className="p-2 rounded-full hover:bg-white/10 transition-all duration-200 cursor-pointer"
+                  aria-label="Open search"
+                >
+                  <MagnifyingGlassIcon className="w-4 h-4 text-white/70 hover:text-white/90 transition-colors duration-200" />
+                </button>
               </li>
             </ul>
           </nav>
@@ -539,6 +552,12 @@ export default function HeaderClient({
           </div>
         </div>
       </div>
+
+      {/* Search Modal */}
+      <SearchModal 
+        isOpen={isSearchOpen} 
+        onClose={() => setIsSearchOpen(false)} 
+      />
     </header>
     </>
   )
