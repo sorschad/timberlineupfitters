@@ -171,7 +171,7 @@ export default function HeaderClient({
         } ${isMegaOpen ? 'bg-black/50 backdrop-blur-lg' : ''}`}
         style={{willChange: 'background-color, filter, box-shadow'}}
       >
-      <div className={`container py-6 px-2 sm:px-6 ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
+      <div className={`container py-6 px-2 sm:px-6 ${isMegaOpen ? 'backdrop-blur-lg blur-lg opacity-[0.12]' : ''}`}>
         <div className={`grid grid-cols-3 items-center gap-5 ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}>
           <Link
             className={`flex items-center gap-0.5 ${isMegaOpen ? 'backdrop-blur-lg' : ''}`}
