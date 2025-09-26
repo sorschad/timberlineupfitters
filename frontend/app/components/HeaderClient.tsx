@@ -314,7 +314,24 @@ export default function HeaderClient({
 
             {/* Brand Cards */}
             <div className="p-6 space-y-3">
-              {brands?.map((brand) => (
+              {brands?.sort((a, b) => {
+                // Define explicit order: Timberline, TSport, Alpine
+                const order = ['Timberline', 'TSport', 'Alpine']
+                const aIndex = order.indexOf(a.name)
+                const bIndex = order.indexOf(b.name)
+                
+                // If both brands are in the order array, sort by their position
+                if (aIndex !== -1 && bIndex !== -1) {
+                  return aIndex - bIndex
+                }
+                
+                // If only one brand is in the order array, prioritize it
+                if (aIndex !== -1) return -1
+                if (bIndex !== -1) return 1
+                
+                // If neither brand is in the order array, sort alphabetically
+                return a.name.localeCompare(b.name)
+              }).map((brand) => (
                 <div 
                   key={brand._id} 
                   className={`rounded-xl border transition-all duration-300 cursor-pointer relative group ${
@@ -346,7 +363,7 @@ export default function HeaderClient({
                   <div className="p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
-                        <div className="text-white text-lg font-bold mb-1">{brand.name}</div>
+                        <div className="text-white text-lg font-bold mb-1 uppercase">{brand.name}</div>
                         <div className="text-white/60 text-sm leading-tight">{brand.slogan || 'Tactical vehicle platform'}</div>
                       </div>
                       <div className="ml-3">
@@ -373,7 +390,7 @@ export default function HeaderClient({
                                     : [...prev, manufacturer._id]
                                 )
                               }}
-                              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${
                                 selectedManufacturers.includes(manufacturer._id)
                                   ? 'bg-[#ff8c42] text-black shadow-lg shadow-[#ff8c42]/20 transform scale-105'
                                   : 'bg-white/10 text-white hover:bg-white/20 hover:scale-105 border border-white/20'
