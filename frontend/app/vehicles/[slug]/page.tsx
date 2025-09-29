@@ -102,7 +102,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-[#061421]/90" />
           {/* Orange bleed at bottom of hero (brand orange #ff8c42) */}
           <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-b from-transparent via-[#ff8c42]/80 to-[#ff8c42]" />
-          <div className="relative z-10 container pt-20 pb-16 min-h-[45vh] md:min-h-[50vh] flex items-end">
+          <div className="relative z-10 container pt-20 pb-16 min-h-[55vh] md:min-h-[62vh] flex items-end">
             <div className="max-w-3xl">
               <h1 className="text-5xl sm:text-6xl md:text-7xl font-black leading-[1.05] drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
                 {vehicle.title}
