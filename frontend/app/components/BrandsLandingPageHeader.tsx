@@ -17,30 +17,30 @@ interface BrandCard {
 
 const brandCards: BrandCard[] = [
   {
-    id: 'timberline-elite',
-    name: 'TIMBERLINE ELITE',
-    tagline: 'EXECUTIVE PROTECTION MEETS UNCOMPROMISING LUXURY',
-    category: 'LUXURY TACTICAL',
-    image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-    description: 'Premium executive protection vehicles with luxury finishes',
-    href: '/brands/timberline-elite'
+    id: 'timberline-upfitters',
+    name: 'Timberline',
+    tagline: 'Premium off-road upfits',
+    category: 'Performance & Luxury',
+    image: 'https://cdn.sanity.io/images/9jrxfm1d/staging/0f4ce3524a12134683b4c9e43a789a3f0f526a3f-2000x1545.png?w=2000&fit=max&auto=format',
+    description: 'Premium off-road upfits',
+    href: '/brands/timberline-upfitters'
   },
   {
     id: 'alpine',
-    name: 'ALPINE',
-    tagline: 'ALL-TERRAIN DOMINANCE',
-    category: 'ALL-TERRAIN DOMINANCE',
-    image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-    description: 'Rugged all-terrain vehicles for extreme conditions',
+    name: 'Alpine',
+    tagline: 'All-Terrain & AUDIO',
+    category: 'OFF-ROAD & AUDIO',
+    image: 'https://cdn.sanity.io/images/9jrxfm1d/staging/2d66d8050437728de4ac6cd714e6f96a683812e3-1920x993.jpg?w=2000&fit=max&auto=format',
+    description: 'Custom Jeep builds for the Audio & Adventure Enthusiast',
     href: '/brands/alpine'
   },
   {
     id: 'tsport',
-    name: 'TSPORT',
-    tagline: 'PURE PERFORMANCE',
-    category: 'PURE PERFORMANCE',
-    image: 'https://images.unsplash.com/photo-1549317336-206569e8475c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-    description: 'High-performance vehicles engineered for speed and precision',
+    name: 'TSport',
+    tagline: 'Enthusiast driven, straight from the dealership',
+    category: 'OFF-ROAD PERFORMANCE',
+    image: 'https://cdn.sanity.io/images/9jrxfm1d/staging/86931dc013495e4656f156ad2493d901eb876297-2560x1536.webp?w=2000&fit=max&auto=format',
+    description: 'The Ultimate Off-Road Performance Package',
     href: '/brands/tsport'
   }
 ]
@@ -165,15 +165,6 @@ export default function BrandsLandingPageHeader() {
             <p className="text-lg text-gray-300 leading-relaxed max-w-lg">
               Every detail, from the sophisticated audio integration to the exclusive vehicle add-ons, was meticulously brought to life by Timberline Upfitters' technical team. The result is a fleet where boundary-pushing sound meets uncompromising off-road performance, crafted to the highest standard.
             </p>
-            
-            {/* CTA Button */}
-            <Link 
-              href="/brands"
-              className="inline-flex items-center bg-[#ff8c42] hover:bg-[#ff8c42]/90 text-white px-8 py-4 rounded-full font-semibold uppercase tracking-wide transition-all duration-500 ease-out transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              EXPLORE BRANDS
-              <ChevronRightIcon className="ml-2 w-5 h-5 transition-transform duration-300 ease-out group-hover:translate-x-1" />
-            </Link>
           </div>
 
           {/* Right Section - Layered 3D Cards */}
