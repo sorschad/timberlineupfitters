@@ -180,129 +180,37 @@ export default async function VehiclePage({params}: VehiclePageProps) {
         </div>
       </section>
 
-      {/* Interior Features Section - Dark Blue Background */}
-      <section className="py-20 bg-slate-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-1 gap-12 items-center">
-            {/* Right Content - Interior Image with Interactive Elements */}
-            <div className="relative">
-              {vehicle.gallery && vehicle.gallery.length > 0 ? (
-                <div className="relative">
-                  <Image
-                    src={vehicle.gallery[0].asset.url}
-                    alt="Vehicle Interior"
-                    width={600}
-                    height={400}
-                    className="rounded-2xl shadow-2xl"
-                  />
-                  
-                  {/* Interactive Hotspots */}
-                  <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-black rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform">
-                    <div className="absolute top-4 left-4 w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                  <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-black rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform">
-                    <div className="absolute top-4 left-4 w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                  <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-black rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform">
-                    <div className="absolute top-4 left-4 w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                  
-                  {/* Exterior/Interior Toggle */}
-                  <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md rounded-full p-1 border border-white/20">
-                    <div className="flex">
-                      <button className="px-4 py-2 text-sm font-medium text-slate-900 bg-white rounded-full">
-                        Interior
-                      </button>
-                      <button className="px-4 py-2 text-sm font-medium text-white">
-                        Exterior
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl h-96 w-full flex items-center justify-center">
-                  <span className="text-6xl font-bold text-gray-400">Interior View</span>
-                </div>
-              )}
-            </div>
-          </div>
-          
-          {/* Feature Cards Row */}
-          <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Panoramic Display Feature Card */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                  <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900">Panoramic display</h3>
-              </div>
-              <p className="text-gray-600 mb-4">
-                Panoramic display with the biggest smart touch display with car controls
-              </p>
-              <a href="#" className="text-blue-600 underline font-medium">Learn More</a>
-            </div>
-            
-            {/* Additional Feature Cards */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
-                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900">Smart Features</h3>
-              </div>
-              <p className="text-gray-600 mb-4">
-                Advanced AI-powered features for enhanced driving experience
-              </p>
-              <a href="#" className="text-blue-600 underline font-medium">Learn More</a>
-            </div>
-            
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                  <svg className="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900">Safety First</h3>
-              </div>
-              <p className="text-gray-600 mb-4">
-                Comprehensive safety systems for peace of mind on every journey
-              </p>
-              <a href="#" className="text-blue-600 underline font-medium">Learn More</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Specifications Section - Clean White Background */}
-      {vehicle.specifications && (
+      {/* Gallery Section */}
+      {vehicle.gallery && vehicle.gallery.length > 0 && (
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
-              Technical Specifications
-            </h2>
-            <div className="bg-gray-50 rounded-2xl p-8 max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {Object.entries(vehicle.specifications).map(([key, value]) => (
-                  <div key={key} className="flex justify-between items-center py-4 border-b border-gray-200 last:border-b-0">
-                    <span className="text-gray-600 font-medium capitalize">
-                      {key.replace(/([A-Z])/g, ' $1').trim()}
-                    </span>
-                    <span className="text-gray-900 font-semibold">
-                      {typeof value === 'number' ? value.toLocaleString() : String(value)}
-                    </span>
-                  </div>
-                ))}
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {vehicle.gallery.map((image: any, idx: number) => (
+                <div key={idx} className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
+                  {image.asset && image.asset.url ? (
+                    <Image
+                      src={image.asset.url}
+                      alt={image.alt || `${vehicle.title} Gallery Image ${idx + 1}`}
+                      fill
+                      className="object-cover hover:scale-110 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                      <span className="text-gray-400">No Image</span>
+                    </div>
+                  )}
+                  {image.caption && (
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">
+                      <p className="text-sm">{image.caption}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </section>
       )}
+
 
       {/* Features Section */}
       {vehicle.features && (
@@ -325,40 +233,6 @@ export default async function VehiclePage({params}: VehiclePageProps) {
                       </li>
                     ))}
                   </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Gallery Section */}
-      {vehicle.gallery && vehicle.gallery.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
-              Image Gallery
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {vehicle.gallery.map((image: any, idx: number) => (
-                <div key={idx} className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
-                  {image.asset && image.asset.url ? (
-                    <Image
-                      src={image.asset.url}
-                      alt={image.alt || `${vehicle.title} Gallery Image ${idx + 1}`}
-                      fill
-                      className="object-cover hover:scale-110 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                      <span className="text-gray-400">No Image</span>
-                    </div>
-                  )}
-                  {image.caption && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">
-                      <p className="text-sm">{image.caption}</p>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
