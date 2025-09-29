@@ -19,7 +19,9 @@ const brandFields = /* groq */ `
   "name": coalesce(name, "Untitled"),
   "slug": slug.current,
   excerpt,
+  description,
   coverImage,
+  sectionImage,
   features,
   "launchDate": coalesce(launchDate, _updatedAt),
 `
@@ -31,6 +33,7 @@ const brandFieldsWithSlogan = /* groq */ `
   "slug": slug.current,
   excerpt,
   coverImage,
+  sectionImage,
   logo,
   features,
   slogan,
