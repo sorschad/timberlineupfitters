@@ -1,6 +1,7 @@
 import type {Metadata} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import TacticalSelection from '@/app/components/TacticalSelection'
 
 export const metadata: Metadata = {
   title: 'Our Brand Partners',
@@ -9,36 +10,9 @@ export const metadata: Metadata = {
 
 export default function BrandsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-amber-50">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-transparent to-orange-900/20"></div>
-        <div className="absolute inset-0 parallax-bg">
-          <Image
-            src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Off-road vehicles in rugged terrain"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight animate-fade-in-up">
-            <span className="text-amber-400 animate-gradient bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">Brands We Build</span>
-          </h1>
-          <p className="text-xl sm:text-2xl text-amber-400 mb-12 max-w-4xl mx-auto leading-snug animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-            <Link 
-              href="#alpine-rebelx" 
-              className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              EXPLORE
-            </Link>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-black">
+      {/* Tactical Selection Hero */}
+      <TacticalSelection />
 
       {/* Alpine + RebelX Section */}
       <section id="alpine-rebelx" className="py-20 lg:py-32 bg-white">
