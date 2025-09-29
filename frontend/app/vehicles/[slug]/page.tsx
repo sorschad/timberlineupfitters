@@ -102,9 +102,8 @@ export default async function VehiclePage({params}: VehiclePageProps) {
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-[#061421]/90" />
           {/* Orange bleed at bottom of hero (brand orange #ff8c42) */}
           <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-b from-transparent via-[#ff8c42]/80 to-[#ff8c42]" />
-          <div className="relative z-10 container pt-36 pb-32 min-h-[90vh] md:min-h-[100vh] flex items-end">
+          <div className="relative z-10 container pt-20 pb-16 min-h-[45vh] md:min-h-[50vh] flex items-end">
             <div className="max-w-3xl">
-              <p className="uppercase tracking-[0.18em] text-white/80 text-sm mb-2">{vehicle.modelYear} {vehicle.model}</p>
               <h1 className="text-5xl sm:text-6xl md:text-7xl font-black leading-[1.05] drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
                 {vehicle.title}
               </h1>
@@ -118,29 +117,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
               </div>
             </div>
 
-            {/* Stat badges */}
-            <div className="mt-10 grid grid-cols-2 md:grid-cols-5 gap-3 max-w-5xl">
-              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 text-center">
-                <div className="text-white/80 text-sm">Model</div>
-                <div className="text-2xl font-bold">{vehicle.model || 'Wrangler'}</div>
-              </div>
-              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 text-center">
-                <div className="text-white/80 text-sm">Type</div>
-                <div className="text-2xl font-bold capitalize">{vehicle.vehicleType || 'SUV'}</div>
-              </div>
-              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 text-center">
-                <div className="text-white/80 text-sm">Year</div>
-                <div className="text-2xl font-bold">{vehicle.modelYear}</div>
-              </div>
-              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 text-center">
-                <div className="text-white/80 text-sm">Trim</div>
-                <div className="text-2xl font-bold">{vehicle.trim || 'Base'}</div>
-              </div>
-              <div className="hidden md:block backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 text-center">
-                <div className="text-white/80 text-sm">Brand</div>
-                <div className="text-2xl font-bold">Alpine</div>
-              </div>
-            </div>
+            {/* Stat badges removed per request */}
           </div>
         </section>
         {/* Seamless orange bridge into gallery */}
