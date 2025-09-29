@@ -202,10 +202,14 @@ export default function HeaderClient({
         className={`fixed left-0 right-0 top-0 z-50 h-24 flex items-center transition-all duration-700 ease-out ${
           isSticky 
             ? 'bg-[#553920]/85 shadow-lg backdrop-blur-[2px]' 
-            : `bg-transparent lg:bg-transparent sm:bg-transparent bg-[#ff6b00]/90 shadow-none backdrop-blur-0 border-t-2 border-b-2 border-dashed ${
-                isMegaOpen 
-                  ? 'border-[#ff8c42]/12 backdrop-blur-lg' 
-                  : 'border-[#ff8c42]/60'
+            : `bg-transparent lg:bg-transparent sm:bg-transparent bg-[#ff6b00]/90 shadow-none backdrop-blur-0 ${
+                !isSearchOpen
+                  ? `border-t-2 border-b-2 border-dashed ${
+                      isMegaOpen 
+                        ? 'border-[#ff8c42]/12 backdrop-blur-lg' 
+                        : 'border-[#ff8c42]/60'
+                    }`
+                  : ''
               }`
         } ${(isMegaOpen || isSearchOpen) ? 'bg-black/50 backdrop-blur-lg' : ''}`}
         style={{willChange: 'background-color, filter, box-shadow'}}
@@ -568,6 +572,8 @@ export default function HeaderClient({
       <SearchModal 
         isOpen={isSearchOpen} 
         onClose={() => setIsSearchOpen(false)} 
+        vehicles={timberlineVehicles as any}
+        brands={brands as any}
       />
     </header>
     </>
