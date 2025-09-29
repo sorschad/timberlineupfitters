@@ -1,7 +1,7 @@
 import type {Metadata} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import TacticalSelection from '@/app/components/TacticalSelection'
+import BrandsLandingPageHeader from '@/app/components/BrandsLandingPageHeader'
 
 export const metadata: Metadata = {
   title: 'Our Brand Partners',
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 export default function BrandsPage() {
   return (
     <div className="min-h-screen bg-black">
-      {/* Tactical Selection Hero */}
-      <TacticalSelection />
+      {/* Brands Landing Page Header */}
+      <BrandsLandingPageHeader />
 
       {/* Alpine + RebelX Section */}
       <section id="alpine" className="py-20 lg:py-32 bg-white">
@@ -26,25 +26,21 @@ export default function BrandsPage() {
                 <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full"></div>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Our partnership with Alpine + RebelX represents the pinnacle of ocean-inspired design meeting rugged off-road capability. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+              Every detail, from the sophisticated audio integration to the exclusive vehicle add-ons, was meticulously brought to life by Timberline Upfitters' technical team. The result is a fleet where boundary-pushing sound meets uncompromising off-road performance, crafted to the highest standard.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-300">
                   <h4 className="font-semibold text-gray-900">Ocean Edition</h4>
-                  <p className="text-sm text-gray-600">Premium ocean-inspired finishes and materials</p>
                 </div>
-                <div className="space-y-2 p-4 bg-cyan-50 rounded-lg hover:bg-cyan-100 transition-colors duration-300">
+                <div className="space-y-2 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-300">
                   <h4 className="font-semibold text-gray-900">Brigade Edition</h4>
-                  <p className="text-sm text-gray-600">Military-grade durability and performance</p>
                 </div>
               </div>
               <Link 
                 href="/brands/alpine-rebelx" 
-                className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="w-full inline-flex items-center text-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                Learn More
+                Alpine + Rebel Off Road Vehicles
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -53,8 +49,8 @@ export default function BrandsPage() {
             <div className="relative animate-fade-in-right">
               <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
                 <Image
-                  src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                  alt="Alpine + RebelX Jeep Wrangler in ocean setting"
+                  src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  alt="Alpine + RebelX all-terrain cover image"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -74,8 +70,8 @@ export default function BrandsPage() {
             <div className="relative order-2 lg:order-1 animate-fade-in-left">
               <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
                 <Image
-                  src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                  alt="TSport and ThorSport in action"
+                  src="https://images.unsplash.com/photo-1549317336-206569e8475c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  alt="TSport cover image"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -184,8 +180,8 @@ export default function BrandsPage() {
             <div className="relative animate-fade-in-right">
               <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
                 <Image
-                  src="https://images.unsplash.com/photo-1549317336-206569e8475c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                  alt="Timberline custom vehicle in rugged terrain"
+                  src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  alt="Timberline Elite cover image"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />

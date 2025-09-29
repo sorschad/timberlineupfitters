@@ -45,7 +45,7 @@ const brandCards: BrandCard[] = [
   }
 ]
 
-export default function TacticalSelection() {
+export default function BrandsLandingPageHeader() {
   const [activeCard, setActiveCard] = useState(0)
   const [isAutoScrolling, setIsAutoScrolling] = useState(true)
   const [isDragging, setIsDragging] = useState(false)
@@ -147,24 +147,23 @@ export default function TacticalSelection() {
             {/* Orange line */}
             <div className="w-16 h-0.5 bg-[#ff8c42]"></div>
             
-            {/* TACTICAL SELECTION */}
             <div className="text-[#ff8c42] text-sm uppercase tracking-widest font-semibold">
-              TACTICAL SELECTION
+              Brands We Work With
             </div>
             
             {/* Main heading */}
             <div className="space-y-2">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase leading-[0.9]">
-                UNLOCK YOUR
+                Team Work
               </h1>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#ff8c42] uppercase leading-[0.9]">
-                TACTICAL POTENTIAL
+              <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-[#ff8c42] uppercase leading-[0.9]">
+                Makes the Dream Work
               </h1>
             </div>
             
             {/* Description */}
             <p className="text-lg text-gray-300 leading-relaxed max-w-lg">
-              Choose your mission profile. Each brand represents a different approach to tactical excellence, engineered for specific operational requirements.
+              Every detail, from the sophisticated audio integration to the exclusive vehicle add-ons, was meticulously brought to life by Timberline Upfitters' technical team. The result is a fleet where boundary-pushing sound meets uncompromising off-road performance, crafted to the highest standard.
             </p>
             
             {/* CTA Button */}
@@ -172,7 +171,7 @@ export default function TacticalSelection() {
               href="/brands"
               className="inline-flex items-center bg-[#ff8c42] hover:bg-[#ff8c42]/90 text-white px-8 py-4 rounded-full font-semibold uppercase tracking-wide transition-all duration-500 ease-out transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              EXPLORE LINEUP
+              EXPLORE BRANDS
               <ChevronRightIcon className="ml-2 w-5 h-5 transition-transform duration-300 ease-out group-hover:translate-x-1" />
             </Link>
           </div>
