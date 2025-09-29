@@ -68,13 +68,13 @@ export default async function BrandsPage() {
   const getBrandLineClass = (index: number) => {
     switch (index % 3) {
       case 0:
-        return 'w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full'
+        return 'w-full h-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full'
       case 1:
-        return 'w-20 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full'
+        return 'w-full h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full'
       case 2:
-        return 'w-20 h-1 bg-gradient-to-r from-[#ff8c42] to-[#d0ad66] rounded-full'
+        return 'w-full h-1 bg-gradient-to-r from-[#ff8c42] to-[#d0ad66] rounded-full'
       default:
-        return 'w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full'
+        return 'w-full h-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full'
     }
   }
 
@@ -96,14 +96,18 @@ export default async function BrandsPage() {
                   <div className={getBrandLineClass(index)}></div>
                 </div>
                 <div className={`text-lg leading-relaxed ${
-                  brand.slug.toLowerCase().includes('tsport') 
-                    ? 'text-red-500' 
-                    : index % 3 === 0 
-                      ? 'text-gray-600' 
-                      : 'text-gray-300'
+                  brand.slug.toLowerCase().includes('timberline') 
+                    ? 'text-[#ff8c42]' 
+                    : brand.slug.toLowerCase().includes('tsport') 
+                      ? 'text-red-500' 
+                      : index % 3 === 0 
+                        ? 'text-gray-600' 
+                        : 'text-gray-300'
                 }`}>
                   {brand.description ? (
-                    <PortableText value={brand.description as any} />
+                    <div className={brand.slug.toLowerCase().includes('timberline') ? 'text-[#ff8c42]' : ''}>
+                      <PortableText value={brand.description as any} />
+                    </div>
                   ) : (
                     <p>{brand.excerpt || 'Discover the excellence and innovation that defines our brand partnerships.'}</p>
                   )}
