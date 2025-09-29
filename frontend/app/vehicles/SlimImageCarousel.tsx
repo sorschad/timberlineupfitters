@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image'
-import {useEffect, useRef, useState} from 'react'
+import {useRef, useState} from 'react'
 
 export default function SlimImageCarousel() {
   const scrollerRef = useRef<HTMLDivElement>(null)
@@ -15,28 +15,14 @@ export default function SlimImageCarousel() {
     '/images/tile-1-black.png',
   ]
 
-  // Center the active card on mount and resize
-  useEffect(() => {
-    const onResize = () => scrollToIndex(current)
-    window.addEventListener('resize', onResize)
-    scrollToIndex(0)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
-
-  const scrollToIndex = (_index: number) => {
-    // no-op for coverflow mode; we position via transforms
-  }
-
   const goPrev = () => {
     const next = (current - 1 + images.length) % images.length
     setCurrent(next)
-    scrollToIndex(next)
   }
 
   const goNext = () => {
     const next = (current + 1) % images.length
     setCurrent(next)
-    scrollToIndex(next)
   }
 
   return (
