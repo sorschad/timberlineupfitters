@@ -25,7 +25,7 @@ const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
       key={_id}
       className="border border-gray-200 rounded-lg p-6 bg-white flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:border-brand relative group"
     >
-      <Link className="hover:text-brand transition-colors" href={`/brands/${slug}`}>
+      <Link className="hover:text-brand transition-colors" href={`/brands#${slug}`}>
         <span className="absolute inset-0 z-10" />
       </Link>
       
@@ -153,7 +153,7 @@ export const HomepageBrands = async () => {
                 key={brand._id}
                 className="relative group overflow-hidden rounded-lg border border-amber-300 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-80 sm:h-96 lg:h-[28rem]"
               >
-                <Link href={`/brands/${brand.slug}`} className="absolute inset-0 z-10" />
+                <Link href={`/brands#${brand.slug}`} className="absolute inset-0 z-10" />
 
                 <div className="relative w-full h-full">
                   {imageUrl && (

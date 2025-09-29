@@ -19,7 +19,9 @@ const brandFields = /* groq */ `
   "name": coalesce(name, "Untitled"),
   "slug": slug.current,
   excerpt,
+  description,
   coverImage,
+  sectionImage,
   features,
   "launchDate": coalesce(launchDate, _updatedAt),
 `
@@ -31,6 +33,7 @@ const brandFieldsWithSlogan = /* groq */ `
   "slug": slug.current,
   excerpt,
   coverImage,
+  sectionImage,
   logo,
   features,
   slogan,
@@ -326,5 +329,24 @@ export const vehicleSlugs = defineQuery(`
 export const brandsWithSloganQuery = defineQuery(`
   *[_type == "brand" && defined(slug.current)] | order(name asc) {
     ${brandFieldsWithSlogan}
+  }
+`)
+
+// Vehicles by brand query
+export const vehiclesByBrandQuery = defineQuery(`
+  *[_type == "vehicle" && references($brandId) && defined(slug.current)] | order(modelYear desc, title asc) [0...6] {
+    _id,
+    title,
+    slug,
+    model,
+    vehicleType,
+    modelYear,
+    trim,
+    coverImage{
+      asset->{
+        _id,
+        url
+      }
+    }
   }
 `)
