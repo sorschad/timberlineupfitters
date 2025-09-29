@@ -94,15 +94,9 @@ export default async function VehiclePage({params}: VehiclePageProps) {
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             {/* Left Content */}
             <div className="space-y-8">
-              {/* Vehicle Type Badge */}
-              <div className="text-lg text-white/90 font-medium">
-                2026 {vehicle.vehicleType}*
-              </div>
-              
               {/* Main Headline */}
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                Built for life.<br />
-                Feels like comfort
+                {vehicle.title}
               </h1>
               
               {/* Subtitle */}
@@ -189,23 +183,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
       {/* Interior Features Section - Dark Blue Background */}
       <section className="py-20 bg-slate-900 text-white">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <h2 className="text-5xl md:text-6xl font-bold leading-tight">
-                Comfort in simplicity.<br />
-                High-tech for the future of driving
-              </h2>
-              
-              <p className="text-xl text-gray-300 max-w-lg">
-                Lorem ipsum dolor sit amet consectetur. Congue ac dictumst nunc eget nunc eros nibh.
-              </p>
-              
-              <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-slate-900 transition-all duration-300">
-                Explore
-              </button>
-            </div>
-            
+          <div className="grid lg:grid-cols-1 gap-12 items-center">
             {/* Right Content - Interior Image with Interactive Elements */}
             <div className="relative">
               {vehicle.gallery && vehicle.gallery.length > 0 ? (
