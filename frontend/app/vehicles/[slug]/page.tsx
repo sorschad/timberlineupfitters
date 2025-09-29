@@ -180,32 +180,40 @@ export default async function VehiclePage({params}: VehiclePageProps) {
         </div>
       </section>
 
-      {/* Gallery Section */}
+      {/* Gallery Section - Masonry Grid */}
       {vehicle.gallery && vehicle.gallery.length > 0 && (
-        <section className="py-20 bg-white">
+        <section className="py-8 pb-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {vehicle.gallery.map((image: any, idx: number) => (
-                <div key={idx} className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
-                  {image.asset && image.asset.url ? (
-                    <Image
-                      src={image.asset.url}
-                      alt={image.alt || `${vehicle.title} Gallery Image ${idx + 1}`}
-                      fill
-                      className="object-cover hover:scale-110 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                      <span className="text-gray-400">No Image</span>
-                    </div>
-                  )}
-                  {image.caption && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">
-                      <p className="text-sm">{image.caption}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
+            <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+              {vehicle.gallery.map((image: any, idx: number) => {
+                // Create varied aspect ratios for masonry effect
+                const aspectRatios = ['aspect-square', 'aspect-[4/3]', 'aspect-[3/4]', 'aspect-[16/9]', 'aspect-[9/16]']
+                const aspectClass = aspectRatios[idx % aspectRatios.length]
+                
+                return (
+                  <div key={idx} className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6 hover:shadow-xl transition-shadow duration-300`}>
+                    {image.asset && image.asset.url ? (
+                      <Image
+                        src={image.asset.url}
+                        alt={image.alt || `${vehicle.title} Gallery Image ${idx + 1}`}
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                        <span className="text-gray-400">No Image</span>
+                      </div>
+                    )}
+                    {image.caption && (
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-4">
+                        <p className="text-sm font-medium">{image.caption}</p>
+                      </div>
+                    )}
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300 rounded-md" />
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
