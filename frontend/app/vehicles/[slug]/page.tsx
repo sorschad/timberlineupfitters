@@ -6,7 +6,6 @@ import {notFound} from 'next/navigation'
 import {sanityFetch} from '@/sanity/lib/live'
 import {client} from '@/sanity/lib/client'
 import {vehicleQuery, vehicleSlugs} from '@/sanity/lib/queries'
-import Breadcrumb from '@/app/components/Breadcrumb'
 import SpecsTable from '@/app/components/SpecsTable'
 import WranglerGallery from '@/app/vehicles/WranglerGallery'
 
@@ -241,14 +240,6 @@ export default async function VehiclePage({params}: VehiclePageProps) {
         </section>
       )}
 
-      {/* Breadcrumb Navigation */}
-      <Breadcrumb 
-        items={[
-          { label: 'Home', href: '/' },
-          { label: 'Vehicles', href: '/vehicles' },
-          { label: vehicle.title, href: `/vehicles/${vehicle.slug.current}` }
-        ]} 
-      />
 
       {/* Specifications Section */}
       {vehicle.specifications && (
@@ -420,31 +411,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Ready to Make This Vehicle Yours?
-          </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Contact our team to get a quote or discuss customization options.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
-            >
-              Contact Us
-            </Link>
-            <Link
-              href="/custom-build"
-              className="bg-white hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-full font-semibold transition-all duration-300 border border-gray-200"
-            >
-              Custom Build
-            </Link>
-          </div>
-        </div>
-      </section>
+      
     </div>
   )
 }
