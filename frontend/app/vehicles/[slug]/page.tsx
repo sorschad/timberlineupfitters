@@ -142,6 +142,8 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             </div>
           </div>
         </section>
+        
+
         {/* Gallery on solid brand orange with reduced top padding to avoid any gaps */}
         <section id="wrangler-gallery" className="pt-6 md:pt-10 pb-24 bg-[#ff8c42]">
           <WranglerGallery />
