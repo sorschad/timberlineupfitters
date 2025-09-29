@@ -31,27 +31,29 @@ export default function WranglerGallery() {
             </div>
           </div>
 
-          {/* Thumbnail Column */}
-          <div className="space-y-3">
-            {galleryImages.map((image, index) => (
-              <button
-                key={image.id}
-                onClick={() => setActiveImage(index)}
-                className={`w-full relative aspect-[16/10] rounded-xl overflow-hidden transition-all duration-300 ${
-                  activeImage === index 
-                    ? 'ring-2 ring-white/50 scale-105' 
-                    : 'hover:scale-105 hover:ring-1 hover:ring-white/30'
-                }`}
-                onMouseEnter={() => setActiveImage(index)}
-                aria-label={`Show ${image.alt}`}
-              >
-                <div className="absolute inset-0 bg-center bg-cover" style={{backgroundImage: `url(${image.src})`}} />
-                <div className="absolute inset-0 bg-black/20" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-white/70 text-xs font-semibold">{index + 1}</span>
-                </div>
-              </button>
-            ))}
+          {/* Thumbnail Masonry (right) */}
+          <div className="grid grid-cols-2 gap-3 auto-rows-[7rem] sm:auto-rows-[8rem]">
+            {galleryImages.map((image, index) => {
+              const isTall = index % 3 === 0 // every 3rd image taller for masonry feel
+              return (
+                <button
+                  key={image.id}
+                  onClick={() => setActiveImage(index)}
+                  className={`relative w-full rounded-xl overflow-hidden transition-all duration-300 ${
+                    isTall ? 'row-span-2' : 'row-span-1'
+                  } ${
+                    activeImage === index 
+                      ? 'ring-2 ring-white/50 scale-[1.02]' 
+                      : 'hover:scale-[1.02] hover:ring-1 hover:ring-white/30'
+                  }`}
+                  onMouseEnter={() => setActiveImage(index)}
+                  aria-label={`Show ${image.alt}`}
+                >
+                  <div className="absolute inset-0 bg-center bg-cover" style={{backgroundImage: `url(${image.src})`}} />
+                  <div className="absolute inset-0 bg-black/15" />
+                </button>
+              )
+            })}
           </div>
         </div>
       </div>
