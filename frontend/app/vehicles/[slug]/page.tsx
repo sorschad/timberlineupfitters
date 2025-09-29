@@ -111,20 +111,40 @@ export default async function VehiclePage({params}: VehiclePageProps) {
                 Built for life. Feels like comfort. Ocean-inspired Alpine edition Wrangler with premium materials and long-range adventures in mind.
               </p>
               <div className="mt-8">
-                <button className="inline-flex items-center bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
+                <a href="#wrangler-gallery" className="inline-flex items-center bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
                   Explore
-                </button>
+                </a>
               </div>
             </div>
 
-            {/* Stat badges removed per request */}
+            {/* Feature badges */}
+          </div>
+          {/* Glassy feature pills row */}
+          <div className="relative z-10 container pb-8">
+            <div className="mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+              {[
+                'Unique Ocean Design',
+                'Alpine Sound',
+                'Katzkin Leather',
+                'Rebel Offroad Bumper',
+                'Performance Suspension',
+                'Upgraded Wheels & Tires',
+              ].map((label, idx) => (
+                <div
+                  key={label}
+                  className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl px-5 py-4 md:px-6 md:py-5 shadow-[0_6px_18px_rgba(0,0,0,0.18)] text-center text-white flex items-center justify-center animate-scale-in transition-transform duration-300 hover:-translate-y-1 hover:bg-white/15 hover:shadow-[0_8px_22px_rgba(0,0,0,0.20)]"
+                  style={{animationDelay: `${idx * 90}ms`}}
+                >
+                  <span className="font-semibold tracking-tight">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
-        {/* Seamless orange bridge into gallery */}
-        <div className="-mt-16 h-20 bg-gradient-to-b from-transparent to-[#ff8c42]" />
-
         {/* Gallery on solid brand orange with reduced top padding to avoid any gaps */}
-        <section className="pt-6 md:pt-10 pb-24 bg-[#ff8c42]">
+        <section id="wrangler-gallery" className="pt-6 md:pt-10 pb-24 bg-[#ff8c42]">
           <WranglerGallery />
         </section>
         </>

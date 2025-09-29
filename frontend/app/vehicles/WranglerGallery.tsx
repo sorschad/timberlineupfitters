@@ -24,36 +24,52 @@ export default function WranglerGallery() {
   const current = galleryImages[activeImage]
 
   return (
-    <section className="py-16 md:py-24 bg-[#ff8c42]/40">
-      <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <section>
+      <div className="container max-w-8xl mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
           {/* Main Image */}
           <div className="lg:col-span-2">
-            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-[#13232b] to-[#0b1419] border border-white/10">
-              <Image src={current.src} alt={current.alt} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 66vw" priority />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
-              <div className="absolute bottom-4 left-4 text-white">
-                <p className="text-sm opacity-80">{current.alt}</p>
+            <div className="relative aspect-[4/3] lg:aspect-auto lg:h-[520px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#13232b] to-[#0b1419] border-2 border-white/20 shadow-2xl">
+              <Image 
+                src={current.src} 
+                alt={current.alt} 
+                fill 
+                className="object-cover transition-transform duration-500 hover:scale-105" 
+                sizes="(max-width: 1024px) 100vw, 66vw" 
+                priority 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+              <div className="absolute bottom-6 left-6 text-white">
+                <p className="text-base font-medium opacity-90 drop-shadow-lg">{current.alt}</p>
               </div>
             </div>
           </div>
 
-          {/* Top 4 thumbnails (equal squares) */}
-          <div className="grid grid-cols-2 gap-3 content-start">
+          {/* Right column thumbnails - stretch to match main image height on lg */}
+          <div className="grid grid-cols-2 lg:grid-cols-1 lg:grid-rows-2 gap-3 lg:h-[520px]">
             {galleryImages.slice(0, 4).map((image, index) => (
               <button
                 key={image.id}
                 onClick={() => setActiveImage(index)}
-                className={`relative w-full aspect-square rounded-xl overflow-hidden transition-all duration-300 ${
+                className={`relative w-full aspect-square lg:aspect-auto lg:h-full rounded-xl overflow-hidden transition-all duration-300 shadow-lg ${
                   activeImage === index 
-                    ? 'ring-2 ring-white/50 scale-[1.02]' 
-                    : 'hover:scale-[1.02] hover:ring-1 hover:ring-white/30'
+                    ? 'ring-3 ring-white/70 scale-[1.05] shadow-2xl' 
+                    : 'hover:scale-[1.05] hover:ring-2 hover:ring-white/40 hover:shadow-xl'
                 }`}
                 onMouseEnter={() => setActiveImage(index)}
                 aria-label={`Show ${image.alt}`}
               >
-                <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="140px" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent" />
+                <Image 
+                  src={image.src} 
+                  alt={image.alt} 
+                  fill 
+                  className="object-cover transition-transform duration-300" 
+                  sizes="(max-width: 1024px) 50vw, (min-width: 1024px) 33vw" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent" />
+                {activeImage === index && (
+                  <div className="absolute inset-0 bg-white/10" />
+                )}
               </button>
             ))}
           </div>
@@ -67,16 +83,25 @@ export default function WranglerGallery() {
               <button
                 key={image.id}
                 onClick={() => setActiveImage(index)}
-                className={`relative w-full aspect-square rounded-xl overflow-hidden transition-all duration-300 ${
+                className={`relative w-full aspect-square rounded-xl overflow-hidden transition-all duration-300 shadow-lg ${
                   activeImage === index 
-                    ? 'ring-2 ring-white/50 scale-[1.02]' 
-                    : 'hover:scale-[1.02] hover:ring-1 hover:ring-white/30'
+                    ? 'ring-3 ring-white/70 scale-[1.05] shadow-2xl' 
+                    : 'hover:scale-[1.05] hover:ring-2 hover:ring-white/40 hover:shadow-xl'
                 }`}
                 onMouseEnter={() => setActiveImage(index)}
                 aria-label={`Show ${image.alt}`}
               >
-                <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="140px" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent" />
+                <Image 
+                  src={image.src} 
+                  alt={image.alt} 
+                  fill 
+                  className="object-cover transition-transform duration-300" 
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent" />
+                {activeImage === index && (
+                  <div className="absolute inset-0 bg-white/10" />
+                )}
               </button>
             )
           })}
