@@ -9,7 +9,6 @@ import {vehicleQuery, vehicleSlugs} from '@/sanity/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import SpecsTable from '@/app/components/SpecsTable'
 import WranglerGallery from '@/app/vehicles/WranglerGallery'
-import SlimImageCarousel from '@/app/vehicles/SlimImageCarousel'
 
 interface Vehicle {
   _id: string
@@ -121,11 +120,8 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             {/* Stat badges removed per request */}
           </div>
         </section>
-        {/* Seamless orange bridge into slider */}
-        <div className="-mt-24 h-16 bg-gradient-to-b from-transparent to-[#ff8c42]" />
-
-        {/* Slim, image-only slider */}
-        <SlimImageCarousel />
+        {/* Seamless orange bridge into gallery */}
+        <div className="-mt-16 h-20 bg-gradient-to-b from-transparent to-[#ff8c42]" />
 
         {/* Gallery on solid brand orange with reduced top padding to avoid any gaps */}
         <section className="pt-6 md:pt-10 pb-24 bg-[#ff8c42]">
