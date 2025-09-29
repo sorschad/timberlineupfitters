@@ -1,20 +1,24 @@
 "use client"
 
 import {useState} from 'react'
+import Image from 'next/image'
 
 export default function WranglerGallery() {
   const [activeImage, setActiveImage] = useState(0)
+  // Use existing public images to avoid 404s until real assets are provided
+  const fallbackA = '/images/tile-1-black.png'
+  const fallbackB = '/images/tile-grid-black.png'
   const galleryImages = [
-    { id: 0, src: '/images/gallery/jeep-ocean-1.jpg', alt: 'Jeep Wrangler Alpine Ocean - Exterior View' },
-    { id: 1, src: '/images/gallery/jeep-ocean-2.jpg', alt: 'Jeep Wrangler Alpine Ocean - Interior' },
-    { id: 2, src: '/images/gallery/jeep-ocean-3.jpg', alt: 'Jeep Wrangler Alpine Ocean - Dashboard' },
-    { id: 3, src: '/images/gallery/jeep-ocean-4.jpg', alt: 'Jeep Wrangler Alpine Ocean - Wheels' },
-    { id: 4, src: '/images/gallery/jeep-ocean-5.jpg', alt: 'Jeep Wrangler Alpine Ocean - Side View' },
-    { id: 5, src: '/images/gallery/jeep-ocean-6.jpg', alt: 'Jeep Wrangler Alpine Ocean - Adventure' },
-    { id: 6, src: '/images/gallery/jeep-ocean-7.jpg', alt: 'Jeep Wrangler Alpine Ocean - Overland Setup' },
-    { id: 7, src: '/images/gallery/jeep-ocean-8.jpg', alt: 'Jeep Wrangler Alpine Ocean - Detail Stitching' },
-    { id: 8, src: '/images/gallery/jeep-ocean-9.jpg', alt: 'Jeep Wrangler Alpine Ocean - Rear Cargo' },
-    { id: 9, src: '/images/gallery/jeep-ocean-10.jpg', alt: 'Jeep Wrangler Alpine Ocean - Night Shot' }
+    { id: 0, src: fallbackA, alt: 'Wrangler Alpine Ocean - Hero' },
+    { id: 1, src: fallbackB, alt: 'Wrangler Alpine Ocean - Interior' },
+    { id: 2, src: fallbackA, alt: 'Wrangler Alpine Ocean - Dashboard' },
+    { id: 3, src: fallbackB, alt: 'Wrangler Alpine Ocean - Wheels' },
+    { id: 4, src: fallbackA, alt: 'Wrangler Alpine Ocean - Side View' },
+    { id: 5, src: fallbackB, alt: 'Wrangler Alpine Ocean - Adventure' },
+    { id: 6, src: fallbackA, alt: 'Wrangler Alpine Ocean - Overland Setup' },
+    { id: 7, src: fallbackB, alt: 'Wrangler Alpine Ocean - Detail Stitching' },
+    { id: 8, src: fallbackA, alt: 'Wrangler Alpine Ocean - Rear Cargo' },
+    { id: 9, src: fallbackB, alt: 'Wrangler Alpine Ocean - Night Shot' }
   ]
 
   const current = galleryImages[activeImage]
@@ -26,8 +30,7 @@ export default function WranglerGallery() {
           {/* Main Image */}
           <div className="lg:col-span-2">
             <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-[#13232b] to-[#0b1419] border border-white/10">
-              {/* Placeholder main image box; replace with next/image if real URLs exist */}
-              <div className="absolute inset-0 bg-center bg-cover" style={{backgroundImage: `url(${current.src})`}} />
+              <Image src={current.src} alt={current.alt} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 66vw" priority />
               <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
               <div className="absolute bottom-4 left-4 text-white">
                 <p className="text-sm opacity-80">{current.alt}</p>
@@ -49,7 +52,7 @@ export default function WranglerGallery() {
                 onMouseEnter={() => setActiveImage(index)}
                 aria-label={`Show ${image.alt}`}
               >
-                <div className="absolute inset-0 bg-center bg-cover" style={{backgroundImage: `url(${image.src})`}} />
+                <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="140px" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent" />
               </button>
             ))}
@@ -72,7 +75,7 @@ export default function WranglerGallery() {
                 onMouseEnter={() => setActiveImage(index)}
                 aria-label={`Show ${image.alt}`}
               >
-                <div className="absolute inset-0 bg-center bg-cover" style={{backgroundImage: `url(${image.src})`}} />
+                <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="140px" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent" />
               </button>
             )
