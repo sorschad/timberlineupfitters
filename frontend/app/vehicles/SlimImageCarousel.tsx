@@ -62,8 +62,10 @@ export default function SlimImageCarousel() {
           </button>
 
           {/* Slider */}
-          <div className="relative h-[200px] sm:h-[260px] overflow-visible" ref={scrollerRef}>
-            <div className="absolute inset-0 flex items-center justify-center [perspective:1000px]">
+          <div className="relative h-[260px] sm:h-[320px] overflow-visible" ref={scrollerRef}>
+            {/* Ground/floor glow for 3D feel */}
+            <div className="pointer-events-none absolute left-0 right-0 bottom-0 h-24 bg-gradient-to-t from-black/20 via-black/10 to-transparent" />
+            <div className="absolute inset-0 flex items-center justify-center [perspective:1200px]">
               <div className="relative w-full h-full">
                 {images.map((src, i) => {
                   // compute relative position in circular list so neighbors wrap around
@@ -72,27 +74,34 @@ export default function SlimImageCarousel() {
                   if (raw > len / 2) raw -= len
                   if (raw < -len / 2) raw += len
                   const isActive = raw === 0
-                  const translateX = raw * 220 // px per step
-                  const rotateY = -raw * 14 // deg
-                  const scale = isActive ? 1 : 0.85
-                  const opacity = isActive ? 1 : 0.35
+                  const translateX = raw * 240 // px per step
+                  const rotateY = -raw * 20 // deg
+                  const translateZ = isActive ? 120 : -60 // depth
+                  const scale = isActive ? 1.02 : 0.86
+                  const opacity = isActive ? 1 : 0.28
                   const zIndex = 50 - Math.abs(raw)
                   return (
                     <div
                       key={i}
                       ref={(el) => { if (el) itemRefs.current[i] = el }}
-                      className="absolute left-1/2 top-1/2 rounded-2xl overflow-hidden border bg-black/20 will-change-transform shadow-xl"
+                      className="absolute left-1/2 top-1/2 will-change-transform"
                       style={{
-                        width: isActive ? 520 : 300,
-                        height: isActive ? 240 : 160,
-                        transform: `translate3d(${translateX}px, -50%, 0) rotateY(${rotateY}deg) scale(${scale})`,
+                        width: isActive ? 560 : 320,
+                        height: isActive ? 280 : 180,
+                        transform: `translate3d(${translateX}px, -50%, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
                         opacity,
                         zIndex,
-                        transformStyle: 'preserve-3d',
-                        borderColor: isActive ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)'
+                        transformStyle: 'preserve-3d'
                       }}
                     >
-                      <Image src={src} alt={`slider-${i}`} fill className="object-cover" sizes="(max-width: 1024px) 90vw, 520px" />
+                      {/* Card shell */}
+                      <div className="relative w-full h-full rounded-2xl bg-white shadow-[0_30px_60px_rgba(0,0,0,0.35)] border border-white/20 overflow-hidden">
+                        <Image src={src} alt={`slider-${i}`} fill className="object-cover" sizes="(max-width: 1024px) 90vw, 560px" />
+                        {/* Soft inner vignette */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+                      </div>
+                      {/* Floor shadow */}
+                      <div className="pointer-events-none absolute left-1/2 top-full -translate-x-1/2 -mt-2 w-[70%] h-6 rounded-full blur-xl bg-black/40 opacity-40" />
                     </div>
                   )
                 })}
