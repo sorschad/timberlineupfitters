@@ -95,8 +95,8 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             backgroundRepeat: 'no-repeat'
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-[#061421]/90" />
-          <div className="relative z-10 container pt-28 pb-24">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-[#061421]/90" />
+          <div className="relative z-10 container pt-36 pb-32 min-h-[90vh] md:min-h-[100vh] flex items-end">
             <div className="max-w-3xl">
               <p className="uppercase tracking-[0.18em] text-white/80 text-sm mb-2">{vehicle.modelYear} {vehicle.model}</p>
               <h1 className="text-5xl sm:text-6xl md:text-7xl font-black leading-[1.05] drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
@@ -137,6 +137,25 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             </div>
           </div>
         </section>
+        {/* Orange fade divider */}
+        <div className="h-12 bg-gradient-to-b from-transparent via-[#ff8c42]/20 to-[#ff8c42]/40" />
+
+        {/* Modern gallery with placeholders */}
+        <section className="py-16 md:py-24 bg-[#ff8c42]/40">
+          <div className="container">
+            <div className="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              {Array.from({length: 6}).map((_, i) => (
+                <div key={i} className={`${i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''} relative rounded-2xl overflow-hidden group bg-white/5 border border-white/10`}> 
+                  <div className="aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] bg-gradient-to-br from-[#13232b] to-[#0b1419]" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Early return to skip the default sections for this special layout */}
+        <></>
       ) : (
         <section 
           className="relative py-40 text-white overflow-hidden"
