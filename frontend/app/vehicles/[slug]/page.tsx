@@ -2,13 +2,13 @@ import type {Metadata} from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import {notFound} from 'next/navigation'
-import {useState} from 'react'
 
 import {sanityFetch} from '@/sanity/lib/live'
 import {client} from '@/sanity/lib/client'
 import {vehicleQuery, vehicleSlugs} from '@/sanity/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import SpecsTable from '@/app/components/SpecsTable'
+import WranglerGallery from '@/app/vehicles/WranglerGallery'
 
 interface Vehicle {
   _id: string
@@ -83,57 +83,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
     lowerTitle.includes('ocean')
   )
 
-  // Gallery component for Wrangler Alpine Ocean
-  const WranglerGallery = () => {
-    const [activeImage, setActiveImage] = useState(0)
-    const galleryImages = [
-      { id: 0, src: '/images/gallery/jeep-ocean-1.jpg', alt: 'Jeep Wrangler Alpine Ocean - Exterior View' },
-      { id: 1, src: '/images/gallery/jeep-ocean-2.jpg', alt: 'Jeep Wrangler Alpine Ocean - Interior' },
-      { id: 2, src: '/images/gallery/jeep-ocean-3.jpg', alt: 'Jeep Wrangler Alpine Ocean - Dashboard' },
-      { id: 3, src: '/images/gallery/jeep-ocean-4.jpg', alt: 'Jeep Wrangler Alpine Ocean - Wheels' },
-      { id: 4, src: '/images/gallery/jeep-ocean-5.jpg', alt: 'Jeep Wrangler Alpine Ocean - Side View' },
-      { id: 5, src: '/images/gallery/jeep-ocean-6.jpg', alt: 'Jeep Wrangler Alpine Ocean - Adventure' }
-    ]
-
-    return (
-      <section className="py-16 md:py-24 bg-[#ff8c42]/40">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Main Image */}
-            <div className="lg:col-span-2">
-              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-[#13232b] to-[#0b1419] group">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <p className="text-sm opacity-80">Image {activeImage + 1} of {galleryImages.length}</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Thumbnail Grid */}
-            <div className="space-y-3">
-              {galleryImages.map((image, index) => (
-                <button
-                  key={image.id}
-                  onClick={() => setActiveImage(index)}
-                  className={`w-full relative aspect-[16/10] rounded-xl overflow-hidden transition-all duration-300 ${
-                    activeImage === index 
-                      ? 'ring-2 ring-white/50 scale-105' 
-                      : 'hover:scale-105 hover:ring-1 hover:ring-white/30'
-                  }`}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#13232b] to-[#0b1419]" />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white/60 text-sm font-medium">Image {index + 1}</span>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    )
-  }
+  // Client gallery is rendered via a separate component
 
   return (
     <div className="min-h-screen">
