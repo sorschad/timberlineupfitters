@@ -294,9 +294,17 @@ export const vehicleQuery = defineQuery(`
     "manufacturer": manufacturer->{
       _id,
       name,
-      logo
+      logo{
+        asset->{
+          url
+        }
+      }
     },
-    coverImage,
+    coverImage{
+      asset->{
+        url
+      }
+    },
     gallery,
     videoTour,
     specifications,
