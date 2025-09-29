@@ -223,18 +223,7 @@ export default function TacticalSelection() {
               </button>
             </div>
             
-            {/* Card Indicators */}
-            <div className="absolute top-8 left-8 flex gap-4">
-              {brandCards.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveCard(index)}
-                  className={`w-4 h-4 rounded-full transition-all duration-500 ease-out ${
-                    index === activeCard ? 'bg-[#ff8c42] scale-125 shadow-lg' : 'bg-white/50 hover:bg-white/70 hover:scale-110'
-                  }`}
-                />
-              ))}
-            </div>
+            
           </div>
         </div>
       </div>
