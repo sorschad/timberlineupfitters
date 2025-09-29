@@ -77,6 +77,19 @@ export default function TacticalSelection() {
     setIsAutoScrolling(true)
   }
 
+  // Smooth scroll on hash navigation when landing directly on /brands#...
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const { hash } = window.location
+    if (hash) {
+      const target = document.getElementById(hash.replace('#', ''))
+      if (target) {
+        // slight timeout to allow layout
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
+      }
+    }
+  }, [])
+
   return (
     <section className="min-h-screen bg-black flex items-center relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,10 +106,10 @@ export default function TacticalSelection() {
             
             {/* Main heading */}
             <div className="space-y-2">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase leading-tight">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase leading-[0.9]">
                 UNLOCK YOUR
               </h1>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#ff8c42] uppercase leading-tight">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#ff8c42] uppercase leading-[0.9]">
                 TACTICAL POTENTIAL
               </h1>
             </div>
@@ -137,11 +150,11 @@ export default function TacticalSelection() {
                   zIndex = 30
                   opacity = 1
                 } else if (isNext) {
-                  transform = 'translateX(100px) translateY(-40px) rotateY(-25deg) scale(0.8)'
+                  transform = 'translateX(180px) translateY(-40px) rotateY(-25deg) scale(0.8)'
                   zIndex = 20
                   opacity = 0.6
                 } else if (isPrev) {
-                  transform = 'translateX(-100px) translateY(-40px) rotateY(25deg) scale(0.8)'
+                  transform = 'translateX(-180px) translateY(-40px) rotateY(25deg) scale(0.8)'
                   zIndex = 10
                   opacity = 0.4
                 } else {
@@ -160,7 +173,21 @@ export default function TacticalSelection() {
                       opacity,
                       transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
-                    onClick={() => setActiveCard(index)}
+                    onClick={() => {
+                      // If we're on the brands page, smooth scroll to the section; otherwise navigate to the hash
+                      if (typeof window !== 'undefined') {
+                        const targetId = card.id
+                        const isOnBrandsPage = window.location.pathname === '/brands'
+                        if (isOnBrandsPage) {
+                          const el = document.getElementById(targetId)
+                          if (el) {
+                            el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                          }
+                        } else {
+                          window.location.href = `/brands#${targetId}`
+                        }
+                      }
+                    }}
                   >
                     <Image
                       src={card.image}
@@ -171,16 +198,6 @@ export default function TacticalSelection() {
                     
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                    
-                    {/* Category tag */}
-                    <div className="absolute top-4 right-4">
-                      <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-2">
-                        <div className="w-2 h-2 bg-[#ff8c42] rounded-full"></div>
-                        <span className="text-black text-xs font-semibold uppercase tracking-wide">
-                          {card.category}
-                        </span>
-                      </div>
-                    </div>
                     
                     {/* Content */}
                     <div className="absolute bottom-10 left-10 right-10">

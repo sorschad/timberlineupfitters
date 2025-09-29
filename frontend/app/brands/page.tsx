@@ -15,7 +15,7 @@ export default function BrandsPage() {
       <TacticalSelection />
 
       {/* Alpine + RebelX Section */}
-      <section id="alpine-rebelx" className="py-20 lg:py-32 bg-white">
+      <section id="alpine" className="py-20 lg:py-32 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 animate-fade-in-left">
@@ -68,7 +68,7 @@ export default function BrandsPage() {
       </section>
 
       {/* TSport Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <section id="tsport" className="py-20 lg:py-32 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative order-2 lg:order-1 animate-fade-in-left">
@@ -129,7 +129,7 @@ export default function BrandsPage() {
       </section>
 
       {/* Timberline Brands Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-[#241e16] to-[#1a130e] text-white">
+      <section id="timberline-elite" className="py-20 lg:py-32 bg-gradient-to-br from-[#241e16] to-[#1a130e] text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 animate-fade-in-left">
