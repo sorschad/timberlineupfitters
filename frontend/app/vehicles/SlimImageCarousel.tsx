@@ -70,17 +70,17 @@ export default function SlimImageCarousel() {
             ref={scrollerRef}
             className="overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory px-6"
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6 py-2">
               {images.map((src, i) => {
                 const isActive = i === current
                 return (
                   <div
                     key={i}
                     ref={(el) => { if (el) itemRefs.current[i] = el }}
-                    className={`snap-center shrink-0 w-[280px] sm:w-[340px] h-[140px] sm:h-[180px] rounded-2xl overflow-hidden border bg-black/20 transition-all duration-300 will-change-transform ${
+                    className={`snap-center shrink-0 rounded-2xl overflow-hidden border bg-black/20 transition-all duration-300 will-change-transform ${
                       isActive
-                        ? 'scale-110 opacity-100 border-white/30 shadow-2xl shadow-black/40 z-10'
-                        : 'scale-95 opacity-60 border-white/10 shadow-md'
+                        ? 'w-[420px] sm:w-[520px] h-[180px] sm:h-[240px] opacity-100 border-white/30 shadow-2xl shadow-black/40 z-10'
+                        : 'w-[200px] sm:w-[240px] h-[110px] sm:h-[150px] opacity-40 border-white/10 shadow-md'
                     }`}
                   >
                     <Image src={src} alt={`slider-${i}`} width={640} height={340} className="h-full w-full object-cover" />
