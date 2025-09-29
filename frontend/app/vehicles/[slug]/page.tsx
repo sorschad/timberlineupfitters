@@ -86,6 +86,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
     <div className="min-h-screen">
       {/* Hero Section */}
       {isWranglerAlpineOcean ? (
+        <>
         <section
           className="relative text-white overflow-hidden"
           style={{
@@ -153,9 +154,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             </div>
           </div>
         </section>
-
-        {/* Early return to skip the default sections for this special layout */}
-        <></>
+        </>
       ) : (
         <section 
           className="relative py-40 text-white overflow-hidden"
