@@ -77,10 +77,10 @@ export default function SlimImageCarousel() {
                   <div
                     key={i}
                     ref={(el) => { if (el) itemRefs.current[i] = el }}
-                    className={`snap-center shrink-0 rounded-2xl overflow-hidden border bg-black/20 transition-all duration-300 ${
+                    className={`snap-center shrink-0 w-[280px] sm:w-[340px] h-[140px] sm:h-[180px] rounded-2xl overflow-hidden border bg-black/20 transition-all duration-300 will-change-transform ${
                       isActive
-                        ? 'w-[320px] sm:w-[380px] h-[160px] sm:h-[200px] opacity-100 border-white/30 shadow-2xl shadow-black/40 z-10'
-                        : 'w-[220px] sm:w-[260px] h-[110px] sm:h-[140px] opacity-60 border-white/10 shadow-md'
+                        ? 'scale-110 opacity-100 border-white/30 shadow-2xl shadow-black/40 z-10'
+                        : 'scale-95 opacity-60 border-white/10 shadow-md'
                     }`}
                   >
                     <Image src={src} alt={`slider-${i}`} width={640} height={340} className="h-full w-full object-cover" />
