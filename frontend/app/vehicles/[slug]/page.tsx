@@ -75,96 +75,160 @@ export default async function VehiclePage({params}: VehiclePageProps) {
     notFound()
   }
 
+  const lowerTitle = `${vehicle.title || ''} ${vehicle.model || ''} ${(vehicle.tags || []).join(' ')}`.toLowerCase()
+  const isWranglerAlpineOcean = (
+    (vehicle.manufacturer?.name || '').toLowerCase().includes('jeep') &&
+    (vehicle.model || '').toLowerCase().includes('wrangler') &&
+    lowerTitle.includes('ocean')
+  )
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section 
-        className="relative py-40 text-white overflow-hidden"
-        style={{
-          backgroundImage: vehicle.coverImage && vehicle.coverImage.asset && vehicle.coverImage.asset.url ? `url(${vehicle.coverImage.asset.url})` : 'linear-gradient(to bottom right, #1f2937, #111827, #000000)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        {/* Background Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70" />
-        
-        <div className="relative z-10 container">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Vehicle Info */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                {vehicle.manufacturer.logo && vehicle.manufacturer.logo.asset && vehicle.manufacturer.logo.asset.url && (
-                  <Image
-                    src={vehicle.manufacturer.logo.asset.url}
-                    alt={`${vehicle.manufacturer.name} Logo`}
-                    width={80}
-                    height={80}
-                    className="object-contain"
-                  />
-                )}
-                <div>
-                  <h1 className="text-4xl md:text-6xl font-bold mb-2">
-                    {vehicle.title}
-                  </h1>
-                  <p className="text-xl text-gray-300">
-                    {vehicle.manufacturer.name} • {vehicle.modelYear}
-                  </p>
-                </div>
-              </div>
-              
-              {/* Key Stats */}
-              <div className="grid grid-cols-3 gap-6 mb-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-1">
-                    {vehicle.modelYear}
-                  </div>
-                  <div className="text-sm text-gray-300">Model Year</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-1 capitalize">
-                    {vehicle.vehicleType}
-                  </div>
-                  <div className="text-sm text-gray-300">Vehicle Type</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-1">
-                    {vehicle.trim || 'Base'}
-                  </div>
-                  <div className="text-sm text-gray-300">Trim Level</div>
-                </div>
-              </div>
-              
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
-                  Get Quote
+      {isWranglerAlpineOcean ? (
+        <section
+          className="relative text-white overflow-hidden"
+          style={{
+            backgroundImage: vehicle.coverImage && vehicle.coverImage.asset && vehicle.coverImage.asset.url ? `url(${vehicle.coverImage.asset.url})` : 'linear-gradient(to bottom right, #1f2937, #111827, #000000)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-[#061421]/90" />
+          <div className="relative z-10 container pt-28 pb-24">
+            <div className="max-w-3xl">
+              <p className="uppercase tracking-[0.18em] text-white/80 text-sm mb-2">{vehicle.modelYear} {vehicle.model}</p>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-black leading-[1.05] drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
+                {vehicle.title}
+              </h1>
+              <p className="mt-4 text-white/80 text-lg max-w-xl">
+                Built for life. Feels like comfort. Ocean-inspired Alpine edition Wrangler with premium materials and long-range adventures in mind.
+              </p>
+              <div className="mt-8">
+                <button className="inline-flex items-center bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
+                  Explore
                 </button>
               </div>
             </div>
-            
-            {/* Vehicle Image */}
-            <div className="relative">
-              {vehicle.coverImage && vehicle.coverImage.asset && vehicle.coverImage.asset.url ? (
-                <Image
-                  src={vehicle.coverImage.asset.url}
-                  alt={vehicle.title}
-                  width={600}
-                  height={400}
-                  className="rounded-2xl shadow-2xl"
-                />
-              ) : (
-                <div className="bg-gray-800 rounded-2xl h-96 flex items-center justify-center">
-                  <span className="text-6xl font-bold text-gray-400">
-                    {vehicle.manufacturer.name.charAt(0)}
-                  </span>
-                </div>
-              )}
+
+            {/* Stat badges */}
+            <div className="mt-10 grid grid-cols-2 md:grid-cols-5 gap-3 max-w-5xl">
+              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 text-center">
+                <div className="text-white/80 text-sm">Model</div>
+                <div className="text-2xl font-bold">{vehicle.model || 'Wrangler'}</div>
+              </div>
+              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 text-center">
+                <div className="text-white/80 text-sm">Type</div>
+                <div className="text-2xl font-bold capitalize">{vehicle.vehicleType || 'SUV'}</div>
+              </div>
+              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 text-center">
+                <div className="text-white/80 text-sm">Year</div>
+                <div className="text-2xl font-bold">{vehicle.modelYear}</div>
+              </div>
+              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 text-center">
+                <div className="text-white/80 text-sm">Trim</div>
+                <div className="text-2xl font-bold">{vehicle.trim || 'Base'}</div>
+              </div>
+              <div className="hidden md:block backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 text-center">
+                <div className="text-white/80 text-sm">Brand</div>
+                <div className="text-2xl font-bold">Alpine</div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section 
+          className="relative py-40 text-white overflow-hidden"
+          style={{
+            backgroundImage: vehicle.coverImage && vehicle.coverImage.asset && vehicle.coverImage.asset.url ? `url(${vehicle.coverImage.asset.url})` : 'linear-gradient(to bottom right, #1f2937, #111827, #000000)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          {/* Background Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70" />
+          
+          <div className="relative z-10 container">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Vehicle Info */}
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  {vehicle.manufacturer.logo && vehicle.manufacturer.logo.asset && vehicle.manufacturer.logo.asset.url && (
+                    <Image
+                      src={vehicle.manufacturer.logo.asset.url}
+                      alt={`${vehicle.manufacturer.name} Logo`}
+                      width={80}
+                      height={80}
+                      className="object-contain"
+                    />
+                  )}
+                  <div>
+                    <h1 className="text-4xl md:text-6xl font-bold mb-2">
+                      {vehicle.title}
+                    </h1>
+                    <p className="text-xl text-gray-300">
+                      {vehicle.manufacturer.name} • {vehicle.modelYear}
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Key Stats */}
+                <div className="grid grid-cols-3 gap-6 mb-8">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-white mb-1">
+                      {vehicle.modelYear}
+                    </div>
+                    <div className="text-sm text-gray-300">Model Year</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-white mb-1 capitalize">
+                      {vehicle.vehicleType}
+                    </div>
+                    <div className="text-sm text-gray-300">Vehicle Type</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-white mb-1">
+                      {vehicle.trim || 'Base'}
+                    </div>
+                    <div className="text-sm text-gray-300">Trim Level</div>
+                  </div>
+                </div>
+                
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
+                    Get Quote
+                  </button>
+                  <button className="bg-white/20 hover:bg-white/30 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 border border-white/30">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+              
+              {/* Vehicle Image */}
+              <div className="relative">
+                {vehicle.coverImage && vehicle.coverImage.asset && vehicle.coverImage.asset.url ? (
+                  <Image
+                    src={vehicle.coverImage.asset.url}
+                    alt={vehicle.title}
+                    width={600}
+                    height={400}
+                    className="rounded-2xl shadow-2xl"
+                  />
+                ) : (
+                  <div className="bg-gray-800 rounded-2xl h-96 flex items-center justify-center">
+                    <span className="text-6xl font-bold text-gray-400">
+                      {vehicle.manufacturer.name.charAt(0)}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Breadcrumb Navigation */}
       <Breadcrumb 
