@@ -4,7 +4,7 @@ import Link from 'next/link'
 import BrandsLandingPageHeader from '@/app/components/BrandsLandingPageHeader'
 import PortableText from '@/app/components/PortableText'
 import {sanityFetch} from '@/sanity/lib/live'
-import {allBrandsQuery} from '@/sanity/lib/queries'
+import {allBrandsQuery, vehiclesByBrandQuery} from '@/sanity/lib/queries'
 import {AllBrandsQueryResult} from '@/sanity.types'
 import {urlForImage} from '@/sanity/lib/utils'
 
@@ -38,6 +38,19 @@ export default async function BrandsPage() {
     // If neither brand is in the order list, maintain original order
     return 0
   })
+
+  // Fetch vehicles for each brand
+  const brandsWithVehicles = await Promise.all(
+    sortedBrands?.map(async (brand) => {
+      const {data: vehicles} = await sanityFetch({
+        query: vehiclesByBrandQuery,
+        params: { brandId: brand._id },
+        perspective: 'published',
+        stega: false,
+      })
+      return { ...brand, vehicles: vehicles || [] }
+    }) || []
+  )
 
   const getBrandSectionClass = (index: number) => {
     switch (index % 3) {
@@ -78,13 +91,51 @@ export default async function BrandsPage() {
     }
   }
 
+  const getBrandColors = (brandSlug: string) => {
+    const slug = brandSlug.toLowerCase()
+    if (slug.includes('alpine')) {
+      return {
+        primary: 'from-blue-600 to-cyan-500',
+        accent: 'bg-blue-600',
+        text: 'text-blue-600',
+        border: 'border-blue-200',
+        bg: 'bg-blue-50'
+      }
+    } else if (slug.includes('tsport')) {
+      return {
+        primary: 'from-orange-500 to-red-500',
+        accent: 'bg-orange-500',
+        text: 'text-orange-500',
+        border: 'border-orange-200',
+        bg: 'bg-orange-50'
+      }
+    } else if (slug.includes('timberline')) {
+      return {
+        primary: 'from-[#ff8c42] to-[#d0ad66]',
+        accent: 'bg-[#ff8c42]',
+        text: 'text-[#ff8c42]',
+        border: 'border-[#ff8c42]/20',
+        bg: 'bg-[#ff8c42]/5'
+      }
+    }
+    return {
+      primary: 'from-gray-600 to-gray-500',
+      accent: 'bg-gray-600',
+      text: 'text-gray-600',
+      border: 'border-gray-200',
+      bg: 'bg-gray-50'
+    }
+  }
+
   return (
     <div className="min-h-screen bg-black">
       {/* Brands Landing Page Header */}
       <BrandsLandingPageHeader />
 
       {/* Dynamic Brand Sections */}
-      {sortedBrands?.map((brand: BrandWithSectionImage, index: number) => (
+      {brandsWithVehicles?.map((brand: BrandWithSectionImage & { vehicles: any[] }, index: number) => {
+        const brandColors = getBrandColors(brand.slug)
+        return (
         <section key={brand._id} id={brand.slug} className={getBrandSectionClass(index)}>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -184,9 +235,90 @@ export default async function BrandsPage() {
                 }`}></div>
               </div>
             </div>
+            
+            {/* Elegant Vehicle Showcase */}
+            {brand.vehicles && brand.vehicles.length > 0 && (
+              <div className="mt-20">
+                <div className="text-center mb-12">
+                  <h3 className={`text-3xl font-bold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'} mb-4`}>
+                    Featured {brand.name} Vehicles
+                  </h3>
+                  <div className={`w-24 h-1 mx-auto rounded-full bg-gradient-to-r ${brandColors.primary}`}></div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {brand.vehicles.slice(0, 6).map((vehicle: any, vehicleIndex: number) => (
+                    <div 
+                      key={vehicle._id}
+                      className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+                    >
+                      {/* Vehicle Image */}
+                      <div className="aspect-[4/3] relative overflow-hidden">
+                        {vehicle.coverImage?.asset?._ref ? (
+                          <Image
+                            src={urlForImage(vehicle.coverImage)?.width(800).height(600).fit('crop').auto('format').url() || ''}
+                            alt={vehicle.title}
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-700"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                            <span className="text-gray-500 text-sm">No image available</span>
+                          </div>
+                        )}
+                        
+                        {/* Elegant Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        {/* Vehicle Title Overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                          <h4 className="text-white text-lg font-semibold mb-2 line-clamp-2">
+                            {vehicle.title}
+                          </h4>
+                          <div className="flex items-center justify-between text-sm text-gray-300">
+                            <span>{vehicle.modelYear}</span>
+                            <span className="capitalize">{vehicle.vehicleType}</span>
+                          </div>
+                        </div>
+                        
+                        {/* Brand Accent Line */}
+                        <div className={`absolute top-4 left-4 w-1 h-12 ${brandColors.accent} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                      </div>
+                      
+                      {/* Elegant Card Footer */}
+                      <div className={`p-6 ${index % 3 === 0 ? 'bg-white' : 'bg-gray-900/50 backdrop-blur-sm'}`}>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h5 className={`font-semibold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'} text-sm mb-1`}>
+                              {vehicle.model}
+                            </h5>
+                            <p className={`text-xs ${index % 3 === 0 ? 'text-gray-600' : 'text-gray-400'}`}>
+                              {vehicle.trim || 'Premium Package'}
+                            </p>
+                          </div>
+                          <div className={`w-8 h-8 rounded-full ${brandColors.bg} flex items-center justify-center`}>
+                            <div className={`w-3 h-3 rounded-full ${brandColors.accent}`}></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* View More Button */}
+                {brand.vehicles.length > 6 && (
+                  <div className="text-center mt-12">
+                    <button className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 ${brandColors.accent} text-white shadow-lg hover:shadow-xl`}>
+                      View All {brand.name} Vehicles
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </section>
-      ))}
+        )
+      })}
     </div>
   )
 }

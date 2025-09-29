@@ -323,3 +323,22 @@ export const brandsWithSloganQuery = defineQuery(`
     ${brandFieldsWithSlogan}
   }
 `)
+
+// Vehicles by brand query
+export const vehiclesByBrandQuery = defineQuery(`
+  *[_type == "vehicle" && references($brandId) && defined(slug.current)] | order(modelYear desc, title asc) [0...6] {
+    _id,
+    title,
+    slug,
+    model,
+    vehicleType,
+    modelYear,
+    trim,
+    coverImage{
+      asset->{
+        _id,
+        url
+      }
+    }
+  }
+`)
