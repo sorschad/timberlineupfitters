@@ -48,6 +48,10 @@ const brandCards: BrandCard[] = [
 export default function TacticalSelection() {
   const [activeCard, setActiveCard] = useState(0)
   const [isAutoScrolling, setIsAutoScrolling] = useState(true)
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragStartX, setDragStartX] = useState<number | null>(null)
+  const [dragDeltaX, setDragDeltaX] = useState(0)
+  const [suppressClick, setSuppressClick] = useState(false)
 
   const nextCard = () => {
     setActiveCard((prev) => (prev + 1) % brandCards.length)
@@ -75,6 +79,50 @@ export default function TacticalSelection() {
 
   const handleMouseLeave = () => {
     setIsAutoScrolling(true)
+  }
+
+  // Drag/Swipe handlers
+  const getClientX = (e: MouseEvent | TouchEvent) => {
+    // @ts-ignore
+    if (e.touches && e.touches.length > 0) return e.touches[0].clientX
+    // @ts-ignore
+    if (e.changedTouches && e.changedTouches.length > 0) return e.changedTouches[0].clientX
+    // @ts-ignore
+    return (e as MouseEvent).clientX
+  }
+
+  const handlePointerDown = (e: React.MouseEvent | React.TouchEvent) => {
+    setIsAutoScrolling(false)
+    setIsDragging(true)
+    setSuppressClick(false)
+    const clientX = 'nativeEvent' in e ? getClientX(e.nativeEvent as unknown as MouseEvent | TouchEvent) : 0
+    setDragStartX(clientX)
+    setDragDeltaX(0)
+  }
+
+  const handlePointerMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isDragging || dragStartX === null) return
+    const clientX = 'nativeEvent' in e ? getClientX(e.nativeEvent as unknown as MouseEvent | TouchEvent) : 0
+    const delta = clientX - dragStartX
+    setDragDeltaX(delta)
+    if (Math.abs(delta) > 10) {
+      setSuppressClick(true)
+    }
+  }
+
+  const finishDrag = () => {
+    if (!isDragging) return
+    const threshold = 60
+    if (dragDeltaX <= -threshold) {
+      nextCard()
+    } else if (dragDeltaX >= threshold) {
+      prevCard()
+    }
+    setIsDragging(false)
+    setDragStartX(null)
+    setDragDeltaX(0)
+    // resume auto scroll after a moment
+    setTimeout(() => setIsAutoScrolling(true), 2000)
   }
 
   // Smooth scroll on hash navigation when landing directly on /brands#...
@@ -132,9 +180,15 @@ export default function TacticalSelection() {
           {/* Right Section - Layered 3D Cards */}
           <div className="relative h-[700px] flex items-center justify-center lg:absolute lg:right-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:w-[60%] lg:h-[600px]">
             {/* Card Stack */}
-            <div className="relative w-[500px] h-[600px]"
+            <div className="relative w-[500px] h-[600px] cursor-grab active:cursor-grabbing"
                  onMouseEnter={handleMouseEnter}
-                 onMouseLeave={handleMouseLeave}>
+                 onMouseLeave={(e) => { handleMouseLeave(); finishDrag() }}
+                 onMouseDown={handlePointerDown}
+                 onMouseMove={handlePointerMove}
+                 onMouseUp={finishDrag}
+                 onTouchStart={handlePointerDown}
+                 onTouchMove={handlePointerMove}
+                 onTouchEnd={finishDrag}>
               {/* Background Cards (3D Layered Effect) */}
               {brandCards.map((card, index) => {
                 const isActive = index === activeCard
@@ -174,6 +228,7 @@ export default function TacticalSelection() {
                       transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
                     onClick={() => {
+                      if (suppressClick) return
                       // If we're on the brands page, smooth scroll to the section; otherwise navigate to the hash
                       if (typeof window !== 'undefined') {
                         const targetId = card.id
