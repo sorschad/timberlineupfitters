@@ -100,8 +100,8 @@ export default async function VehiclePage({params}: VehiclePageProps) {
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-[#061421]/90" />
-          {/* Orange bleed at bottom of hero */}
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#ff8c42]/35 to-[#ff8c42]/60" />
+          {/* Orange bleed at bottom of hero (brand orange #ff8c42) */}
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-b from-transparent via-[#ff8c42]/80 to-[#ff8c42]" />
           <div className="relative z-10 container pt-36 pb-32 min-h-[90vh] md:min-h-[100vh] flex items-end">
             <div className="max-w-3xl">
               <p className="uppercase tracking-[0.18em] text-white/80 text-sm mb-2">{vehicle.modelYear} {vehicle.model}</p>
@@ -143,10 +143,13 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             </div>
           </div>
         </section>
-        {/* Orange fade divider (bleeds into hero) */}
-        <div className="-mt-10 h-20 bg-gradient-to-b from-transparent via-[#ff8c42]/45 to-[#ff8c42]/55" />
+        {/* Seamless orange bridge into gallery */}
+        <div className="-mt-24 h-24 bg-gradient-to-b from-transparent to-[#ff8c42]" />
 
-        <WranglerGallery />
+        {/* Gallery on solid brand orange with reduced top padding to avoid any gaps */}
+        <section className="pt-6 md:pt-10 pb-24 bg-[#ff8c42]">
+          <WranglerGallery />
+        </section>
         </>
       ) : (
         <section 
