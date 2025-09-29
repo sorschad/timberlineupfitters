@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import {notFound} from 'next/navigation'
+import {useState} from 'react'
 
 import {sanityFetch} from '@/sanity/lib/live'
 import {client} from '@/sanity/lib/client'
@@ -82,6 +83,58 @@ export default async function VehiclePage({params}: VehiclePageProps) {
     lowerTitle.includes('ocean')
   )
 
+  // Gallery component for Wrangler Alpine Ocean
+  const WranglerGallery = () => {
+    const [activeImage, setActiveImage] = useState(0)
+    const galleryImages = [
+      { id: 0, src: '/images/gallery/jeep-ocean-1.jpg', alt: 'Jeep Wrangler Alpine Ocean - Exterior View' },
+      { id: 1, src: '/images/gallery/jeep-ocean-2.jpg', alt: 'Jeep Wrangler Alpine Ocean - Interior' },
+      { id: 2, src: '/images/gallery/jeep-ocean-3.jpg', alt: 'Jeep Wrangler Alpine Ocean - Dashboard' },
+      { id: 3, src: '/images/gallery/jeep-ocean-4.jpg', alt: 'Jeep Wrangler Alpine Ocean - Wheels' },
+      { id: 4, src: '/images/gallery/jeep-ocean-5.jpg', alt: 'Jeep Wrangler Alpine Ocean - Side View' },
+      { id: 5, src: '/images/gallery/jeep-ocean-6.jpg', alt: 'Jeep Wrangler Alpine Ocean - Adventure' }
+    ]
+
+    return (
+      <section className="py-16 md:py-24 bg-[#ff8c42]/40">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Main Image */}
+            <div className="lg:col-span-2">
+              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-[#13232b] to-[#0b1419] group">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="text-sm opacity-80">Image {activeImage + 1} of {galleryImages.length}</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Thumbnail Grid */}
+            <div className="space-y-3">
+              {galleryImages.map((image, index) => (
+                <button
+                  key={image.id}
+                  onClick={() => setActiveImage(index)}
+                  className={`w-full relative aspect-[16/10] rounded-xl overflow-hidden transition-all duration-300 ${
+                    activeImage === index 
+                      ? 'ring-2 ring-white/50 scale-105' 
+                      : 'hover:scale-105 hover:ring-1 hover:ring-white/30'
+                  }`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#13232b] to-[#0b1419]" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-white/60 text-sm font-medium">Image {index + 1}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -141,19 +194,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
         {/* Orange fade divider */}
         <div className="h-12 bg-gradient-to-b from-transparent via-[#ff8c42]/20 to-[#ff8c42]/40" />
 
-        {/* Modern gallery with placeholders */}
-        <section className="py-16 md:py-24 bg-[#ff8c42]/40">
-          <div className="container">
-            <div className="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-              {Array.from({length: 6}).map((_, i) => (
-                <div key={i} className={`${i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''} relative rounded-2xl overflow-hidden group bg-white/5 border border-white/10`}> 
-                  <div className="aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] bg-gradient-to-br from-[#13232b] to-[#0b1419]" />
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <WranglerGallery />
         </>
       ) : (
         <section 
