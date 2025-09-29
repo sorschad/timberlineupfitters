@@ -7,7 +7,6 @@ export default function SlimImageCarousel() {
   const scrollerRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<HTMLDivElement[]>([])
   const [current, setCurrent] = useState(0)
-  const [tileSize, setTileSize] = useState(336) // approximate default (320 + 16 gap)
   const images = [
     '/images/tile-1-black.png',
     '/images/tile-grid-black.png',
@@ -16,26 +15,20 @@ export default function SlimImageCarousel() {
     '/images/tile-1-black.png',
   ]
 
-  // Measure tile size (including gap) once mounted
+  // Center the active card on mount and resize
   useEffect(() => {
-    const el = scrollerRef.current
-    const first = itemRefs.current[0]
-    if (el && first) {
-      const gap = 16 // gap-4
-      setTileSize(first.getBoundingClientRect().width + gap)
-    }
-    const onResize = () => {
-      const firstEl = itemRefs.current[0]
-      if (firstEl) setTileSize(firstEl.getBoundingClientRect().width + 16)
-    }
+    const onResize = () => scrollToIndex(current)
     window.addEventListener('resize', onResize)
+    scrollToIndex(0)
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
   const scrollToIndex = (index: number) => {
     const el = scrollerRef.current
-    if (!el) return
-    el.scrollTo({left: index * tileSize, behavior: 'smooth'})
+    const card = itemRefs.current[index]
+    if (!el || !card) return
+    const left = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2
+    el.scrollTo({left, behavior: 'smooth'})
   }
 
   const goPrev = () => {
@@ -75,17 +68,19 @@ export default function SlimImageCarousel() {
           {/* Slider */}
           <div
             ref={scrollerRef}
-            className="overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory"
+            className="overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory px-6"
           >
-            <div className="flex gap-4">
+            <div className="flex items-center gap-4">
               {images.map((src, i) => {
                 const isActive = i === current
                 return (
                   <div
                     key={i}
                     ref={(el) => { if (el) itemRefs.current[i] = el }}
-                    className={`snap-start shrink-0 w-[240px] sm:w-[300px] h-[120px] sm:h-[160px] rounded-2xl overflow-hidden border bg-black/20 transition-all duration-300 ${
-                      isActive ? 'scale-105 opacity-100 border-white/30 shadow-2xl shadow-black/40' : 'opacity-70 border-white/10 shadow-md'
+                    className={`snap-center shrink-0 rounded-2xl overflow-hidden border bg-black/20 transition-all duration-300 ${
+                      isActive
+                        ? 'w-[320px] sm:w-[380px] h-[160px] sm:h-[200px] opacity-100 border-white/30 shadow-2xl shadow-black/40 z-10'
+                        : 'w-[220px] sm:w-[260px] h-[110px] sm:h-[140px] opacity-60 border-white/10 shadow-md'
                     }`}
                   >
                     <Image src={src} alt={`slider-${i}`} width={640} height={340} className="h-full w-full object-cover" />
