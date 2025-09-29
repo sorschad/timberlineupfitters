@@ -210,36 +210,6 @@ export default async function VehiclePage({params}: VehiclePageProps) {
           </div>
         </section>
       )}
-
-
-      {/* Features Section */}
-      {vehicle.features && (
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
-              Features & Amenities
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {Object.entries(vehicle.features).map(([category, features]: [string, any]) => (
-                <div key={category} className="bg-white rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 capitalize">
-                    {category.replace(/([A-Z])/g, ' $1').trim()}
-                  </h3>
-                  <ul className="space-y-2">
-                    {features.map((feature: string, idx: number) => (
-                      <li key={idx} className="flex items-center text-gray-600">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-3" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
- 
     </div>
   )
 }
