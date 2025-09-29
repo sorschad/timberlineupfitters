@@ -14,468 +14,1681 @@
 
 // Source: schema.json
 export type CallToAction = {
-  _type: "callToAction";
-  heading: string;
-  text?: string;
-  buttonText?: string;
-  link?: Link;
-};
+  _type: 'callToAction'
+  heading: string
+  text?: string
+  buttonText?: string
+  link?: Link
+}
 
 export type Link = {
-  _type: "link";
-  linkType?: "href" | "page" | "brand";
-  href?: string;
+  _type: 'link'
+  linkType?: 'href' | 'page' | 'brand'
+  href?: string
   page?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "page";
-  };
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'page'
+  }
   brand?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "brand";
-  };
-  openInNewTab?: boolean;
-};
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'brand'
+  }
+  openInNewTab?: boolean
+}
 
 export type InfoSection = {
-  _type: "infoSection";
-  heading?: string;
-  subheading?: string;
+  _type: 'infoSection'
+  heading?: string
+  subheading?: string
   content?: Array<{
     children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
     markDefs?: Array<{
-      linkType?: "href" | "page" | "brand";
-      href?: string;
+      linkType?: 'href' | 'page' | 'brand'
+      href?: string
       page?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      };
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'page'
+      }
       brand?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "brand";
-      };
-      openInNewTab?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-};
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'brand'
+      }
+      openInNewTab?: boolean
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+}
 
 export type BlockContent = Array<{
   children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-  listItem?: "bullet" | "number";
+    marks?: Array<string>
+    text?: string
+    _type: 'span'
+    _key: string
+  }>
+  style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+  listItem?: 'bullet' | 'number'
   markDefs?: Array<{
-    linkType?: "href" | "page" | "brand";
-    href?: string;
+    linkType?: 'href' | 'page' | 'brand'
+    href?: string
     page?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    };
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'page'
+    }
     brand?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "brand";
-    };
-    openInNewTab?: boolean;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-}>;
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'brand'
+    }
+    openInNewTab?: boolean
+    _type: 'link'
+    _key: string
+  }>
+  level?: number
+  _type: 'block'
+  _key: string
+}>
 
-export type Settings = {
-  _id: string;
-  _type: "settings";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
+export type Vehicle = {
+  _id: string
+  _type: 'vehicle'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string
+  slug: Slug
+  vehicleType?: 'truck' | 'suv' | 'car' | 'van' | 'utility'
+  manufacturer: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'manufacturer'
+  }
+  model: string
+  trim?: string
+  modelYear: number
+  specifications?: {
+    engine?: Array<{
+      type?: string
+      horsepower?: number
+      torque?: number
+      fuelType?: 'Gasoline' | 'Diesel' | 'Hybrid' | 'Electric'
+      transmission?: string
+      _key: string
+    }>
+    drivetrain?: Array<string>
+    towingCapacity?: number
+    payloadCapacity?: number
+    fuelEconomy?: {
+      city?: number
+      highway?: number
+      combined?: number
+    }
+    bedLength?: '5.5 ft' | '6.5 ft' | '8 ft'
+    cabStyle?: 'Regular Cab' | 'SuperCab' | 'SuperCrew'
+  }
+  features?: {
+    exteriorFeatures?: Array<string>
+    interiorFeatures?: Array<string>
+    safetyFeatures?: Array<string>
+    technologyFeatures?: Array<string>
+    performanceFeatures?: Array<string>
+  }
+  coverImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  gallery?: Array<{
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    caption?: string
+    view?:
+      | 'Exterior Front'
+      | 'Exterior Rear'
+      | 'Exterior Side'
+      | 'Interior Dashboard'
+      | 'Interior Seats'
+      | 'Interior Back'
+      | 'Engine'
+      | 'Bed'
+      | 'Technology'
+    _type: 'image'
+    _key: string
+  }>
+  videoTour?: {
+    youtubeUrl?: string
+    thumbnail?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    description?: string
+  }
+  inventory?: {
+    stockNumber?: string
+    vin?: string
+    availability?: 'In Stock' | 'In Transit' | 'Available Soon' | 'Out of Stock' | 'Special Order'
+    location?: string
+    mileage?: number
+  }
+  customizationOptions?: Array<{
+    category?:
+      | 'Wheels & Tires'
+      | 'Suspension'
+      | 'Exterior Styling'
+      | 'Interior Upgrades'
+      | 'Performance'
+      | 'Lighting'
+      | 'Bed Accessories'
+      | 'Protection'
+    options?: Array<{
+      name?: string
+      price?: number
+      description?: string
+      image?: {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        media?: unknown
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+      }
+      _key: string
+    }>
+    _key: string
+  }>
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+    openGraphImage?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
+  }
   description?: Array<{
     children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'blockquote'
+    listItem?: 'bullet' | 'number'
     markDefs?: Array<{
-      linkType?: "href" | "page" | "brand";
-      href?: string;
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  tags?: Array<string>
+  publishedAt?: string
+  sidebarSortOrder?: number
+}
+
+export type Manufacturer = {
+  _id: string
+  _type: 'manufacturer'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  slug: Slug
+  logo?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  description?: string
+  heroImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  heroTitle?: string
+  heroSubtitle?: string
+  heroCtaText?: string
+  showcaseImages?: Array<{
+    model: string
+    image: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    altText?: string
+    _type: 'showcaseImage'
+    _key: string
+  }>
+  galleryImages?: Array<{
+    image: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    caption: string
+    category: 'adventure' | 'work' | 'lifestyle'
+    altText?: string
+    _type: 'galleryImage'
+    _key: string
+  }>
+  ctaTitle?: string
+  ctaDescription?: string
+  ctaStats?: Array<{
+    value: string
+    label: string
+    _type: 'stat'
+    _key: string
+  }>
+  additionalLinks?: Array<{
+    text: string
+    url: string
+    _type: 'link'
+    _key: string
+  }>
+  seoTitle?: string
+  seoDescription?: string
+  seoImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+}
+
+export type HomepageSettings = {
+  _id: string
+  _type: 'homepageSettings'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heroSlides?: Array<{
+    title?: string
+    subtitle?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      alt?: string
+      _type: 'image'
+    }
+    _key: string
+  }>
+}
+
+export type Settings = {
+  _id: string
+  _type: 'settings'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal'
+    listItem?: never
+    markDefs?: Array<{
+      linkType?: 'href' | 'page' | 'brand'
+      href?: string
       page?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      };
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'page'
+      }
       brand?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "brand";
-      };
-      openInNewTab?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'brand'
+      }
+      openInNewTab?: boolean
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
   ogImage?: {
     asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    metadataBase?: string;
-    _type: "image";
-  };
-};
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    metadataBase?: string
+    _type: 'image'
+  }
+  appLogo?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+}
 
 export type Page = {
-  _id: string;
-  _type: "page";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name: string;
-  slug: Slug;
-  heading: string;
-  subheading?: string;
-  pageBuilder?: Array<{
-    _key: string;
-  } & CallToAction | {
-    _key: string;
-  } & InfoSection>;
-};
+  _id: string
+  _type: 'page'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  slug: Slug
+  heading: string
+  subheading?: string
+  pageBuilder?: Array<
+    | ({
+        _key: string
+      } & CallToAction)
+    | ({
+        _key: string
+      } & InfoSection)
+  >
+}
 
 export type Brand = {
-  _id: string;
-  _type: "brand";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug: Slug;
-  content?: BlockContent;
-  excerpt?: string;
+  _id: string
+  _type: 'brand'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  slug: Slug
+  slogan?: string
+  manufacturers?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'manufacturer'
+  }>
+  description?: BlockContent
+  excerpt?: string
   coverImage: {
     asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  date?: string;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "person";
-  };
-};
-
-export type Person = {
-  _id: string;
-  _type: "person";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  firstName: string;
-  lastName: string;
-  picture: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  logo?: {
     asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-};
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  sectionImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  features?: Array<string>
+  launchDate?: string
+}
 
 export type SanityAssistInstructionTask = {
-  _type: "sanity.assist.instructionTask";
-  path?: string;
-  instructionKey?: string;
-  started?: string;
-  updated?: string;
-  info?: string;
-};
+  _type: 'sanity.assist.instructionTask'
+  path?: string
+  instructionKey?: string
+  started?: string
+  updated?: string
+  info?: string
+}
 
 export type SanityAssistTaskStatus = {
-  _type: "sanity.assist.task.status";
-  tasks?: Array<{
-    _key: string;
-  } & SanityAssistInstructionTask>;
-};
+  _type: 'sanity.assist.task.status'
+  tasks?: Array<
+    {
+      _key: string
+    } & SanityAssistInstructionTask
+  >
+}
 
 export type SanityAssistSchemaTypeAnnotations = {
-  _type: "sanity.assist.schemaType.annotations";
-  title?: string;
-  fields?: Array<{
-    _key: string;
-  } & SanityAssistSchemaTypeField>;
-};
+  _type: 'sanity.assist.schemaType.annotations'
+  title?: string
+  fields?: Array<
+    {
+      _key: string
+    } & SanityAssistSchemaTypeField
+  >
+}
 
 export type SanityAssistOutputType = {
-  _type: "sanity.assist.output.type";
-  type?: string;
-};
+  _type: 'sanity.assist.output.type'
+  type?: string
+}
 
 export type SanityAssistOutputField = {
-  _type: "sanity.assist.output.field";
-  path?: string;
-};
+  _type: 'sanity.assist.output.field'
+  path?: string
+}
 
 export type SanityAssistInstructionContext = {
-  _type: "sanity.assist.instruction.context";
+  _type: 'sanity.assist.instruction.context'
   reference: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "assist.instruction.context";
-  };
-};
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'assist.instruction.context'
+  }
+}
 
 export type AssistInstructionContext = {
-  _id: string;
-  _type: "assist.instruction.context";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
+  _id: string
+  _type: 'assist.instruction.context'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
   context?: Array<{
     children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-};
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal'
+    listItem?: never
+    markDefs?: null
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+}
 
 export type SanityAssistInstructionUserInput = {
-  _type: "sanity.assist.instruction.userInput";
-  message: string;
-  description?: string;
-};
+  _type: 'sanity.assist.instruction.userInput'
+  message: string
+  description?: string
+}
 
 export type SanityAssistInstructionPrompt = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  } | {
-    _key: string;
-  } & SanityAssistInstructionFieldRef | {
-    _key: string;
-  } & SanityAssistInstructionContext | {
-    _key: string;
-  } & SanityAssistInstructionUserInput>;
-  style?: "normal";
-  listItem?: never;
-  markDefs?: null;
-  level?: number;
-  _type: "block";
-  _key: string;
-}>;
+  children?: Array<
+    | {
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }
+    | ({
+        _key: string
+      } & SanityAssistInstructionFieldRef)
+    | ({
+        _key: string
+      } & SanityAssistInstructionContext)
+    | ({
+        _key: string
+      } & SanityAssistInstructionUserInput)
+  >
+  style?: 'normal'
+  listItem?: never
+  markDefs?: null
+  level?: number
+  _type: 'block'
+  _key: string
+}>
 
 export type SanityAssistInstructionFieldRef = {
-  _type: "sanity.assist.instruction.fieldRef";
-  path?: string;
-};
+  _type: 'sanity.assist.instruction.fieldRef'
+  path?: string
+}
 
 export type SanityAssistInstruction = {
-  _type: "sanity.assist.instruction";
-  prompt?: SanityAssistInstructionPrompt;
-  icon?: string;
-  title?: string;
-  userId?: string;
-  createdById?: string;
-  output?: Array<{
-    _key: string;
-  } & SanityAssistOutputField | {
-    _key: string;
-  } & SanityAssistOutputType>;
-};
+  _type: 'sanity.assist.instruction'
+  prompt?: SanityAssistInstructionPrompt
+  icon?: string
+  title?: string
+  userId?: string
+  createdById?: string
+  output?: Array<
+    | ({
+        _key: string
+      } & SanityAssistOutputField)
+    | ({
+        _key: string
+      } & SanityAssistOutputType)
+  >
+}
 
 export type SanityAssistSchemaTypeField = {
-  _type: "sanity.assist.schemaType.field";
-  path?: string;
-  instructions?: Array<{
-    _key: string;
-  } & SanityAssistInstruction>;
-};
+  _type: 'sanity.assist.schemaType.field'
+  path?: string
+  instructions?: Array<
+    {
+      _key: string
+    } & SanityAssistInstruction
+  >
+}
 
 export type SanityImagePaletteSwatch = {
-  _type: "sanity.imagePaletteSwatch";
-  background?: string;
-  foreground?: string;
-  population?: number;
-  title?: string;
-};
+  _type: 'sanity.imagePaletteSwatch'
+  background?: string
+  foreground?: string
+  population?: number
+  title?: string
+}
 
 export type SanityImagePalette = {
-  _type: "sanity.imagePalette";
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
-};
+  _type: 'sanity.imagePalette'
+  darkMuted?: SanityImagePaletteSwatch
+  lightVibrant?: SanityImagePaletteSwatch
+  darkVibrant?: SanityImagePaletteSwatch
+  vibrant?: SanityImagePaletteSwatch
+  dominant?: SanityImagePaletteSwatch
+  lightMuted?: SanityImagePaletteSwatch
+  muted?: SanityImagePaletteSwatch
+}
 
 export type SanityImageDimensions = {
-  _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
-};
+  _type: 'sanity.imageDimensions'
+  height: number
+  width: number
+  aspectRatio: number
+}
 
 export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
+  _type: 'sanity.imageHotspot'
+  x: number
+  y: number
+  height: number
+  width: number
+}
 
 export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
+  _type: 'sanity.imageCrop'
+  top: number
+  bottom: number
+  left: number
+  right: number
+}
 
 export type SanityFileAsset = {
-  _id: string;
-  _type: "sanity.fileAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
-};
+  _id: string
+  _type: 'sanity.fileAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  source?: SanityAssetSourceData
+}
 
 export type SanityImageAsset = {
-  _id: string;
-  _type: "sanity.imageAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  metadata?: SanityImageMetadata;
-  source?: SanityAssetSourceData;
-};
+  _id: string
+  _type: 'sanity.imageAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  metadata?: SanityImageMetadata
+  source?: SanityAssetSourceData
+}
 
 export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
+  _type: 'sanity.imageMetadata'
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
+}
 
 export type Geopoint = {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
-};
+  _type: 'geopoint'
+  lat?: number
+  lng?: number
+  alt?: number
+}
 
 export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
+  _type: 'slug'
+  current: string
+  source?: string
+}
 
 export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
+  _type: 'sanity.assetSourceData'
+  name?: string
+  id?: string
+  url?: string
+}
 
-export type AllSanitySchemaTypes = CallToAction | Link | InfoSection | BlockContent | Settings | Page | Brand | Person | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
-export declare const internalGroqTypeReferenceTo: unique symbol;
+export type AllSanitySchemaTypes =
+  | CallToAction
+  | Link
+  | InfoSection
+  | BlockContent
+  | Vehicle
+  | Manufacturer
+  | HomepageSettings
+  | Settings
+  | Page
+  | Brand
+  | SanityAssistInstructionTask
+  | SanityAssistTaskStatus
+  | SanityAssistSchemaTypeAnnotations
+  | SanityAssistOutputType
+  | SanityAssistOutputField
+  | SanityAssistInstructionContext
+  | AssistInstructionContext
+  | SanityAssistInstructionUserInput
+  | SanityAssistInstructionPrompt
+  | SanityAssistInstructionFieldRef
+  | SanityAssistInstruction
+  | SanityAssistSchemaTypeField
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageHotspot
+  | SanityImageCrop
+  | SanityFileAsset
+  | SanityImageAsset
+  | SanityImageMetadata
+  | Geopoint
+  | Slug
+  | SanityAssetSourceData
+export declare const internalGroqTypeReferenceTo: unique symbol
+// Source: ./sanity/lib/queries.ts
+// Variable: settingsQuery
+// Query: *[_type == "settings"][0]{  ...,  appLogo}
+export type SettingsQueryResult = {
+  _id: string
+  _type: 'settings'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal'
+    listItem?: never
+    markDefs?: Array<{
+      linkType?: 'brand' | 'href' | 'page'
+      href?: string
+      page?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'page'
+      }
+      brand?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'brand'
+      }
+      openInNewTab?: boolean
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  ogImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    metadataBase?: string
+    _type: 'image'
+  }
+  appLogo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+} | null
+// Variable: homepageSettingsQuery
+// Query: *[_type == "homepageSettings"][0]{  heroSlides[]{    title,    subtitle,    image,  }}
+export type HomepageSettingsQueryResult = {
+  heroSlides: Array<{
+    title: string | null
+    subtitle: string | null
+    image: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      alt?: string
+      _type: 'image'
+    } | null
+  }> | null
+} | null
+// Variable: getPageQuery
+// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }          }        }      },    },  }
+export type GetPageQueryResult = {
+  _id: string
+  _type: 'page'
+  name: string
+  slug: Slug
+  heading: string
+  subheading: string | null
+  pageBuilder: Array<
+    | {
+        _key: string
+        _type: 'callToAction'
+        heading: string
+        text?: string
+        buttonText?: string
+        link: {
+          _type: 'link'
+          linkType?: 'brand' | 'href' | 'page'
+          href?: string
+          page: string | null
+          brand: string | null
+          openInNewTab?: boolean
+        } | null
+      }
+    | {
+        _key: string
+        _type: 'infoSection'
+        heading?: string
+        subheading?: string
+        content: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs: Array<{
+            linkType?: 'brand' | 'href' | 'page'
+            href?: string
+            page: string | null
+            brand: string | null
+            openInNewTab?: boolean
+            _type: 'link'
+            _key: string
+          }> | null
+          level?: number
+          _type: 'block'
+          _key: string
+        }> | null
+      }
+  > | null
+} | null
+// Variable: sitemapData
+// Query: *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
+export type SitemapDataResult = Array<
+  | {
+      slug: string
+      _type: 'brand'
+      _updatedAt: string
+    }
+  | {
+      slug: string
+      _type: 'page'
+      _updatedAt: string
+    }
+>
+// Variable: allBrandsQuery
+// Query: *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
+export type AllBrandsQueryResult = Array<{
+  _id: string
+  status: 'draft' | 'published'
+  name: string
+  slug: string
+  excerpt: string | null
+  description: BlockContent | null
+  coverImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  sectionImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  features: Array<string> | null
+  launchDate: string
+}>
+// Variable: moreBrandsQuery
+// Query: *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
+export type MoreBrandsQueryResult = Array<{
+  _id: string
+  status: 'draft' | 'published'
+  name: string
+  slug: string
+  excerpt: string | null
+  description: BlockContent | null
+  coverImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  sectionImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  features: Array<string> | null
+  launchDate: string
+}>
+// Variable: homepageBrandsQuery
+// Query: *[_type == "brand" && defined(slug.current)] | order(name asc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
+export type HomepageBrandsQueryResult = Array<{
+  _id: string
+  status: 'draft' | 'published'
+  name: string
+  slug: string
+  excerpt: string | null
+  description: BlockContent | null
+  coverImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  sectionImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  features: Array<string> | null
+  launchDate: string
+}>
+// Variable: brandQuery
+// Query: *[_type == "brand" && slug.current == $slug] [0] {    description[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
+export type BrandQueryResult = {
+  description: BlockContent | null
+  _id: string
+  status: 'draft' | 'published'
+  name: string
+  slug: string
+  excerpt: string | null
+  coverImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  sectionImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  features: Array<string> | null
+  launchDate: string
+} | null
+// Variable: brandPagesSlugs
+// Query: *[_type == "brand" && defined(slug.current)]  {"slug": slug.current}
+export type BrandPagesSlugsResult = Array<{
+  slug: string
+}>
+// Variable: pagesSlugs
+// Query: *[_type == "page" && defined(slug.current)]  {"slug": slug.current}
+export type PagesSlugsResult = Array<{
+  slug: string
+}>
+// Variable: manufacturerQuery
+// Query: *[_type == "manufacturer" && slug.current == $slug][0] {    _id,    name,    slug,    logo,    description,        // Hero Section    heroImage {      asset-> {        url      }    },    heroTitle,    heroSubtitle,    heroCtaText,        // Showcase Images    showcaseImages[] {      model,      image {        asset-> {          url        }      },      altText    },        // Gallery Images    galleryImages[] {      image {        asset-> {          url        }      },      caption,      category,      altText    },        // CTA Section    ctaTitle,    ctaDescription,    ctaStats[] {      value,      label    },    additionalLinks[] {      text,      url    },        // SEO    seoTitle,    seoDescription,    seoImage {      asset-> {        url      }    },        "vehicles": *[_type == "vehicle" && references(^._id)] {      _id,      title,      slug,      model,      vehicleType,      modelYear,      upfitter,      package,      "manufacturer": manufacturer->name    } | order(model asc, upfitter asc, package asc)  }
+export type ManufacturerQueryResult = {
+  _id: string
+  name: string
+  slug: Slug
+  logo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  } | null
+  description: string | null
+  heroImage: {
+    asset: {
+      url: string | null
+    } | null
+  }
+  heroTitle: string | null
+  heroSubtitle: string | null
+  heroCtaText: string | null
+  showcaseImages: Array<{
+    model: string
+    image: {
+      asset: {
+        url: string | null
+      } | null
+    }
+    altText: string | null
+  }> | null
+  galleryImages: Array<{
+    image: {
+      asset: {
+        url: string | null
+      } | null
+    }
+    caption: string
+    category: 'adventure' | 'lifestyle' | 'work'
+    altText: string | null
+  }> | null
+  ctaTitle: string | null
+  ctaDescription: string | null
+  ctaStats: Array<{
+    value: string
+    label: string
+  }> | null
+  additionalLinks: Array<{
+    text: string
+    url: string
+  }> | null
+  seoTitle: string | null
+  seoDescription: string | null
+  seoImage: {
+    asset: {
+      url: string | null
+    } | null
+  } | null
+  vehicles: Array<{
+    _id: string
+    title: string
+    slug: Slug
+    model: string
+    vehicleType: 'car' | 'suv' | 'truck' | 'utility' | 'van' | null
+    modelYear: number
+    upfitter: null
+    package: null
+    manufacturer: string
+  }>
+} | null
+// Variable: manufacturerSlugs
+// Query: *[_type == "manufacturer" && defined(slug.current)]  {"slug": slug.current}
+export type ManufacturerSlugsResult = Array<{
+  slug: string
+}>
+// Variable: allManufacturersQuery
+// Query: *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {    _id,    name,    slug,    logo,    "vehicleCount": count(*[_type == "vehicle" && references(^._id)])  }
+export type AllManufacturersQueryResult = Array<{
+  _id: string
+  name: string
+  slug: Slug
+  logo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  } | null
+  vehicleCount: number
+}>
+// Variable: allVehiclesQuery
+// Query: *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo    },    coverImage,    specifications,    features,    inventory,    tags  }
+export type AllVehiclesQueryResult = Array<{
+  _id: string
+  title: string
+  slug: Slug
+  model: string
+  vehicleType: 'car' | 'suv' | 'truck' | 'utility' | 'van' | null
+  modelYear: number
+  trim: string | null
+  manufacturer: {
+    _id: string
+    name: string
+    logo: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    } | null
+  }
+  coverImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  specifications: {
+    engine?: Array<{
+      type?: string
+      horsepower?: number
+      torque?: number
+      fuelType?: 'Diesel' | 'Electric' | 'Gasoline' | 'Hybrid'
+      transmission?: string
+      _key: string
+    }>
+    drivetrain?: Array<string>
+    towingCapacity?: number
+    payloadCapacity?: number
+    fuelEconomy?: {
+      city?: number
+      highway?: number
+      combined?: number
+    }
+    bedLength?: '5.5 ft' | '6.5 ft' | '8 ft'
+    cabStyle?: 'Regular Cab' | 'SuperCab' | 'SuperCrew'
+  } | null
+  features: {
+    exteriorFeatures?: Array<string>
+    interiorFeatures?: Array<string>
+    safetyFeatures?: Array<string>
+    technologyFeatures?: Array<string>
+    performanceFeatures?: Array<string>
+  } | null
+  inventory: {
+    stockNumber?: string
+    vin?: string
+    availability?: 'Available Soon' | 'In Stock' | 'In Transit' | 'Out of Stock' | 'Special Order'
+    location?: string
+    mileage?: number
+  } | null
+  tags: Array<string> | null
+}>
+// Variable: timberlineVehiclesQuery
+// Query: *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    sidebarSortOrder,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    coverImage{      asset->{        _id,        url      }    },    specifications,    features,    inventory,    tags  }
+export type TimberlineVehiclesQueryResult = Array<{
+  _id: string
+  title: string
+  slug: Slug
+  model: string
+  vehicleType: 'car' | 'suv' | 'truck' | 'utility' | 'van' | null
+  modelYear: number
+  trim: string | null
+  sidebarSortOrder: number | null
+  manufacturer: {
+    _id: string
+    name: string
+    logo: {
+      asset: {
+        _id: string
+        url: string | null
+      } | null
+    } | null
+  }
+  coverImage: {
+    asset: {
+      _id: string
+      url: string | null
+    } | null
+  } | null
+  specifications: {
+    engine?: Array<{
+      type?: string
+      horsepower?: number
+      torque?: number
+      fuelType?: 'Diesel' | 'Electric' | 'Gasoline' | 'Hybrid'
+      transmission?: string
+      _key: string
+    }>
+    drivetrain?: Array<string>
+    towingCapacity?: number
+    payloadCapacity?: number
+    fuelEconomy?: {
+      city?: number
+      highway?: number
+      combined?: number
+    }
+    bedLength?: '5.5 ft' | '6.5 ft' | '8 ft'
+    cabStyle?: 'Regular Cab' | 'SuperCab' | 'SuperCrew'
+  } | null
+  features: {
+    exteriorFeatures?: Array<string>
+    interiorFeatures?: Array<string>
+    safetyFeatures?: Array<string>
+    technologyFeatures?: Array<string>
+    performanceFeatures?: Array<string>
+  } | null
+  inventory: {
+    stockNumber?: string
+    vin?: string
+    availability?: 'Available Soon' | 'In Stock' | 'In Transit' | 'Out of Stock' | 'Special Order'
+    location?: string
+    mileage?: number
+  } | null
+  tags: Array<string> | null
+}>
+// Variable: vehicleQuery
+// Query: *[_type == "vehicle" && slug.current == $slug][0] {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo    },    coverImage,    gallery,    videoTour,    specifications,    features,    customizationOptions,    inventory,    description,    tags,    seo  }
+export type VehicleQueryResult = {
+  _id: string
+  title: string
+  slug: Slug
+  model: string
+  vehicleType: 'car' | 'suv' | 'truck' | 'utility' | 'van' | null
+  modelYear: number
+  trim: string | null
+  manufacturer: {
+    _id: string
+    name: string
+    logo: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    } | null
+  }
+  coverImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  gallery: Array<{
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    caption?: string
+    view?:
+      | 'Bed'
+      | 'Engine'
+      | 'Exterior Front'
+      | 'Exterior Rear'
+      | 'Exterior Side'
+      | 'Interior Back'
+      | 'Interior Dashboard'
+      | 'Interior Seats'
+      | 'Technology'
+    _type: 'image'
+    _key: string
+  }> | null
+  videoTour: {
+    youtubeUrl?: string
+    thumbnail?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    description?: string
+  } | null
+  specifications: {
+    engine?: Array<{
+      type?: string
+      horsepower?: number
+      torque?: number
+      fuelType?: 'Diesel' | 'Electric' | 'Gasoline' | 'Hybrid'
+      transmission?: string
+      _key: string
+    }>
+    drivetrain?: Array<string>
+    towingCapacity?: number
+    payloadCapacity?: number
+    fuelEconomy?: {
+      city?: number
+      highway?: number
+      combined?: number
+    }
+    bedLength?: '5.5 ft' | '6.5 ft' | '8 ft'
+    cabStyle?: 'Regular Cab' | 'SuperCab' | 'SuperCrew'
+  } | null
+  features: {
+    exteriorFeatures?: Array<string>
+    interiorFeatures?: Array<string>
+    safetyFeatures?: Array<string>
+    technologyFeatures?: Array<string>
+    performanceFeatures?: Array<string>
+  } | null
+  customizationOptions: Array<{
+    category?:
+      | 'Bed Accessories'
+      | 'Exterior Styling'
+      | 'Interior Upgrades'
+      | 'Lighting'
+      | 'Performance'
+      | 'Protection'
+      | 'Suspension'
+      | 'Wheels & Tires'
+    options?: Array<{
+      name?: string
+      price?: number
+      description?: string
+      image?: {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        media?: unknown
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+      }
+      _key: string
+    }>
+    _key: string
+  }> | null
+  inventory: {
+    stockNumber?: string
+    vin?: string
+    availability?: 'Available Soon' | 'In Stock' | 'In Transit' | 'Out of Stock' | 'Special Order'
+    location?: string
+    mileage?: number
+  } | null
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'normal'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }> | null
+  tags: Array<string> | null
+  seo: {
+    metaTitle?: string
+    metaDescription?: string
+    openGraphImage?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
+  } | null
+} | null
+// Variable: vehicleSlugs
+// Query: *[_type == "vehicle" && defined(slug.current)]  {"slug": slug.current}
+export type VehicleSlugsResult = Array<{
+  slug: string
+}>
+// Variable: brandsWithSloganQuery
+// Query: *[_type == "brand" && defined(slug.current)] | order(name asc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  sectionImage,  logo,  features,  slogan,  "launchDate": coalesce(launchDate, _updatedAt),  "manufacturers": manufacturers[]->{    _id,    name,    "slug": slug.current,    logo  },  }
+export type BrandsWithSloganQueryResult = Array<{
+  _id: string
+  status: 'draft' | 'published'
+  name: string
+  slug: string
+  excerpt: string | null
+  coverImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  sectionImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  logo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  features: Array<string> | null
+  slogan: string | null
+  launchDate: string
+  manufacturers: Array<{
+    _id: string
+    name: string
+    slug: string
+    logo: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    } | null
+  }> | null
+}>
+
+// Query TypeMap
+import '@sanity/client'
+declare module '@sanity/client' {
+  interface SanityQueries {
+    '*[_type == "settings"][0]{\n  ...,\n  appLogo\n}': SettingsQueryResult
+    '*[_type == "homepageSettings"][0]{\n  heroSlides[]{\n    title,\n    subtitle,\n    image,\n  }\n}': HomepageSettingsQueryResult
+    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
+    '\n  *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
+    '\n  *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': AllBrandsQueryResult
+    '\n  *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': MoreBrandsQueryResult
+    '\n  *[_type == "brand" && defined(slug.current)] | order(name asc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': HomepageBrandsQueryResult
+    '\n  *[_type == "brand" && slug.current == $slug] [0] {\n    description[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': BrandQueryResult
+    '\n  *[_type == "brand" && defined(slug.current)]\n  {"slug": slug.current}\n': BrandPagesSlugsResult
+    '\n  *[_type == "page" && defined(slug.current)]\n  {"slug": slug.current}\n': PagesSlugsResult
+    '\n  *[_type == "manufacturer" && slug.current == $slug][0] {\n    _id,\n    name,\n    slug,\n    logo,\n    description,\n    \n    // Hero Section\n    heroImage {\n      asset-> {\n        url\n      }\n    },\n    heroTitle,\n    heroSubtitle,\n    heroCtaText,\n    \n    // Showcase Images\n    showcaseImages[] {\n      model,\n      image {\n        asset-> {\n          url\n        }\n      },\n      altText\n    },\n    \n    // Gallery Images\n    galleryImages[] {\n      image {\n        asset-> {\n          url\n        }\n      },\n      caption,\n      category,\n      altText\n    },\n    \n    // CTA Section\n    ctaTitle,\n    ctaDescription,\n    ctaStats[] {\n      value,\n      label\n    },\n    additionalLinks[] {\n      text,\n      url\n    },\n    \n    // SEO\n    seoTitle,\n    seoDescription,\n    seoImage {\n      asset-> {\n        url\n      }\n    },\n    \n    "vehicles": *[_type == "vehicle" && references(^._id)] {\n      _id,\n      title,\n      slug,\n      model,\n      vehicleType,\n      modelYear,\n      upfitter,\n      package,\n      "manufacturer": manufacturer->name\n    } | order(model asc, upfitter asc, package asc)\n  }\n': ManufacturerQueryResult
+    '\n  *[_type == "manufacturer" && defined(slug.current)]\n  {"slug": slug.current}\n': ManufacturerSlugsResult
+    '\n  *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {\n    _id,\n    name,\n    slug,\n    logo,\n    "vehicleCount": count(*[_type == "vehicle" && references(^._id)])\n  }\n': AllManufacturersQueryResult
+    '\n  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': AllVehiclesQueryResult
+    '\n  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    sidebarSortOrder,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    coverImage{\n      asset->{\n        _id,\n        url\n      }\n    },\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': TimberlineVehiclesQueryResult
+    '\n  *[_type == "vehicle" && slug.current == $slug][0] {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    gallery,\n    videoTour,\n    specifications,\n    features,\n    customizationOptions,\n    inventory,\n    description,\n    tags,\n    seo\n  }\n': VehicleQueryResult
+    '\n  *[_type == "vehicle" && defined(slug.current)]\n  {"slug": slug.current}\n': VehicleSlugsResult
+    '\n  *[_type == "brand" && defined(slug.current)] | order(name asc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  sectionImage,\n  logo,\n  features,\n  slogan,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': BrandsWithSloganQueryResult
+  }
+}

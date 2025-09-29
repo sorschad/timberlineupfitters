@@ -117,6 +117,34 @@ export const brand = defineType({
         },
       ],
     }),
+    defineField({
+      name: 'sectionImage',
+      title: 'Section Image',
+      type: 'image',
+      description: 'Image displayed in the brand section on the brands landing page',
+      options: {
+        hotspot: true,
+        aiAssist: {
+          imageDescriptionField: 'alt',
+        },
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessibility.',
+          validation: (rule) => {
+            return rule.custom((alt, context) => {
+              if ((context.document?.sectionImage as any)?.asset?._ref && !alt) {
+                return 'Required'
+              }
+              return true
+            })
+          },
+        },
+      ],
+    }),
     
     defineField({
       name: 'features',
