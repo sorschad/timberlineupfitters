@@ -141,9 +141,6 @@ export default async function VehiclePage({params}: VehiclePageProps) {
                 <button className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
                   Get Quote
                 </button>
-                <button className="bg-white/20 hover:bg-white/30 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 border border-white/30">
-                  Schedule Test Drive
-                </button>
               </div>
             </div>
             
@@ -355,7 +352,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             Ready to Make This Vehicle Yours?
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Contact our team to schedule a test drive, get a quote, or discuss customization options.
+            Contact our team to get a quote or discuss customization options.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
