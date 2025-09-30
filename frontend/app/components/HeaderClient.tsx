@@ -435,7 +435,7 @@ export default function HeaderClient({
           </div>
 
           {/* Right Section: Vehicles */}
-          <div className="bg-black/25 backdrop-blur-2xl text-white relative flex-1">
+          <div className="bg-black/25 backdrop-blur-2xl text-white relative flex-1 min-h-0">
             {/* Header */}
             <div className="h-16 sm:h-20 px-4 sm:px-6 flex items-center border-b border-white/20 bg-gradient-to-r from-black/30 to-black/10">
               <div>
@@ -449,7 +449,7 @@ export default function HeaderClient({
             </div>
 
             {/* Vehicle Content - Using filtered vehicle data */}
-            <div className="p-4 sm:p-6 overflow-y-auto h-[calc(100%-4rem)] sm:h-[calc(100%-5rem)] scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent hover:scrollbar-thumb-white/30">
+            <div className="p-4 sm:p-6 overflow-y-auto max-h-[calc(100vh-4rem)] sm:max-h-[calc(100vh-5rem)] scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent hover:scrollbar-thumb-white/30">
               {isLoadingVehicles ? (
                 <div className="flex items-center justify-center h-32">
                   <div className="flex flex-col items-center space-y-4">
@@ -503,7 +503,7 @@ export default function HeaderClient({
                 <div className="space-y-6">
                   {groupedByManufacturer.map((group) => (
                     <div key={group.name}>
-                      <div className="space-y-3">
+                      <div className="space-y-1.5">
                         {group.vehicles.map((v) => (
                           <Link
                             key={v._id}
