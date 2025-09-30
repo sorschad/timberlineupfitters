@@ -8,6 +8,7 @@ import {client} from '@/sanity/lib/client'
 import {vehicleQuery, vehicleSlugs} from '@/sanity/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import SpecsTable from '@/app/components/SpecsTable'
+import {urlForImage} from '@/sanity/lib/utils'
 
 interface Vehicle {
   _id: string
@@ -81,7 +82,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
       <section 
         className="relative min-h-screen text-white overflow-hidden"
         style={{
-          backgroundImage: vehicle.coverImage && vehicle.coverImage.asset && vehicle.coverImage.asset.url ? `url(${vehicle.coverImage.asset.url})` : 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1d4ed8 100%)',
+          backgroundImage: vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? `url(${urlForImage(vehicle.coverImage)?.width(1920).height(1080).fit('crop').url()})` : 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1d4ed8 100%)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
@@ -112,10 +113,10 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             
             {/* Right Content - Vehicle Image */}
             <div className="relative flex justify-center lg:justify-end">
-              {vehicle.coverImage && vehicle.coverImage.asset && vehicle.coverImage.asset.url ? (
+              {vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
                 <div className="relative">
                   <Image
-                    src={vehicle.coverImage.asset.url}
+                    src={urlForImage(vehicle.coverImage)!.width(1200).height(800).fit('crop').url()}
                     alt={vehicle.title}
                     width={600}
                     height={400}
@@ -192,9 +193,9 @@ export default async function VehiclePage({params}: VehiclePageProps) {
                 
                 return (
                   <div key={idx} className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6 hover:shadow-xl transition-shadow duration-300`}>
-                    {image.asset && image.asset.url ? (
+                    {urlForImage(image)?.url() ? (
                       <Image
-                        src={image.asset.url}
+                        src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
                         alt={image.alt || `${vehicle.title} Gallery Image ${idx + 1}`}
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"
