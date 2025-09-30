@@ -128,10 +128,6 @@ export default async function VehiclePage({params}: VehiclePageProps) {
                     height={400}
                     className="rounded-2xl shadow-2xl"
                   />
-                  {/* Range Badge */}
-                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-sm">
-                    Range 420 mi⁴
-                  </div>
                 </div>
               ) : (vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
                 <div className="relative">
@@ -142,9 +138,6 @@ export default async function VehiclePage({params}: VehiclePageProps) {
                     height={400}
                     className="rounded-2xl shadow-2xl"
                   />
-                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-sm">
-                    Range 420 mi⁴
-                  </div>
                 </div>
               ) : (
                 <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl h-96 w-96 flex items-center justify-center">
