@@ -82,7 +82,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
     <div className="min-h-screen">
       {/* Hero Section - Scenic Background with Vehicle */}
       <section 
-        className="relative min-h-[90vh] text-white overflow-hidden"
+        className="relative min-h-[67.5vh] text-white overflow-hidden"
         style={{
           backgroundImage: (vehicle.vehicleDetailsPageHeaderBackgroundImage && urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.url())
             ? `url(${urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.width(1920).height(1080).fit('crop').url()})`
@@ -98,7 +98,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/50" />
         
         <div className="relative z-10 container mx-auto px-4 pt-20 pb-40">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[60vh]">
             {/* Left Content */}
             <div className="space-y-8">
               {/* Main Headline */}
