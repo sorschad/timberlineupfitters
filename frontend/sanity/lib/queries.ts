@@ -300,6 +300,8 @@ export const vehicleQuery = defineQuery(`
       logo
     },
     coverImage,
+    vehicleDetailsPageHeaderBackgroundImage,
+    headerVehicleImage,
     gallery,
     videoTour,
     specifications,

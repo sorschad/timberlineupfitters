@@ -70,7 +70,7 @@ export default async function BrandsPage() {
       case 0:
         return 'text-blue-600 animate-gradient bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent'
       case 1:
-        return 'text-orange-500 animate-gradient bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent'
+        return 'text-red-500 animate-gradient bg-gradient-to-r from-red-500 to-red-500 bg-clip-text text-transparent'
       case 2:
         return 'text-[#ff8c42] animate-gradient bg-gradient-to-r from-[#ff8c42] to-[#d0ad66] bg-clip-text text-transparent'
       default:
@@ -83,7 +83,7 @@ export default async function BrandsPage() {
       case 0:
         return 'w-full h-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full'
       case 1:
-        return 'w-full h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full'
+        return 'w-full h-1 bg-gradient-to-r from-red-500 to-red-500 rounded-full'
       case 2:
         return 'w-full h-1 bg-gradient-to-r from-[#ff8c42] to-[#d0ad66] rounded-full'
       default:
@@ -103,11 +103,11 @@ export default async function BrandsPage() {
       }
     } else if (slug.includes('tsport')) {
       return {
-        primary: 'from-orange-500 to-red-500',
-        accent: 'bg-orange-500',
-        text: 'text-orange-500',
-        border: 'border-orange-200',
-        bg: 'bg-orange-50'
+        primary: 'text-red-500 to-red-500',
+        accent: 'text-red-500',
+        text: 'text-red-500',
+        border: 'border-red-200',
+        bg: 'bg-red-50'
       }
     } else if (slug.includes('timberline')) {
       return {
