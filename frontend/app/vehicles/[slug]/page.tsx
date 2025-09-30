@@ -8,6 +8,8 @@ import {client} from '@/sanity/lib/client'
 import {vehicleQuery, vehicleSlugs} from '@/sanity/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import SpecsTable from '@/app/components/SpecsTable'
+import VehicleGallery from '@/app/components/VehicleGallery'
+import VehicleFeaturesGallery from '@/app/components/VehicleFeaturesGallery'
 import {urlForImage} from '@/sanity/lib/utils'
 
 interface Vehicle {
@@ -102,7 +104,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             {/* Left Content */}
             <div className="space-y-8">
               {/* Main Headline */}
-              <h1 className="text-5xl md:text-7xl font-bold leading-none">
+              <h1 className="text-3xl md:text-5xl font-bold leading-none">
                 {vehicle.title}
               </h1>
               
@@ -188,44 +190,13 @@ export default async function VehiclePage({params}: VehiclePageProps) {
         </div>
       </section>
 
-      {/* Gallery Section - Masonry Grid */}
+      {/* Gallery Section - Masonry Grid with Batch Lazy Loading */}
       {vehicle.gallery && vehicle.gallery.length > 0 && (
-        <section className="py-8 pb-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
-              {vehicle.gallery.map((image: any, idx: number) => {
-                // Create varied aspect ratios for masonry effect
-                const aspectRatios = ['aspect-square', 'aspect-[4/3]', 'aspect-[3/4]', 'aspect-[16/9]', 'aspect-[9/16]']
-                const aspectClass = aspectRatios[idx % aspectRatios.length]
-                
-                return (
-                  <div key={idx} className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6 hover:shadow-xl transition-shadow duration-300`}>
-                    {urlForImage(image)?.url() ? (
-                      <Image
-                        src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
-                        alt={image.alt || `${vehicle.title} Gallery Image ${idx + 1}`}
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                        <span className="text-gray-400">No Image</span>
-                      </div>
-                    )}
-                    {image.caption && (
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-4">
-                        <p className="text-sm font-medium">{image.caption}</p>
-                      </div>
-                    )}
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300 rounded-md" />
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
+        <VehicleGallery gallery={vehicle.gallery} vehicleTitle={vehicle.title} />
       )}
+
+      {/* Features Gallery Section */}
+      <VehicleFeaturesGallery vehicle={vehicle} />
     </div>
   )
 }
