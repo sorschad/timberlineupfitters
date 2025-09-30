@@ -80,7 +80,7 @@ export default async function VehiclePage({params}: VehiclePageProps) {
     <div className="min-h-screen">
       {/* Hero Section - Scenic Background with Vehicle */}
       <section 
-        className="relative min-h-screen text-white overflow-hidden"
+        className="relative min-h-[90vh] text-white overflow-hidden"
         style={{
           backgroundImage: vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? `url(${urlForImage(vehicle.coverImage)?.width(1920).height(1080).fit('crop').url()})` : 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1d4ed8 100%)',
           backgroundSize: 'cover',
