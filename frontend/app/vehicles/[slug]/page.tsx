@@ -24,6 +24,7 @@ interface Vehicle {
     logo?: any
   }
   coverImage?: any
+  headerVehicleImage?: any
   vehicleDetailsPageHeaderBackgroundImage?: any
   gallery?: any[]
   videoTour?: any
@@ -118,10 +119,10 @@ export default async function VehiclePage({params}: VehiclePageProps) {
             
             {/* Right Content - Vehicle Image */}
             <div className="relative flex justify-center lg:justify-end">
-              {vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
+              {(vehicle.headerVehicleImage && urlForImage(vehicle.headerVehicleImage)?.url()) ? (
                 <div className="relative">
                   <Image
-                    src={urlForImage(vehicle.coverImage)!.width(1200).height(800).fit('crop').url()}
+                    src={urlForImage(vehicle.headerVehicleImage)!.width(1200).height(800).fit('crop').url()}
                     alt={vehicle.title}
                     width={600}
                     height={400}
@@ -132,18 +133,31 @@ export default async function VehiclePage({params}: VehiclePageProps) {
                     Range 420 mi⁴
                   </div>
                 </div>
+              ) : (vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
+                <div className="relative">
+                  <Image
+                    src={urlForImage(vehicle.coverImage)!.width(1200).height(800).fit('crop').url()}
+                    alt={vehicle.title}
+                    width={600}
+                    height={400}
+                    className="rounded-2xl shadow-2xl"
+                  />
+                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-sm">
+                    Range 420 mi⁴
+                  </div>
+                </div>
               ) : (
                 <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl h-96 w-96 flex items-center justify-center">
                   <span className="text-6xl font-bold text-gray-400">
                     {vehicle.manufacturer.name.charAt(0)}
                   </span>
                 </div>
-              )}
+              ))}
             </div>
           </div>
           
           {/* Data Cards Overlay */}
-          <div className="absolute bottom-20 left-0 right-0 z-20">
+          <div className="absolute bottom-4 left-0 right-0 z-20">
             <div className="container mx-auto px-4">
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {/* NEW Model Card */}

@@ -207,6 +207,17 @@ export const vehicle = defineType({
     }),
 
     defineField({
+      name: 'headerVehicleImage',
+      title: 'Header Vehicle Image',
+      type: 'image',
+      description: 'Foreground vehicle image displayed on the vehicle details page header. If not set, falls back to Cover Image.',
+      options: { hotspot: true },
+      fields: [
+        defineField({ name: 'alt', type: 'string', title: 'Alt Text' })
+      ]
+    }),
+
+    defineField({
       name: 'gallery',
       title: 'Image Gallery',
       type: 'array',
