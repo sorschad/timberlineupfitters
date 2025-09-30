@@ -390,7 +390,7 @@ export default function HeaderClient({
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <div className="text-white text-lg font-bold mb-1 uppercase">{brand.name}</div>
-                        <div className="text-white/60 text-sm leading-tight">{brand.slogan || 'Tactical vehicle platform'}</div>
+                        <div className="text-white/60 text-xs leading-tight"><small>{brand.slogan || 'SLOGAN_GOES_HERE'}</small></div>
                       </div>
                       <div className="ml-3">
                         <svg className={`w-5 h-5 transition-all duration-200 ${
@@ -509,14 +509,14 @@ export default function HeaderClient({
                             key={v._id}
                             href={`/vehicles/${(v as any).slug?.current}`}
                             onClick={() => setIsMegaOpen(false)}
-                            className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden"
+                            className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-[87px]"
                           >
-                            <div className="flex flex-col sm:grid sm:grid-cols-[1fr_1.2fr]">
+                            <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[87px]">
                               {/* Left Section - Text Content */}
                               <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                                 <div>
                                   {/* Vehicle Title */}
-                                  <h3 className="text-white text-sm sm:text-base font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                                  <h3 className="text-white text-xs sm:text-sm font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
                                     {v.title}
                                   </h3>
                                   
@@ -530,8 +530,8 @@ export default function HeaderClient({
                               </div>
                               
                               {/* Right Section - Vehicle Image */}
-                              <div className="relative">
-                                <div className="aspect-[4/2.5] sm:aspect-[4/2.5] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                              <div className="relative h-[87px]">
+                                <div className="h-[87px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
                                   {v?.coverImage?.asset?.url ? (
                                     <img 
                                       src={v.coverImage.asset.url} 
