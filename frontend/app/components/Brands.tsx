@@ -135,7 +135,7 @@ export const HomepageBrands = async () => {
   }
 
   return (
-    <section id="brands-section" className="w-full bg-brown border-t border-amber-200 py-16 lg:py-24">
+    <section id="brands-section" className="w-full bg-brown border-t border-amber-200 py-16 lg:py-24 scroll-mt-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="relative inline-block text-transparent text-[#cabba8] bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#5a3e2b] text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-[0_0_1px_rgba(0,0,0,0.15)]">

@@ -162,37 +162,32 @@ export default async function VehiclePage({params}: VehiclePageProps) {
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {/* NEW Model Card */}
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20">
-                  <div className="text-sm text-white/70 mb-2">NEW Model</div>
-                  <div className="text-2xl font-bold text-white mb-1">Alpha 1</div>
-                  <div className="text-xs text-white/60">*sales starting in 2026</div>
+                  <div className="text-base font-bold text-white mb-3 leading-none uppercase">Unique Design</div>
+                  <div className="text-sm text-white/70 mb-2 leading-tight font-light">Inspired by the sea, the Ocean build embodies adventure and fun.</div>
                 </div>
                 
                 {/* Starting Price Card */}
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20">
-                  <div className="text-sm text-white/70 mb-2">Starting from</div>
-                  <div className="text-2xl font-bold text-white mb-1">$88,990</div>
-                  <div className="text-xs text-white/60">Est. $809/mo³</div>
+                  <div className="text-base font-bold text-white mb-3 leading-none uppercase">Sound Performance</div>
+                  <div className="text-sm text-white/70 mb-2 leading-tight font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
                 </div>
                 
                 {/* Acceleration Card */}
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20">
-                  <div className="text-sm text-white/70 mb-2">Acceleration</div>
-                  <div className="text-2xl font-bold text-white mb-1">4.3 sec</div>
-                  <div className="text-xs text-white/60">Disclaimer*</div>
+                  <div className="text-base font-bold text-white mb-3 leading-none uppercase">Custom Leather Interior</div>
+                  <div className="text-sm text-white/70 mb-2 leading-tight font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
                 </div>
                 
                 {/* Torque Card */}
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20">
-                  <div className="text-sm text-white/70 mb-2">Torque</div>
-                  <div className="text-2xl font-bold text-white mb-1">413 lb-ft</div>
-                  <div className="text-xs text-white/60">Disclaimer*</div>
+                  <div className="text-base font-bold text-white mb-3 leading-none uppercase">Off Road Bumpers</div>
+                  <div className="text-sm text-white/70 mb-2 leading-tight font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
                 </div>
                 
                 {/* Power Card */}
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20">
-                  <div className="text-sm text-white/70 mb-2">Power</div>
-                  <div className="text-2xl font-bold text-white mb-1">266 hp</div>
-                  <div className="text-xs text-white/60">Disclaimer*</div>
+                  <div className="text-base font-bold text-white mb-3 leading-none uppercase">Unique Design</div>
+                  <div className="text-sm text-white/70 mb-2 leading-tight font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
                 </div>
               </div>
             </div>
