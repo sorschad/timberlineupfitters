@@ -9,9 +9,11 @@ import { urlForImage } from '@/sanity/lib/utils'
 interface VehicleGalleryProps {
   gallery: any[]
   vehicleTitle: string
+  activeFilter?: string | null
+  onClearFilter?: () => void
 }
 
-export default function VehicleGallery({ gallery, vehicleTitle }: VehicleGalleryProps) {
+export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, onClearFilter }: VehicleGalleryProps) {
   const [loadedBatches, setLoadedBatches] = useState<Set<number>>(new Set())
   const [loadingBatches, setLoadingBatches] = useState<Set<number>>(new Set())
 
@@ -33,6 +35,28 @@ export default function VehicleGallery({ gallery, vehicleTitle }: VehicleGallery
   return (
     <section className="py-8 pb-16 bg-white">
       <div className="container mx-auto px-4">
+        {/* Filter Header */}
+        {activeFilter && (
+          <div className="mb-8 flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <span className="text-lg font-semibold text-gray-700">
+                Filtered by: <span className="text-blue-600 capitalize">{activeFilter}</span>
+              </span>
+              <span className="text-sm text-gray-500">
+                {gallery.length} image{gallery.length !== 1 ? 's' : ''} found
+              </span>
+            </div>
+            {onClearFilter && (
+              <button
+                onClick={onClearFilter}
+                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200 text-sm font-medium"
+              >
+                Clear Filter
+              </button>
+            )}
+          </div>
+        )}
+        
         <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
           {gallery.map((image: any, idx: number) => {
             // Create varied aspect ratios for masonry effect
