@@ -68,7 +68,7 @@ export default function ManufacturerHero({ manufacturer }: ManufacturerHeroProps
             </div>
           )}
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+          <h1 className="text-3xl md:text-5xl font-bold mb-6">
             {manufacturer.heroTitle || manufacturer.name}
           </h1>
           

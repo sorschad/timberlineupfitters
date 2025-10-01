@@ -42,7 +42,7 @@ export default async function VehiclesPage() {
       <div className="min-h-screen">
         <div className="py-40 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
           <div className="container text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">
               Vehicle Models
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">

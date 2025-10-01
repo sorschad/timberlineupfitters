@@ -237,6 +237,59 @@ export const vehicle = defineType({
                 'Interior Seats', 'Interior Back', 'Engine', 'Bed', 'Technology'
               ]
             }
+          }),
+          defineField({
+            name: 'tags',
+            title: 'Filter Tags',
+            type: 'array',
+            of: [{ type: 'string' }],
+            options: {
+              list: [
+                { title: 'Exterior', value: 'exterior' },
+                { title: 'Audio', value: 'audio' },
+                { title: 'Interior', value: 'interior' },
+                { title: 'Accessories: Exterior', value: 'accessories:exterior' },
+                { title: 'Accessories: Interior', value: 'accessories:interior' },
+                { title: 'Performance', value: 'performance' }
+              ]
+            },
+            description: 'Select tags to filter this image by category'
+          }),
+
+          defineField({
+            name: 'gridSpan',
+            title: 'Grid Layout',
+            type: 'object',
+            description: 'Control how this image spans the grid layout',
+            fields: [
+              defineField({
+                name: 'mobile',
+                title: 'Mobile (1 column)',
+                type: 'object',
+                fields: [
+                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1) }),
+                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1) })
+                ]
+              }),
+              defineField({
+                name: 'tablet',
+                title: 'Tablet (2 columns)',
+                type: 'object',
+                fields: [
+                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1) }),
+                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1) })
+                ]
+              }),
+              defineField({
+                name: 'desktop',
+                title: 'Desktop (3+ columns)',
+                type: 'object',
+                fields: [
+                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1) }),
+                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1) })
+                ]
+              })
+            ]
           })
         ]
       })]
