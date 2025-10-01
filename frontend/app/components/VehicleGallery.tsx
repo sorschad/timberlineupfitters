@@ -77,11 +77,26 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
           </div>
         )}
         
-        <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[200px]">
           {gallery.map((image: any, idx: number) => {
-            // Create varied aspect ratios for masonry effect
-            const aspectRatios = ['aspect-square', 'aspect-[4/3]', 'aspect-[3/4]', 'aspect-[16/9]', 'aspect-[9/16]']
-            const aspectClass = aspectRatios[idx % aspectRatios.length]
+            // Determine grid span based on image index and aspect ratio
+            const getGridSpan = (index: number) => {
+              const patterns = [
+                { col: 1, row: 1 }, // normal
+                { col: 2, row: 1 }, // wide
+                { col: 1, row: 2 }, // tall
+                { col: 1, row: 1 }, // normal
+                { col: 2, row: 2 }, // large
+                { col: 1, row: 1 }, // normal
+                { col: 1, row: 2 }, // tall
+                { col: 2, row: 1 }, // wide
+                { col: 1, row: 1 }, // normal
+                { col: 1, row: 1 }, // normal
+              ]
+              return patterns[index % patterns.length]
+            }
+            
+            const gridSpan = getGridSpan(idx)
             const imageUrl = urlForImage(image)?.url()
             
             // Load first 6 images immediately, lazy load the rest in batches of 4
@@ -92,10 +107,15 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
             
             if (!imageUrl) {
               return (
-                <div key={idx} className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6 hover:shadow-xl transition-shadow duration-300`}>
-                  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-400">No Image</span>
-                  </div>
+                <div 
+                  key={idx} 
+                  className={`relative rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-200 flex items-center justify-center`}
+                  style={{
+                    gridColumn: `span ${gridSpan.col}`,
+                    gridRow: `span ${gridSpan.row}`
+                  }}
+                >
+                  <span className="text-gray-400">No Image</span>
                 </div>
               )
             }
@@ -104,7 +124,14 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
               // Show skeleton for images that are loading
               if (isBatchLoading && !isBatchLoaded) {
                 return (
-                  <div key={idx} className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6`}>
+                  <div 
+                    key={idx} 
+                    className={`relative rounded-md overflow-hidden shadow-lg`}
+                    style={{
+                      gridColumn: `span ${gridSpan.col}`,
+                      gridRow: `span ${gridSpan.row}`
+                    }}
+                  >
                     <div className="w-full h-full bg-gray-200 animate-pulse flex items-center justify-center">
                       <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
                     </div>
@@ -118,18 +145,31 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                   src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
                   alt={image.alt || `${vehicleTitle} Gallery Image ${idx + 1}`}
                   fill
-                  aspectClass={aspectClass}
+                  aspectClass=""
                   caption={image.caption}
                   batchIndex={batchIndex}
                   onBatchLoad={handleBatchLoad}
                   onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
+                  className="relative rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+                  style={{
+                    gridColumn: `span ${gridSpan.col}`,
+                    gridRow: `span ${gridSpan.row}`
+                  }}
                 />
               )
             }
             
             // Render first 6 images immediately
             return (
-              <div key={idx} className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6 hover:shadow-xl transition-shadow duration-300 cursor-pointer`} onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}>
+              <div 
+                key={idx} 
+                className="relative rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" 
+                onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
+                style={{
+                  gridColumn: `span ${gridSpan.col}`,
+                  gridRow: `span ${gridSpan.row}`
+                }}
+              >
                 <Image
                   src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
                   alt={image.alt || `${vehicleTitle} Gallery Image ${idx + 1}`}
@@ -150,16 +190,19 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
         
         {/* Show skeleton grid for remaining batches */}
         {remainingBatches > 0 && (
-          <div className="mt-8">
-            <SkeletonImageGrid 
-              count={remainingBatches * 4}
-              cols={4}
-              gap="gap-6"
-              aspectRatio="aspect-square"
-              animate={true}
-              showTextLines={false}
-              className="columns-1 md:columns-2 lg:columns-3 xl:columns-4"
-            />
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[200px]">
+            {Array.from({ length: remainingBatches * 4 }).map((_, idx) => (
+              <div 
+                key={`skeleton-${idx}`}
+                className="relative rounded-md overflow-hidden shadow-lg bg-gray-200 animate-pulse flex items-center justify-center"
+                style={{
+                  gridColumn: `span 1`,
+                  gridRow: `span 1`
+                }}
+              >
+                <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+              </div>
+            ))}
           </div>
         )}
         {/* Lightbox for gallery images */}

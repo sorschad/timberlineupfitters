@@ -16,6 +16,7 @@ interface LazyImageProps {
   batchIndex?: number
   onBatchLoad?: (batchIndex: number) => void
   onClick?: () => void
+  style?: React.CSSProperties
 }
 
 export default function LazyImage({
@@ -30,7 +31,8 @@ export default function LazyImage({
   onLoad,
   onClick,
   batchIndex = 0,
-  onBatchLoad
+  onBatchLoad,
+  style
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isInView, setIsInView] = useState(false)
@@ -81,6 +83,7 @@ export default function LazyImage({
       className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6 hover:shadow-xl transition-shadow duration-300 ${
         isLoaded ? 'opacity-100' : 'opacity-0'
       } transition-opacity duration-500 ${onClick ? 'cursor-pointer' : ''}`}
+      style={style}
     >
       {shouldLoad && (
         <>
