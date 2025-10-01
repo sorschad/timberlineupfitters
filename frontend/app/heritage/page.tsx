@@ -2,7 +2,8 @@ import type {Metadata} from 'next'
 import Head from 'next/head'
 
 import PageBuilderPage from '@/app/components/PageBuilder'
-import Hero from '@/app/components/Hero'
+import HeritageHero from '@/app/components/HeritageHero'
+import HeritageTimeline from '@/app/components/HeritageTimeline'
 import {sanityFetch} from '@/sanity/lib/live'
 import {getPageQuery} from '@/sanity/lib/queries'
 import {GetPageQueryResult} from '@/sanity.types'
@@ -41,12 +42,16 @@ export default async function HeritagePage() {
       </Head>
 
       <div className="mb-12 lg:mb-24 -mt-12 lg:-mt-24">
-        <Hero />
+        <HeritageHero imageUrl="/images/heritage-hero.jpg" title="Timberline Upfitters" />
       </div>
 
       {/* Intentionally skip the generic heading block for Heritage */}
 
       <PageBuilderPage page={page as GetPageQueryResult} />
+
+      <div className="mt-16 lg:mt-24">
+        <HeritageTimeline />
+      </div>
     </div>
   )
 }
