@@ -8,8 +8,16 @@ type HeritageHeroCategory = {
   imageUrl?: string
 }
 
+type HeroBackgroundImage = {
+  asset: {
+    _id: string
+    url: string
+  }
+  alt: string
+}
+
 type HeritageHeroProps = {
-  imageUrl: string
+  heroBackgroundImages?: HeroBackgroundImage[]
   title?: string
   subtitle?: string
   categories?: HeritageHeroCategory[]
@@ -21,7 +29,7 @@ const montserrat = Montserrat({
   display: 'swap',
 })
 
-export default function HeritageHero({ imageUrl, title = 'Timberline Upfitters', subtitle = "Go anywhere in a moment’s notice", categories }: HeritageHeroProps) {
+export default function HeritageHero({ heroBackgroundImages, title = 'Timberline Upfitters', subtitle = "Go anywhere in a moment's notice", categories }: HeritageHeroProps) {
   const [heroHeight, setHeroHeight] = useState('80vh')
   const tabs: HeritageHeroCategory[] = (categories && categories.length > 0)
     ? categories
@@ -32,6 +40,23 @@ export default function HeritageHero({ imageUrl, title = 'Timberline Upfitters',
         { label: 'Hike & bike', imageUrl: '/images/heritage-hike.jpg' },
       ]
   const [activeIndex, setActiveIndex] = useState(0)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  // Get the current background image
+  const currentImage = heroBackgroundImages && heroBackgroundImages.length > 0 
+    ? heroBackgroundImages[currentImageIndex] 
+    : null
+
+  // Auto-cycle through background images
+  useEffect(() => {
+    if (!heroBackgroundImages || heroBackgroundImages.length <= 1) return
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroBackgroundImages.length)
+    }, 5000) // Change image every 5 seconds
+
+    return () => clearInterval(interval)
+  }, [heroBackgroundImages])
 
   useEffect(() => {
     const updateHeight = () => {
@@ -46,7 +71,14 @@ export default function HeritageHero({ imageUrl, title = 'Timberline Upfitters',
 
   return (
     <section className="relative w-full overflow-hidden" style={{ height: heroHeight }}>
-      <div className="absolute inset-0 bg-center bg-cover" style={{ backgroundImage: `url(${imageUrl})` }} />
+      {currentImage ? (
+        <div 
+          className="absolute inset-0 bg-center bg-cover transition-opacity duration-1000" 
+          style={{ backgroundImage: `url(${currentImage.asset.url})` }} 
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gray-800" />
+      )}
       <div className="absolute inset-0 bg-black/30" />
 
       <div className="relative z-10 h-full">
@@ -62,6 +94,26 @@ export default function HeritageHero({ imageUrl, title = 'Timberline Upfitters',
         </div>
       </div>
 
+      {/* Background image indicators */}
+      {heroBackgroundImages && heroBackgroundImages.length > 1 && (
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-20">
+          <div className="flex space-x-2">
+            {heroBackgroundImages.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentImageIndex(idx)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  idx === currentImageIndex 
+                    ? 'bg-white scale-125' 
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+                aria-label={`Go to background image ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Bottom tabs (clickable) - active tab becomes transparent to reveal image */}
       <div className="absolute bottom-0 left-0 right-0 h-16 z-20">
         <div className="w-full h-full grid grid-cols-4">
@@ -72,10 +124,10 @@ export default function HeritageHero({ imageUrl, title = 'Timberline Upfitters',
                 console.log('Tab clicked:', t.label, 'index:', idx)
                 setActiveIndex(idx)
               }}
-              className={`text-left px-3 sm:px-6 flex items-center h-16 border-t ${idx !== 0 ? 'border-l' : ''} border-white/60 text-[10px] sm:text-xs tracking-widest uppercase transition-colors cursor-pointer ${
+              className={`text-left px-3 sm:px-6 flex items-center h-16 text-[10px] sm:text-xs tracking-widest uppercase transition-colors cursor-pointer  ${idx !== 0 ? 'border-l' : ''} ${
                 idx === activeIndex
-                  ? 'bg-transparent text-black'
-                  : 'bg-white/80 backdrop-blur-[2px] text-black/70 hover:text-black'
+                  ? 'bg-transparent text-black border-none'
+                  : 'bg-white/80 backdrop-blur-[2px] text-black/70 hover:text-black  border-t border-white/60'
               }`}
             >
               <span className="mr-2 sm:mr-3 opacity-70">{String(idx + 1).padStart(2, '0')}</span>

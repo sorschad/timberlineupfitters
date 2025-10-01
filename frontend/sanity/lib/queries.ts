@@ -68,6 +68,13 @@ export const getPageQuery = defineQuery(`
     slug,
     heading,
     subheading,
+    heroBackgroundImages[]{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
     "pageBuilder": pageBuilder[]{
       ...,
       _type == "callToAction" => {
