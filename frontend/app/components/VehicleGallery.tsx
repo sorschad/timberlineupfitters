@@ -79,9 +79,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
           <div className="mb-12">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Features You'll Love</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
               <div className="w-16 h-0.5 bg-[#9c8a7e] mx-auto text-center justify-center"></div>
-              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               {filterCards.map((card) => (
