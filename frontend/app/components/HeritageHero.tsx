@@ -47,17 +47,6 @@ export default function HeritageHero({ heroBackgroundImages, title = 'Timberline
     ? heroBackgroundImages[currentImageIndex] 
     : null
 
-  // Auto-cycle through background images
-  useEffect(() => {
-    if (!heroBackgroundImages || heroBackgroundImages.length <= 1) return
-
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % heroBackgroundImages.length)
-    }, 5000) // Change image every 5 seconds
-
-    return () => clearInterval(interval)
-  }, [heroBackgroundImages])
-
   useEffect(() => {
     const updateHeight = () => {
       const viewportHeight = window.innerHeight
@@ -121,7 +110,6 @@ export default function HeritageHero({ heroBackgroundImages, title = 'Timberline
             <button
               key={t.label}
               onClick={() => {
-                console.log('Tab clicked:', t.label, 'index:', idx)
                 setActiveIndex(idx)
               }}
               className={`text-left px-3 sm:px-6 flex items-center h-16 text-[10px] sm:text-xs tracking-widest uppercase transition-colors cursor-pointer  ${idx !== 0 ? 'border-l' : ''} ${
