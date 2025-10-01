@@ -46,15 +46,26 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
 
   if (!gallery || gallery.length === 0) return null
 
-  // Calculate how many images need skeleton loading
-  const lazyImages = gallery.slice(6) // Images 7+
+  // Build a stable, filtered list of renderable images so tile indexes match lightbox indexes
+  const validImages = useMemo(() => {
+    return (gallery || []).filter((img: any) => {
+      try {
+        return Boolean(urlForImage(img)?.url())
+      } catch {
+        return false
+      }
+    })
+  }, [gallery])
+
+  // Calculate how many images need skeleton loading based on valid images
+  const lazyImages = validImages.slice(6) // Images 7+
   const totalBatches = Math.ceil(lazyImages.length / 4)
   const loadedBatchesCount = loadedBatches.size
   const remainingBatches = totalBatches - loadedBatchesCount
 
   const slides = useMemo(() => {
     const items: Array<{ src: string; description?: string }> = []
-    ;(gallery || []).forEach((image: any) => {
+    ;(validImages || []).forEach((image: any) => {
       try {
         const builder = urlForImage(image)
         if (!builder) return
@@ -66,7 +77,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
       }
     })
     return items
-  }, [gallery, vehicleTitle])
+  }, [validImages, vehicleTitle])
 
   return (
     <section className="py-8 pb-16 bg-white">
@@ -94,7 +105,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
         )}
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-[200px] grid-flow-dense">
-          {gallery.map((image: any, idx: number) => {
+          {validImages.map((image: any, idx: number) => {
             // Get grid span from Sanity data or use defaults
             const getGridSpan = (image: any, currentGridCols: number) => {
               const gridSpan = image?.gridSpan
@@ -117,9 +128,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
 
               // Use responsive grid span based on current grid columns
               let span
-              if (currentGridCols >= 4 && gridSpan.wide) {
-                span = gridSpan.wide
-              } else if (currentGridCols >= 3 && gridSpan.desktop) {
+              if (currentGridCols >= 3 && gridSpan.desktop) {
                 span = gridSpan.desktop
               } else if (currentGridCols >= 2 && gridSpan.tablet) {
                 span = gridSpan.tablet
@@ -134,11 +143,11 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
             }
             
             const gridSpan = getGridSpan(image, gridCols)
-            const isLast = idx === (gallery?.length || 0) - 1
+            const isLast = idx === (validImages?.length || 0) - 1
             // Calculate remaining columns in the current last row before placing the final image
             let fillerCols = 0
             if (isLast) {
-              const totalBeforeLast = (gallery || []).slice(0, (gallery?.length || 1) - 1).reduce((acc: number, _img: any, i: number) => acc + getGridSpan(_img, gridCols).col, 0)
+              const totalBeforeLast = (validImages || []).slice(0, (validImages?.length || 1) - 1).reduce((acc: number, _img: any, i: number) => acc + getGridSpan(_img, gridCols).col, 0)
               const remainder = totalBeforeLast % gridCols
               fillerCols = remainder === 0 ? 0 : (gridCols - remainder)
               if (gridCols === 1) fillerCols = 0
