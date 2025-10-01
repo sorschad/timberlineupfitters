@@ -87,7 +87,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
     <div className="min-h-screen scroll-smooth">
       {/* Hero Section - Scenic Background with Vehicle */}
       <section 
-        className="relative max-h-[90vh] text-white overflow-hidden"
+        className="relative min-h-[100vh] text-white overflow-hidden"
         style={{
           backgroundImage: (vehicle.vehicleDetailsPageHeaderBackgroundImage && urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.url())
             ? `url(${urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.width(1920).height(1080).fit('crop').url()})`
@@ -107,12 +107,12 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             {/* Left Content */}
             <div className="space-y-8">
               {/* Main Headline */}
-              <h1 className="text-3xl md:text-5xl font-bold leading-none">
+              <h1 className="text-3xl md:text-4xl font-bold leading-none">
                 {vehicle.title}
               </h1>
               
               {/* Subtitle */}
-              <p className="text-xl text-white/90 max-w-lg">
+              <p className="text-lg font-light text-white/60 max-w-lg leading-tight">
                 New all electric crossover with long range for road trips and comfort.
               </p>
               
@@ -173,6 +173,29 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             </div>
           </div>
           
+        </div>
+        
+        {/* Fade Transition Section */}
+        <div className="absolute bottom-0 left-0 right-0 z-20">
+          <div className="relative">
+            {/* Enhanced gradient fade overlay */}
+            <div className="h-40 bg-gradient-to-b from-transparent via-white/10 to-white/80"></div>
+            <div className="h-20 bg-gradient-to-b from-white/80 to-white"></div>
+            
+            {/* Dynamic subtitle section with smooth transition */}
+            <div className="bg-white pt-12">
+              <div className="container mx-auto px-4">
+                <div className="text-center">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 opacity-0 animate-fade-in">
+                    Features You'll Love
+                  </h2>
+                  <p className="text-base md:text-lg text-gray-600/70 max-w-3xl mx-auto opacity-0 animate-fade-in-delay">
+                    feature addons and customization options offered on this vehicle
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

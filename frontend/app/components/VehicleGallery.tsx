@@ -107,51 +107,45 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
         {/* Filter Cards Section - Sticky on scroll */}
         {filterCards && filterCards.length > 0 && (
           <div className="sticky top-4 z-10 mb-8">
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100 p-4">
-              <div className="text-center mb-4">
-                <h2 className="text-2xl font-bold text-gray-900 mb-3">Features You'll Love</h2>
-                <div className="w-12 h-0.5 bg-[#9c8a7e] mx-auto"></div>
-              </div>
-              <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-              {filterCards.map((card) => (
-                <div
-                  key={card.id}
-                  onClick={() => onFilterChange?.(activeFilter === card.tag ? null : card.tag)}
-                  className={`bg-white rounded-lg px-4 py-3 text-center border transition-all duration-200 hover:shadow-md hover:cursor-pointer relative ${
-                    activeFilter === card.tag 
-                      ? 'border-orange-500 bg-orange-50 shadow-md shadow-orange-100' 
-                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  <div className="text-sm font-semibold text-gray-900 mb-1 leading-tight">
-                    {card.title}
-                  </div>
-                  <div className="text-xs text-gray-500 mb-0 leading-tight">
-                    {card.description}
-                  </div>
-                  {/* Active Filter Badge - Absolutely Positioned */}
-                  {activeFilter === card.tag && (
-                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white rounded-full shadow-md border border-white opacity-85">
-                      <div className="flex items-center px-1.5 py-0">
-                        <span className="text-xs font-medium lowercase">active</span>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            onFilterChange?.(null)
-                          }}
-                          className="ml-0.5 w-3 h-3 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer"
-                          aria-label="Clear filter"
-                        >
-                          <svg className="w-1.5 h-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  )}
+            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {filterCards.map((card) => (
+              <div
+                key={card.id}
+                onClick={() => onFilterChange?.(activeFilter === card.tag ? null : card.tag)}
+                className={`bg-white rounded-lg px-4 py-3 text-center border transition-all duration-200 hover:shadow-md hover:cursor-pointer relative ${
+                  activeFilter === card.tag 
+                    ? 'border-orange-500 bg-orange-50 shadow-md shadow-orange-100' 
+                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <div className="text-sm font-semibold text-gray-900 mb-1 leading-tight">
+                  {card.title}
                 </div>
-              ))}
+                <div className="text-xs text-gray-500 mb-0 leading-tight">
+                  {card.description}
+                </div>
+                {/* Active Filter Badge - Absolutely Positioned */}
+                {activeFilter === card.tag && (
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white rounded-full shadow-md border border-white opacity-85">
+                    <div className="flex items-center px-1.5 py-0">
+                      <span className="text-xs font-medium lowercase">active</span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          onFilterChange?.(null)
+                        }}
+                        className="ml-0.5 w-3 h-3 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer"
+                        aria-label="Clear filter"
+                      >
+                        <svg className="w-1.5 h-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
+            ))}
             </div>
           </div>
         )}
