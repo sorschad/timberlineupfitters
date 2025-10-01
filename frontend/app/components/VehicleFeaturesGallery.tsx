@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState, useRef } from 'react'
+import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
 import Lightbox from 'yet-another-react-lightbox'
@@ -32,7 +32,6 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
   const [activeFeature, setActiveFeature] = useState<string | null>(null)
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
-  const zoomRef = useRef<any>(null)
 
   // Default features if not provided
   const defaultFeatures = [
@@ -215,7 +214,6 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
           index={lightboxIndex}
           plugins={[Captions, Thumbnails, Zoom]}
           captions={{ descriptionTextAlign: 'start' }}
-          zoom={{ ref: zoomRef }}
         />
       )}
     </section>
