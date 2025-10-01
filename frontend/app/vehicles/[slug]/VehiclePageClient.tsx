@@ -84,10 +84,10 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   const filteredGallery = getFilteredGallery()
 
   return (
-    <div className="min-h-screen scroll-smooth">
+    <div className="scroll-smooth">
       {/* Hero Section - Scenic Background with Vehicle */}
       <section 
-        className="relative min-h-[100vh] text-white overflow-hidden"
+        className="relative min-h-[50vh] lg:min-h-[320px] text-white overflow-hidden"
         style={{
           backgroundImage: (vehicle.vehicleDetailsPageHeaderBackgroundImage && urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.url())
             ? `url(${urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.width(1920).height(1080).fit('crop').url()})`
@@ -178,9 +178,9 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
         {/* Fade Transition Section */}
         <div className="absolute bottom-0 left-0 right-0 z-20">
           <div className="relative">
-            {/* Enhanced gradient fade overlay */}
-            <div className="h-40 bg-gradient-to-b from-transparent via-white/10 to-white/80"></div>
-            <div className="h-20 bg-gradient-to-b from-white/80 to-white"></div>
+            {/* Softened gradient fade overlay */}
+            <div className="h-20 bg-gradient-to-b from-transparent via-white/5 to-white/40"></div>
+            <div className="h-10 bg-gradient-to-b from-white/40 via-white/70 to-white"></div>
             
             {/* Dynamic subtitle section with smooth transition */}
             <div className="bg-white pt-12">
