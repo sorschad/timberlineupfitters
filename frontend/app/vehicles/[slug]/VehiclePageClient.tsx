@@ -38,6 +38,7 @@ interface VehiclePageClientProps {
 
 export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null)
+  const [isScrolling, setIsScrolling] = useState(false)
 
   // Define filter tags for each card
   const filterCards = [
@@ -83,7 +84,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   const filteredGallery = getFilteredGallery()
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen scroll-smooth">
       {/* Hero Section - Scenic Background with Vehicle */}
       <section 
         className="relative max-h-[90vh] text-white overflow-hidden"
@@ -116,8 +117,27 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
               </p>
               
               {/* CTA Button */}
-              <button className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg">
-                Explore
+              <button 
+                onClick={() => {
+                  setIsScrolling(true)
+                  const gallerySection = document.getElementById('vehicle-gallery-section')
+                  if (gallerySection) {
+                    // Add offset for sticky header
+                    const offset = 80
+                    const elementPosition = gallerySection.offsetTop - offset
+                    window.scrollTo({
+                      top: elementPosition,
+                      behavior: 'smooth'
+                    })
+                    // Reset scrolling state after animation
+                    setTimeout(() => setIsScrolling(false), 1000)
+                  }
+                }}
+                className={`bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 ${
+                  isScrolling ? 'animate-pulse' : ''
+                }`}
+              >
+                {isScrolling ? 'Scrolling...' : 'Explore'}
               </button>
             </div>
             

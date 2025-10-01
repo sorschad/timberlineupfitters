@@ -102,16 +102,17 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
   }, [validImages, vehicleTitle])
 
   return (
-    <section className="py-8 pb-16 bg-white">
+    <section id="vehicle-gallery-section" className="py-8 pb-16 bg-white">
       <div className="container mx-auto px-4">
-        {/* Filter Cards Section */}
+        {/* Filter Cards Section - Sticky on scroll */}
         {filterCards && filterCards.length > 0 && (
-          <div className="mb-8">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-3">Features You'll Love</h2>
-              <div className="w-12 h-0.5 bg-[#9c8a7e] mx-auto"></div>
-            </div>
-            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+          <div className="sticky top-4 z-10 mb-8">
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100 p-4">
+              <div className="text-center mb-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">Features You'll Love</h2>
+                <div className="w-12 h-0.5 bg-[#9c8a7e] mx-auto"></div>
+              </div>
+              <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
               {filterCards.map((card) => (
                 <div
                   key={card.id}
@@ -150,6 +151,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                   )}
                 </div>
               ))}
+              </div>
             </div>
           </div>
         )}
