@@ -1,10 +1,12 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useMemo, useState, useCallback } from 'react'
 import Image from 'next/image'
 import LazyImage from './LazyImage'
 import SkeletonImageGrid from './SkeletonImageGrid'
 import { urlForImage } from '@/sanity/lib/utils'
+import Lightbox from 'yet-another-react-lightbox'
+import 'yet-another-react-lightbox/styles.css'
 
 interface VehicleGalleryProps {
   gallery: any[]
@@ -16,6 +18,8 @@ interface VehicleGalleryProps {
 export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, onClearFilter }: VehicleGalleryProps) {
   const [loadedBatches, setLoadedBatches] = useState<Set<number>>(new Set())
   const [loadingBatches, setLoadingBatches] = useState<Set<number>>(new Set())
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
 
   const handleBatchLoad = useCallback((batchIndex: number) => {
     if (loadedBatches.has(batchIndex)) return
@@ -31,6 +35,22 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
   const totalBatches = Math.ceil(lazyImages.length / 4)
   const loadedBatchesCount = loadedBatches.size
   const remainingBatches = totalBatches - loadedBatchesCount
+
+  const slides = useMemo(() => {
+    const items: Array<{ src: string; description?: string }> = []
+    ;(gallery || []).forEach((image: any) => {
+      try {
+        const builder = urlForImage(image)
+        if (!builder) return
+        const src = builder.width(2000).height(1334).fit('max').url()
+        if (!src) return
+        items.push({ src, description: image?.caption || `${vehicleTitle}` })
+      } catch {
+        // skip invalid images
+      }
+    })
+    return items
+  }, [gallery, vehicleTitle])
 
   return (
     <section className="py-8 pb-16 bg-white">
@@ -102,13 +122,14 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                   caption={image.caption}
                   batchIndex={batchIndex}
                   onBatchLoad={handleBatchLoad}
+                  onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
                 />
               )
             }
             
             // Render first 6 images immediately
             return (
-              <div key={idx} className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6 hover:shadow-xl transition-shadow duration-300`}>
+              <div key={idx} className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6 hover:shadow-xl transition-shadow duration-300 cursor-pointer`} onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}>
                 <Image
                   src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
                   alt={image.alt || `${vehicleTitle} Gallery Image ${idx + 1}`}
@@ -140,6 +161,15 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
               className="columns-1 md:columns-2 lg:columns-3 xl:columns-4"
             />
           </div>
+        )}
+        {/* Lightbox for gallery images */}
+        {slides.length > 0 && (
+          <Lightbox
+            open={lightboxOpen}
+            close={() => setLightboxOpen(false)}
+            slides={slides}
+            index={lightboxIndex}
+          />
         )}
       </div>
     </section>

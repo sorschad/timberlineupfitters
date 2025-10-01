@@ -15,6 +15,7 @@ interface LazyImageProps {
   onLoad?: () => void
   batchIndex?: number
   onBatchLoad?: (batchIndex: number) => void
+  onClick?: () => void
 }
 
 export default function LazyImage({
@@ -27,6 +28,7 @@ export default function LazyImage({
   aspectClass = '',
   caption,
   onLoad,
+  onClick,
   batchIndex = 0,
   onBatchLoad
 }: LazyImageProps) {
@@ -75,9 +77,10 @@ export default function LazyImage({
   return (
     <div 
       ref={imgRef}
+      onClick={onClick}
       className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6 hover:shadow-xl transition-shadow duration-300 ${
         isLoaded ? 'opacity-100' : 'opacity-0'
-      } transition-opacity duration-500`}
+      } transition-opacity duration-500 ${onClick ? 'cursor-pointer' : ''}`}
     >
       {shouldLoad && (
         <>

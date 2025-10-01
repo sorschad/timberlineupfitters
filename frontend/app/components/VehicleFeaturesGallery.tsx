@@ -1,8 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState, useRef } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
+import Lightbox from 'yet-another-react-lightbox'
+import Captions from 'yet-another-react-lightbox/plugins/captions'
+import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
+import Zoom from 'yet-another-react-lightbox/plugins/zoom'
+import 'yet-another-react-lightbox/styles.css'
+import 'yet-another-react-lightbox/plugins/thumbnails.css'
 
 interface VehicleFeaturesGalleryProps {
   vehicle: {
@@ -11,6 +17,7 @@ interface VehicleFeaturesGalleryProps {
     coverImage?: any
     headerVehicleImage?: any
     features?: Array<{
+      id?: string
       title: string
       description: string
       icon?: any
@@ -23,6 +30,9 @@ interface VehicleFeaturesGalleryProps {
 export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalleryProps) {
   const [activeView, setActiveView] = useState<'interior' | 'exterior'>('interior')
   const [activeFeature, setActiveFeature] = useState<string | null>(null)
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+  const zoomRef = useRef<any>(null)
 
   // Default features if not provided
   const defaultFeatures = [
@@ -62,6 +72,27 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
   const mainImage = getMainImage()
   const imageUrl = mainImage ? urlForImage(mainImage)?.url() : null
 
+  // Build lightbox slides from available gallery images, fallback to cover/header
+  const slides = useMemo(() => {
+    const images: any[] = []
+    const pushImage = (img: any) => {
+      try {
+        const src = urlForImage(img)!.width(2000).height(1334).fit('max').url()
+        const thumb = urlForImage(img)!.width(400).height(267).fit('crop').url()
+        images.push({ src, thumbnail: thumb, description: vehicle.title })
+      } catch {
+        // ignore bad images
+      }
+    }
+    if (vehicle.gallery && vehicle.gallery.length > 0) {
+      vehicle.gallery.forEach(pushImage)
+    } else {
+      if (vehicle.headerVehicleImage) pushImage(vehicle.headerVehicleImage)
+      if (vehicle.coverImage) pushImage(vehicle.coverImage)
+    }
+    return images
+  }, [vehicle])
+
   return (
     <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       <div className="container mx-auto px-4">
@@ -84,10 +115,16 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
                   {/* Interactive Hotspots */}
                   {activeView === 'interior' && features.map((feature, index) => (
                     <button
-                      key={feature.id}
-                      onClick={() => setActiveFeature(activeFeature === feature.id ? null : feature.id)}
+                      key={(feature as any).id ?? `${feature.title}-${index}`}
+                      onClick={() => {
+                        const featureId = (feature as any).id ?? `${feature.title}-${index}`
+                        setActiveFeature(activeFeature === featureId ? null : featureId)
+                        // Open lightbox focusing on the first slide for now
+                        setLightboxIndex(0)
+                        setIsLightboxOpen(true)
+                      }}
                       className={`absolute w-8 h-8 rounded-full border-2 border-white bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 ${
-                        activeFeature === feature.id ? 'bg-white/40 scale-110' : ''
+                        activeFeature === ((feature as any).id ?? `${feature.title}-${index}`) ? 'bg-white/40 scale-110' : ''
                       }`}
                       style={{
                         left: `${feature.position?.x || 50}%`,
@@ -135,11 +172,16 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
             <div className="space-y-4">
               {features.slice(0, 2).map((feature, index) => (
                 <div
-                  key={feature.id}
+                  key={(feature as any).id ?? `${feature.title}-${index}`}
                   className={`bg-blue-500 rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl ring-2 ring-blue-500 shadow-blue-500/20 ${
-                    activeFeature === feature.id ? 'ring-2 ring-blue-500 shadow-blue-500/20' : ''
+                    activeFeature === ((feature as any).id ?? `${feature.title}-${index}`) ? 'ring-2 ring-blue-500 shadow-blue-500/20' : ''
                   }`}
-                  onClick={() => setActiveFeature(activeFeature === feature.id ? null : feature.id)}
+                  onClick={() => {
+                    const featureId = (feature as any).id ?? `${feature.title}-${index}`
+                    setActiveFeature(activeFeature === featureId ? null : featureId)
+                    setLightboxIndex(0)
+                    setIsLightboxOpen(true)
+                  }}
                 >
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
@@ -164,6 +206,18 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
           </div>
         </div>
       </div>
+      {/* Lightbox */}
+      {slides.length > 0 && (
+        <Lightbox
+          open={isLightboxOpen}
+          close={() => setIsLightboxOpen(false)}
+          slides={slides}
+          index={lightboxIndex}
+          plugins={[Captions, Thumbnails, Zoom]}
+          captions={{ descriptionTextAlign: 'start' }}
+          zoom={{ ref: zoomRef }}
+        />
+      )}
     </section>
   )
 }
