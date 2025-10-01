@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
 import Lightbox from 'yet-another-react-lightbox'
@@ -24,21 +24,51 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [gridCols, setGridCols] = useState(4)
+  const [isResizing, setIsResizing] = useState(false)
 
-  // Track responsive grid columns to compute filler span
+  // Debounced resize handler for smooth performance
+  const debouncedResize = useCallback(() => {
+    let timeoutId: NodeJS.Timeout
+    return () => {
+      setIsResizing(true)
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        const w = typeof window !== 'undefined' ? window.innerWidth : 1920
+        let newCols: number
+        
+        if (w >= 1536) newCols = 5      // 2xl: 5 columns
+        else if (w >= 1280) newCols = 4 // xl: 4 columns  
+        else if (w >= 1024) newCols = 3 // lg: 3 columns
+        else if (w >= 768) newCols = 2   // md: 2 columns
+        else newCols = 1                 // sm: 1 column
+        
+        setGridCols(newCols)
+        setIsResizing(false)
+      }, 150) // 150ms debounce
+    }
+  }, [])
+
+  // Enhanced responsive grid columns with smooth transitions
   useEffect(() => {
     const computeCols = () => {
       const w = typeof window !== 'undefined' ? window.innerWidth : 1920
-      if (w >= 1280) return 4
-      if (w >= 1024) return 3
-      if (w >= 768) return 2
-      return 1
+      if (w >= 1536) return 5      // 2xl: 5 columns
+      if (w >= 1280) return 4       // xl: 4 columns  
+      if (w >= 1024) return 3      // lg: 3 columns
+      if (w >= 768) return 2       // md: 2 columns
+      return 1                      // sm: 1 column
     }
+    
     const update = () => setGridCols(computeCols())
     update()
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
-  }, [])
+    
+    const debouncedUpdate = debouncedResize()
+    window.addEventListener('resize', debouncedUpdate)
+    
+    return () => {
+      window.removeEventListener('resize', debouncedUpdate)
+    }
+  }, [debouncedResize])
 
   if (!gallery || gallery.length === 0) return null
 
@@ -125,7 +155,14 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
         )}
 
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[200px] grid-flow-dense">
+        <div 
+          className={`grid gap-6 auto-rows-[200px] grid-flow-dense transition-all duration-300 ease-in-out ${
+            isResizing ? 'opacity-75' : 'opacity-100'
+          }`}
+          style={{
+            gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))`
+          }}
+        >
           {validImages.map((image: any, idx: number) => {
             // Get grid span from Sanity data or use defaults
             const getGridSpan = (image: any, currentGridCols: number) => {
@@ -171,17 +208,19 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
               return null
             }
             
-            // When filter is active, override grid spans to fill empty space
+            // Enhanced responsive grid span calculation
             const getFilteredGridSpan = () => {
               if (!activeFilter) {
                 return {
-                  gridColumn: isLast ? '1 / -1' : `span ${gridSpan.col}`,
+                  gridColumn: isLast ? '1 / -1' : `span ${Math.min(gridSpan.col, gridCols)}`,
                   gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
                 }
               }
               
-              // When filtering, make images larger to fill space
+              // When filtering, make images larger to fill space based on current grid columns
               const totalImages = validImages.length
+              const responsiveCols = Math.min(gridCols, 4) // Cap at 4 for better layout
+              
               if (totalImages <= 2) {
                 // For 1-2 images, make them span full width
                 return {
@@ -189,15 +228,17 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                   gridRow: 'span 2'
                 }
               } else if (totalImages <= 4) {
-                // For 3-4 images, make them span half width
+                // For 3-4 images, make them span responsive width
+                const spanCols = Math.max(2, Math.floor(responsiveCols / 2))
                 return {
-                  gridColumn: `span ${Math.max(2, Math.floor(gridCols / 2))}`,
+                  gridColumn: `span ${Math.min(spanCols, gridCols)}`,
                   gridRow: 'span 2'
                 }
               } else {
-                // For 5+ images, use original spans but slightly larger
+                // For 5+ images, use responsive spans
+                const enhancedCols = Math.min(gridCols, gridSpan.col + 1)
                 return {
-                  gridColumn: `span ${Math.min(gridCols, gridSpan.col + 1)}`,
+                  gridColumn: `span ${Math.min(enhancedCols, gridCols)}`,
                   gridRow: `span ${gridSpan.row + 1}`
                 }
               }
@@ -205,13 +246,16 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
             
             const filteredGridStyle = getFilteredGridSpan()
             
-            // Render all images immediately
+            // Render all images immediately with smooth transitions
             const lastBlock = (
               <div 
                 key={idx} 
                 className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white border border-gray-100" 
                 onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
-                style={filteredGridStyle}
+                style={{
+                  ...filteredGridStyle,
+                  transition: 'grid-column 0.3s ease-in-out, grid-row 0.3s ease-in-out, transform 0.3s ease-in-out'
+                }}
               >
                 <Image
                   src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
