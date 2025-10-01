@@ -42,10 +42,34 @@ export default function HeritageHero({ heroBackgroundImages, title = 'Timberline
   const [activeIndex, setActiveIndex] = useState(0)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  // Get the current background image
+  // Get the current background image using nth-child logic
   const currentImage = heroBackgroundImages && heroBackgroundImages.length > 0 
     ? heroBackgroundImages[currentImageIndex] 
     : null
+
+  // Handle tab click to select corresponding hero background image
+  const handleTabClick = (tabIndex: number) => {
+    setActiveIndex(tabIndex)
+    
+    // Use nth-child logic: select image at tabIndex position
+    // If we have hero background images, use the tab index to select the image
+    if (heroBackgroundImages && heroBackgroundImages.length > 0) {
+      // Use modulo to cycle through available images if there are more tabs than images
+      const imageIndex = tabIndex % heroBackgroundImages.length
+      setCurrentImageIndex(imageIndex)
+    }
+  }
+
+  // Auto-cycle through background images (only when no tab is actively selected)
+  useEffect(() => {
+    if (!heroBackgroundImages || heroBackgroundImages.length <= 1) return
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroBackgroundImages.length)
+    }, 5000) // Change image every 5 seconds
+
+    return () => clearInterval(interval)
+  }, [heroBackgroundImages])
 
   useEffect(() => {
     const updateHeight = () => {
@@ -83,35 +107,13 @@ export default function HeritageHero({ heroBackgroundImages, title = 'Timberline
         </div>
       </div>
 
-      {/* Background image indicators */}
-      {heroBackgroundImages && heroBackgroundImages.length > 1 && (
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-20">
-          <div className="flex space-x-2">
-            {heroBackgroundImages.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentImageIndex(idx)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  idx === currentImageIndex 
-                    ? 'bg-white scale-125' 
-                    : 'bg-white/50 hover:bg-white/75'
-                }`}
-                aria-label={`Go to background image ${idx + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* Bottom tabs (clickable) - active tab becomes transparent to reveal image */}
       <div className="absolute bottom-0 left-0 right-0 h-16 z-20">
         <div className="w-full h-full grid grid-cols-4">
           {tabs.map((t, idx) => (
             <button
               key={t.label}
-              onClick={() => {
-                setActiveIndex(idx)
-              }}
+              onClick={() => handleTabClick(idx)}
               className={`text-left px-3 sm:px-6 flex items-center h-16 text-[10px] sm:text-xs tracking-widest uppercase transition-colors cursor-pointer  ${idx !== 0 ? 'border-l' : ''} ${
                 idx === activeIndex
                   ? 'bg-transparent text-black border-none'
