@@ -106,22 +106,19 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                       Active Filter
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          onFilterChange?.(null)
+                        }}
+                        className="ml-2 w-4 h-4 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer"
+                        aria-label="Clear filter"
+                      >
+                        <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
                     </div>
-                  )}
-                  {/* Red X close button for active filters */}
-                  {activeFilter === card.tag && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        onFilterChange?.(null)
-                      }}
-                      className="absolute top-2 right-2 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200"
-                      aria-label="Clear filter"
-                    >
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
                   )}
                 </button>
               ))}
@@ -176,16 +173,47 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
               return null
             }
             
+            // When filter is active, override grid spans to fill empty space
+            const getFilteredGridSpan = () => {
+              if (!activeFilter) {
+                return {
+                  gridColumn: isLast ? '1 / -1' : `span ${gridSpan.col}`,
+                  gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
+                }
+              }
+              
+              // When filtering, make images larger to fill space
+              const totalImages = validImages.length
+              if (totalImages <= 2) {
+                // For 1-2 images, make them span full width
+                return {
+                  gridColumn: '1 / -1',
+                  gridRow: 'span 2'
+                }
+              } else if (totalImages <= 4) {
+                // For 3-4 images, make them span half width
+                return {
+                  gridColumn: `span ${Math.max(2, Math.floor(gridCols / 2))}`,
+                  gridRow: 'span 2'
+                }
+              } else {
+                // For 5+ images, use original spans but slightly larger
+                return {
+                  gridColumn: `span ${Math.min(gridCols, gridSpan.col + 1)}`,
+                  gridRow: `span ${gridSpan.row + 1}`
+                }
+              }
+            }
+            
+            const filteredGridStyle = getFilteredGridSpan()
+            
             // Render all images immediately
             const lastBlock = (
               <div 
                 key={idx} 
                 className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white border border-gray-100" 
                 onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
-                style={{
-                  gridColumn: isLast ? '1 / -1' : `span ${gridSpan.col}`,
-                  gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
-                }}
+                style={filteredGridStyle}
               >
                 <Image
                   src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
