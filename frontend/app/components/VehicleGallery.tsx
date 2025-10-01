@@ -97,6 +97,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
             }
             
             const gridSpan = getGridSpan(idx)
+            const isLast = idx === (gallery?.length || 0) - 1
             const imageUrl = urlForImage(image)?.url()
             
             // Load first 6 images immediately, lazy load the rest in batches of 4
@@ -117,8 +118,8 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                     key={idx} 
                     className={`relative rounded-md overflow-hidden shadow-lg`}
                     style={{
-                      gridColumn: `span ${gridSpan.col}`,
-                      gridRow: `span ${gridSpan.row}`
+                      gridColumn: isLast ? '1 / -1' : `span ${gridSpan.col}`,
+                      gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
                     }}
                   >
                     <div className="w-full h-full bg-gray-200 animate-pulse flex items-center justify-center">
@@ -141,8 +142,8 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                   onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
                 className="relative rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
                   style={{
-                    gridColumn: `span ${gridSpan.col}`,
-                    gridRow: `span ${gridSpan.row}`
+                    gridColumn: isLast ? '1 / -1' : `span ${gridSpan.col}`,
+                    gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
                   }}
                 />
               )
@@ -155,8 +156,8 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                 className="relative rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" 
                 onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
                 style={{
-                  gridColumn: `span ${gridSpan.col}`,
-                  gridRow: `span ${gridSpan.row}`
+                  gridColumn: isLast ? '1 / -1' : `span ${gridSpan.col}`,
+                  gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
                 }}
               >
                 <Image
