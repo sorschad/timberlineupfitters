@@ -139,7 +139,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
             const lastBlock = (
               <div 
                 key={idx} 
-                className="relative rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" 
+                className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white border border-gray-100" 
                 onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
                 style={{
                   gridColumn: isLast ? '1 / -1' : `span ${gridSpan.col}`,
@@ -150,15 +150,21 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                   src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
                   alt={image.alt || `${vehicleTitle} Gallery Image ${idx + 1}`}
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 {image.caption && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-4">
-                    <p className="text-sm font-medium">{image.caption}</p>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent text-white p-4">
+                    <p className="text-sm font-medium leading-relaxed">{image.caption}</p>
                   </div>
                 )}
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300 rounded-md" />
+                {/* Subtle hover overlay with professional styling */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-transparent to-white/5 group-hover:from-black/10 group-hover:via-black/5 group-hover:to-white/10 transition-all duration-500 ease-out" />
+                {/* Info button overlay */}
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-black/80 text-white text-xs font-medium px-3 py-1.5 rounded-lg backdrop-blur-sm">
+                    Info
+                  </div>
+                </div>
               </div>
             )
             return lastBlock
