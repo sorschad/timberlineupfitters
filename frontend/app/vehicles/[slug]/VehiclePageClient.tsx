@@ -186,10 +186,10 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             <div className="bg-white pt-12">
               <div className="container mx-auto px-4">
                 <div className="text-center">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 opacity-0 animate-fade-in">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
                     Features You'll Love
                   </h2>
-                  <p className="text-base md:text-lg text-gray-600/70 max-w-3xl mx-auto opacity-0 animate-fade-in-delay">
+                  <p className="text-base md:text-lg text-gray-600/70 max-w-3xl mx-auto animate-fade-in-delay">
                     feature addons and customization options offered on this vehicle
                   </p>
                 </div>
