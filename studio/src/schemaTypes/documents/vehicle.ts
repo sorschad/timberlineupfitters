@@ -239,6 +239,24 @@ export const vehicle = defineType({
             }
           }),
           defineField({
+            name: 'tags',
+            title: 'Filter Tags',
+            type: 'array',
+            of: [{ type: 'string' }],
+            options: {
+              list: [
+                { title: 'Exterior', value: 'exterior' },
+                { title: 'Audio', value: 'audio' },
+                { title: 'Interior', value: 'interior' },
+                { title: 'Accessories: Exterior', value: 'accessories:exterior' },
+                { title: 'Accessories: Interior', value: 'accessories:interior' },
+                { title: 'Performance', value: 'performance' }
+              ]
+            },
+            description: 'Select tags to filter this image by category'
+          }),
+
+          defineField({
             name: 'gridSpan',
             title: 'Grid Layout',
             type: 'object',
