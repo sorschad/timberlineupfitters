@@ -159,45 +159,17 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             </div>
           </div>
           
-          {/* Data Cards Overlay - Now with Filter Functionality */}
-          <div className="absolute bottom-4 left-0 right-0 z-20">
-            <div className="container mx-auto px-4">
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {filterCards.map((card) => (
-                  <button
-                    key={card.id}
-                    onClick={() => setActiveFilter(activeFilter === card.tag ? null : card.tag)}
-                    className={`bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border transition-all duration-300 hover:scale-105 ${
-                      activeFilter === card.tag 
-                        ? 'border-white/60 bg-white/20 shadow-lg shadow-white/10' 
-                        : 'border-white/20 hover:border-white/40'
-                    }`}
-                  >
-                    <div className="text-base font-bold text-white mb-3 leading-none uppercase">
-                      {card.title}
-                    </div>
-                    <div className="text-sm text-white/70 mb-2 leading-tight font-light">
-                      {card.description}
-                    </div>
-                    {activeFilter === card.tag && (
-                      <div className="text-xs text-white/90 font-medium mt-2">
-                        ✓ Active Filter
-                      </div>
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* Gallery Section - Now with Filtering */}
       <VehicleGallery 
-        gallery={filteredGallery} 
+        gallery={filteredGallery || []} 
         vehicleTitle={vehicle.title}
         activeFilter={activeFilter}
         onClearFilter={() => setActiveFilter(null)}
+        filterCards={filterCards}
+        onFilterChange={(tag) => setActiveFilter(tag)}
       />
     </div>
   )

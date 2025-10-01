@@ -11,9 +11,16 @@ interface VehicleGalleryProps {
   vehicleTitle: string
   activeFilter?: string | null
   onClearFilter?: () => void
+  filterCards?: Array<{
+    id: string
+    title: string
+    description: string
+    tag: string
+  }>
+  onFilterChange?: (tag: string | null) => void
 }
 
-export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, onClearFilter }: VehicleGalleryProps) {
+export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, onClearFilter, filterCards, onFilterChange }: VehicleGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [gridCols, setGridCols] = useState(4)
@@ -67,6 +74,46 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
   return (
     <section className="py-8 pb-16 bg-white">
       <div className="container mx-auto px-4">
+        {/* Filter Cards Section */}
+        {filterCards && filterCards.length > 0 && (
+          <div className="mb-12">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Features You'll Love</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+              <div className="w-16 h-0.5 bg-[#9c8a7e] mx-auto text-center justify-center"></div>
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {filterCards.map((card) => (
+                <button
+                  key={card.id}
+                  onClick={() => onFilterChange?.(activeFilter === card.tag ? null : card.tag)}
+                  className={`bg-white rounded-xl p-6 text-center border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg ${
+                    activeFilter === card.tag 
+                      ? 'border-blue-500 bg-blue-50 shadow-lg shadow-blue-100' 
+                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  <div className="text-lg font-bold text-gray-900 mb-3 leading-tight">
+                    {card.title}
+                  </div>
+                  <div className="text-sm text-gray-400 mb-0 leading-snug">
+                    {card.description}
+                  </div>
+                  {activeFilter === card.tag && (
+                    <div className="text-xs text-blue-600 font-semibold mt-2 flex items-center justify-center">
+                      <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      Active Filter
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Filter Header */}
         {activeFilter && (
           <div className="mb-8 flex items-center justify-between">
