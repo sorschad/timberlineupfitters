@@ -100,21 +100,18 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                   </div>
                   {/* Active Filter Badge - Absolutely Positioned */}
                   {activeFilter === card.tag && (
-                    <div className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full shadow-lg border-2 border-white">
-                      <div className="flex items-center px-2 py-1">
-                        <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        <span className="text-xs font-medium">Active</span>
+                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white rounded-full shadow-md border border-white opacity-85">
+                      <div className="flex items-center px-1.5 py-0">
+                        <span className="text-xs font-medium lowercase">active</span>
                         <button
                           onClick={(e) => {
                             e.stopPropagation()
                             onFilterChange?.(null)
                           }}
-                          className="ml-1 w-4 h-4 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer"
+                          className="ml-0.5 w-3 h-3 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer"
                           aria-label="Clear filter"
                         >
-                          <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-1.5 h-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                           </svg>
                         </button>
