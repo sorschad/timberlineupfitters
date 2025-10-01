@@ -42,34 +42,34 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   // Define filter tags for each card
   const filterCards = [
     {
-      id: 'unique-design',
-      title: 'Unique Design',
+      id: 'exterior',
+      title: 'Unique Exterior Design',
       description: 'Inspired by the sea, the Ocean build embodies adventure and fun.',
-      tag: 'design'
+      tag: 'exterior'
     },
     {
-      id: 'sound-performance',
+      id: 'audio',
       title: 'Sound Performance',
-      description: 'Advanced audio systems for premium driving experience.',
-      tag: 'performance'
+      description: 'Advanced audio systems for premium listening.',
+      tag: 'audio'
     },
     {
-      id: 'custom-leather',
-      title: 'Custom Leather Interior',
+      id: 'interior',
+      title: 'Custom Interior Materials',
       description: 'Premium leather seating and interior materials.',
       tag: 'interior'
     },
     {
-      id: 'off-road-bumpers',
-      title: 'Off Road Bumpers',
-      description: 'Heavy-duty protection for rugged terrain adventures.',
-      tag: 'offroad'
+      id: 'accessories:exterior',
+      title: 'Exterior Accessories',
+      description: 'Heavy-duty bumpers and protection for all terrain.',
+      tag: 'accessories:exterior'
     },
     {
-      id: 'premium-features',
-      title: 'Premium Features',
-      description: 'Luxury amenities and advanced technology integration.',
-      tag: 'premium'
+      id: 'accessories:interior',
+      title: 'Interior Accessories',
+      description: 'Luxury interior amenities and creature comfort addons.',
+      tag: 'accessories:interior'
     }
   ]
 
