@@ -106,18 +106,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
             const isBatchLoading = loadingBatches.has(batchIndex)
             
             if (!imageUrl) {
-              return (
-                <div 
-                  key={idx} 
-                  className={`relative rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-200 flex items-center justify-center`}
-                  style={{
-                    gridColumn: `span ${gridSpan.col}`,
-                    gridRow: `span ${gridSpan.row}`
-                  }}
-                >
-                  <span className="text-gray-400">No Image</span>
-                </div>
-              )
+              return null
             }
             
             if (shouldLazyLoad) {
