@@ -88,9 +88,9 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                 <button
                   key={card.id}
                   onClick={() => onFilterChange?.(activeFilter === card.tag ? null : card.tag)}
-                  className={`bg-white rounded-xl p-6 text-center border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg ${
+                  className={`bg-white rounded-xl p-6 text-center border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg relative ${
                     activeFilter === card.tag 
-                      ? 'border-blue-500 bg-blue-50 shadow-lg shadow-blue-100' 
+                      ? 'border-orange-500 bg-orange-50 shadow-lg shadow-orange-100' 
                       : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                   }`}
                 >
@@ -101,12 +101,27 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                     {card.description}
                   </div>
                   {activeFilter === card.tag && (
-                    <div className="text-xs text-blue-600 font-semibold mt-2 flex items-center justify-center">
+                    <div className="text-xs text-orange-600 font-semibold mt-2 flex items-center justify-center">
                       <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                       Active Filter
                     </div>
+                  )}
+                  {/* Red X close button for active filters */}
+                  {activeFilter === card.tag && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        onFilterChange?.(null)
+                      }}
+                      className="absolute top-2 right-2 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200"
+                      aria-label="Clear filter"
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                   )}
                 </button>
               ))}
@@ -114,27 +129,6 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
           </div>
         )}
 
-        {/* Filter Header */}
-        {activeFilter && (
-          <div className="mb-8 flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <span className="text-lg font-semibold text-gray-700">
-                Filtered by: <span className="text-blue-600 capitalize">{activeFilter}</span>
-              </span>
-              <span className="text-sm text-gray-500">
-                {gallery.length} image{gallery.length !== 1 ? 's' : ''} found
-              </span>
-            </div>
-            {onClearFilter && (
-              <button
-                onClick={onClearFilter}
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200 text-sm font-medium"
-              >
-                Clear Filter
-              </button>
-            )}
-          </div>
-        )}
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[200px] grid-flow-dense">
           {validImages.map((image: any, idx: number) => {
