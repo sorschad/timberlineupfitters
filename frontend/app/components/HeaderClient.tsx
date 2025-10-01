@@ -280,7 +280,7 @@ export default function HeaderClient({
                 Brands
               </Link>
 
-              <Link href="/about" className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer text-sm tracking-[0.18em] font-semibold`}>
+              <Link href="/heritage" className={`${isSticky ? 'text-white/90 hover:text-white' : 'text-white/90 hover:text-white'} ${isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,0.12)]'} no-underline uppercase cursor-pointer text-sm tracking-[0.18em] font-semibold`}>
                 Heritage
               </Link>
             </nav>
