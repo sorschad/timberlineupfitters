@@ -76,49 +76,49 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
       <div className="container mx-auto px-4">
         {/* Filter Cards Section */}
         {filterCards && filterCards.length > 0 && (
-          <div className="mb-12">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Features You'll Love</h2>
-              <div className="w-16 h-0.5 bg-[#9c8a7e] mx-auto text-center justify-center"></div>
+          <div className="mb-8">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">Features You'll Love</h2>
+              <div className="w-12 h-0.5 bg-[#9c8a7e] mx-auto"></div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
               {filterCards.map((card) => (
-                <button
+                <div
                   key={card.id}
                   onClick={() => onFilterChange?.(activeFilter === card.tag ? null : card.tag)}
-                  className={`bg-white rounded-xl p-6 text-center border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg relative ${
+                  className={`bg-white rounded-lg px-4 py-3 text-center border transition-all duration-200 hover:shadow-md relative ${
                     activeFilter === card.tag 
-                      ? 'border-orange-500 bg-orange-50 shadow-lg shadow-orange-100' 
+                      ? 'border-orange-500 bg-orange-50 shadow-md shadow-orange-100' 
                       : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                   }`}
                 >
-                  <div className="text-lg font-bold text-gray-900 mb-3 leading-tight">
+                  <div className="text-sm font-semibold text-gray-900 mb-1 leading-tight">
                     {card.title}
                   </div>
-                  <div className="text-sm text-gray-400 mb-0 leading-snug">
+                  <div className="text-xs text-gray-500 mb-0 leading-tight">
                     {card.description}
                   </div>
                   {activeFilter === card.tag && (
-                    <div className="text-xs text-orange-600 font-semibold mt-2 flex items-center justify-center">
-                      <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="text-xs text-orange-600 font-medium mt-1 flex items-center justify-center">
+                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
-                      Active Filter
+                      Active
                       <button
                         onClick={(e) => {
                           e.stopPropagation()
                           onFilterChange?.(null)
                         }}
-                        className="ml-2 w-4 h-4 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer"
+                        className="ml-1 w-3 h-3 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer"
                         aria-label="Clear filter"
                       >
-                        <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-1.5 h-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
                     </div>
                   )}
-                </button>
+                </div>
               ))}
             </div>
           </div>

@@ -43,34 +43,28 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   const filterCards = [
     {
       id: 'exterior',
-      title: 'Unique Exterior Design',
-      description: 'Inspired by the sea, the Ocean build embodies adventure and fun.',
+      title: 'Exterior',
+      description: 'unique + styled',
       tag: 'exterior'
     },
     {
-      id: 'audio',
-      title: 'Sound Performance',
-      description: 'Advanced audio systems for premium listening.',
-      tag: 'audio'
-    },
-    {
       id: 'interior',
-      title: 'Custom Interior Materials',
-      description: 'Premium leather seating and interior materials.',
+      title: 'Interior',
+      description: 'custom comforts',
       tag: 'interior'
     },
     {
-      id: 'accessories:exterior',
-      title: 'Exterior Accessories',
-      description: 'Heavy-duty bumpers and protection for all terrain.',
-      tag: 'accessories:exterior'
+      id: 'audio',
+      title: 'Sound System',
+      description: 'high-fidelity audio',
+      tag: 'audio'
     },
     {
-      id: 'accessories:interior',
-      title: 'Interior Accessories',
-      description: 'Luxury interior amenities and creature comfort addons.',
-      tag: 'accessories:interior'
-    }
+      id: 'accessories',
+      title: 'Accessories',
+      description: 'bumpers, lights, toolboxes',
+      tag: 'accessories'
+    },
   ]
 
   // Filter gallery images based on active filter
