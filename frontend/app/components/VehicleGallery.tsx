@@ -1,9 +1,7 @@
 'use client'
 
-import { useMemo, useState, useCallback, useEffect } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import Image from 'next/image'
-import LazyImage from './LazyImage'
-import SkeletonImageGrid from './SkeletonImageGrid'
 import { urlForImage } from '@/sanity/lib/utils'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
@@ -16,8 +14,6 @@ interface VehicleGalleryProps {
 }
 
 export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, onClearFilter }: VehicleGalleryProps) {
-  const [loadedBatches, setLoadedBatches] = useState<Set<number>>(new Set())
-  const [loadingBatches, setLoadingBatches] = useState<Set<number>>(new Set())
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [gridCols, setGridCols] = useState(4)
@@ -37,13 +33,6 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
     return () => window.removeEventListener('resize', update)
   }, [])
 
-  const handleBatchLoad = useCallback((batchIndex: number) => {
-    if (loadedBatches.has(batchIndex)) return
-
-    setLoadingBatches(prev => new Set([...prev, batchIndex]))
-    setLoadedBatches(prev => new Set([...prev, batchIndex]))
-  }, [loadedBatches])
-
   if (!gallery || gallery.length === 0) return null
 
   // Build a stable, filtered list of renderable images so tile indexes match lightbox indexes
@@ -57,11 +46,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
     })
   }, [gallery])
 
-  // Calculate how many images need skeleton loading based on valid images
-  const lazyImages = validImages.slice(6) // Images 7+
-  const totalBatches = Math.ceil(lazyImages.length / 4)
-  const loadedBatchesCount = loadedBatches.size
-  const remainingBatches = totalBatches - loadedBatchesCount
+  // No lazy loading; render all images immediately
 
   const slides = useMemo(() => {
     const items: Array<{ src: string; description?: string }> = []
@@ -154,71 +139,11 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
             }
             const imageUrl = urlForImage(image)?.url()
             
-            // Load first 6 images immediately, lazy load the rest in batches of 4
-            const shouldLazyLoad = idx >= 6
-            const batchIndex = Math.floor((idx - 6) / 4)
-            const isBatchLoaded = loadedBatches.has(batchIndex)
-            const isBatchLoading = loadingBatches.has(batchIndex)
-            
             if (!imageUrl) {
               return null
             }
             
-            if (shouldLazyLoad) {
-              // Show skeleton for images that are loading
-              if (isBatchLoading && !isBatchLoaded) {
-                return (
-                  <div 
-                    key={idx} 
-                    className={`relative rounded-md overflow-hidden shadow-lg`}
-                    style={{
-                      gridColumn: isLast ? '1 / -1' : `span ${gridSpan.col}`,
-                      gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
-                    }}
-                  >
-                    <div className="w-full h-full bg-gray-200 animate-pulse flex items-center justify-center">
-                      <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
-                    </div>
-                  </div>
-                )
-              }
-              
-              const lastItem = (
-                <LazyImage
-                  key={idx}
-                  src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
-                  alt={image.alt || `${vehicleTitle} Gallery Image ${idx + 1}`}
-                  fill
-                  aspectClass=""
-                  caption={image.caption}
-                  batchIndex={batchIndex}
-                  onBatchLoad={handleBatchLoad}
-                  onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
-                className="relative rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
-                  style={{
-                    gridColumn: isLast ? '1 / -1' : `span ${gridSpan.col}`,
-                    gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
-                  }}
-                />
-              )
-              if (isLast && fillerCols > 0) {
-                return (
-                  <>
-                    <div
-                      key="gallery-filler"
-                      className="relative rounded-md overflow-hidden shadow-lg bg-gray-100 flex items-center justify-center"
-                      style={{ gridColumn: `span ${fillerCols}`, gridRow: 'span 1' }}
-                    >
-                      <span className="text-gray-500 text-sm">More photos</span>
-                    </div>
-                    {lastItem}
-                  </>
-                )
-              }
-              return lastItem
-            }
-            
-            // Render first 6 images immediately
+            // Render all images immediately
             const lastBlock = (
               <div 
                 key={idx} 
@@ -262,23 +187,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
           })}
         </div>
         
-        {/* Show skeleton grid for remaining batches */}
-        {remainingBatches > 0 && (
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-[200px] grid-flow-dense">
-            {Array.from({ length: remainingBatches * 4 }).map((_, idx) => (
-              <div 
-                key={`skeleton-${idx}`}
-                className="relative rounded-md overflow-hidden shadow-lg bg-gray-200 animate-pulse flex items-center justify-center"
-                style={{
-                  gridColumn: `span 1`,
-                  gridRow: `span 1`
-                }}
-              >
-                <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
-              </div>
-            ))}
-          </div>
-        )}
+        {/* No skeleton grid; all images render immediately */}
         {/* Lightbox for gallery images */}
         {slides.length > 0 && (
           <Lightbox

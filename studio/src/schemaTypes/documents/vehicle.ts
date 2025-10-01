@@ -249,8 +249,8 @@ export const vehicle = defineType({
                 title: 'Mobile (1 column)',
                 type: 'object',
                 fields: [
-                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1).max(1) }),
-                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1).max(3) })
+                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1) }),
+                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1) })
                 ]
               }),
               defineField({
@@ -258,8 +258,8 @@ export const vehicle = defineType({
                 title: 'Tablet (2 columns)',
                 type: 'object',
                 fields: [
-                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1).max(2) }),
-                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1).max(3) })
+                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1) }),
+                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1) })
                 ]
               }),
               defineField({
@@ -267,8 +267,8 @@ export const vehicle = defineType({
                 title: 'Desktop (3+ columns)',
                 type: 'object',
                 fields: [
-                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1).max(4) }),
-                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1).max(3) })
+                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1) }),
+                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1) })
                 ]
               })
             ]
