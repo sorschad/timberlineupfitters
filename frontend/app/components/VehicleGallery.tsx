@@ -77,7 +77,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
           </div>
         )}
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[200px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-[200px]">
           {gallery.map((image: any, idx: number) => {
             // Determine grid span based on image index and aspect ratio
             const getGridSpan = (index: number) => {
@@ -139,7 +139,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                   batchIndex={batchIndex}
                   onBatchLoad={handleBatchLoad}
                   onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
-                  className="relative rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+                className="relative rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
                   style={{
                     gridColumn: `span ${gridSpan.col}`,
                     gridRow: `span ${gridSpan.row}`
@@ -179,7 +179,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
         
         {/* Show skeleton grid for remaining batches */}
         {remainingBatches > 0 && (
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[200px]">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-[200px]">
             {Array.from({ length: remainingBatches * 4 }).map((_, idx) => (
               <div 
                 key={`skeleton-${idx}`}

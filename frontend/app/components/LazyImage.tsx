@@ -80,7 +80,7 @@ export default function LazyImage({
     <div 
       ref={imgRef}
       onClick={onClick}
-      className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid mb-6 hover:shadow-xl transition-shadow duration-300 ${
+      className={`relative ${aspectClass} rounded-md overflow-hidden shadow-lg break-inside-avoid hover:shadow-xl transition-shadow duration-300 ${
         isLoaded ? 'opacity-100' : 'opacity-0'
       } transition-opacity duration-500 ${onClick ? 'cursor-pointer' : ''}`}
       style={style}
