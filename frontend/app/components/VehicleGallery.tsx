@@ -129,14 +129,6 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
             
             const gridSpan = getGridSpan(image, gridCols)
             const isLast = idx === (validImages?.length || 0) - 1
-            // Calculate remaining columns in the current last row before placing the final image
-            let fillerCols = 0
-            if (isLast) {
-              const totalBeforeLast = (validImages || []).slice(0, (validImages?.length || 1) - 1).reduce((acc: number, _img: any, i: number) => acc + getGridSpan(_img, gridCols).col, 0)
-              const remainder = totalBeforeLast % gridCols
-              fillerCols = remainder === 0 ? 0 : (gridCols - remainder)
-              if (gridCols === 1) fillerCols = 0
-            }
             const imageUrl = urlForImage(image)?.url()
             
             if (!imageUrl) {
@@ -169,20 +161,6 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                 <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300 rounded-md" />
               </div>
             )
-            if (isLast && fillerCols > 0) {
-              return (
-                <>
-                  <div
-                    key="gallery-filler"
-                    className="relative rounded-md overflow-hidden shadow-lg bg-gray-100 flex items-center justify-center"
-                    style={{ gridColumn: `span ${fillerCols}`, gridRow: 'span 1' }}
-                  >
-                    <span className="text-gray-500 text-sm">More photos</span>
-                  </div>
-                  {lastBlock}
-                </>
-              )
-            }
             return lastBlock
           })}
         </div>
