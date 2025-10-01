@@ -38,39 +38,34 @@ interface VehiclePageClientProps {
 
 export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null)
+  const [isScrolling, setIsScrolling] = useState(false)
 
   // Define filter tags for each card
   const filterCards = [
     {
       id: 'exterior',
-      title: 'Unique Exterior Design',
-      description: 'Inspired by the sea, the Ocean build embodies adventure and fun.',
+      title: 'Exterior',
+      description: 'unique + styled',
       tag: 'exterior'
     },
     {
-      id: 'audio',
-      title: 'Sound Performance',
-      description: 'Advanced audio systems for premium listening.',
-      tag: 'audio'
-    },
-    {
       id: 'interior',
-      title: 'Custom Interior Materials',
-      description: 'Premium leather seating and interior materials.',
+      title: 'Interior',
+      description: 'custom comforts',
       tag: 'interior'
     },
     {
-      id: 'accessories:exterior',
-      title: 'Exterior Accessories',
-      description: 'Heavy-duty bumpers and protection for all terrain.',
-      tag: 'accessories:exterior'
+      id: 'audio',
+      title: 'Sound System',
+      description: 'high-fidelity audio',
+      tag: 'audio'
     },
     {
-      id: 'accessories:interior',
-      title: 'Interior Accessories',
-      description: 'Luxury interior amenities and creature comfort addons.',
-      tag: 'accessories:interior'
-    }
+      id: 'accessories',
+      title: 'Accessories',
+      description: 'bumpers, lights, toolboxes',
+      tag: 'accessories'
+    },
   ]
 
   // Filter gallery images based on active filter
@@ -89,10 +84,10 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   const filteredGallery = getFilteredGallery()
 
   return (
-    <div className="min-h-screen">
+    <div className="scroll-smooth">
       {/* Hero Section - Scenic Background with Vehicle */}
       <section 
-        className="relative max-h-[90vh] text-white overflow-hidden"
+        className="relative min-h-[50vh] lg:min-h-[320px] text-white overflow-hidden"
         style={{
           backgroundImage: (vehicle.vehicleDetailsPageHeaderBackgroundImage && urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.url())
             ? `url(${urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.width(1920).height(1080).fit('crop').url()})`
@@ -112,18 +107,37 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             {/* Left Content */}
             <div className="space-y-8">
               {/* Main Headline */}
-              <h1 className="text-3xl md:text-5xl font-bold leading-none">
+              <h1 className="text-3xl md:text-4xl font-bold leading-none">
                 {vehicle.title}
               </h1>
               
               {/* Subtitle */}
-              <p className="text-xl text-white/90 max-w-lg">
+              <p className="text-lg font-light text-white/60 max-w-lg leading-tight">
                 New all electric crossover with long range for road trips and comfort.
               </p>
               
               {/* CTA Button */}
-              <button className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg">
-                Explore
+              <button 
+                onClick={() => {
+                  setIsScrolling(true)
+                  const gallerySection = document.getElementById('vehicle-gallery-section')
+                  if (gallerySection) {
+                    // Add offset for sticky header
+                    const offset = 80
+                    const elementPosition = gallerySection.offsetTop - offset
+                    window.scrollTo({
+                      top: elementPosition,
+                      behavior: 'smooth'
+                    })
+                    // Reset scrolling state after animation
+                    setTimeout(() => setIsScrolling(false), 1000)
+                  }
+                }}
+                className={`bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 ${
+                  isScrolling ? 'animate-pulse' : ''
+                }`}
+              >
+                {isScrolling ? 'Scrolling...' : 'Explore'}
               </button>
             </div>
             
@@ -159,33 +173,26 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             </div>
           </div>
           
-          {/* Data Cards Overlay - Now with Filter Functionality */}
-          <div className="absolute bottom-4 left-0 right-0 z-20">
-            <div className="container mx-auto px-4">
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {filterCards.map((card) => (
-                  <button
-                    key={card.id}
-                    onClick={() => setActiveFilter(activeFilter === card.tag ? null : card.tag)}
-                    className={`bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border transition-all duration-300 hover:scale-105 ${
-                      activeFilter === card.tag 
-                        ? 'border-white/60 bg-white/20 shadow-lg shadow-white/10' 
-                        : 'border-white/20 hover:border-white/40'
-                    }`}
-                  >
-                    <div className="text-base font-bold text-white mb-3 leading-none uppercase">
-                      {card.title}
-                    </div>
-                    <div className="text-sm text-white/70 mb-2 leading-tight font-light">
-                      {card.description}
-                    </div>
-                    {activeFilter === card.tag && (
-                      <div className="text-xs text-white/90 font-medium mt-2">
-                        ✓ Active Filter
-                      </div>
-                    )}
-                  </button>
-                ))}
+        </div>
+        
+        {/* Fade Transition Section */}
+        <div className="absolute bottom-0 left-0 right-0 z-20">
+          <div className="relative">
+            {/* Softened gradient fade overlay */}
+            <div className="h-20 bg-gradient-to-b from-transparent via-white/5 to-white/40"></div>
+            <div className="h-10 bg-gradient-to-b from-white/40 via-white/70 to-white"></div>
+            
+            {/* Dynamic subtitle section with smooth transition */}
+            <div className="bg-white pt-12">
+              <div className="container mx-auto px-4">
+                <div className="text-center">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 opacity-0 animate-fade-in">
+                    Features You'll Love
+                  </h2>
+                  <p className="text-base md:text-lg text-gray-600/70 max-w-3xl mx-auto opacity-0 animate-fade-in-delay">
+                    feature addons and customization options offered on this vehicle
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -194,10 +201,12 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
 
       {/* Gallery Section - Now with Filtering */}
       <VehicleGallery 
-        gallery={filteredGallery} 
+        gallery={filteredGallery || []} 
         vehicleTitle={vehicle.title}
         activeFilter={activeFilter}
         onClearFilter={() => setActiveFilter(null)}
+        filterCards={filterCards}
+        onFilterChange={(tag) => setActiveFilter(tag)}
       />
     </div>
   )
