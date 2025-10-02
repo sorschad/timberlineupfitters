@@ -9,6 +9,8 @@ import {vehicleQuery, vehicleSlugs} from '@/sanity/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import SpecsTable from '@/app/components/SpecsTable'
 import VehicleFeaturesGallery from '@/app/components/VehicleFeaturesGallery'
+// @ts-expect-error - FeaturesAndOptionsSection module may be missing or not typed
+import FeaturesAndOptionsSection from '@/app/components/FeaturesAndOptionsSection'
 import VehiclePageClient from './VehiclePageClient'
 import {urlForImage} from '@/sanity/lib/utils'
 
@@ -87,7 +89,9 @@ export default async function VehiclePage({params}: VehiclePageProps) {
 
       {/* Features Gallery Section */}
       <VehicleFeaturesGallery vehicle={vehicle} />
-
+      
+      {/* Features & Options Section */}
+      <FeaturesAndOptionsSection features={vehicle.features} />
     </div>
   )
 }

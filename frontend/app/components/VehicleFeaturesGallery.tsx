@@ -54,7 +54,7 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
     }
   ]
 
-  const features = vehicle.features || defaultFeatures
+  const features = Array.isArray(vehicle.features) ? vehicle.features : defaultFeatures
 
   // Get the main display image based on active view
   const getMainImage = () => {
