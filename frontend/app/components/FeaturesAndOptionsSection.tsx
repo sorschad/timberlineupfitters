@@ -38,19 +38,19 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
         <h2 className="text-3xl font-bold mb-4">Features & Options</h2>
         <div className="w-full max-w-4xl mx-auto">
           {categories.map(cat => cat.items.length > 0 && (
-            <div key={cat.key} className="mb-4 border rounded">
+            <div key={cat.key} className="mb-4">
               <button
                 type="button"
-                className="w-full flex justify-between items-center p-4 bg-gray-100 hover:bg-gray-200 focus:outline-none"
+                className="w-full flex justify-between items-center p-4 bg-gray-100  cursor-pointer hover:bg-gray-200 focus:outline-none"
                 onClick={() => toggleCategory(cat.key)}
               >
                 <span className="font-semibold text-lg">{cat.label}</span>
                 <span className="text-xl">{open[cat.key] ? '-' : '+'}</span>
               </button>
               {open[cat.key] && (
-                <div className="p-4 bg-white grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                <div className="p-4 bg-transparent flex flex-wrap flex-col sm:flex-col-2 lg:flex-col-3 gap-2">
                   {cat.items.map((item, idx) => (
-                    <div key={idx} className="px-3 py-2 border rounded text-sm">
+                    <div key={idx} className="px-3 py-2 text-sm">
                       {item}
                     </div>
                   ))}
