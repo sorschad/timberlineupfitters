@@ -95,7 +95,7 @@ export default async function BrandsPage() {
 
   const getBrandSectionStyle = (brand: any) => {
     if (brand.secondaryColor) {
-      return { backgroundColor: brand.secondaryColor }
+      return { backgroundColor: `#${brand.secondaryColor}` }
     }
     // Fallback to bg-stone with 20% opacity if no secondary color
     return { backgroundColor: 'rgba(120, 113, 108, 0.2)' }
@@ -246,6 +246,7 @@ export default async function BrandsPage() {
               </div>
               <div className={`relative ${index % 2 === 1 ? 'order-2 lg:order-1 animate-fade-in-left' : 'animate-fade-in-right'}`}>
                 <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+                
                   {brand.sectionImage?.asset?._ref ? (
                     <Image
                       src={urlForImage(brand.sectionImage)?.width(2000).height(1500).fit('max').auto('format').url() || ''}
