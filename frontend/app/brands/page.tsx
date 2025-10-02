@@ -269,60 +269,57 @@ export default async function BrandsPage() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {brand.vehicles.slice(0, 6).map((vehicle: any, vehicleIndex: number) => (
-                    <div 
+                    <Link
                       key={vehicle._id}
-                      className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+                      href={`/vehicles/${(vehicle as any).slug?.current}`}
+                      className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-[87px]"
                     >
-                      {/* Vehicle Image */}
-                      <div className="aspect-[4/3] relative overflow-hidden">
-                        {vehicle.coverImage?.asset?._ref ? (
-                          <Image
-                            src={urlForImage(vehicle.coverImage)?.width(800).height(600).fit('crop').auto('format').url() || ''}
-                            alt={vehicle.title}
-                            fill
-                            className="object-cover group-hover:scale-110 transition-transform duration-700"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                            <span className="text-gray-500 text-sm">No image available</span>
-                          </div>
-                        )}
-                        
-                        {/* Elegant Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        
-                        {/* Vehicle Title Overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                          <h4 className="text-white text-lg font-semibold mb-2 line-clamp-2">
-                            {vehicle.title}
-                          </h4>
-                          <div className="flex items-center justify-between text-sm text-gray-300">
-                            <span>{vehicle.modelYear}</span>
-                            <span className="capitalize">{vehicle.vehicleType}</span>
-                          </div>
-                        </div>
-                        
-                        {/* Brand Accent Line */}
-                        <div className={`absolute top-4 left-4 w-1 h-12 ${brandColors.accent} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                      </div>
-                      
-                      {/* Elegant Card Footer */}
-                      <div className={`p-6 ${index % 3 === 0 ? 'bg-white' : 'bg-gray-900/50 backdrop-blur-sm'}`}>
-                        <div className="flex items-center justify-between">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[87px]">
+                        {/* Left Section - Text Content */}
+                        <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                           <div>
-                            <h5 className={`font-semibold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'} text-sm mb-1`}>
-                              {vehicle.model}
-                            </h5>
-                            <p className={`text-xs ${index % 3 === 0 ? 'text-gray-600' : 'text-gray-400'}`}>
-                              {vehicle.trim || 'Premium Package'}
-                            </p>
-                          </div>
-                          <div className={`w-8 h-8 rounded-full ${brandColors.bg} flex items-center justify-center`}>
-                            <div className={`w-3 h-3 rounded-full ${brandColors.accent}`}></div>
+                            {/* Vehicle Title */}
+                            <h3 className="text-white text-xs sm:text-sm font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                              {vehicle.title}
+                            </h3>
+                            
+                            {/* Vehicle Details */}
+                            <div className="text-white/60 text-xs leading-tight">
+                              {vehicle?.model && (
+                                <span className="block">{vehicle.model}</span>
+                              )}
+                            </div>
                           </div>
                         </div>
+                        
+                        {/* Right Section - Vehicle Image */}
+                        <div className="relative h-[87px]">
+                          <div className="h-[87px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                            {vehicle?.coverImage?.asset?.url ? (
+                              <img 
+                                src={vehicle.coverImage.asset.url} 
+                                alt={vehicle.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center">
+                                <div className="text-center">
+                                  <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-3 mx-auto">
+                                    <svg className="w-6 h-6 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                  </div>
+                                  <span className="text-white/40 text-sm font-medium">Vehicle Image</span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Hover Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
