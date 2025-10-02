@@ -31,13 +31,6 @@ export default function ManufacturerHero({ manufacturer }: ManufacturerHeroProps
   const vehicleCount = manufacturer.vehicles?.length || 0
   const models = [...new Set(manufacturer.vehicles?.map(v => v.model) || [])]
 
-  // Debug: Log the hero image data
-  console.log('Manufacturer Hero Image Data:', {
-    heroImage: manufacturer.heroImage,
-    hasAsset: !!manufacturer.heroImage?.asset,
-    assetUrl: manufacturer.heroImage?.asset?.url
-  })
-
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Parallax Background */}

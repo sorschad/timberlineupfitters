@@ -131,9 +131,6 @@ export default function SearchModal({ isOpen, onClose, vehicles = [], brands = [
       const newRecent = [candidate, ...recentSearches.filter(s => s !== candidate)].slice(0, 3)
       setRecentSearches(newRecent)
       localStorage.setItem('timberline-recent-searches', JSON.stringify(newRecent))
-      
-      // TODO: Implement actual search functionality
-      console.log('Searching for:', query)
     }
   }
 
