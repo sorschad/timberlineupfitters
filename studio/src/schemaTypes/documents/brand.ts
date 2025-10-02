@@ -91,9 +91,10 @@ export const brand = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'logo',
-      title: 'Brand Logo',
+      name: 'primaryLogo',
+      title: 'Primary Logo',
       type: 'image',
+      description: 'Main brand logo used in headers and primary displays',
       options: {
         hotspot: true,
         aiAssist: {
@@ -108,7 +109,7 @@ export const brand = defineType({
           description: 'Important for SEO and accessibility.',
           validation: (rule) => {
             return rule.custom((alt, context) => {
-              if ((context.document?.logo as any)?.asset?._ref && !alt) {
+              if ((context.document?.primaryLogo as any)?.asset?._ref && !alt) {
                 return 'Required'
               }
               return true
@@ -116,6 +117,70 @@ export const brand = defineType({
           },
         },
       ],
+    }),
+    defineField({
+      name: 'secondaryLogo',
+      title: 'Secondary Logo',
+      type: 'image',
+      description: 'Alternative brand logo for different contexts',
+      options: {
+        hotspot: true,
+        aiAssist: {
+          imageDescriptionField: 'alt',
+        },
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessibility.',
+          validation: (rule) => {
+            return rule.custom((alt, context) => {
+              if ((context.document?.secondaryLogo as any)?.asset?._ref && !alt) {
+                return 'Required'
+              }
+              return true
+            })
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: 'website',
+      title: 'Website URL',
+      type: 'url',
+      description: 'Official brand website',
+    }),
+    defineField({
+      name: 'primaryColor',
+      title: 'Primary Color',
+      type: 'string',
+      description: 'Primary brand color (hex code, e.g., #ff0000)',
+      validation: (rule) => rule.regex(/^#[0-9A-Fa-f]{6}$/, {
+        name: 'hex',
+        invert: true
+      }).error('Please enter a valid hex color code (e.g., #ff0000)'),
+    }),
+    defineField({
+      name: 'secondaryColor',
+      title: 'Secondary Color',
+      type: 'string',
+      description: 'Secondary brand color (hex code, e.g., #00ff00)',
+      validation: (rule) => rule.regex(/^#[0-9A-Fa-f]{6}$/, {
+        name: 'hex',
+        invert: true
+      }).error('Please enter a valid hex color code (e.g., #00ff00)'),
+    }),
+    defineField({
+      name: 'accentColor',
+      title: 'Accent Color',
+      type: 'string',
+      description: 'Accent brand color (hex code, e.g., #0000ff)',
+      validation: (rule) => rule.regex(/^#[0-9A-Fa-f]{6}$/, {
+        name: 'hex',
+        invert: true
+      }).error('Please enter a valid hex color code (e.g., #0000ff)'),
     }),
     defineField({
       name: 'sectionImage',

@@ -30,7 +30,7 @@ export default async function BrandsPage() {
   })
 
   // Sort brands in specific order: Alpine, TSport, Timberline
-  const sortedBrands = brands?.sort((a, b) => {
+  const sortedBrands = brands?.sort((a: any, b: any) => {
     const order = ['alpine', 'tsport', 'timberline']
     const aIndex = order.findIndex(name => a.slug.toLowerCase().includes(name))
     const bIndex = order.findIndex(name => b.slug.toLowerCase().includes(name))
@@ -47,7 +47,7 @@ export default async function BrandsPage() {
   })
 
   // Filter vehicles for each brand using the same logic as HeaderClient
-  const brandsWithVehicles = sortedBrands?.map((brand) => {
+  const brandsWithVehicles = sortedBrands?.map((brand: any) => {
     const filteredVehicles = (allVehicles || []).filter((vehicle: any) => {
       // First check if vehicle has a tag matching the brand
       const vehicleTags = vehicle.tags || []
@@ -74,7 +74,13 @@ export default async function BrandsPage() {
     return { ...brand, vehicles: filteredVehicles }
   }) || []
 
-  const getBrandSectionClass = (index: number) => {
+  const getBrandSectionClass = (brand: any, index: number) => {
+    // Use secondary color if available, otherwise fall back to default pattern
+    if (brand.secondaryColor) {
+      return `py-20 lg:py-32 text-white`
+    }
+    
+    // Fallback to original pattern if no secondary color
     switch (index % 3) {
       case 0:
         return 'py-20 lg:py-32 bg-white'
@@ -85,6 +91,14 @@ export default async function BrandsPage() {
       default:
         return 'py-20 lg:py-32 bg-white'
     }
+  }
+
+  const getBrandSectionStyle = (brand: any) => {
+    if (brand.secondaryColor) {
+      return { backgroundColor: brand.secondaryColor }
+    }
+    // Fallback to bg-stone with 20% opacity if no secondary color
+    return { backgroundColor: 'rgba(120, 113, 108, 0.2)' }
   }
 
   const getBrandGradientClass = (index: number) => {
@@ -158,14 +172,32 @@ export default async function BrandsPage() {
       {brandsWithVehicles?.map((brand: BrandWithSectionImage & { vehicles: any[] }, index: number) => {
         const brandColors = getBrandColors(brand.slug)
         return (
-        <section key={brand._id} id={brand.slug} className={getBrandSectionClass(index)}>
+        <section 
+          key={brand._id} 
+          id={brand.slug} 
+          className={getBrandSectionClass(brand, index)}
+          style={getBrandSectionStyle(brand)}
+        >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className={`space-y-8 ${index % 2 === 1 ? 'order-1 lg:order-2' : 'animate-fade-in-left'}`}>
                 <div className="space-y-4">
-                  <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-bold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'}`}>
-                    <span className={getBrandGradientClass(index)}>{brand.name}</span>
-                  </h2>
+                  <div className="flex items-center gap-4">
+                    <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-bold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'}`}>
+                      <span className={getBrandGradientClass(index)}>{brand.name}</span>
+                    </h2>
+                    {brand.primaryLogo?.asset?._ref && (
+                      <div className="flex-shrink-0">
+                        <Image
+                          src={urlForImage(brand.primaryLogo)?.width(120).height(120).fit('max').auto('format').url() || ''}
+                          alt={brand.primaryLogo.alt || `${brand.name} logo`}
+                          width={120}
+                          height={120}
+                          className="object-contain"
+                        />
+                      </div>
+                    )}
+                  </div>
                   <div className={getBrandLineClass(index)}></div>
                 </div>
                 <div className={`text-lg leading-relaxed ${
