@@ -3,13 +3,13 @@
 import React, { useState } from 'react'
 
 interface Props {
-  features: {
+  features?: {
     exteriorFeatures?: string[]
     interiorFeatures?: string[]
     safetyFeatures?: string[]
     technologyFeatures?: string[]
     performanceFeatures?: string[]
-  }
+  } | null
 }
 
 const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
@@ -21,8 +21,13 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
     performanceFeatures: false,
   })
 
-  const toggleCategory = (key: keyof Props['features']) => {
+  const toggleCategory = (key: keyof NonNullable<Props['features']>) => {
     setOpen(prev => ({ ...prev, [key]: !prev[key] }))
+  }
+
+  // Early return if no features are available
+  if (!features) {
+    return null
   }
 
   const categories = [
@@ -33,8 +38,15 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
     { key: 'performanceFeatures' as const, label: 'PERFORMANCE FEATURES', items: features.performanceFeatures || [] },
   ]
 
+  // Check if any categories have items
+  const hasAnyFeatures = categories.some(cat => cat.items.length > 0)
+  
+  if (!hasAnyFeatures) {
+    return null
+  }
+
   return (
-    <section className="max-w-4xl mx-auto mt-12 mb-12 px-4 md:px-8 lg:px-16">
+    <section className="max-w-4xl mx-auto mb-16 px-4 md:px-8 lg:px-16">
       <h2 className="text-3xl font-bold mb-6 text-black text-center">
         FEATURES & OPTIONS
       </h2>

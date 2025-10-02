@@ -87,11 +87,11 @@ export default async function VehiclePage({params}: VehiclePageProps) {
       {/* Main Vehicle Page with Filtering */}
       <VehiclePageClient vehicle={vehicle} />
 
-      {/* Features Gallery Section */}
-      <VehicleFeaturesGallery vehicle={vehicle} />
-      
       {/* Features & Options Section */}
       <FeaturesAndOptionsSection features={vehicle.features} />
+      
+      {/* Features Gallery Section */}
+      <VehicleFeaturesGallery vehicle={vehicle} />
     </div>
   )
 }
