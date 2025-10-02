@@ -4,7 +4,7 @@ import Link from 'next/link'
 import BrandsLandingPageHeader from '@/app/components/BrandsLandingPageHeader'
 import PortableText from '@/app/components/PortableText'
 import {sanityFetch} from '@/sanity/lib/live'
-import {allBrandsQuery, vehiclesByBrandQuery} from '@/sanity/lib/queries'
+import {allBrandsQuery, timberlineVehiclesQuery} from '@/sanity/lib/queries'
 import {AllBrandsQueryResult} from '@/sanity.types'
 import {urlForImage} from '@/sanity/lib/utils'
 
@@ -18,6 +18,13 @@ export const metadata: Metadata = {
 export default async function BrandsPage() {
   const {data: brands} = await sanityFetch({
     query: allBrandsQuery,
+    perspective: 'published',
+    stega: false,
+  })
+
+  // Fetch all vehicles once
+  const {data: allVehicles} = await sanityFetch({
+    query: timberlineVehiclesQuery,
     perspective: 'published',
     stega: false,
   })
@@ -39,18 +46,33 @@ export default async function BrandsPage() {
     return 0
   })
 
-  // Fetch vehicles for each brand
-  const brandsWithVehicles = await Promise.all(
-    sortedBrands?.map(async (brand) => {
-      const {data: vehicles} = await sanityFetch({
-        query: vehiclesByBrandQuery,
-        params: { brandId: brand._id },
-        perspective: 'published',
-        stega: false,
+  // Filter vehicles for each brand using the same logic as HeaderClient
+  const brandsWithVehicles = sortedBrands?.map((brand) => {
+    const filteredVehicles = (allVehicles || []).filter((vehicle: any) => {
+      // First check if vehicle has a tag matching the brand
+      const vehicleTags = vehicle.tags || []
+      const hasBrandTag = vehicleTags.some((tag: string) => {
+        const tagLower = tag.toLowerCase().trim()
+        const brandLower = brand.name.toLowerCase().trim()
+        return tagLower === brandLower || tagLower.includes(brandLower)
       })
-      return { ...brand, vehicles: vehicles || [] }
-    }) || []
-  )
+      
+      // If no brand tag match, exclude the vehicle
+      if (!hasBrandTag) return false
+      
+      // If brand has manufacturer associations, also check manufacturer filter
+      if (brand.manufacturers && brand.manufacturers.length > 0) {
+        const vehicleManufacturerId = vehicle?.manufacturer?._id
+        const brandManufacturerIds = brand.manufacturers.map((m: any) => m._id)
+        return vehicleManufacturerId && brandManufacturerIds.includes(vehicleManufacturerId)
+      }
+      
+      // If brand has no manufacturer associations, just return vehicles with brand tag
+      return true
+    })
+    
+    return { ...brand, vehicles: filteredVehicles }
+  }) || []
 
   const getBrandSectionClass = (index: number) => {
     switch (index % 3) {
@@ -239,11 +261,10 @@ export default async function BrandsPage() {
             {/* Elegant Vehicle Showcase */}
             {brand.vehicles && brand.vehicles.length > 0 && (
               <div className="mt-20">
-                <div className="text-center mb-12">
+                <div className="text-left mb-12">
                   <h3 className={`text-3xl font-bold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'} mb-4`}>
-                    Featured {brand.name} Vehicles
+                    {brand.name} Vehicles
                   </h3>
-                  <div className={`w-24 h-1 mx-auto rounded-full bg-gradient-to-r ${brandColors.primary}`}></div>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -304,15 +325,6 @@ export default async function BrandsPage() {
                     </div>
                   ))}
                 </div>
-                
-                {/* View More Button */}
-                {brand.vehicles.length > 6 && (
-                  <div className="text-center mt-12">
-                    <button className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 ${brandColors.accent} text-white shadow-lg hover:shadow-xl`}>
-                      View All {brand.name} Vehicles
-                    </button>
-                  </div>
-                )}
               </div>
             )}
           </div>
