@@ -41,6 +41,12 @@
 @theme {
   --shadow-layer: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
 
+  --color-timberline-orange: #f36f21;
+  --color-forest-black: #1a1a1a;
+  --color-mountain-beige: #c2a463;
+  --color-evergreen: #1e3a2b;
+  --color-stone-gray: #9a9a9a;
+  --color-snow-white: #fafafa;
   --color-framework: #000;
   --color-black: #0b0b0b;
   --color-white: #fff;

@@ -38,18 +38,19 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
       <h2 className="text-3xl font-bold mb-6 text-black text-center">FEATURES & OPTIONS</h2>
       <div className="w-full max-w-4xl mx-auto">
         {categories.map(cat => cat.items.length > 0 && (
-          <div key={cat.key} className="mb-6">
+          <div key={cat.key} className="mb-1.5">
             {/* Collapsible Header */}
-            <button
-              type="button"
-              className="w-full flex justify-between items-center p-4 bg-gray-800 text-white font-bold text-lg cursor-pointer hover:bg-gray-700 focus:outline-none transition-colors"
+            <div
+              className={`w-full flex justify-between items-center p-4 font-bold text-md cursor-pointer hover:text-timberline-orange hover:bg-stone-gray-700 focus:outline-none transition-colors ${
+                open[cat.key] ? 'bg-forest-black/80 text-white' : 'bg-stone-gray/20 text-forest-black'
+              }`} 
               onClick={() => toggleCategory(cat.key)}
             >
-              <span>{cat.label}</span>
-              <span className="text-white text-xl font-bold">
+              <span className="hover:text-white transition-colors">{cat.label}</span>
+              <span className="text-xl font-light">
                 {open[cat.key] ? '−' : '+'}
               </span>
-            </button>
+            </div>
             
             {/* Collapsible Content */}
             {open[cat.key] && (
@@ -61,9 +62,9 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
                       idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'
                     }`}
                   >
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-900 font-medium">{item}</span>
-                      <span className="text-gray-600 text-xs">✓</span>
+                    <div className="flex text-xs font-light justify-between items-center">
+                      <span className="text-gray-900">{item}</span>
+                      <span className="text-gray-600">✓</span>
                     </div>
                   </div>
                 ))}
