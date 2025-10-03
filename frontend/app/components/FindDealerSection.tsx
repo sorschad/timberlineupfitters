@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { SearchModal } from './SearchModal'
+import { SalesRepresentativeSearchModal } from './SalesRepresentativeSearchModal'
 
 export default function FindDealerSection() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -23,27 +23,6 @@ export default function FindDealerSection() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Main Title */}
             <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#d4852b] to-[#f36f21] rounded-full flex items-center justify-center shadow-lg">
-                <svg 
-                  className="w-6 h-6 text-white" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" 
-                  />
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" 
-                  />
-                </svg>
-              </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                 Find Your
                 <span className="block bg-gradient-to-r from-[#d4852b] to-[#f36f21] bg-clip-text text-transparent">
@@ -83,46 +62,12 @@ export default function FindDealerSection() {
                 </div>
               </div>
             </div>
-
-            {/* Features */}
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#d4852b] to-[#f36f21] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Local Expertise</h3>
-                <p className="text-[rgba(255,255,255,0.7)]">Regional specialists who understand your local market</p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#d4852b] to-[#f36f21] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Direct Contact</h3>
-                <p className="text-[rgba(255,255,255,0.7)]">Get direct phone and email access to your representative</p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#d4852b] to-[#f36f21] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Specialized Support</h3>
-                <p className="text-[rgba(255,255,255,0.7)]">Expert guidance for commercial and fleet vehicle needs</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Search Modal */}
-      <SearchModal 
+      <SalesRepresentativeSearchModal 
         isOpen={isSearchOpen} 
         onClose={() => setIsSearchOpen(false)} 
       />
