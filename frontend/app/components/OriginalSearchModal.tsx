@@ -38,14 +38,14 @@ interface Brand {
   logo?: any
 }
 
-interface VehicleSearchModalProps {
+interface OriginalSearchModalProps {
   isOpen: boolean
   onClose: () => void
   vehicles?: Vehicle[]
   brands?: Brand[]
 }
 
-export function VehicleSearchModal({ isOpen, onClose, vehicles = [], brands = [] }: VehicleSearchModalProps) {
+export function OriginalSearchModal({ isOpen, onClose, vehicles = [], brands = [] }: OriginalSearchModalProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [filteredVehicles, setFilteredVehicles] = useState<Vehicle[]>([])
   const [filteredBrands, setFilteredBrands] = useState<Brand[]>([])
