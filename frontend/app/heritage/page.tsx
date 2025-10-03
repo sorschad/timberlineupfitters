@@ -4,6 +4,7 @@ import Head from 'next/head'
 import HeritageHero from '@/app/components/HeritageHero'
 import HeritageTimeline from '@/app/components/HeritageTimeline'
 import ParallaxStackGallery from '@/app/components/ParallaxStackGallery'
+import ParallaxVerticalMasonry from '@/app/components/ParallaxVerticalMasonry'
 import {sanityFetch} from '@/sanity/lib/live'
 import {getPageQuery} from '@/sanity/lib/queries'
 import {PageOnboarding} from '@/app/components/Onboarding'
@@ -50,9 +51,8 @@ export default async function HeritagePage() {
 
       {/* Parallax stacking gallery with overlapping cards and scroll-driven animation */}
       <div className="mt-12 lg:mt-20">
-        <ParallaxStackGallery
+        <ParallaxVerticalMasonry
           images={(page?.heroBackgroundImages || []).map((img: any) => ({ url: img?.asset?.url, alt: img?.alt }))}
-          sectionHeightVh={220}
         />
       </div>
 
