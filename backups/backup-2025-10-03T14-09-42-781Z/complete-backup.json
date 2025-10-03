@@ -1,0 +1,1820 @@
+{
+  "metadata": {
+    "projectId": "9jrxfm1d",
+    "dataset": "staging",
+    "timestamp": "2025-10-03T14:09:43.032Z",
+    "documentCount": 33,
+    "documentTypes": [
+      "page",
+      "vehicle",
+      "brand",
+      "manufacturer",
+      "settings"
+    ]
+  },
+  "documents": [
+    {
+      "_createdAt": "2025-09-24T14:09:03Z",
+      "_id": "000e52f2-0768-48f5-b005-8a2c72a1a6ef",
+      "_rev": "d1Q1ffbod76ojpFA1ez8NM",
+      "_type": "page",
+      "_updatedAt": "2025-09-24T14:09:53Z",
+      "heading": "Terms of Service",
+      "name": "Terms of Service",
+      "slug": {
+        "_type": "slug",
+        "current": "terms-of-service"
+      },
+      "subheading": "Service and Usage Details"
+    },
+    {
+      "_createdAt": "2025-09-22T19:01:23Z",
+      "_id": "0e112a9c-2258-43aa-9355-e953925961da",
+      "_rev": "oqkWKBis0aryduhEHrvOeN",
+      "_system": {
+        "base": {
+          "id": "0e112a9c-2258-43aa-9355-e953925961da",
+          "rev": "PJaupBGNUIWj2zoDvAaHfd"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:13:55Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-93b6abd4df9a39151de89461be5a31f031edb069-2000x1250-png",
+          "_type": "reference"
+        }
+      },
+      "description": [
+        {
+          "_key": "f5f140f18ee1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d2b2bb1defad",
+              "_type": "span",
+              "marks": [],
+              "text": "This is only same detailed description of a Ford F-150 TSport "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "manufacturer": {
+        "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+        "_type": "reference"
+      },
+      "model": "F-150",
+      "modelYear": 2025,
+      "publishedAt": "2025-09-22T19:00:45.435Z",
+      "slug": {
+        "_type": "slug",
+        "current": "ford-f-150-tsport-sportsman"
+      },
+      "tags": [
+        "Ford",
+        "TSport",
+        "F-150",
+        "Package: Sportsman",
+        "Sportsman"
+      ],
+      "title": "Ford F-150 TSport Sportsman",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-25T19:45:36Z",
+      "_id": "5ff7d276-a375-4a21-8def-ef076a7c0243",
+      "_rev": "ZcnIlry0VhgKfcCFcTnwvj",
+      "_system": {
+        "base": {
+          "id": "5ff7d276-a375-4a21-8def-ef076a7c0243",
+          "rev": "ZcnIlry0VhgKfcCFcTnw8B"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-26T19:39:24Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9fede9b109de71cb386bf75851434bbb2ffda58e-4032x3024-jpg",
+          "_type": "reference"
+        }
+      },
+      "gallery": [
+        {
+          "_key": "18370fa691c6",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-34c78628834792907adf01e63095fd7c616278f6-4672x7008-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "38d177f6a948",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-927343093d15cba3427df6c35d0162b4940d1acb-7008x4672-jpg",
+            "_type": "reference"
+          }
+        }
+      ],
+      "manufacturer": {
+        "_ref": "manufacturer-ford",
+        "_type": "reference"
+      },
+      "model": "3500",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "3500-timberline-overlook"
+      },
+      "tags": [
+        "Timberline",
+        "Ram",
+        "Package:Overlook",
+        "Overlook",
+        "3500"
+      ],
+      "title": "3500 - Timberline Overlook",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-10-01T17:14:21Z",
+      "_id": "6254c499-533d-4fa9-9645-b7cf3499d3c0",
+      "_rev": "P1Z7m8fgwpF7BuhejkmPi5",
+      "_system": {
+        "base": {
+          "id": "6254c499-533d-4fa9-9645-b7cf3499d3c0",
+          "rev": "P1Z7m8fgwpF7BuhejkmLvM"
+        }
+      },
+      "_type": "page",
+      "_updatedAt": "2025-10-01T21:15:29Z",
+      "heading": "Our Off Road Heritage",
+      "heroBackgroundImages": [
+        {
+          "_key": "ce8590fff7d8",
+          "_type": "image",
+          "alt": "kevins bathtub moab from chuck jolly",
+          "asset": {
+            "_ref": "image-9178163b5b5132bc32b000573d0389f4dbdfee30-7787x3639-png",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "385d45ee0cbb",
+          "_type": "image",
+          "alt": "text",
+          "asset": {
+            "_ref": "image-40999dbd4a92d2362676cd47084dddf7c19df619-2000x1250-png",
+            "_type": "reference"
+          }
+        }
+      ],
+      "name": "Heritage",
+      "slug": {
+        "_type": "slug",
+        "current": "heritage"
+      },
+      "subheading": "We are Off Road "
+    },
+    {
+      "_createdAt": "2025-09-24T14:07:01Z",
+      "_id": "66e11e1e-3970-47d0-8df9-402a7f420dfb",
+      "_rev": "acbM26hXTlXtanWSsF2WG3",
+      "_system": {
+        "base": {
+          "id": "66e11e1e-3970-47d0-8df9-402a7f420dfb",
+          "rev": "lDVmTxa9ayujqMAIPhGZGP"
+        }
+      },
+      "_type": "page",
+      "_updatedAt": "2025-09-24T14:07:42Z",
+      "heading": "Warranty",
+      "name": "Warranty",
+      "slug": {
+        "_type": "slug",
+        "current": "warranty"
+      },
+      "subheading": "Program Information and Resources"
+    },
+    {
+      "_createdAt": "2025-09-22T18:31:39Z",
+      "_id": "75290cd7-56b3-4304-9d6d-e713a9785e96",
+      "_rev": "p3fzlTmm5sgzCU4jsbUa8n",
+      "_system": {
+        "base": {
+          "id": "75290cd7-56b3-4304-9d6d-e713a9785e96",
+          "rev": "P1Z7m8fgwpF7Buhejo8UkC"
+        }
+      },
+      "_type": "brand",
+      "_updatedAt": "2025-10-02T18:56:16Z",
+      "accentColor": "53a5d1",
+      "coverImage": {
+        "_type": "image",
+        "alt": "two jeep wranglers are parked on top of a hill at sunset .",
+        "asset": {
+          "_ref": "image-2d66d8050437728de4ac6cd714e6f96a683812e3-1920x993-jpg",
+          "_type": "reference"
+        }
+      },
+      "description": [
+        {
+          "_key": "4e6dbf090c12",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cb4902a8fc91",
+              "_type": "span",
+              "marks": [],
+              "text": "Alpine's acoustic mastery and Rebel Off Road's legendary off-road engineering have joined forces, giving rise to an unparalleled series of custom Jeep® vehicles. To bring these visionary builds to life, they entrusted the skilled artisans at Timberline Upfitters to execute the premium installation and intricate customization."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "1845e709568a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "eb9a38fe6fb6",
+              "_type": "span",
+              "marks": [],
+              "text": "Every detail, from the sophisticated audio integration to the exclusive vehicle add-ons, was meticulously brought to life by Timberline Upfitters' technical team. The result is a fleet where boundary-pushing sound meets uncompromising off-road performance, crafted to the highest standard."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "3e2ba390d958",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "2bef20e32c08",
+              "_type": "span",
+              "marks": [],
+              "text": "These landmark builds are not merely for display; they are available for acquisition. This is a rare opportunity to own a vehicle born from a collaboration of industry leaders."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "excerpt": "Alpine & Rebel Off Road’s visionary builds, brought to life by Timberline Upfitters' expert installation, redefine adventure and audio. Experience the fusion.",
+      "launchDate": "2025-09-22T18:31:32.266Z",
+      "logo": {
+        "_type": "image",
+        "alt": "Alpine Audio Logo",
+        "asset": {
+          "_ref": "image-6ee49431936ec3dee1dcef5d8ec39e388e195633-500x500-webp",
+          "_type": "reference"
+        }
+      },
+      "manufacturers": [
+        {
+          "_key": "fb6cce6beb91",
+          "_ref": "manufacturer-jeep",
+          "_type": "reference"
+        }
+      ],
+      "name": "Alpine",
+      "primaryColor": "212121",
+      "primaryLogo": {
+        "_type": "image",
+        "alt": "Alpine Audio USA - Emotion in Mobility",
+        "asset": {
+          "_ref": "image-7148d8a64cbb706fe4c52c5f341baa2525396d0e-725x160-svg",
+          "_type": "reference"
+        }
+      },
+      "secondaryColor": "105798",
+      "slogan": "The Alpine Touch",
+      "slug": {
+        "_type": "slug",
+        "current": "alpine"
+      },
+      "website": "https://www.alpine-usa.com/"
+    },
+    {
+      "_createdAt": "2025-09-25T19:44:54Z",
+      "_id": "8056e947-c764-4bb9-a4ea-09b605a6e24e",
+      "_rev": "mTTED7w06ARxiaQAIfqfV0",
+      "_system": {
+        "base": {
+          "id": "ram-25003500-timberline-trailhead",
+          "rev": "ZcnIlry0VhgKfcCFcLqxMx"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-25T19:45:21Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9153feae307f1659456eee8ccc8cf493d8287514-2000x1545-png",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "manufacturer-ford",
+        "_type": "reference"
+      },
+      "model": "3500",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ram-3500-timberline-trailhead"
+      },
+      "tags": [
+        "Timberline",
+        "Ram",
+        "Package:Trailhead",
+        "Trailhead",
+        "3500"
+      ],
+      "title": "Ram 3500 - Timberline Trailhead",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T19:05:31Z",
+      "_id": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+      "_rev": "ZqU99J9YlRX1csb8eKiXYq",
+      "_type": "manufacturer",
+      "_updatedAt": "2025-09-22T19:06:10Z",
+      "description": "Ford is a leader in passenger and commercial vehicle manufacturers.",
+      "name": "Ford",
+      "slug": {
+        "_type": "slug",
+        "current": "ford"
+      }
+    },
+    {
+      "_createdAt": "2025-09-22T20:07:50Z",
+      "_id": "9e7ae94e-23e5-4109-b15b-54af0535a684",
+      "_rev": "P1Z7m8fgwpF7BuhejrBhrF",
+      "_system": {
+        "base": {
+          "id": "9e7ae94e-23e5-4109-b15b-54af0535a684",
+          "rev": "TypQQGtcZ5mURB4Dll5p65"
+        }
+      },
+      "_type": "brand",
+      "_updatedAt": "2025-10-03T13:03:31Z",
+      "coverImage": {
+        "_type": "image",
+        "alt": "a white ram truck is parked in a rocky area built by TimberlineUpfitters",
+        "asset": {
+          "_ref": "image-0f4ce3524a12134683b4c9e43a789a3f0f526a3f-2000x1545-png",
+          "_type": "reference"
+        }
+      },
+      "description": [
+        {
+          "_key": "41c03c7ff336",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "0bc90dcf1d5a",
+              "_type": "span",
+              "marks": [],
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sagittis convallis lectus, id hendrerit dolor finibus et. Proin maximus commodo ligula id tincidunt. Pellentesque odio lorem, fermentum eu risus ut, sagittis placerat sem."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "5da6c1d40ad3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e7ce5257697f",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "7c7ab6ca4b55",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e87b356cac79",
+              "_type": "span",
+              "marks": [],
+              "text": "Sed justo purus, venenatis non sagittis at, suscipit quis mi. Vivamus ornare nisl erat. Sed scelerisque efficitur ante, a hendrerit diam vulputate sed. Praesent accumsan, quam vel blandit mollis, eros tortor lacinia sapien, ac fermentum tortor lacus nec lectus. Nunc sed dolor sed mauris volutpat pretium. Sed semper efficitur eros et scelerisque."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "554d7b2cdea2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f57f5c9316b1",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "49a53382b333",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "101bb5e26e62",
+              "_type": "span",
+              "marks": [],
+              "text": "Ut lorem quam, consectetur vitae ultrices suscipit, fringilla nec turpis. Nulla eget est ac orci ultrices posuere."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "excerpt": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "launchDate": "2025-09-22T20:01:42.321Z",
+      "logo": {
+        "_type": "image",
+        "alt": "Timberline Upfitters builds Premium Upfitted Vehicles for Adventurous Off-road Enthusiasts",
+        "asset": {
+          "_ref": "image-aafe8e75724f67991ad2ee9df3979d38780e3d7a-375x375-png",
+          "_type": "reference"
+        }
+      },
+      "manufacturers": [
+        {
+          "_key": "e5adc7c99a8a",
+          "_ref": "manufacturer-ford",
+          "_type": "reference"
+        },
+        {
+          "_key": "f5a6653eafb7",
+          "_ref": "manufacturer-jeep",
+          "_type": "reference"
+        }
+      ],
+      "name": "Timberline",
+      "primaryLogo": {
+        "_type": "image",
+        "alt": "Timberline Upfitters ",
+        "asset": {
+          "_ref": "image-91278f2d16a2abbec34187a1de86320bbf85a51b-516x96-png",
+          "_type": "reference"
+        },
+        "width": 587
+      },
+      "slogan": "Where Timberline Ends, Adventure Begins",
+      "slug": {
+        "_type": "slug",
+        "current": "timberline"
+      }
+    },
+    {
+      "_createdAt": "2025-09-22T20:01:45Z",
+      "_id": "d47152c4-7407-4432-ba38-9b51cada25ad",
+      "_rev": "TypQQGtcZ5mURB4DlbU6g1",
+      "_system": {
+        "base": {
+          "id": "d47152c4-7407-4432-ba38-9b51cada25ad",
+          "rev": "TypQQGtcZ5mURB4DlbU3Lh"
+        }
+      },
+      "_type": "brand",
+      "_updatedAt": "2025-10-02T20:15:08Z",
+      "accentColor": "651d26",
+      "coverImage": {
+        "_type": "image",
+        "alt": "TSPORT F-150 close up of the side of a truck parked in a parking lot",
+        "asset": {
+          "_ref": "image-86931dc013495e4656f156ad2493d901eb876297-2560x1536-webp",
+          "_type": "reference"
+        }
+      },
+      "description": [
+        {
+          "_key": "0a96992999d7",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "b08bd1301efc",
+              "_type": "span",
+              "marks": [],
+              "text": "ThorSport Racing, the longest-tenured team in the NASCAR Truck Series, is excited to introduce TSPORT, the ultimate off-road package for truck enthusiasts. Partnering with Southern Off-Road Specialists, the TSPORT line of trucks is Built Ford Tough. Focusing on the F-150 and SuperDuty platforms, we’ve crafted custom trucks tailored to the needs of off-road lovers—from 6” suspension lift kits and BFGoodrich tires to digital-fit floor liners and center console storage vaults. "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "c30f62d4d407",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8c5228773f54",
+              "_type": "span",
+              "marks": [
+                "strong"
+              ],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "1d1c14aa63c5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "36ec2c1686e6",
+              "_type": "span",
+              "marks": [
+                "strong"
+              ],
+              "text": "These vehicles are designed to take on any adventure and are now available straight from the dealership!"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "excerpt": "Partnering with Southern Off-Road Specialists, the TSPORT line of trucks is Built Ford Tough. Focusing on the F-150 and SuperDuty platforms, we’ve crafted custom trucks tailored to the needs of off-road lovers—from 6” suspension lift kits and BFGoodrich tires to digital-fit floor liners and center console storage vaults. These vehicles are designed to take on any adventure and are now available straight from the dealership!",
+      "launchDate": "2025-09-22T20:01:42.321Z",
+      "logo": {
+        "_type": "image",
+        "alt": "TSport Logo ",
+        "asset": {
+          "_ref": "image-debb9f587e2906f534994468e377a827a02d13d7-200x48-png",
+          "_type": "reference"
+        }
+      },
+      "manufacturers": [
+        {
+          "_key": "5cf8e9b2df67",
+          "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+          "_type": "reference"
+        }
+      ],
+      "name": "TSport",
+      "primaryColor": "D22127",
+      "primaryLogo": {
+        "_type": "image",
+        "alt": "TSportTruck.com - ThorSport Racing ",
+        "asset": {
+          "_ref": "image-b4d179dbe3d020d92f3c20e8dba808712bb9ed79-500x183-png",
+          "_type": "reference"
+        },
+        "height": 187,
+        "width": 500
+      },
+      "secondaryColor": "777777",
+      "secondaryLogo": {
+        "_type": "image",
+        "alt": "TSport Emblem",
+        "asset": {
+          "_ref": "image-66fa68693d29fefa0b972da917c6b9a991d4eb37-300x300-png",
+          "_type": "reference"
+        }
+      },
+      "slogan": "Championship Winning Performance Engineered for Your Truck",
+      "slug": {
+        "_type": "slug",
+        "current": "tsport"
+      },
+      "website": "https://tsporttruck.com/"
+    },
+    {
+      "_createdAt": "2025-09-24T14:08:20Z",
+      "_id": "f334da50-9221-4ab2-aef7-f6f7a445a838",
+      "_rev": "acbM26hXTlXtanWSsF2XnX",
+      "_type": "page",
+      "_updatedAt": "2025-09-24T14:08:56Z",
+      "heading": "Privacy",
+      "name": "Privacy Policy",
+      "slug": {
+        "_type": "slug",
+        "current": "privacy-policy"
+      },
+      "subheading": "Policy Information"
+    },
+    {
+      "_createdAt": "2025-09-19T20:25:26Z",
+      "_id": "f80c50df-fbc7-4219-b351-f394b2be23cd",
+      "_rev": "ktpCTZXEBJisnauilm33FF",
+      "_type": "page",
+      "_updatedAt": "2025-09-19T20:26:05Z",
+      "heading": "Our Brands",
+      "name": "Brands",
+      "slug": {
+        "_type": "slug",
+        "current": "brands"
+      },
+      "subheading": "The Brands We Are Proud to Build"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:32Z",
+      "_id": "ford-bronco-tsport-sportsman",
+      "_rev": "oqkWKBis0aryduhEHrw3rS",
+      "_system": {
+        "base": {
+          "id": "ford-bronco-tsport-sportsman",
+          "rev": "mTTED7w06ARxiaQAIfqRno"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:22:29Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-8afaeaf102143c9c51dc7816104603cca41ea8bf-3154x3943-jpg",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+        "_type": "reference"
+      },
+      "model": "Bronco",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ford-bronco-tsport-sportsman"
+      },
+      "tags": [
+        "Ford",
+        "Bronco",
+        "TSport",
+        "Package:Sportsman",
+        "Sportsman"
+      ],
+      "title": "Ford Bronco - TSport Sportsman",
+      "vehicleType": "suv"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:33Z",
+      "_id": "ford-bronco-tsport-valor",
+      "_rev": "WZLY3Lq8D5qdpW7qCTDe2x",
+      "_system": {
+        "base": {
+          "id": "ford-bronco-tsport-valor",
+          "rev": "ZcnIlry0VhgKfcCFcLqqQV"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:22:18Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-10711d0057399eeb2b326235c8505b3399d6f58f-7373x4918-jpg",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+        "_type": "reference"
+      },
+      "model": "Bronco",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ford-bronco-tsport-valor"
+      },
+      "tags": [
+        "Ford",
+        "Bronco",
+        "TSport",
+        "Package:Valor",
+        "Valor"
+      ],
+      "title": "Ford Bronco - TSport Valor",
+      "vehicleType": "suv"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:26Z",
+      "_id": "ford-f-150-tsport-anthem",
+      "_rev": "WZ2FKIs11IUa6m1PPD5Svh",
+      "_system": {
+        "base": {
+          "id": "ford-f-150-tsport-anthem",
+          "rev": "Hm1klS9uGrizCGuc9XVXQ2"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:24:33Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-1a29bc2aeea8af8bf272e73951c209b45a49d308-3617x2411-png",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+        "_type": "reference"
+      },
+      "model": "F-150",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ford-f-150-tsport-anthem"
+      },
+      "title": "Ford F-150 - TSport Anthem",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:27Z",
+      "_id": "ford-f-150-tsport-lowered-sportsman",
+      "_rev": "oqkWKBis0aryduhEHrvkhq",
+      "_system": {
+        "base": {
+          "id": "ford-f-150-tsport-lowered-sportsman",
+          "rev": "PJaupBGNUIWj2zoDvAa0WH"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:19:37Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-2e8aa3646eb3fb62eac1767419f07ade0d50e2d0-5696x3797-jpg",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+        "_type": "reference"
+      },
+      "model": "F-150",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ford-f-150-tsport-lowered-sportsman"
+      },
+      "tags": [
+        "Ford",
+        "TSport",
+        "F-150"
+      ],
+      "title": "Ford F-150 - TSport Lowered Sportsman",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:25Z",
+      "_id": "ford-f-150-tsport-valor",
+      "_rev": "oqkWKBis0aryduhEHrw6lJ",
+      "_system": {
+        "base": {
+          "id": "ford-f-150-tsport-valor",
+          "rev": "oJFywhJZoLoxcSC6Nc6YaB"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:23:58Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-d42e947c93880ddb58feea2329057237535ae4f5-3308x2204-jpg",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+        "_type": "reference"
+      },
+      "model": "F-150",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ford-f-150-tsport-valor"
+      },
+      "tags": [
+        "TSport",
+        "Valor",
+        "Ford",
+        "F-150"
+      ],
+      "title": "Ford F-150 - TSport Valor",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:29Z",
+      "_id": "ford-superduty-tsport-sportsman",
+      "_rev": "oqkWKBis0aryduhEHrvNB1",
+      "_system": {
+        "base": {
+          "id": "ford-superduty-tsport-sportsman",
+          "rev": "ZcnIlry0VhgKfcCFcLqomJ"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:13:16Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-868a40e7f16df770903887b67d69a06d99ecfedb-2000x1250-png",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+        "_type": "reference"
+      },
+      "model": "SuperDuty",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ford-superduty-tsport-sportsman"
+      },
+      "tags": [
+        "Ford",
+        "SuperDuty",
+        "TSport",
+        "Package:Sportsman",
+        "Sportsman"
+      ],
+      "title": "Ford SuperDuty - TSport Sportsman",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:31Z",
+      "_id": "ford-superduty-tsport-valor",
+      "_rev": "WZ2FKIs11IUa6m1PPD4quV",
+      "_system": {
+        "base": {
+          "id": "ford-superduty-tsport-valor",
+          "rev": "mTTED7w06ARxiaQAIfpkQh"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:12:49Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-dc9cb61d0b8f90ae6d5f11642d769930e20ec152-2000x1250-png",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+        "_type": "reference"
+      },
+      "model": "SuperDuty",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ford-superduty-tsport-valor"
+      },
+      "tags": [
+        "Ford",
+        "SuperDuty",
+        "TSport",
+        "Valor",
+        "Package:Valor"
+      ],
+      "title": "Ford SuperDuty - TSport Valor",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T21:22:38Z",
+      "_id": "jeep-gladiator-timberline-overlook",
+      "_rev": "WZLY3Lq8D5qdpW7qCTCpRL",
+      "_system": {
+        "base": {
+          "id": "jeep-gladiator-timberline-overlook",
+          "rev": "WZ2FKIs11IUa6m1PPD4ZYL"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:07:31Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-115554e449d5c011dbce6b9109fda06653b0e5cc-6720x4480-jpg",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "manufacturer-jeep",
+        "_type": "reference"
+      },
+      "model": "Gladiator",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "jeep-gladiator-timberline-overlook"
+      },
+      "tags": [
+        "Jeep",
+        "Timberline",
+        "Overlook"
+      ],
+      "title": "Jeep Gladiator - Timberline Overlook",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T21:22:37Z",
+      "_id": "jeep-gladiator-timberline-trailhead",
+      "_rev": "ZcnIlry0VhgKfcCFcMVjBb",
+      "_system": {
+        "base": {
+          "id": "jeep-gladiator-timberline-trailhead",
+          "rev": "mTTED7w06ARxiaQAIfpzTM"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-25T20:38:52Z",
+      "coverImage": {
+        "_type": "image",
+        "alt": "Timberline Trailhead Edition of Jeep Gladiator",
+        "asset": {
+          "_ref": "image-dc96983f9af62d4c8654840b92791731e4ba09d4-2000x1545-png",
+          "_type": "reference"
+        }
+      },
+      "gallery": [
+        {
+          "_key": "944195f7f216",
+          "_type": "image",
+          "alt": "Timberline Trailhead  ",
+          "asset": {
+            "_ref": "image-dc96983f9af62d4c8654840b92791731e4ba09d4-2000x1545-png",
+            "_type": "reference"
+          },
+          "caption": "Timberline Trailhead  ",
+          "view": "Exterior Front"
+        }
+      ],
+      "manufacturer": {
+        "_ref": "manufacturer-jeep",
+        "_type": "reference"
+      },
+      "model": "Gladiator",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "jeep-gladiator-timberline-trailhead"
+      },
+      "specifications": {
+        "drivetrain": [
+          "4WD"
+        ]
+      },
+      "tags": [
+        "Timberline",
+        "Jeep",
+        "Gladiator",
+        "Package:Trailhead",
+        "Trailhead"
+      ],
+      "title": "Gladiator - Timberline Trailhead",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T21:22:33Z",
+      "_id": "jeep-wrangler-jl-alpine-brigade",
+      "_rev": "p3fzlTmm5sgzCU4jsbddpd",
+      "_system": {
+        "base": {
+          "id": "jeep-wrangler-jl-alpine-brigade",
+          "rev": "p3fzlTmm5sgzCU4jsb5SFO"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-10-02T19:56:03Z",
+      "coverImage": {
+        "_type": "image",
+        "alt": "Jeep Wrangler - Alpine Brigade Build",
+        "asset": {
+          "_ref": "image-5bf08b115c738eb2b57dea24bfac41adfe6c5419-2000x1545-png",
+          "_type": "reference"
+        }
+      },
+      "features": {
+        "exteriorFeatures": [
+          "Unique Ocean Inspired Design",
+          "Front and Rear Bumpers by Rebel Off Road",
+          "Warn Winch",
+          "37\" Off/On Road Tires"
+        ],
+        "interiorFeatures": [
+          "Katzkin Leather Interior",
+          "High-Fidelity Surround Sound System by Alpine Audio",
+          "10\" Big Bass Subwoofer by Alpine Audio"
+        ],
+        "performanceFeatures": [
+          "3.5\" Suspension Lift - setup to increase ground clearance while delivering enhanced stability, superior dampening control and confidence while traversing rough terrain",
+          ""
+        ],
+        "safetyFeatures": [
+          "ADAS System Calibration",
+          "4-Wheel Alignment",
+          "Road Force Mount & Balance"
+        ],
+        "technologyFeatures": [
+          "Fold out media screen",
+          "Winter Package with Heated Steering Wheel and Heated Driver and Passenger Seats"
+        ]
+      },
+      "gallery": [
+        {
+          "_key": "cdd6bd5e20c0",
+          "_type": "image",
+          "alt": "Alpine Brigade Edition Jeep Wranger ",
+          "asset": {
+            "_ref": "image-cfbc33824de32c5b6812c8a8d63d5ad92aff52ec-1024x768-jpg",
+            "_type": "reference"
+          },
+          "caption": "Brigade Edition Build (JL)",
+          "gridSpan": {
+            "desktop": {
+              "col": 3,
+              "row": 3
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 2,
+              "row": 2
+            }
+          },
+          "tags": [
+            "exterior",
+            "performance"
+          ]
+        },
+        {
+          "_key": "dae4891aad78",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-f27d01a2975f119bfb6db3a0aac1e848ca2c2196-1024x768-jpg",
+            "_type": "reference"
+          },
+          "tags": [
+            "exterior"
+          ]
+        },
+        {
+          "_key": "4a4849d29aec",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-2389bce5fe9197d2a22d1eb828b512c2e346e0d0-1024x768-jpg",
+            "_type": "reference"
+          },
+          "tags": [
+            "exterior",
+            "accessories:exterior",
+            "performance"
+          ]
+        },
+        {
+          "_key": "d9f611d40eda",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-153210624eb015c899cca7d5c057d944721104ed-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "ce04efd86aec",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-3722b1bcade63849996b7eb8c78f9d30eba96e1d-768x1024-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "d229aaf9b105",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-e82d20a2669d245b976e195746bc72ea35502ad3-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "01bc463866b0",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-11576f46165492746d58d97f9bb724b15288b495-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "2a895a71549c",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-5d79dd14d0d168dfe2ecb9972d850fd3fd4b6e1a-768x1024-jpg",
+            "_type": "reference"
+          },
+          "tags": [
+            "interior",
+            "accessories:interior"
+          ]
+        },
+        {
+          "_key": "8eb85a814712",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-b3e0d2ba2dd92de626b25dd08901db2d00cec1e9-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "915fc97e7fe9",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-ca53c860cc1f4ce54bc2caec947469606cda4d5e-768x1024-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "69df3c9e027b",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-4c19134f8b681a753cd1ee875f61d432473b5c71-768x1024-jpg",
+            "_type": "reference"
+          },
+          "tags": [
+            "audio",
+            "accessories:interior"
+          ]
+        },
+        {
+          "_key": "b7a42e170b4a",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-cee6a1064ce720eaaa3e8923b497a3e48e336940-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "172437214160",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-2c17965c51fe4fac63a0a78595204268caae2783-768x1024-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "316b5c32c2ec",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-fe98e02c262892a5a898dc408419f67534b3d76b-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "09c1c48f02c8",
+          "_type": "image",
+          "_upload": {
+            "createdAt": "2025-09-30T12:46:49.246Z",
+            "file": {
+              "name": "3E57EC31-5347-420B-8D33-D968A5D9BF55_1_105_c.jpeg",
+              "type": "image/jpeg"
+            },
+            "previewImage": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAFA3PEY8MlBGQUZaVVBfeMiCeG5uePWvuZHI////////////////////////////////////////////////////2wBDAVVaWnhpeOuCguv/////////////////////////////////////////////////////////////////////////wAARCAB4AKADASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAECAwT/xAAtEAACAgEDBAECBQUBAAAAAAAAAQIRIQMSMUFRYXEiMpETgaHB0RRCseHwUv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABcRAQEBAQAAAAAAAAAAAAAAAAARASH/2gAMAwEAAhEDEQA/ACKdLixpqnXJMru1wCl0qzIOf3Gmo56iXDwK1d9QKpNLNfsCSS5sWG7WBSlm0wKe3bjkihLkbYA0k85Fy8BQFFRscngUeBzdpkBVLuHNoLrFhHlsBrmiZZlSyUuboGrAFhW2O7wLhfyK2s9ig5bfYqNZJSVDby8gRK4vsJttscmqzyJgVuSjknf1CS4ClXIA2IGvI6oBdQHgRBS/wCJWCroB8Ck00/I3TQqAeOENJslUkOwGm0MXUV9gK7WS3dFLyJoAyOSz5C+4pP557lGb+rBUU28Impbl2s0SaS7DREs0KrLaSiyVbeAFJhd0XSwqHtrlogz4yFl7U1hk1T7lDjnql7YsPmSRNWxNBGj2rmX6AtraSb+xm01gqC5ZVarTi6qf6f7KWiuVP/vuTCLhqJpra+h0JJajfp/t+wHO4U8SX2f8AtO3cZJm2rFRW5Yp2ziaqTXZiDVul5HmyZfKSf5jfHJASr8w634E6x0sff0A1ELw8AuF0G1WbwQTubSCqXsSecF4rLAz/MpRXLnH7jk4JpYfoltSk2mqssFRVcO34r+R/h281fsyrKtL2XDYoXjc0qruUa/gp/2h/Tw60KOk63Sk11wZuejF53OXsDSWjpcXTMZKNpQb56j36c/jByi33eBbEn9VgOlFvdy33o2g4Ri6lzWb/wBGPKzn2Cja4VAdOo4uDV3jCMNsJfLbz3dBKmtiCerONQ0ungAVO8V0oaozjOUpfLl4LsmqbWGSuH7KQ4xXTklE3gHaWaoSarqC9hBSTwOTpWiZbqoJYhnlAT9UlWX2QScU6jbZG5xaadC3SU93W7NDSO5yvHoU47XamvBDm3K3y2JtsCvxJtVudFQ0lLMnROnWPJpOVICZaSWYSyug74ax1JjJqXkfx3O1+oFquZPkU9RVtTLhBNW0l/3mytiu9zS7IDFT206dd6GpbY31YteCjTTb9sS+UKA00/n8uvc0UH4I0ltvBqSCVAe1dRjoQZvTTWMA9Ko45L3PsLczM0JaXcUtNNNNrwNtktssHM+z5QNtqmzWcdzyQ4GheioxTcknfcJrTlWK9GdNBTAdpSxwU7qzNplQnQFKLvKyZP6nRvuepiKpDWiuoGCcik5+ToWkl0LUV0FHK1OSpoenp6ieF+p1YQWSiYxaWeSqBe6HXZgLAegaa5QCCQHQUUTQUUAE7BbDReMh7aRBnsDYjSuybBL1+Qqs1pLsNacU+FZbXi/YZHQUl0+4X5+wUPbQgmw9jBqghAAU+xQAHUKfYAsAp1Y0mwEOn69gBndUUu9+hpP/AMpewAaCr5b/AMDquEAFgOQqwAIKQwABAAAAUuwAAAAFAAAA8AAAf//Z",
+            "progress": 100,
+            "updatedAt": "2025-09-30T12:46:50.357Z"
+          }
+        },
+        {
+          "_key": "5df48a144a4d",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-e6734a8e05cc23d555607165c309bada67323b2c-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "2ce7a8c009d3",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-bedbd2824cada743ecf6bbdf8b42ef09ac45cd13-1024x768-jpg",
+            "_type": "reference"
+          },
+          "gridSpan": {
+            "desktop": {
+              "col": 2,
+              "row": 3
+            },
+            "tablet": {
+              "row": 2
+            },
+            "wide": {
+              "col": 2,
+              "row": 3
+            }
+          }
+        },
+        {
+          "_key": "fc8594364b08",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-b2ff117ae542e7ffb1e430cc25fe3299903926f1-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "8fa1772a2d0e",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-825da48faeadc118054ec9c646a90f970e115529-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "551569178315",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-1eb75fc77ddc97d5d6904dc2fdb1bd281c56ebb3-768x1024-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "319000e05995",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-cde00a419b10f94195ab98aa49eaef9f792f2e44-768x1024-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "f70d154b94a0",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-3ffb40772b3f1a641baa8c7947f4a2e9ae63235a-768x1024-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "0a37a844d267",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-7a860918fe95f44d04dd7a7326d0a9ef5aaacd09-1024x768-jpg",
+            "_type": "reference"
+          },
+          "gridSpan": {
+            "desktop": {
+              "col": 3,
+              "row": 3
+            }
+          }
+        },
+        {
+          "_key": "c88fbb43cfa6",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-e25f15e8b63c8f4423c052982edd1ff3bb1ed75a-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "4eb23e31acd7",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-946b1be58c25a4014c4bf222e89f30f9b32c27d7-1024x768-jpg",
+            "_type": "reference"
+          }
+        },
+        {
+          "_key": "37b6522f698f",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-b6456b6552c755bb56bc618c97db31a37461ab0d-1024x768-jpg",
+            "_type": "reference"
+          },
+          "gridSpan": {
+            "desktop": {
+              "col": 3,
+              "row": 6
+            },
+            "tablet": {
+              "col": 2,
+              "row": 2
+            }
+          }
+        }
+      ],
+      "headerVehicleImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-5bf08b115c738eb2b57dea24bfac41adfe6c5419-2000x1545-png",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "manufacturer-jeep",
+        "_type": "reference"
+      },
+      "model": "Wrangler",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "jeep-wrangler-alpine-brigade"
+      },
+      "specifications": {
+        "drivetrain": [
+          "4WD"
+        ]
+      },
+      "tags": [
+        "Alpine",
+        "Jeep",
+        "Wrangler",
+        "Package:Brigade",
+        "Brigade"
+      ],
+      "title": "Jeep Wrangler - Alpine Brigade",
+      "trim": "JL",
+      "vehicleDetailsPageHeaderBackgroundImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-d015be1bc8331b7966c6eaa9d192092977b62899-3341x1603-png",
+          "_type": "reference"
+        }
+      },
+      "vehicleType": "suv"
+    },
+    {
+      "_createdAt": "2025-09-22T21:22:32Z",
+      "_id": "jeep-wrangler-jl-alpine-ocean",
+      "_rev": "oqkWKBis0aryduhEHsjV2M",
+      "_system": {
+        "base": {
+          "id": "jeep-wrangler-jl-alpine-ocean",
+          "rev": "PJaupBGNUIWj2zoDvOWnVp"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T21:11:32Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6d97578ebf750cb46445fe0510741522ddf0da48-1545x2000-png",
+          "_type": "reference"
+        }
+      },
+      "gallery": [
+        {
+          "_key": "7877b45f1429",
+          "_type": "image",
+          "asset": {
+            "_ref": "image-1a29bc2aeea8af8bf272e73951c209b45a49d308-3617x2411-png",
+            "_type": "reference"
+          }
+        }
+      ],
+      "manufacturer": {
+        "_ref": "manufacturer-jeep",
+        "_type": "reference"
+      },
+      "model": "Wrangler",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "jeep-wrangler-alpine-ocean"
+      },
+      "tags": [
+        "Alpine",
+        "Jeep",
+        "Wrangler",
+        "Package:Ocean",
+        "Ocean"
+      ],
+      "title": "Jeep Wrangler - Alpine Ocean",
+      "vehicleType": "suv"
+    },
+    {
+      "_createdAt": "2025-09-22T21:22:36Z",
+      "_id": "jeep-wrangler-jl-timberline-overlook",
+      "_rev": "PJaupBGNUIWj2zoDvOVw65",
+      "_system": {
+        "base": {
+          "id": "jeep-wrangler-jl-timberline-overlook",
+          "rev": "PJaupBGNUIWj2zoDvAaQd7"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-26T19:37:17Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b15957391cec1b870529aefc7e81d00083f012a4-2000x1545-png",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "manufacturer-jeep",
+        "_type": "reference"
+      },
+      "model": "Wrangler",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "jeep-wrangler-timberline-overlook"
+      },
+      "tags": [
+        "Timberline",
+        "Jeep",
+        "Wrangler",
+        "Overlook",
+        "Package:Overlook"
+      ],
+      "title": "Jeep Wrangler - Timberline Overlook",
+      "vehicleType": "suv"
+    },
+    {
+      "_createdAt": "2025-09-22T21:22:34Z",
+      "_id": "jeep-wrangler-jl-timberline-trailhead",
+      "_rev": "PJaupBGNUIWj2zoDvOZ0dN",
+      "_system": {
+        "base": {
+          "id": "jeep-wrangler-jl-timberline-trailhead",
+          "rev": "PJaupBGNUIWj2zoDvOYxDl"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-26T19:58:39Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a9baf875cb8229fe7701f67550270f0da8a7e0af-5712x4284-jpg",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "manufacturer-jeep",
+        "_type": "reference"
+      },
+      "model": "Wrangler",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "jeep-wrangler-timberline-trailhead"
+      },
+      "tags": [
+        "Timberline"
+      ],
+      "title": "Jeep Wrangler - Timberline Trailhead",
+      "vehicleType": "suv"
+    },
+    {
+      "_createdAt": "2025-09-22T21:22:35Z",
+      "_id": "jeep-wrangler-jl-timberline-waypoint",
+      "_rev": "ZcnIlry0VhgKfcCFcTqbPP",
+      "_system": {
+        "base": {
+          "id": "jeep-wrangler-jl-timberline-waypoint",
+          "rev": "mTTED7w06ARxiaQAIqCPVS"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-26T20:00:54Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b51ab03f4ad84a6b0f55e75ede5758e51ce44921-5000x3333-jpg",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "manufacturer-jeep",
+        "_type": "reference"
+      },
+      "model": "Wrangler",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "jeep-wrangler-timberline-waypoint"
+      },
+      "specifications": {
+        "drivetrain": [
+          "4WD"
+        ]
+      },
+      "tags": [
+        "Jeep",
+        "Wrangler",
+        "Timberline",
+        "Waypoint",
+        "Package:Waypoint"
+      ],
+      "title": "Jeep Wrangler - Timberline Waypoint",
+      "trim": "JL",
+      "vehicleType": "suv"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:20Z",
+      "_id": "manufacturer-ford",
+      "_rev": "d1Q1ffbod76ojpFA1Zmtah",
+      "_system": {
+        "base": {
+          "id": "manufacturer-ford",
+          "rev": "lDVmTxa9ayujqMAIPZWk7T"
+        }
+      },
+      "_type": "manufacturer",
+      "_updatedAt": "2025-09-23T21:44:39Z",
+      "description": "RAM Trucks",
+      "heroImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-028dd65460fae2306554a52267b2b669d4687e0d-5875x3764-jpg",
+          "_type": "reference"
+        }
+      },
+      "logo": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a8793d3b5998699cd6652bc764d7d7b27fbd3bdc-500x500-webp",
+          "_type": "reference"
+        }
+      },
+      "name": "Ram",
+      "slug": {
+        "_type": "slug",
+        "current": "ram"
+      }
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:23Z",
+      "_id": "manufacturer-jeep",
+      "_rev": "ZcnIlry0VhgKfcCFcMhtkZ",
+      "_system": {
+        "base": {
+          "id": "manufacturer-jeep",
+          "rev": "mTTED7w06ARxiaQAIggJwc"
+        }
+      },
+      "_type": "manufacturer",
+      "_updatedAt": "2025-09-25T21:05:54Z",
+      "description": "Jeep lorem ipsum",
+      "heroImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e316f269917e17beb1bdabea8144be626e9bec6f-6000x3376-jpg",
+          "_type": "reference"
+        }
+      },
+      "heroSubtitle": "lorem ipsum dolor sit amet",
+      "heroTitle": "BIG BUILT JEEPS",
+      "logo": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-27292215f6cae0a6ea2afa3d810db0a6d9e18e63-800x800-png",
+          "_type": "reference"
+        },
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 1,
+          "width": 1,
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "name": "Jeep",
+      "slug": {
+        "_type": "slug",
+        "current": "jeep"
+      }
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:35Z",
+      "_id": "ram-1500-timberline-overlook",
+      "_rev": "oqkWKBis0aryduhEHrw4VQ",
+      "_system": {
+        "base": {
+          "id": "ram-1500-timberline-overlook",
+          "rev": "PJaupBGNUIWj2zoDvAb5Pt"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:22:36Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-208b181342f398627c626cbe5922e51bd7aebd38-6115x4109-jpg",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "manufacturer-ford",
+        "_type": "reference"
+      },
+      "model": "1500",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ram-1500-timberline-overlook"
+      },
+      "tags": [
+        "Timberline",
+        "Ram",
+        "1500",
+        "Package:Overlook",
+        "Overlook"
+      ],
+      "title": "Ram 1500 - Timberline Overlook",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:34Z",
+      "_id": "ram-1500-timberline-trailhead",
+      "_rev": "WZLY3Lq8D5qdpW7qCTDdHF",
+      "_system": {
+        "base": {
+          "id": "ram-1500-timberline-trailhead",
+          "rev": "PJaupBGNUIWj2zoDvAaiY5"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-29T20:22:14Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-028dd65460fae2306554a52267b2b669d4687e0d-5875x3764-jpg",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "manufacturer-ford",
+        "_type": "reference"
+      },
+      "model": "1500",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ram-1500-timberline-trailhead"
+      },
+      "tags": [
+        "Timberline",
+        "Ram",
+        "1500",
+        "Package:Trailhead",
+        "Trailhead"
+      ],
+      "title": "Ram 1500 - Timberline Trailhead",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:37Z",
+      "_id": "ram-25003500-timberline-overlook",
+      "_rev": "mTTED7w06ARxiaQAIo0B6q",
+      "_system": {
+        "base": {
+          "id": "ram-25003500-timberline-overlook",
+          "rev": "mTTED7w06ARxiaQAIfqYTW"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-26T14:50:02Z",
+      "coverImage": {
+        "_type": "image",
+        "alt": "Timberline Overlook Edition of the RAM 2500",
+        "asset": {
+          "_ref": "image-2c64d5f0a44556180430c3c3370a31a0dfc81ec2-7008x4672-jpg",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "manufacturer-ford",
+        "_type": "reference"
+      },
+      "model": "2500",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ram-2500-timberline-overlook"
+      },
+      "tags": [
+        "Timberline",
+        "Ram",
+        "2500",
+        "Package:Overlook",
+        "Overlook"
+      ],
+      "title": "Ram 2500 - Timberline Overlook",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-22T21:21:36Z",
+      "_id": "ram-25003500-timberline-trailhead",
+      "_rev": "PJaupBGNUIWj2zoDvAazMH",
+      "_system": {
+        "base": {
+          "id": "ram-25003500-timberline-trailhead",
+          "rev": "ZcnIlry0VhgKfcCFcLqxMx"
+        }
+      },
+      "_type": "vehicle",
+      "_updatedAt": "2025-09-25T19:40:56Z",
+      "coverImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9153feae307f1659456eee8ccc8cf493d8287514-2000x1545-png",
+          "_type": "reference"
+        }
+      },
+      "manufacturer": {
+        "_ref": "manufacturer-ford",
+        "_type": "reference"
+      },
+      "model": "2500",
+      "modelYear": 2025,
+      "slug": {
+        "_type": "slug",
+        "current": "ram-2500-timberline-trailhead"
+      },
+      "tags": [
+        "Timberline",
+        "Ram",
+        "2500",
+        "Package:Trailhead",
+        "Trailhead"
+      ],
+      "title": "Ram 2500 - Timberline Trailhead",
+      "vehicleType": "truck"
+    },
+    {
+      "_createdAt": "2025-09-19T17:57:05Z",
+      "_id": "siteSettings",
+      "_rev": "lDVmTxa9ayujqMAIPhvS9x",
+      "_system": {
+        "base": {
+          "id": "siteSettings",
+          "rev": "acbM26hXTlXtanWSsFGlv9"
+        }
+      },
+      "_type": "settings",
+      "_updatedAt": "2025-09-24T16:51:55Z",
+      "appLogo": {
+        "_type": "image",
+        "alt": "Timberline Upfitters - Builds for any Adventure",
+        "asset": {
+          "_ref": "image-aafe8e75724f67991ad2ee9df3979d38780e3d7a-375x375-png",
+          "_type": "reference"
+        }
+      },
+      "description": [
+        {
+          "_key": "780cbad022b6",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1f2f95ff0141",
+              "_type": "span",
+              "marks": [],
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea!"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "ogImage": {
+        "_type": "image",
+        "alt": "a logo for timberline upfitters with a mountain and trees",
+        "asset": {
+          "_ref": "image-6c838f9090f896ae28c036c3e0ea793d9d33c57c-411x236-png",
+          "_type": "reference"
+        },
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0,
+          "left": 0.24571043594468842,
+          "right": 0.2566507132868047,
+          "top": 0
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 1,
+          "width": 0.49763885076850684,
+          "x": 0.49452986132894183,
+          "y": 0.5
+        }
+      },
+      "title": "Timberline Upfitters"
+    }
+  ]
+}

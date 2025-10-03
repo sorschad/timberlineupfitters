@@ -59,9 +59,6 @@ async function upsertPages() {
       subheading: p.subheading,
       pageBuilder: [],
     })
-
-    // Also ensure published by patching to setIfMissing so drafts don't block
-    console.log(`Upserted page: ${p.name} -> /${slug}`)
   }
 }
 

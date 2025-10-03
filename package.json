@@ -32,6 +32,8 @@
   },
   "prettier": "@sanity/prettier-config",
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@sanity/prettier-config": "^2.0.1",
     "npm-run-all2": "^5.0.2",
     "prettier": "^3.6.2"

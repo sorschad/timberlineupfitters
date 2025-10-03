@@ -54,7 +54,7 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
     }
   ]
 
-  const features = vehicle.features || defaultFeatures
+  const features = Array.isArray(vehicle.features) ? vehicle.features : defaultFeatures
 
   // Get the main display image based on active view
   const getMainImage = () => {
@@ -95,8 +95,8 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
     <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-1 gap-12 items-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-center text-white leading-tight">
-            Comfort in simplicity. High-tech future of driving
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white leading-tight">
+            Comfort, Technology & Prowless
           </h2>
         </div>
         <div className="grid lg:grid-cols-2 gap-12 items-center">

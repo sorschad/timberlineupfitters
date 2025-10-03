@@ -22,8 +22,20 @@ const brandFields = /* groq */ `
   description,
   coverImage,
   sectionImage,
+  primaryLogo,
+  secondaryLogo,
+  website,
+  primaryColor,
+  secondaryColor,
+  accentColor,
   features,
   "launchDate": coalesce(launchDate, _updatedAt),
+  "manufacturers": manufacturers[]->{
+    _id,
+    name,
+    "slug": slug.current,
+    logo
+  },
 `
 
 const brandFieldsWithSlogan = /* groq */ `

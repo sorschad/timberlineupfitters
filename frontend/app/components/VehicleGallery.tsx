@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
 import Lightbox from 'yet-another-react-lightbox'
@@ -11,27 +11,64 @@ interface VehicleGalleryProps {
   vehicleTitle: string
   activeFilter?: string | null
   onClearFilter?: () => void
+  filterCards?: Array<{
+    id: string
+    title: string
+    description: string
+    tag: string
+  }>
+  onFilterChange?: (tag: string | null) => void
 }
 
-export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, onClearFilter }: VehicleGalleryProps) {
+export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, onClearFilter, filterCards, onFilterChange }: VehicleGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [gridCols, setGridCols] = useState(4)
+  const [isResizing, setIsResizing] = useState(false)
 
-  // Track responsive grid columns to compute filler span
+  // Debounced resize handler for smooth performance
+  const debouncedResize = useCallback(() => {
+    let timeoutId: NodeJS.Timeout
+    return () => {
+      setIsResizing(true)
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        const w = typeof window !== 'undefined' ? window.innerWidth : 1920
+        let newCols: number
+        
+        if (w >= 1536) newCols = 5      // 2xl: 5 columns
+        else if (w >= 1280) newCols = 4 // xl: 4 columns  
+        else if (w >= 1024) newCols = 3 // lg: 3 columns
+        else if (w >= 768) newCols = 2   // md: 2 columns
+        else newCols = 1                 // sm: 1 column
+        
+        setGridCols(newCols)
+        setIsResizing(false)
+      }, 150) // 150ms debounce
+    }
+  }, [])
+
+  // Enhanced responsive grid columns with smooth transitions
   useEffect(() => {
     const computeCols = () => {
       const w = typeof window !== 'undefined' ? window.innerWidth : 1920
-      if (w >= 1280) return 4
-      if (w >= 1024) return 3
-      if (w >= 768) return 2
-      return 1
+      if (w >= 1536) return 5      // 2xl: 5 columns
+      if (w >= 1280) return 4       // xl: 4 columns  
+      if (w >= 1024) return 3      // lg: 3 columns
+      if (w >= 768) return 2       // md: 2 columns
+      return 1                      // sm: 1 column
     }
+    
     const update = () => setGridCols(computeCols())
     update()
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
-  }, [])
+    
+    const debouncedUpdate = debouncedResize()
+    window.addEventListener('resize', debouncedUpdate)
+    
+    return () => {
+      window.removeEventListener('resize', debouncedUpdate)
+    }
+  }, [debouncedResize])
 
   if (!gallery || gallery.length === 0) return null
 
@@ -65,31 +102,63 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
   }, [validImages, vehicleTitle])
 
   return (
-    <section className="py-8 pb-16 bg-white">
+    <section id="vehicle-gallery-section" className="py-8 pb-16 bg-white">
       <div className="container mx-auto px-4">
-        {/* Filter Header */}
-        {activeFilter && (
-          <div className="mb-8 flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <span className="text-lg font-semibold text-gray-700">
-                Filtered by: <span className="text-blue-600 capitalize">{activeFilter}</span>
-              </span>
-              <span className="text-sm text-gray-500">
-                {gallery.length} image{gallery.length !== 1 ? 's' : ''} found
-              </span>
-            </div>
-            {onClearFilter && (
-              <button
-                onClick={onClearFilter}
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200 text-sm font-medium"
+        {/* Filter Cards Section - Sticky on scroll */}
+        {filterCards && filterCards.length > 0 && (
+          <div className="top-4 z-10 mb-8">
+            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {filterCards.map((card) => (
+              <div
+                key={card.id}
+                onClick={() => onFilterChange?.(activeFilter === card.tag ? null : card.tag)}
+                className={`bg-white rounded-lg px-4 py-3 text-center border transition-all duration-200 hover:shadow-md hover:cursor-pointer relative ${
+                  activeFilter === card.tag 
+                    ? 'border-orange-500 bg-orange-50 shadow-md shadow-orange-100' 
+                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                }`}
               >
-                Clear Filter
-              </button>
-            )}
+                <div className="text-sm font-semibold text-gray-900 mb-1 leading-tight">
+                  {card.title}
+                </div>
+                <div className="text-xs text-gray-500 mb-0 leading-tight">
+                  {card.description}
+                </div>
+                {/* Active Filter Badge - Absolutely Positioned */}
+                {activeFilter === card.tag && (
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white rounded-full shadow-md border border-white opacity-85">
+                    <div className="flex items-center px-1.5 py-0">
+                      <span className="text-xs font-medium lowercase">active</span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          onFilterChange?.(null)
+                        }}
+                        className="ml-0.5 w-3 h-3 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer"
+                        aria-label="Clear filter"
+                      >
+                        <svg className="w-1.5 h-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+            </div>
           </div>
         )}
+
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[200px] grid-flow-dense">
+        <div 
+          className={`grid gap-6 auto-rows-[200px] grid-flow-dense transition-all duration-300 ease-in-out ${
+            isResizing ? 'opacity-75' : 'opacity-100'
+          }`}
+          style={{
+            gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))`
+          }}
+        >
           {validImages.map((image: any, idx: number) => {
             // Get grid span from Sanity data or use defaults
             const getGridSpan = (image: any, currentGridCols: number) => {
@@ -135,15 +204,53 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
               return null
             }
             
-            // Render all images immediately
+            // Enhanced responsive grid span calculation
+            const getFilteredGridSpan = () => {
+              if (!activeFilter) {
+                return {
+                  gridColumn: isLast ? '1 / -1' : `span ${Math.min(gridSpan.col, gridCols)}`,
+                  gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
+                }
+              }
+              
+              // When filtering, make images larger to fill space based on current grid columns
+              const totalImages = validImages.length
+              const responsiveCols = Math.min(gridCols, 4) // Cap at 4 for better layout
+              
+              if (totalImages <= 2) {
+                // For 1-2 images, make them span full width
+                return {
+                  gridColumn: '1 / -1',
+                  gridRow: 'span 2'
+                }
+              } else if (totalImages <= 4) {
+                // For 3-4 images, make them span responsive width
+                const spanCols = Math.max(2, Math.floor(responsiveCols / 2))
+                return {
+                  gridColumn: `span ${Math.min(spanCols, gridCols)}`,
+                  gridRow: 'span 2'
+                }
+              } else {
+                // For 5+ images, use responsive spans
+                const enhancedCols = Math.min(gridCols, gridSpan.col + 1)
+                return {
+                  gridColumn: `span ${Math.min(enhancedCols, gridCols)}`,
+                  gridRow: `span ${gridSpan.row + 1}`
+                }
+              }
+            }
+            
+            const filteredGridStyle = getFilteredGridSpan()
+            
+            // Render all images immediately with smooth transitions
             const lastBlock = (
               <div 
                 key={idx} 
                 className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white border border-gray-100" 
                 onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
                 style={{
-                  gridColumn: isLast ? '1 / -1' : `span ${gridSpan.col}`,
-                  gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
+                  ...filteredGridStyle,
+                  transition: 'grid-column 0.3s ease-in-out, grid-row 0.3s ease-in-out, transform 0.3s ease-in-out'
                 }}
               >
                 <Image

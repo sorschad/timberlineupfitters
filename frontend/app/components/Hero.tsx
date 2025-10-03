@@ -46,7 +46,6 @@ export default function Hero() {
       try {
         const res = await fetch('/api/homepage-settings', {cache: 'no-store'})
         const json = await res.json()
-        console.log('Fetched slides:', json?.slides)
         const fetched = (json?.slides || []).map((s: any, idx: number) => ({
           id: idx + 1,
           title: s?.title || '',
@@ -55,7 +54,6 @@ export default function Hero() {
           alt: s?.alt || 'Hero background',
         })) as HeroSlide[]
         if (isMounted && fetched.length > 0) {
-          console.log('Setting slides:', fetched)
           setSlides(fetched)
         }
       } catch (e) {
