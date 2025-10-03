@@ -3,7 +3,7 @@ import Head from 'next/head'
 
 import HeritageHero from '@/app/components/HeritageHero'
 import HeritageTimeline from '@/app/components/HeritageTimeline'
-import VerticalScroller from '@/app/components/VerticalScroller'
+import HeritageVerticalGallery from '@/app/components/HeritageVerticalGallery'
 import {sanityFetch} from '@/sanity/lib/live'
 import {getPageQuery} from '@/sanity/lib/queries'
 import {PageOnboarding} from '@/app/components/Onboarding'
@@ -48,13 +48,10 @@ export default async function HeritagePage() {
         />
       </div>
 
-      {/* Vertical auto-scrolling section inspired by the referenced CodePen */}
+      {/* Vertical scrollable gallery (user-controlled), inspired by the referenced CodePen */}
       <div className="mt-12 lg:mt-20">
-        <VerticalScroller 
+        <HeritageVerticalGallery
           images={(page?.heroBackgroundImages || []).map((img: any) => ({ url: img?.asset?.url, alt: img?.alt }))}
-          height={520}
-          speedPxPerSec={40}
-          darkOverlay
         />
       </div>
 
