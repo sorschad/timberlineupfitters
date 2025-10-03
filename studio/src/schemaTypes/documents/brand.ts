@@ -116,6 +116,22 @@ export const brand = defineType({
             })
           },
         },
+        {
+          name: 'width',
+          type: 'number',
+          title: 'Logo Width',
+          description: 'Width in pixels for the logo display',
+          validation: (rule) => rule.min(1).max(2000),
+          initialValue: 120,
+        },
+        {
+          name: 'height',
+          type: 'number',
+          title: 'Logo Height',
+          description: 'Height in pixels for the logo display',
+          validation: (rule) => rule.min(1).max(2000),
+          initialValue: 120,
+        },
       ],
     }),
     defineField({

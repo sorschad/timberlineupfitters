@@ -106,7 +106,7 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
       <div className="container mx-auto px-4">
         {/* Filter Cards Section - Sticky on scroll */}
         {filterCards && filterCards.length > 0 && (
-          <div className="sticky top-4 z-10 mb-8">
+          <div className="top-4 z-10 mb-8">
             <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
             {filterCards.map((card) => (
               <div

@@ -587,6 +587,8 @@ export type Brand = {
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
     alt?: string
+    width?: number
+    height?: number
     _type: 'image'
   }
   secondaryLogo?: {
@@ -1117,6 +1119,8 @@ export type AllBrandsQueryResult = Array<{
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
     alt?: string
+    width?: number
+    height?: number
     _type: 'image'
   } | null
   secondaryLogo: {
@@ -1202,6 +1206,8 @@ export type MoreBrandsQueryResult = Array<{
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
     alt?: string
+    width?: number
+    height?: number
     _type: 'image'
   } | null
   secondaryLogo: {
@@ -1287,6 +1293,8 @@ export type HomepageBrandsQueryResult = Array<{
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
     alt?: string
+    width?: number
+    height?: number
     _type: 'image'
   } | null
   secondaryLogo: {
@@ -1372,6 +1380,8 @@ export type BrandQueryResult = {
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
     alt?: string
+    width?: number
+    height?: number
     _type: 'image'
   } | null
   secondaryLogo: {

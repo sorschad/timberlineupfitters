@@ -133,7 +133,7 @@ export default async function BrandsPage() {
       return {
         primary: 'from-blue-600 to-cyan-500',
         accent: 'bg-blue-600',
-        text: 'text-blue-600',
+        text: 'text-snow-white/70',
         border: 'border-blue-200',
         bg: 'bg-blue-50'
       }
@@ -183,16 +183,13 @@ export default async function BrandsPage() {
               <div className={`space-y-8 ${index % 2 === 1 ? 'order-1 lg:order-2' : 'animate-fade-in-left'}`}>
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
-                    <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-bold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'}`}>
-                      <span className={getBrandGradientClass(index)}>{brand.name}</span>
-                    </h2>
                     {brand.primaryLogo?.asset?._ref && (
                       <div className="flex-shrink-0">
                         <Image
-                          src={urlForImage(brand.primaryLogo)?.width(120).height(120).fit('max').auto('format').url() || ''}
+                          src={urlForImage(brand.primaryLogo)?.width(brand.primaryLogo.width || 120).height(brand.primaryLogo.height || 120).fit('max').auto('format').url() || ''}
                           alt={brand.primaryLogo.alt || `${brand.name} logo`}
-                          width={120}
-                          height={120}
+                          width={brand.primaryLogo.width || 120}
+                          height={brand.primaryLogo.height || 120}
                           className="object-contain"
                         />
                       </div>
@@ -200,17 +197,10 @@ export default async function BrandsPage() {
                   </div>
                   <div className={getBrandLineClass(index)}></div>
                 </div>
-                <div className={`text-lg leading-relaxed ${
-                  brand.slug.toLowerCase().includes('timberline') 
-                    ? 'text-[#ff8c42]' 
-                    : brand.slug.toLowerCase().includes('tsport') 
-                      ? 'text-red-500' 
-                      : index % 3 === 0 
-                        ? 'text-gray-600' 
-                        : 'text-gray-300'
-                }`}>
+
+                <div className={`text-lg leading-relaxed ${brandColors.text}`}>
                   {brand.description ? (
-                    <div className={brand.slug.toLowerCase().includes('timberline') ? 'text-[#ff8c42]' : ''}>
+                    <div className={brand.slug.toLowerCase().includes('timberline') ? 'text-[#ff8c42]' : ' '}>
                       <PortableText value={brand.description as any} />
                     </div>
                   ) : (
@@ -293,9 +283,9 @@ export default async function BrandsPage() {
             
             {/* Elegant Vehicle Showcase */}
             {brand.vehicles && brand.vehicles.length > 0 && (
-              <div className="mt-20">
-                <div className="text-left mb-12">
-                  <h3 className={`text-3xl font-bold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'} mb-4`}>
+              <div className="mt-12">
+                <div className="text-left mb-3">
+                  <h3 className={`text-2xl font-semibold ${brandColors.text} mb-4`}>
                     {brand.name} Vehicles
                   </h3>
                 </div>
@@ -305,7 +295,7 @@ export default async function BrandsPage() {
                     <Link
                       key={vehicle._id}
                       href={`/vehicles/${(vehicle as any).slug?.current}`}
-                      className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-[87px]"
+                      className="group flex-1 bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-[87px]"
                     >
                       <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[87px]">
                         {/* Left Section - Text Content */}
