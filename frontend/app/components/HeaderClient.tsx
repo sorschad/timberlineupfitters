@@ -5,7 +5,7 @@ import {useEffect, useMemo, useState} from 'react'
 import {Orbitron} from 'next/font/google'
 import {urlForImage} from '@/sanity/lib/utils'
 import {MagnifyingGlassIcon} from '@heroicons/react/24/outline'
-import SearchModal from './SearchModal'
+import { VehicleSearchModal } from './VehicleSearchModal'
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -569,7 +569,7 @@ export default function HeaderClient({
       </div>
 
       {/* Search Modal */}
-      <SearchModal 
+      <VehicleSearchModal 
         isOpen={isSearchOpen} 
         onClose={() => setIsSearchOpen(false)} 
         vehicles={timberlineVehicles as any}
