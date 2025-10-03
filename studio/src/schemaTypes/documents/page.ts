@@ -41,6 +41,33 @@ export const page = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'heroBackgroundImages',
+      title: 'Hero Background Images',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative Text',
+              description: 'Important for SEO and accessibility.',
+              validation: (Rule) => Rule.required(),
+            },
+          ],
+        },
+      ],
+      options: {
+        layout: 'grid',
+        gridColumns: 2,
+      },
+      validation: (Rule) => Rule.max(10).error('Maximum 10 background images allowed'),
+    }),
+    defineField({
       name: 'pageBuilder',
       title: 'Page builder',
       type: 'array',
