@@ -22,9 +22,31 @@ export default function ParallaxVerticalMasonry({images}: ParallaxVerticalMasonr
       if (!containerRef.current) return
       const rect = containerRef.current.getBoundingClientRect()
       const viewH = window.innerHeight
-      // How much we have scrolled through this section (0 -> rect.height)
-      const visibleStart = -rect.top
-      const scrolled = Math.min(rect.height, Math.max(0, visibleStart))
+      
+      // Calculate how much of this section is visible
+      const sectionTop = rect.top
+      const sectionBottom = rect.bottom
+      const viewportTop = 0
+      const viewportBottom = viewH
+      
+      // If section is above viewport, we've scrolled past it
+      if (sectionBottom < viewportTop) {
+        setLocalScroll(rect.height)
+        return
+      }
+      
+      // If section is below viewport, we haven't reached it yet
+      if (sectionTop > viewportBottom) {
+        setLocalScroll(0)
+        return
+      }
+      
+      // Section is in viewport - calculate scroll progress
+      const visibleTop = Math.max(viewportTop, sectionTop)
+      const visibleBottom = Math.min(viewportBottom, sectionBottom)
+      const visibleHeight = visibleBottom - visibleTop
+      const scrolled = Math.max(0, viewportTop - sectionTop)
+      
       setLocalScroll(scrolled)
       setContainerHeight(Math.max(1, rect.height))
     }
@@ -46,12 +68,12 @@ export default function ParallaxVerticalMasonry({images}: ParallaxVerticalMasonr
   const speeds = [0.6, 0.9, 1.2] // different vertical speeds for parallax
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden">
+    <section ref={containerRef} className="relative py-20 lg:py-32">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {lanes.map((lane, laneIdx) => {
             const speed = speeds[laneIdx % speeds.length]
-            const translateY = -(localScroll * (1 - speed)) // slower columns appear to lag
+            const translateY = -(localScroll * 0.3 * (1 - speed)) // reduced parallax effect
             return (
               <ul
                 key={laneIdx}
