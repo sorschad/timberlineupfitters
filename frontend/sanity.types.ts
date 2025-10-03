@@ -169,6 +169,32 @@ export type Vehicle = {
     alt?: string
     _type: 'image'
   }
+  vehicleDetailsPageHeaderBackgroundImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  headerVehicleImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
   gallery?: Array<{
     asset?: {
       _ref: string
@@ -191,6 +217,21 @@ export type Vehicle = {
       | 'Engine'
       | 'Bed'
       | 'Technology'
+    tags?: Array<string>
+    gridSpan?: {
+      mobile?: {
+        col?: number
+        row?: number
+      }
+      tablet?: {
+        col?: number
+        row?: number
+      }
+      desktop?: {
+        col?: number
+        row?: number
+      }
+    }
     _type: 'image'
     _key: string
   }>
@@ -535,7 +576,22 @@ export type Brand = {
     alt?: string
     _type: 'image'
   }
-  logo?: {
+  primaryLogo?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    width?: number
+    height?: number
+    _type: 'image'
+  }
+  secondaryLogo?: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -548,6 +604,10 @@ export type Brand = {
     alt?: string
     _type: 'image'
   }
+  website?: string
+  primaryColor?: string
+  secondaryColor?: string
+  accentColor?: string
   sectionImage?: {
     asset?: {
       _ref: string
@@ -1014,7 +1074,7 @@ export type SitemapDataResult = Array<
     }
 >
 // Variable: allBrandsQuery
-// Query: *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
+// Query: *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  primaryLogo,  secondaryLogo,  website,  primaryColor,  secondaryColor,  accentColor,  features,  "launchDate": coalesce(launchDate, _updatedAt),  "manufacturers": manufacturers[]->{    _id,    name,    "slug": slug.current,    logo  },  }
 export type AllBrandsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
@@ -1048,11 +1108,60 @@ export type AllBrandsQueryResult = Array<{
     alt?: string
     _type: 'image'
   } | null
+  primaryLogo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    width?: number
+    height?: number
+    _type: 'image'
+  } | null
+  secondaryLogo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  website: string | null
+  primaryColor: string | null
+  secondaryColor: string | null
+  accentColor: string | null
   features: Array<string> | null
   launchDate: string
+  manufacturers: Array<{
+    _id: string
+    name: string
+    slug: string
+    logo: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    } | null
+  }> | null
 }>
 // Variable: moreBrandsQuery
-// Query: *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
+// Query: *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  primaryLogo,  secondaryLogo,  website,  primaryColor,  secondaryColor,  accentColor,  features,  "launchDate": coalesce(launchDate, _updatedAt),  "manufacturers": manufacturers[]->{    _id,    name,    "slug": slug.current,    logo  },  }
 export type MoreBrandsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
@@ -1086,11 +1195,60 @@ export type MoreBrandsQueryResult = Array<{
     alt?: string
     _type: 'image'
   } | null
+  primaryLogo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    width?: number
+    height?: number
+    _type: 'image'
+  } | null
+  secondaryLogo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  website: string | null
+  primaryColor: string | null
+  secondaryColor: string | null
+  accentColor: string | null
   features: Array<string> | null
   launchDate: string
+  manufacturers: Array<{
+    _id: string
+    name: string
+    slug: string
+    logo: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    } | null
+  }> | null
 }>
 // Variable: homepageBrandsQuery
-// Query: *[_type == "brand" && defined(slug.current)] | order(name asc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
+// Query: *[_type == "brand" && defined(slug.current)] | order(name asc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  primaryLogo,  secondaryLogo,  website,  primaryColor,  secondaryColor,  accentColor,  features,  "launchDate": coalesce(launchDate, _updatedAt),  "manufacturers": manufacturers[]->{    _id,    name,    "slug": slug.current,    logo  },  }
 export type HomepageBrandsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
@@ -1124,11 +1282,60 @@ export type HomepageBrandsQueryResult = Array<{
     alt?: string
     _type: 'image'
   } | null
+  primaryLogo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    width?: number
+    height?: number
+    _type: 'image'
+  } | null
+  secondaryLogo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  website: string | null
+  primaryColor: string | null
+  secondaryColor: string | null
+  accentColor: string | null
   features: Array<string> | null
   launchDate: string
+  manufacturers: Array<{
+    _id: string
+    name: string
+    slug: string
+    logo: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    } | null
+  }> | null
 }>
 // Variable: brandQuery
-// Query: *[_type == "brand" && slug.current == $slug] [0] {    description[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  features,  "launchDate": coalesce(launchDate, _updatedAt),  }
+// Query: *[_type == "brand" && slug.current == $slug] [0] {    description[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  description,  coverImage,  sectionImage,  primaryLogo,  secondaryLogo,  website,  primaryColor,  secondaryColor,  accentColor,  features,  "launchDate": coalesce(launchDate, _updatedAt),  "manufacturers": manufacturers[]->{    _id,    name,    "slug": slug.current,    logo  },  }
 export type BrandQueryResult = {
   description: BlockContent | null
   _id: string
@@ -1162,8 +1369,57 @@ export type BrandQueryResult = {
     alt?: string
     _type: 'image'
   } | null
+  primaryLogo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    width?: number
+    height?: number
+    _type: 'image'
+  } | null
+  secondaryLogo: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  website: string | null
+  primaryColor: string | null
+  secondaryColor: string | null
+  accentColor: string | null
   features: Array<string> | null
   launchDate: string
+  manufacturers: Array<{
+    _id: string
+    name: string
+    slug: string
+    logo: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    } | null
+  }> | null
 } | null
 // Variable: brandPagesSlugs
 // Query: *[_type == "brand" && defined(slug.current)]  {"slug": slug.current}
@@ -1452,8 +1708,32 @@ export type VehicleQueryResult = {
     alt?: string
     _type: 'image'
   } | null
-  vehicleDetailsPageHeaderBackgroundImage: null
-  headerVehicleImage: null
+  vehicleDetailsPageHeaderBackgroundImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
+  headerVehicleImage: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  } | null
   gallery: Array<{
     asset?: {
       _ref: string
@@ -1476,6 +1756,21 @@ export type VehicleQueryResult = {
       | 'Interior Dashboard'
       | 'Interior Seats'
       | 'Technology'
+    tags?: Array<string>
+    gridSpan?: {
+      mobile?: {
+        col?: number
+        row?: number
+      }
+      tablet?: {
+        col?: number
+        row?: number
+      }
+      desktop?: {
+        col?: number
+        row?: number
+      }
+    }
     _type: 'image'
     _key: string
   }> | null
@@ -1635,19 +1930,7 @@ export type BrandsWithSloganQueryResult = Array<{
     alt?: string
     _type: 'image'
   } | null
-  logo: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  } | null
+  logo: null
   features: Array<string> | null
   slogan: string | null
   launchDate: string
@@ -1695,10 +1978,10 @@ declare module '@sanity/client' {
     '*[_type == "homepageSettings"][0]{\n  heroSlides[]{\n    title,\n    subtitle,\n    image,\n  }\n}': HomepageSettingsQueryResult
     '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
-    '\n  *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': AllBrandsQueryResult
-    '\n  *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': MoreBrandsQueryResult
-    '\n  *[_type == "brand" && defined(slug.current)] | order(name asc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': HomepageBrandsQueryResult
-    '\n  *[_type == "brand" && slug.current == $slug] [0] {\n    description[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n\n  }\n': BrandQueryResult
+    '\n  *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  primaryLogo,\n  secondaryLogo,\n  website,\n  primaryColor,\n  secondaryColor,\n  accentColor,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': AllBrandsQueryResult
+    '\n  *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  primaryLogo,\n  secondaryLogo,\n  website,\n  primaryColor,\n  secondaryColor,\n  accentColor,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': MoreBrandsQueryResult
+    '\n  *[_type == "brand" && defined(slug.current)] | order(name asc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  primaryLogo,\n  secondaryLogo,\n  website,\n  primaryColor,\n  secondaryColor,\n  accentColor,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': HomepageBrandsQueryResult
+    '\n  *[_type == "brand" && slug.current == $slug] [0] {\n    description[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  primaryLogo,\n  secondaryLogo,\n  website,\n  primaryColor,\n  secondaryColor,\n  accentColor,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': BrandQueryResult
     '\n  *[_type == "brand" && defined(slug.current)]\n  {"slug": slug.current}\n': BrandPagesSlugsResult
     '\n  *[_type == "page" && defined(slug.current)]\n  {"slug": slug.current}\n': PagesSlugsResult
     '\n  *[_type == "manufacturer" && slug.current == $slug][0] {\n    _id,\n    name,\n    slug,\n    logo,\n    description,\n    \n    // Hero Section\n    heroImage {\n      asset-> {\n        url\n      }\n    },\n    heroTitle,\n    heroSubtitle,\n    heroCtaText,\n    \n    // Showcase Images\n    showcaseImages[] {\n      model,\n      image {\n        asset-> {\n          url\n        }\n      },\n      altText\n    },\n    \n    // Gallery Images\n    galleryImages[] {\n      image {\n        asset-> {\n          url\n        }\n      },\n      caption,\n      category,\n      altText\n    },\n    \n    // CTA Section\n    ctaTitle,\n    ctaDescription,\n    ctaStats[] {\n      value,\n      label\n    },\n    additionalLinks[] {\n      text,\n      url\n    },\n    \n    // SEO\n    seoTitle,\n    seoDescription,\n    seoImage {\n      asset-> {\n        url\n      }\n    },\n    \n    "vehicles": *[_type == "vehicle" && references(^._id)] {\n      _id,\n      title,\n      slug,\n      model,\n      vehicleType,\n      modelYear,\n      upfitter,\n      package,\n      "manufacturer": manufacturer->name\n    } | order(model asc, upfitter asc, package asc)\n  }\n': ManufacturerQueryResult

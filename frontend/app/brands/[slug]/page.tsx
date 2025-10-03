@@ -127,7 +127,7 @@ export default async function BrandPage(props: Props) {
               </div>
               {brand.features && brand.features.length > 0 && (
                 <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Key Features</h3>
+                  <h3 className="text-lg font-semibold text-gray mb-4">Key Features</h3>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {brand.features.map((feature, index) => (
                       <li key={index} className="flex items-center text-gray-700">

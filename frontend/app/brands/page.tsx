@@ -4,7 +4,7 @@ import Link from 'next/link'
 import BrandsLandingPageHeader from '@/app/components/BrandsLandingPageHeader'
 import PortableText from '@/app/components/PortableText'
 import {sanityFetch} from '@/sanity/lib/live'
-import {allBrandsQuery, vehiclesByBrandQuery} from '@/sanity/lib/queries'
+import {allBrandsQuery, timberlineVehiclesQuery} from '@/sanity/lib/queries'
 import {AllBrandsQueryResult} from '@/sanity.types'
 import {urlForImage} from '@/sanity/lib/utils'
 
@@ -22,8 +22,15 @@ export default async function BrandsPage() {
     stega: false,
   })
 
+  // Fetch all vehicles once
+  const {data: allVehicles} = await sanityFetch({
+    query: timberlineVehiclesQuery,
+    perspective: 'published',
+    stega: false,
+  })
+
   // Sort brands in specific order: Alpine, TSport, Timberline
-  const sortedBrands = brands?.sort((a, b) => {
+  const sortedBrands = brands?.sort((a: any, b: any) => {
     const order = ['alpine', 'tsport', 'timberline']
     const aIndex = order.findIndex(name => a.slug.toLowerCase().includes(name))
     const bIndex = order.findIndex(name => b.slug.toLowerCase().includes(name))
@@ -39,20 +46,41 @@ export default async function BrandsPage() {
     return 0
   })
 
-  // Fetch vehicles for each brand
-  const brandsWithVehicles = await Promise.all(
-    sortedBrands?.map(async (brand) => {
-      const {data: vehicles} = await sanityFetch({
-        query: vehiclesByBrandQuery,
-        params: { brandId: brand._id },
-        perspective: 'published',
-        stega: false,
+  // Filter vehicles for each brand using the same logic as HeaderClient
+  const brandsWithVehicles = sortedBrands?.map((brand: any) => {
+    const filteredVehicles = (allVehicles || []).filter((vehicle: any) => {
+      // First check if vehicle has a tag matching the brand
+      const vehicleTags = vehicle.tags || []
+      const hasBrandTag = vehicleTags.some((tag: string) => {
+        const tagLower = tag.toLowerCase().trim()
+        const brandLower = brand.name.toLowerCase().trim()
+        return tagLower === brandLower || tagLower.includes(brandLower)
       })
-      return { ...brand, vehicles: vehicles || [] }
-    }) || []
-  )
+      
+      // If no brand tag match, exclude the vehicle
+      if (!hasBrandTag) return false
+      
+      // If brand has manufacturer associations, also check manufacturer filter
+      if (brand.manufacturers && brand.manufacturers.length > 0) {
+        const vehicleManufacturerId = vehicle?.manufacturer?._id
+        const brandManufacturerIds = brand.manufacturers.map((m: any) => m._id)
+        return vehicleManufacturerId && brandManufacturerIds.includes(vehicleManufacturerId)
+      }
+      
+      // If brand has no manufacturer associations, just return vehicles with brand tag
+      return true
+    })
+    
+    return { ...brand, vehicles: filteredVehicles }
+  }) || []
 
-  const getBrandSectionClass = (index: number) => {
+  const getBrandSectionClass = (brand: any, index: number) => {
+    // Use secondary color if available, otherwise fall back to default pattern
+    if (brand.secondaryColor) {
+      return `py-20 lg:py-32 text-white`
+    }
+    
+    // Fallback to original pattern if no secondary color
     switch (index % 3) {
       case 0:
         return 'py-20 lg:py-32 bg-white'
@@ -63,6 +91,14 @@ export default async function BrandsPage() {
       default:
         return 'py-20 lg:py-32 bg-white'
     }
+  }
+
+  const getBrandSectionStyle = (brand: any) => {
+    if (brand.secondaryColor) {
+      return { backgroundColor: `#${brand.secondaryColor}` }
+    }
+    // Fallback to bg-stone with 20% opacity if no secondary color
+    return { backgroundColor: 'rgba(120, 113, 108, 0.2)' }
   }
 
   const getBrandGradientClass = (index: number) => {
@@ -97,7 +133,7 @@ export default async function BrandsPage() {
       return {
         primary: 'from-blue-600 to-cyan-500',
         accent: 'bg-blue-600',
-        text: 'text-blue-600',
+        text: 'text-snow-white/70',
         border: 'border-blue-200',
         bg: 'bg-blue-50'
       }
@@ -136,27 +172,35 @@ export default async function BrandsPage() {
       {brandsWithVehicles?.map((brand: BrandWithSectionImage & { vehicles: any[] }, index: number) => {
         const brandColors = getBrandColors(brand.slug)
         return (
-        <section key={brand._id} id={brand.slug} className={getBrandSectionClass(index)}>
+        <section 
+          key={brand._id} 
+          id={brand.slug} 
+          className={getBrandSectionClass(brand, index)}
+          style={getBrandSectionStyle(brand)}
+        >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className={`space-y-8 ${index % 2 === 1 ? 'order-1 lg:order-2' : 'animate-fade-in-left'}`}>
                 <div className="space-y-4">
-                  <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-bold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'}`}>
-                    <span className={getBrandGradientClass(index)}>{brand.name}</span>
-                  </h2>
+                  <div className="flex items-center gap-4">
+                    {brand.primaryLogo?.asset?._ref && (
+                      <div className="flex-shrink-0">
+                        <Image
+                          src={urlForImage(brand.primaryLogo)?.width(brand.primaryLogo.width || 120).height(brand.primaryLogo.height || 120).fit('max').auto('format').url() || ''}
+                          alt={brand.primaryLogo.alt || `${brand.name} logo`}
+                          width={brand.primaryLogo.width || 120}
+                          height={brand.primaryLogo.height || 120}
+                          className="object-contain"
+                        />
+                      </div>
+                    )}
+                  </div>
                   <div className={getBrandLineClass(index)}></div>
                 </div>
-                <div className={`text-lg leading-relaxed ${
-                  brand.slug.toLowerCase().includes('timberline') 
-                    ? 'text-[#ff8c42]' 
-                    : brand.slug.toLowerCase().includes('tsport') 
-                      ? 'text-red-500' 
-                      : index % 3 === 0 
-                        ? 'text-gray-600' 
-                        : 'text-gray-300'
-                }`}>
+
+                <div className={`text-lg leading-relaxed ${brandColors.text}`}>
                   {brand.description ? (
-                    <div className={brand.slug.toLowerCase().includes('timberline') ? 'text-[#ff8c42]' : ''}>
+                    <div className={brand.slug.toLowerCase().includes('timberline') ? 'text-[#ff8c42]' : ' '}>
                       <PortableText value={brand.description as any} />
                     </div>
                   ) : (
@@ -192,6 +236,7 @@ export default async function BrandsPage() {
               </div>
               <div className={`relative ${index % 2 === 1 ? 'order-2 lg:order-1 animate-fade-in-left' : 'animate-fade-in-right'}`}>
                 <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+                
                   {brand.sectionImage?.asset?._ref ? (
                     <Image
                       src={urlForImage(brand.sectionImage)?.width(2000).height(1500).fit('max').auto('format').url() || ''}
@@ -238,81 +283,68 @@ export default async function BrandsPage() {
             
             {/* Elegant Vehicle Showcase */}
             {brand.vehicles && brand.vehicles.length > 0 && (
-              <div className="mt-20">
-                <div className="text-center mb-12">
-                  <h3 className={`text-3xl font-bold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'} mb-4`}>
-                    Featured {brand.name} Vehicles
+              <div className="mt-12">
+                <div className="text-left mb-3">
+                  <h3 className={`text-2xl font-semibold ${brandColors.text} mb-4`}>
+                    {brand.name} Vehicles
                   </h3>
-                  <div className={`w-24 h-1 mx-auto rounded-full bg-gradient-to-r ${brandColors.primary}`}></div>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {brand.vehicles.slice(0, 6).map((vehicle: any, vehicleIndex: number) => (
-                    <div 
+                    <Link
                       key={vehicle._id}
-                      className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+                      href={`/vehicles/${(vehicle as any).slug?.current}`}
+                      className="group flex-1 bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-[87px]"
                     >
-                      {/* Vehicle Image */}
-                      <div className="aspect-[4/3] relative overflow-hidden">
-                        {vehicle.coverImage?.asset?._ref ? (
-                          <Image
-                            src={urlForImage(vehicle.coverImage)?.width(800).height(600).fit('crop').auto('format').url() || ''}
-                            alt={vehicle.title}
-                            fill
-                            className="object-cover group-hover:scale-110 transition-transform duration-700"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                            <span className="text-gray-500 text-sm">No image available</span>
-                          </div>
-                        )}
-                        
-                        {/* Elegant Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        
-                        {/* Vehicle Title Overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                          <h4 className="text-white text-lg font-semibold mb-2 line-clamp-2">
-                            {vehicle.title}
-                          </h4>
-                          <div className="flex items-center justify-between text-sm text-gray-300">
-                            <span>{vehicle.modelYear}</span>
-                            <span className="capitalize">{vehicle.vehicleType}</span>
-                          </div>
-                        </div>
-                        
-                        {/* Brand Accent Line */}
-                        <div className={`absolute top-4 left-4 w-1 h-12 ${brandColors.accent} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                      </div>
-                      
-                      {/* Elegant Card Footer */}
-                      <div className={`p-6 ${index % 3 === 0 ? 'bg-white' : 'bg-gray-900/50 backdrop-blur-sm'}`}>
-                        <div className="flex items-center justify-between">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[87px]">
+                        {/* Left Section - Text Content */}
+                        <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                           <div>
-                            <h5 className={`font-semibold ${index % 3 === 0 ? 'text-gray-900' : 'text-white'} text-sm mb-1`}>
-                              {vehicle.model}
-                            </h5>
-                            <p className={`text-xs ${index % 3 === 0 ? 'text-gray-600' : 'text-gray-400'}`}>
-                              {vehicle.trim || 'Premium Package'}
-                            </p>
-                          </div>
-                          <div className={`w-8 h-8 rounded-full ${brandColors.bg} flex items-center justify-center`}>
-                            <div className={`w-3 h-3 rounded-full ${brandColors.accent}`}></div>
+                            {/* Vehicle Title */}
+                            <h3 className="text-white text-xs sm:text-sm font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                              {vehicle.title}
+                            </h3>
+                            
+                            {/* Vehicle Details */}
+                            <div className="text-white/60 text-xs leading-tight">
+                              {vehicle?.model && (
+                                <span className="block">{vehicle.model}</span>
+                              )}
+                            </div>
                           </div>
                         </div>
+                        
+                        {/* Right Section - Vehicle Image */}
+                        <div className="relative h-[87px]">
+                          <div className="h-[87px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                            {vehicle?.coverImage?.asset?.url ? (
+                              <img 
+                                src={vehicle.coverImage.asset.url} 
+                                alt={vehicle.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center">
+                                <div className="text-center">
+                                  <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-3 mx-auto">
+                                    <svg className="w-6 h-6 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                  </div>
+                                  <span className="text-white/40 text-sm font-medium">Vehicle Image</span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Hover Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
-                
-                {/* View More Button */}
-                {brand.vehicles.length > 6 && (
-                  <div className="text-center mt-12">
-                    <button className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 ${brandColors.accent} text-white shadow-lg hover:shadow-xl`}>
-                      View All {brand.name} Vehicles
-                    </button>
-                  </div>
-                )}
               </div>
             )}
           </div>
