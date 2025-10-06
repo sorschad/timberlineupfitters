@@ -14,9 +14,19 @@ interface Vehicle {
   manufacturer: {
     _id: string
     name: string
-    logo?: any
+    logo?: {
+      asset?: {
+        _id: string
+        url: string
+      }
+    }
   }
-  coverImage?: any
+  coverImage?: {
+    asset?: {
+      _id: string
+      url: string
+    }
+  }
   specifications?: any
   features?: any
   inventory?: any
@@ -32,6 +42,11 @@ export const HomepageVehicles = async () => {
 
   if (!vehicles || vehicles.length === 0) {
     return null
+  }
+
+  // Debug: Log the first vehicle to check image data structure
+  if (vehicles.length > 0) {
+    console.log('First vehicle coverImage:', vehicles[0].coverImage)
   }
 
   // Group vehicles by manufacturer for better organization
@@ -76,7 +91,20 @@ export const HomepageVehicles = async () => {
               {/* Manufacturer Header */}
               <div className="flex flex-row items-center justify-center gap-4 mb-8">
                 <div className="w-full h-0.5 bg-white/20"></div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-white uppercase">{manufacturerName}</h3>
+                <div className="flex items-center gap-3">
+                  {manufacturerVehicles[0]?.manufacturer?.logo?.asset?.url && (
+                    <div className="flex-shrink-0">
+                      <Image
+                        src={manufacturerVehicles[0].manufacturer.logo.asset.url}
+                        alt={`${manufacturerName} Logo`}
+                        width={32}
+                        height={32}
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white uppercase">{manufacturerName}</h3>
+                </div>
                 <div className="w-full h-0.5 bg-white/20"></div>
               </div>
 
