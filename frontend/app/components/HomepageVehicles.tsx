@@ -239,40 +239,6 @@ export const HomepageVehicles = async () => {
             </div>
           ))}
         </div>
-
-        {/* CTA Section */}
-        <div className="text-center mt-16 lg:mt-20 animate-fade-in-up">
-          <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12 border border-gray-200 relative overflow-hidden">
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-[#ff6a00]/10 to-[#5a3e2b]/10 rounded-full blur-2xl"></div>
-              <div className="absolute -bottom-10 -left-10 w-16 h-16 bg-gradient-to-tr from-[#5a3e2b]/10 to-[#ff6a00]/10 rounded-full blur-xl"></div>
-            </div>
-            
-            <div className="relative">
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-                Ready to Find Your Perfect Vehicle?
-              </h3>
-              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                Our team of experts is here to help you find the ideal vehicle for your needs and budget.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/vehicles"
-                  className="bg-gradient-to-r from-[#ff6a00] to-[#5a3e2b] hover:from-[#5a3e2b] hover:to-[#ff6a00] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-gradient"
-                >
-                  Browse All Vehicles
-                </Link>
-                <Link
-                  href="/contact"
-                  className="bg-white hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-full font-semibold transition-all duration-300 border-2 border-gray-200 hover:border-[#ff6a00] hover:text-[#ff6a00] transform hover:scale-105"
-                >
-                  Get Expert Help
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )

@@ -5,11 +5,11 @@ export default function HomepageCta() {
     <section className="relative bg-[#2f3f24] text-white">
       <div className="absolute inset-0 bg-[url(/images/tile-1-black.png)] opacity-10 bg-[length:24px]" />
       <div className="relative container py-16 md:py-20 lg:py-24 text-center">
-        <h2 className="mx-auto max-w-5xl text-4xl font-semibold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-          Ready to Start Your Journey?
+        <h2 className="mx-auto max-w-5xl text-xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight">
+          Start Your Dealer Journey
         </h2>
-        <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-[rgba(255,255,255,0.8)] md:text-lg">
-          Join our network of dealers and bring Timberline Upfitted Vehicles to customers. Comprehensive support, proven products and trusted warranty program
+        <p className="mx-auto mt-6 max-w-3xl text-base leading-snug text-[rgba(255,255,255,0.8)] md:text-lg">
+          Join our network of dealers and bring Timberline Upfitted Vehicles to your customers. Upfit experts, proven builds and a trusted warranty program
         </p>
         <div className="mt-10 flex justify-center">
           <Link
