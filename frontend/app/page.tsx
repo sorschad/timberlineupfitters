@@ -3,7 +3,6 @@ import Link from 'next/link'
 import {HomepageBrands} from '@/app/components/Brands'
 import Hero from '@/app/components/Hero'
 import HomepageCta from '@/app/components/HomepageCta'
-import FindDealerSection from '@/app/components/FindDealerSection'
 import {HomepageVehicles} from '@/app/components/HomepageVehicles'
 
 export default function HomePage() {
@@ -17,9 +16,6 @@ export default function HomePage() {
 
       {/* Vehicles Section */}
       <HomepageVehicles />
-
-      {/* Find Dealer Section */}
-      <FindDealerSection />
 
       {/* Homepage CTA above footer */}
       <HomepageCta />
