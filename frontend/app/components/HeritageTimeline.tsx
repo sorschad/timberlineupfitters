@@ -47,7 +47,9 @@ export default function HeritageTimeline({ heading = 'We started converting vans
         <div className="grid grid-cols-1 lg:grid-cols-[120px_1fr] gap-8 lg:gap-12">
           <div className="hidden lg:block text-xs tracking-widest uppercase text-gray-500 pt-4">Since 1961</div>
           <div>
-            <h2 className={`${montserrat.className} text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight`}>{heading}</h2>
+            {heading ? (
+              <h2 className={`${montserrat.className} text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight`}>{heading}</h2>
+            ) : null}
 
             <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
               {cards.map((card) => (
@@ -61,10 +63,7 @@ export default function HeritageTimeline({ heading = 'We started converting vans
               ))}
             </div>
 
-            <div className="mt-8 flex items-center gap-6 text-xs uppercase tracking-widest">
-              <button className="px-5 py-3 rounded-full border border-gray-300 hover:border-gray-400 transition">Why Sportsmobile</button>
-              <span className="text-gray-400">Various adipiscing pretium odio amet eget mollis lipsum</span>
-            </div>
+            {/* CTA row removed per request */}
           </div>
         </div>
       </div>
