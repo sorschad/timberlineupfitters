@@ -74,10 +74,6 @@ export default function ParallaxVerticalMasonry({images}: ParallaxVerticalMasonr
 
   return (
     <section ref={containerRef} className="relative" style={{height: `${safe.length * 100}vh`}}>
-      {/* Debug info */}
-      <div className="fixed top-4 right-4 bg-black/80 text-white p-2 text-xs z-50">
-        Progress: {Math.round(scrollProgress * 100)}% | Images: {safe.length}
-      </div>
       
       {/* Sticky viewport that holds the user */}
       <div className="sticky top-0 h-screen overflow-hidden">
