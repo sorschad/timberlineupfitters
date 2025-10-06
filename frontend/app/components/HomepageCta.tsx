@@ -14,12 +14,37 @@ export default function HomepageCta() {
         <div className="mt-10 flex justify-center">
           <Link
             href="#"
-            className="inline-flex items-center gap-3 rounded-md bg-[#d4852b] px-8 py-4 text-base font-medium text-black shadow-sm transition-colors hover:bg-[#e29639] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#e29639]"
+            className="group relative inline-flex items-center gap-4 bg-gradient-to-r from-[#ff6a00] to-[#ff8c42] px-6 py-3 text-sm font-bold text-white uppercase tracking-wider shadow-xl transition-all duration-300 hover:shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#ff6a00]/30 focus-visible:ring-offset-4 focus-visible:ring-offset-[#2f3f24] transform hover:-translate-y-1 overflow-hidden animate-button-glow"
           >
-            Dealer Resources
-            <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
-              <path d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
-            </svg>
+            {/* Primary gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#ff6a00] to-[#ff8c42]"></div>
+            
+            {/* Animated gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#ff8c42] to-[#ff6a00] opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-gradient"></div>
+            
+            {/* Shine effect overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+            
+            {/* Button content */}
+            <span className="relative z-10 font-bold tracking-wider">Dealer Resources</span>
+            
+            {/* Enhanced arrow icon with sophisticated animation */}
+            <div className="relative z-10 flex items-center justify-center">
+              <div className="relative">
+                <svg 
+                  viewBox="0 0 24 24" 
+                  className="h-6 w-6 fill-current transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" 
+                  aria-hidden="true"
+                >
+                  <path d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
+                </svg>
+                {/* Subtle glow effect behind arrow */}
+                <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+              </div>
+            </div>
+            
+            {/* Subtle border glow effect */}
+            <div className="absolute inset-0 border-2 border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </Link>
         </div>
       </div>

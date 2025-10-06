@@ -58,11 +58,11 @@ export const HomepageVehicles = async () => {
         <div className="text-center mb-16 lg:mb-20 animate-fade-in-up">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="w-12 h-0.5 bg-gradient-to-r from-[#ff6a00] to-[#5a3e2b] animate-gradient"></div>
-            <span className="text-[#ff6a00] font-semibold text-sm uppercase tracking-wider">Our Fleet</span>
+            <span className="text-[#ff6a00] font-semibold text-sm uppercase tracking-wider">Showcase</span>
             <div className="w-12 h-0.5 bg-gradient-to-r from-[#5a3e2b] to-[#ff6a00] animate-gradient"></div>
           </div>
           <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6">
-            Complete Vehicle
+            Vehicle
             <span className="block bg-gradient-to-r from-[#ff6a00] to-[#5a3e2b] bg-clip-text text-transparent animate-gradient">
               Showcase
             </span>
@@ -77,22 +77,10 @@ export const HomepageVehicles = async () => {
           {Object.entries(vehiclesByManufacturer).map(([manufacturerName, manufacturerVehicles]: [string, any], manufacturerIndex: number) => (
             <div key={manufacturerName} className="space-y-8 animate-fade-in-up" style={{animationDelay: `${manufacturerIndex * 0.2}s`}}>
               {/* Manufacturer Header */}
-              <div className="flex items-center justify-center gap-4 mb-8">
-                {manufacturerVehicles[0]?.manufacturer?.logo && (
-                  <div className="flex-shrink-0 animate-scale-in">
-                    <Image
-                      src={manufacturerVehicles[0].manufacturer.logo.asset.url}
-                      alt={`${manufacturerName} Logo`}
-                      width={48}
-                      height={48}
-                      className="object-contain"
-                    />
-                  </div>
-                )}
-                <div className="text-center">
-                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">{manufacturerName}</h3>
-                  <p className="text-gray-600 mt-1">{manufacturerVehicles.length} Vehicle{manufacturerVehicles.length !== 1 ? 's' : ''}</p>
-                </div>
+              <div className="flex flex-row items-center justify-center gap-4 mb-8">
+                <div className="w-full h-0.5 bg-black/90"></div>
+                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 uppercase">{manufacturerName}</h3>
+                <div className="w-full h-0.5 bg-black/90"></div>
               </div>
 
               {/* Vehicles Grid */}
