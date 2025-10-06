@@ -1005,7 +1005,7 @@ export type HomepageSettingsQueryResult = {
   }> | null
 } | null
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }          }        }      },    },  }
+// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    heroBackgroundImages[]{      asset->{        _id,        url      },      alt    },    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }          }        }      },    },  }
 export type GetPageQueryResult = {
   _id: string
   _type: 'page'
@@ -1013,6 +1013,7 @@ export type GetPageQueryResult = {
   slug: Slug
   heading: string
   subheading: string | null
+  heroBackgroundImages: null
   pageBuilder: Array<
     | {
         _key: string
@@ -1532,7 +1533,7 @@ export type AllManufacturersQueryResult = Array<{
   vehicleCount: number
 }>
 // Variable: allVehiclesQuery
-// Query: *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo    },    coverImage,    specifications,    features,    inventory,    tags  }
+// Query: *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    coverImage{      asset->{        _id,        url      }    },    specifications,    features,    inventory,    tags  }
 export type AllVehiclesQueryResult = Array<{
   _id: string
   title: string
@@ -1545,30 +1546,17 @@ export type AllVehiclesQueryResult = Array<{
     _id: string
     name: string
     logo: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      media?: unknown
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      _type: 'image'
+      asset: {
+        _id: string
+        url: string | null
+      } | null
     } | null
   }
   coverImage: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
+    asset: {
+      _id: string
+      url: string | null
+    } | null
   } | null
   specifications: {
     engine?: Array<{
@@ -1976,7 +1964,7 @@ declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]{\n  ...,\n  appLogo\n}': SettingsQueryResult
     '*[_type == "homepageSettings"][0]{\n  heroSlides[]{\n    title,\n    subtitle,\n    image,\n  }\n}': HomepageSettingsQueryResult
-    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
+    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    heroBackgroundImages[]{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
     '\n  *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  primaryLogo,\n  secondaryLogo,\n  website,\n  primaryColor,\n  secondaryColor,\n  accentColor,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': AllBrandsQueryResult
     '\n  *[_type == "brand" && _id != $skip && defined(slug.current)] | order(launchDate desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  primaryLogo,\n  secondaryLogo,\n  website,\n  primaryColor,\n  secondaryColor,\n  accentColor,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': MoreBrandsQueryResult
@@ -1987,7 +1975,7 @@ declare module '@sanity/client' {
     '\n  *[_type == "manufacturer" && slug.current == $slug][0] {\n    _id,\n    name,\n    slug,\n    logo,\n    description,\n    \n    // Hero Section\n    heroImage {\n      asset-> {\n        url\n      }\n    },\n    heroTitle,\n    heroSubtitle,\n    heroCtaText,\n    \n    // Showcase Images\n    showcaseImages[] {\n      model,\n      image {\n        asset-> {\n          url\n        }\n      },\n      altText\n    },\n    \n    // Gallery Images\n    galleryImages[] {\n      image {\n        asset-> {\n          url\n        }\n      },\n      caption,\n      category,\n      altText\n    },\n    \n    // CTA Section\n    ctaTitle,\n    ctaDescription,\n    ctaStats[] {\n      value,\n      label\n    },\n    additionalLinks[] {\n      text,\n      url\n    },\n    \n    // SEO\n    seoTitle,\n    seoDescription,\n    seoImage {\n      asset-> {\n        url\n      }\n    },\n    \n    "vehicles": *[_type == "vehicle" && references(^._id)] {\n      _id,\n      title,\n      slug,\n      model,\n      vehicleType,\n      modelYear,\n      upfitter,\n      package,\n      "manufacturer": manufacturer->name\n    } | order(model asc, upfitter asc, package asc)\n  }\n': ManufacturerQueryResult
     '\n  *[_type == "manufacturer" && defined(slug.current)]\n  {"slug": slug.current}\n': ManufacturerSlugsResult
     '\n  *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {\n    _id,\n    name,\n    slug,\n    logo,\n    "vehicleCount": count(*[_type == "vehicle" && references(^._id)])\n  }\n': AllManufacturersQueryResult
-    '\n  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': AllVehiclesQueryResult
+    '\n  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    coverImage{\n      asset->{\n        _id,\n        url\n      }\n    },\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': AllVehiclesQueryResult
     '\n  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    sidebarSortOrder,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    coverImage{\n      asset->{\n        _id,\n        url\n      }\n    },\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': TimberlineVehiclesQueryResult
     '\n  *[_type == "vehicle" && slug.current == $slug][0] {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    vehicleDetailsPageHeaderBackgroundImage,\n    headerVehicleImage,\n    gallery,\n    videoTour,\n    specifications,\n    features,\n    customizationOptions,\n    inventory,\n    description,\n    tags,\n    seo\n  }\n': VehicleQueryResult
     '\n  *[_type == "vehicle" && defined(slug.current)]\n  {"slug": slug.current}\n': VehicleSlugsResult
