@@ -5,7 +5,7 @@ import {useEffect, useMemo, useState} from 'react'
 import {Orbitron} from 'next/font/google'
 import {urlForImage} from '@/sanity/lib/utils'
 import {MagnifyingGlassIcon} from '@heroicons/react/24/outline'
-import SearchModal from './SearchModal'
+import SearchModal from '@/app/components/SearchModal'
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -204,7 +204,7 @@ export default function HeaderClient({
             ? 'bg-[#553920]/85 shadow-lg backdrop-blur-[2px]' 
             : `bg-transparent lg:bg-transparent sm:bg-transparent bg-[#ff6b00]/90 shadow-none backdrop-blur-0 ${
                 !isSearchOpen
-                  ? `border-t-2 border-b-2 border-dashed ${
+                  ? `border-b-2 border-dashed ${
                       isMegaOpen 
                         ? 'border-[#ff8c42]/12 backdrop-blur-lg' 
                         : 'border-[#ff8c42]/60'
