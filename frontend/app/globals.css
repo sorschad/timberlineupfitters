@@ -218,3 +218,57 @@ html {
   background-size: 200% 200%;
   animation: gradient-shift 3s ease infinite;
 }
+
+/* Enhanced button animations */
+@keyframes button-shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes button-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 106, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(255, 106, 0, 0);
+  }
+}
+
+.animate-button-shine {
+  animation: button-shine 0.6s ease-out;
+}
+
+.animate-button-pulse {
+  animation: button-pulse 2s infinite;
+}
+
+/* Enhanced shadow effects */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 106, 0, 0.1);
+}
+
+/* Sophisticated button hover effects */
+@keyframes button-glow {
+  0% {
+    box-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 106, 0, 0.6), 0 0 40px rgba(255, 106, 0, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
+  }
+}
+
+.animate-button-glow {
+  animation: button-glow 2s ease-in-out infinite;
+}
+
+/* Enhanced focus states for accessibility */
+.focus-ring-orange {
+  @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange-500/30 focus-visible:ring-offset-4;
+}

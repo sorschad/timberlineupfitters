@@ -5,7 +5,7 @@ import {useEffect, useMemo, useState} from 'react'
 import {Orbitron} from 'next/font/google'
 import {urlForImage} from '@/sanity/lib/utils'
 import {MagnifyingGlassIcon} from '@heroicons/react/24/outline'
-import SearchModal from './SearchModal'
+import SearchModal from '@/app/components/SearchModal'
 
 const orbitron = Orbitron({
   subsets: ['latin'],
