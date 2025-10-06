@@ -58,14 +58,11 @@ export const HomepageVehicles = async () => {
         <div className="text-center mb-16 lg:mb-20 animate-fade-in-up">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="w-12 h-0.5 bg-gradient-to-r from-[#ff6a00] to-[#5a3e2b] animate-gradient"></div>
-            <span className="text-[#ff6a00] font-semibold text-sm uppercase tracking-wider">Showcase</span>
+            <span className="text-[#ff6a00] font-semibold text-sm uppercase tracking-wider">lineup</span>
             <div className="w-12 h-0.5 bg-gradient-to-r from-[#5a3e2b] to-[#ff6a00] animate-gradient"></div>
           </div>
-          <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6">
-            Vehicle
-            <span className="block bg-gradient-to-r from-[#ff6a00] to-[#5a3e2b] bg-clip-text text-transparent animate-gradient">
-              Showcase
-            </span>
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-6">
+            Vehicle Showcase
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Explore our comprehensive collection of premium vehicles, each meticulously selected and customized for your specific needs and adventures.
