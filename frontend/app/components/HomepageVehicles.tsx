@@ -45,7 +45,7 @@ export const HomepageVehicles = async () => {
   }, {})
 
   return (
-    <section id="vehicles-section" className="w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20 lg:py-32 relative overflow-hidden">
+    <section id="vehicles-section" className="w-full dark:bg-mountain-beige/45 py-20 lg:py-32 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-[#ff6a00]/10 to-[#5a3e2b]/10 rounded-full blur-3xl animate-float-bounce"></div>
