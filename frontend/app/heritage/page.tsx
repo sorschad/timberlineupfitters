@@ -4,7 +4,6 @@ import Head from 'next/head'
 import HeritageHero from '@/app/components/HeritageHero'
 import HeritageTimeline from '@/app/components/HeritageTimeline'
 import ParallaxVerticalMasonry from '@/app/components/ParallaxVerticalMasonry'
-import TeamSection from '@/app/components/TeamSection'
 import {sanityFetch} from '@/sanity/lib/live'
 import {getPageQuery} from '@/sanity/lib/queries'
 import {PageOnboarding} from '@/app/components/Onboarding'
@@ -63,10 +62,7 @@ export default async function HeritagePage() {
         <HeritageTimeline heading={''} />
       </div>
 
-      {/* Meet the Team */}
-      <div className="mt-16 lg:mt-24">
-        <TeamSection />
-      </div>
+      {/* Meet the Team removed per request */}
 
       {/* Masonry-style sticky gallery */}
       <div className="mt-8 lg:mt-12">
