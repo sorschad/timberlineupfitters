@@ -56,7 +56,16 @@ export const page = defineType({
               type: 'string',
               title: 'Alternative Text',
               description: 'Important for SEO and accessibility.',
-              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+            },
+            {
+              name: 'subtitle',
+              title: 'Subtitle',
+              type: 'string',
             },
           ],
         },
