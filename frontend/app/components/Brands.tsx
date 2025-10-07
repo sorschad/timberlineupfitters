@@ -189,7 +189,7 @@ export const HomepageBrands = async () => {
                         {brand.name}
                       </h4>
                     )}
-                    <div className="w-full h-0.5 bg-orange-600/60 mt-2"></div>
+                    <div className={`w-full h-0.5 mt-2 ${brand.primaryColor ? `bg-[#${brand.primaryColor}]` : 'bg-orange-600/60'}`}></div>
                   </div>
                 </div>
 
