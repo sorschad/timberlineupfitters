@@ -173,21 +173,23 @@ export const HomepageBrands = async () => {
                 <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6">
                   <div className="text-left">
                     {brand.primaryLogo?.asset?._ref ? (
-                      <div className="mb-2 w-full max-w-[180px] h-auto">
-                        <Image
-                          src={urlForImage(brand.primaryLogo)?.width(400).height(200).fit('max').auto('format').url() || ''}
-                          alt={brand.primaryLogo.alt || `${brand.name} logo`}
-                          width={400}
-                          height={200}
-                          className="w-full h-auto object-contain"
-                        />
+                      <div className="mb-2 w-full h-auto flex justify-start">
+                        <div className="max-w-full">
+                          <Image
+                            src={urlForImage(brand.primaryLogo)?.width(600).height(300).fit('max').auto('format').url() || ''}
+                            alt={brand.primaryLogo.alt || `${brand.name} logo`}
+                            width={600}
+                            height={300}
+                            className="w-auto h-auto max-w-full max-h-[80px] object-contain"
+                          />
+                        </div>
                       </div>
                     ) : (
                       <h4 className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 ${isAnthem ? 'text-red-600' : 'text-amber-50'}`}>
                         {brand.name}
                       </h4>
                     )}
-                    <div className="w-8 h-0.5 bg-orange-600 mt-2"></div>
+                    <div className="w-full h-0.5 bg-orange-600/60 mt-2"></div>
                   </div>
                 </div>
 
