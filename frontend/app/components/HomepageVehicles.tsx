@@ -109,7 +109,7 @@ export const HomepageVehicles = async () => {
               </div>
 
               {/* Vehicles Grid - Compact Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {manufacturerVehicles.slice(0, 8).map((vehicle: Vehicle, index: number) => (
                   <Link
                     key={vehicle._id}
