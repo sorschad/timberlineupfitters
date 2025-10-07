@@ -79,7 +79,7 @@ export const HomepageVehicles = async () => {
           <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6">
             Vehicle Showcase
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-snug">
             Explore our comprehensive collection of premium vehicles, each meticulously selected and customized for your specific needs and adventures.
           </p>
         </div>
@@ -98,35 +98,18 @@ export const HomepageVehicles = async () => {
               </div>
 
               {/* Vehicles Grid - Compact Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                 {manufacturerVehicles.slice(0, 8).map((vehicle: Vehicle, index: number) => (
                   <Link
                     key={vehicle._id}
                     href={`/vehicles/${vehicle.slug.current}`}
-                    className="group flex-1 bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden h-[280px] sm:h-[87px] animate-fade-in-up"
+                    className=""
                     style={{animationDelay: `${(manufacturerIndex * 0.2) + (index * 0.1)}s`}}
                   >
-                    <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[280px] sm:h-[87px]">
-                      {/* Left Section - Text Content */}
-                      <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
-                        <div>
-                          {/* Vehicle Title */}
-                          <h3 className="text-white text-xs sm:text-sm font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
-                            {vehicle.title}
-                          </h3>
-                          
-                          {/* Vehicle Details */}
-                          <div className="text-white/60 text-xs leading-tight">
-                            {vehicle?.model && (
-                              <span className="block">{vehicle.model}</span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Right Section - Vehicle Image */}
-                      <div className="relative h-[280px] sm:h-[87px]">
-                        <div className="h-[280px] sm:h-[87px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                    <div className="">
+                       {/* Right Section - Vehicle Image */}
+                       <div className="relative h-[280px] sm:h-[220px]">
+                        <div className="h-[280px] sm:h-[220px] overflow-hidden group-hover:border-[#ff8c42]/30 transition-all duration-300">
                           {vehicle?.coverImage?.asset?.url ? (
                             <img 
                               src={vehicle.coverImage.asset.url} 
@@ -149,6 +132,24 @@ export const HomepageVehicles = async () => {
                         
                         {/* Hover Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </div>
+                      {/* Left Section - Text Content */}
+                      <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
+                        <div>
+                          <div className="flex gap-1 text-white/90 text-xs leading-tight uppercase">
+                            {vehicle?.manufacturer?.name && (
+                              <span className="block">{vehicle.manufacturer.name}</span>
+                            )}
+                            {vehicle?.model && (
+                              <span className="block">{vehicle.model}</span>
+                            )}
+                          </div>
+
+                          {/* Vehicle Title */}
+                          <h3 className="uppercase text-timberline-orange text-sm sm:text-md font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                            {vehicle.title}
+                          </h3>
+                        </div>
                       </div>
                     </div>
                   </Link>

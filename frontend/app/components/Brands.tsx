@@ -136,7 +136,7 @@ export const HomepageBrands = async () => {
 
   return (
     <section id="brands-section" className="w-full bg-brown/90 border-t border-amber-200 py-16 lg:py-24 scroll-mt-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-fluid mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="relative inline-block text-transparent text-[#cabba8] bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#d07436] text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-[0_0_1px_rgba(0,0,0,0.15)]">
             <span className="block mb-3 h-[3px] sm:w-auto mx-auto rounded-full bg-gradient-to-r from-[#ff6a00] to-[#d07436]"></span>
@@ -145,14 +145,14 @@ export const HomepageBrands = async () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 h-80 sm:h-96 lg:h-[450px]">
           {data.map((brand: any) => {
             const imageUrl = urlForImage(brand.coverImage)?.width(800).height(600).fit('crop').url()
             const isAnthem = brand.slug === 'anthem'
             return (
               <div
                 key={brand._id}
-                className="relative group overflow-hidden rounded-lg border border-amber-300 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-80 sm:h-96 lg:h-[28rem]"
+                className="relative group overflow-hidden border border-amber-300 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 <Link href={`/brands#${brand.slug}`} className="absolute inset-0 z-10" />
 
