@@ -92,17 +92,6 @@ export const HomepageVehicles = async () => {
               <div className="flex flex-row items-center justify-center gap-4 mb-8">
                 <div className="w-full h-0.5 bg-white/20"></div>
                 <div className="flex items-center gap-3">
-                  {manufacturerVehicles[0]?.manufacturer?.logo?.asset?.url && (
-                    <div className="flex-shrink-0">
-                      <Image
-                        src={manufacturerVehicles[0].manufacturer.logo.asset.url}
-                        alt={`${manufacturerName} Logo`}
-                        width={32}
-                        height={32}
-                        className="object-contain"
-                      />
-                    </div>
-                  )}
                   <h3 className="text-2xl lg:text-3xl font-bold text-white uppercase">{manufacturerName}</h3>
                 </div>
                 <div className="w-full h-0.5 bg-white/20"></div>
