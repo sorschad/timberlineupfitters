@@ -27,6 +27,7 @@
     "rxjs": "^7.8.2",
     "sanity": "^4.5.0",
     "sanity-plugin-asset-source-unsplash": "^4.0.1",
+    "sanity-plugin-google-drive": "^1.1.0",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
