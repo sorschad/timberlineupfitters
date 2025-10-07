@@ -6,20 +6,21 @@
  * This script restores a Sanity dataset from a backup created by backup-sanity.js
  * 
  * Usage:
- *   node restore-sanity.js <backup-directory>
+ *   node restore-sanity.mjs <backup-directory>
  * 
  * Example:
- *   node restore-sanity.js backups/backup-2024-01-15T10-30-00-000Z
+ *   node restore-sanity.mjs backups/backup-2024-01-15T10-30-00-000Z
  * 
  * WARNING: This will overwrite existing data in your dataset!
  */
 
-const { createClient } = require('@sanity/client')
-const fs = require('fs')
-const path = require('path')
+import { createClient } from '@sanity/client'
+import fs from 'fs'
+import path from 'path'
+import dotenv from 'dotenv'
 
 // Load environment variables
-require('dotenv').config({ path: './studio/.env' })
+dotenv.config({ path: './studio/.env' })
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID
 const dataset = process.env.SANITY_STUDIO_DATASET
@@ -37,8 +38,8 @@ const backupDir = process.argv[2]
 
 if (!backupDir) {
   console.error('❌ Please specify a backup directory')
-  console.error('Usage: node restore-sanity.js <backup-directory>')
-  console.error('Example: node restore-sanity.js backups/backup-2024-01-15T10-30-00-000Z')
+  console.error('Usage: node restore-sanity.mjs <backup-directory>')
+  console.error('Example: node restore-sanity.mjs backups/backup-2024-01-15T10-30-00-000Z')
   process.exit(1)
 }
 

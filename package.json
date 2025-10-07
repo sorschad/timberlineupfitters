@@ -27,7 +27,7 @@
     "lint": "npm run lint --workspace=frontend",
     "type-check": "npm run type-check --workspaces",
     "backup": "node backup-sanity.js",
-    "restore": "node restore-sanity.js",
+    "restore": "node restore-sanity.mjs",
     "seed": "node scripts/seedVehiclesAndManufacturers.js"
   },
   "prettier": "@sanity/prettier-config",
