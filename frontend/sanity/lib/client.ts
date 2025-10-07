@@ -7,7 +7,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: false,
   perspective: 'published',
   token, // Required if you have a private dataset
   stega: {
