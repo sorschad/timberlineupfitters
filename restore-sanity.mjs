@@ -54,7 +54,7 @@ const client = createClient({
   dataset,
   useCdn: false,
   apiVersion: '2023-05-03',
-  token: process.env.SANITY_API_TOKEN, // You'll need a write token for restore
+  token: process.env.SANITY_WRITE_TOKEN, // You'll need a write token for restore
 })
 
 async function restoreBackup() {
