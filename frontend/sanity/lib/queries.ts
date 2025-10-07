@@ -13,6 +13,20 @@ export const homepageSettingsQuery = defineQuery(`*[_type == "homepageSettings"]
   }
 }`)
 
+export const homepageQuery = defineQuery(`*[_type == "page" && name == "Homepage"][0]{
+  _id,
+  name,
+  heading,
+  subheading,
+  heroBackgroundImages[]{
+    asset->{
+      _id,
+      url
+    },
+    alt
+  }
+}`)
+
 const brandFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),
