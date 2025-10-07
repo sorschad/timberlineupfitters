@@ -114,10 +114,10 @@ export const HomepageVehicles = async () => {
                   <Link
                     key={vehicle._id}
                     href={`/vehicles/${vehicle.slug.current}`}
-                    className="group flex-1 bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-[87px] animate-fade-in-up"
+                    className="group flex-1 bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden h-[280px] sm:h-[87px] animate-fade-in-up"
                     style={{animationDelay: `${(manufacturerIndex * 0.2) + (index * 0.1)}s`}}
                   >
-                    <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[87px]">
+                    <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[280px] sm:h-[87px]">
                       {/* Left Section - Text Content */}
                       <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                         <div>
@@ -136,8 +136,8 @@ export const HomepageVehicles = async () => {
                       </div>
                       
                       {/* Right Section - Vehicle Image */}
-                      <div className="relative h-[87px]">
-                        <div className="h-[87px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                      <div className="relative h-[280px] sm:h-[87px]">
+                        <div className="h-[280px] sm:h-[87px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
                           {vehicle?.coverImage?.asset?.url ? (
                             <img 
                               src={vehicle.coverImage.asset.url} 
