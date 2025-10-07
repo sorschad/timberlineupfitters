@@ -10,8 +10,8 @@ export async function GET() {
       const imageUrl = image?.asset?.url || ''
       return {
         id: idx + 1,
-        title: (data as any)?.heading || '',
-        subtitle: (data as any)?.subheading || '',
+        title: image?.title || '',
+        subtitle: image?.subtitle || '',
         image: imageUrl,
         alt: image?.alt || 'Hero background',
       }

@@ -23,7 +23,9 @@ export const homepageQuery = defineQuery(`*[_type == "page" && name == "Homepage
       _id,
       url
     },
-    alt
+    alt,
+    title,
+    subtitle
   }
 }`)
 

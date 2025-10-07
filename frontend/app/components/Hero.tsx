@@ -27,8 +27,8 @@ export default async function Hero() {
       const imageUrl = image?.asset?.url || ''
       return {
         id: idx + 1,
-        title: (data as any)?.heading || '',
-        subtitle: (data as any)?.subheading || '',
+        title: image?.title || '',
+        subtitle: image?.subtitle || '',
         image: imageUrl,
         alt: image?.alt || 'Hero background',
       }
