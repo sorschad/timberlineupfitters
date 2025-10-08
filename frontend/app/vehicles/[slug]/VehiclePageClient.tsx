@@ -177,40 +177,53 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             </div>
             
             {/* CTA Button - Mobile Only, positioned after vehicle image */}
-            <div className="mt-3">
+            <div className="-mt-12">
               <button 
                 onClick={() => {
+                  console.log('Mobile button clicked') // Debug log
                   setIsScrolling(true)
                   setScrollComplete(false)
                   
-                  // Target the Features & Options section
-                  const featuresSection = document.getElementById('features-options-section')
-                  if (featuresSection) {
-                    // Add offset for sticky header
-                    const offset = 80
-                    const elementPosition = featuresSection.offsetTop - offset
+                  // Wait for DOM to be ready and try to find the section
+                  const scrollToFeatures = () => {
+                    const featuresSection = document.getElementById('features-options-section')
+                    console.log('Features section found:', featuresSection) // Debug log
                     
-                    // Smooth scroll to the Features & Options section
-                    window.scrollTo({
-                      top: elementPosition,
-                      behavior: 'smooth'
-                    })
-                    
-                    // Wait for scroll animation to complete
-                    setTimeout(() => {
-                      setIsScrolling(false)
-                      setScrollComplete(true)
-                    }, 1200) // Slightly longer to ensure scroll is complete
-                  } else {
-                    // Fallback: scroll to bottom of page if section not found
-                    window.scrollTo({
-                      top: document.body.scrollHeight,
-                      behavior: 'smooth'
-                    })
-                    setTimeout(() => {
-                      setIsScrolling(false)
-                      setScrollComplete(true)
-                    }, 1000)
+                    if (featuresSection) {
+                      // Add offset for sticky header
+                      const offset = 80
+                      const elementPosition = featuresSection.offsetTop - offset
+                      console.log('Scrolling to position:', elementPosition) // Debug log
+                      
+                      // Smooth scroll to the Features & Options section
+                      window.scrollTo({
+                        top: elementPosition,
+                        behavior: 'smooth'
+                      })
+                      
+                      // Wait for scroll animation to complete
+                      setTimeout(() => {
+                        setIsScrolling(false)
+                        setScrollComplete(true)
+                      }, 1200) // Slightly longer to ensure scroll is complete
+                    } else {
+                      console.log('Features section not found, using fallback') // Debug log
+                      // Fallback: scroll to bottom of page if section not found
+                      window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                      })
+                      setTimeout(() => {
+                        setIsScrolling(false)
+                        setScrollComplete(true)
+                      }, 1000)
+                    }
+                  }
+                  
+                  // Try immediately, then retry after a short delay if not found
+                  scrollToFeatures()
+                  if (!document.getElementById('features-options-section')) {
+                    setTimeout(scrollToFeatures, 100)
                   }
                 }}
                 className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full"
