@@ -180,10 +180,10 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
           <div className="relative">
             {/* Softened gradient fade overlay */}
             <div className="h-20 bg-gradient-to-b from-transparent via-white/5 to-white/40"></div>
-            <div className="h-10 bg-gradient-to-b from-white/40 via-white/70 to-white"></div>
+            <div className="h-20 bg-gradient-to-b from-white/40 via-white/70 to-white"></div>
             
             {/* Dynamic subtitle section with smooth transition */}
-            <div className="bg-white pt-12">
+            <div className="bg-white">
               <div className="container mx-auto px-4">
                 <div className="text-center">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
