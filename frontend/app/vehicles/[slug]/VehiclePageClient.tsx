@@ -131,12 +131,12 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
         {/* Background Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/50" />
         
-        <div className="relative z-10 container mx-auto px-4 pt-20 pb-40">
+        <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-20 pb-40">
           <div className="grid lg:grid-cols-2 gap-12 items-center h-full">
             {/* Left Content */}
             <div className="space-y-8">
               {/* Main Headline */}
-              <h1 className="text-3xl md:text-4xl font-bold leading-none">
+              <h1 className="text-center sm:text-left text-3xl md:text-4xl font-bold leading-none">
                 {vehicle.title}
               </h1>
               
@@ -169,7 +169,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                     }, 1200) // Slightly longer to ensure scroll is complete
                   }
                 }}
-                className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105"
+                className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full sm:w-auto"
               >
                 {isScrolling ? 'Scrolling...' : 'Explore All Features'}
               </button>
@@ -209,17 +209,15 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
           
         </div>
         
-        {/* Fade Transition Section - Enhanced for better background visibility */}
+        {/* Fade Transition Section */}
         <div className="absolute bottom-0 left-0 right-0 z-20">
           <div className="relative">
-            {/* Multi-layer gradient for smoother, taller transition */}
-            <div className="h-32 bg-gradient-to-b from-transparent via-black/10 to-black/20"></div>
-            <div className="h-24 bg-gradient-to-b from-black/20 via-white/10 to-white/30"></div>
-            <div className="h-20 bg-gradient-to-b from-white/30 via-white/50 to-white/70"></div>
-            <div className="h-16 bg-gradient-to-b from-white/70 via-white/85 to-white/95"></div>
+            {/* Softened gradient fade overlay */}
+            <div className="h-20 bg-gradient-to-b from-transparent via-white/5 to-white/40"></div>
+            <div className="h-20 bg-gradient-to-b from-white/40 via-white/70 to-white"></div>
             
             {/* Dynamic subtitle section with smooth transition */}
-            <div className="bg-white/95 backdrop-blur-sm">
+            <div className="bg-white">
               <div className="container mx-auto px-4">
                 <div className="text-center">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
