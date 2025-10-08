@@ -440,6 +440,14 @@ export const vehicle = defineType({
     }),
 
     defineField({
+      name: 'excerpt',
+      title: 'Vehicle Excerpt',
+      type: 'text',
+      description: 'Short 1-2 sentence summary describing the vehicle build for customers and dealerships',
+      validation: (Rule) => Rule.max(500)
+    }),
+
+    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
