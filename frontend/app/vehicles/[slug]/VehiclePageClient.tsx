@@ -258,7 +258,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
               </h1>
               
               {/* Subtitle */}
-              <p className="text-lg font-light text-white/60 max-w-lg leading-tight">
+              <p className="text-lg font-base text-white max-w-lg leading-tight">
                 {headerAltText}
               </p>
               
