@@ -47,31 +47,11 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
 
   return (
     <>
-      <style jsx>{`
-        @keyframes expandSection {
-          0% {
-            transform: scaleY(0);
-            opacity: 0;
-          }
-          50% {
-            transform: scaleY(0.5);
-            opacity: 0.5;
-          }
-          100% {
-            transform: scaleY(1);
-            opacity: 1;
-          }
-        }
-        
-        .animate-expand {
-          animation: expandSection 0.6s ease-out forwards;
-        }
-      `}</style>
       <section id="features-options-section" className="max-w-5xl mx-auto mb-16">
         <h2 className="text-3xl font-bold mb-6 text-black text-center">
           FEATURES & OPTIONS
         </h2>
-      <div className="w-full max-w-4xl mx-auto">
+      <div className="container w-full">
         {categories.map(cat => cat.items.length > 0 && (
           <div key={cat.key} data-category={cat.key} className="mb-1.5">
             {/* Collapsible Header */}
@@ -81,7 +61,9 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
               }`} 
               onClick={() => toggleCategory(cat.key)}
             >
-              <span className="hover:text-white transition-colors duration-200">{cat.label}</span>
+              <span className={`transition-colors duration-200 ${
+                open[cat.key] ? 'text-timberline-orange' : 'hover:text-white'
+              }`}>{cat.label}</span>
               <span className={`text-xl font-light transition-transform duration-300 ease-in-out ${
                 open[cat.key] ? 'rotate-180' : 'rotate-0'
               }`}>
