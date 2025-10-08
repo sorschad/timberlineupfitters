@@ -50,8 +50,13 @@ export const HomepageVehicles = async () => {
     console.log('First vehicle coverImage:', vehicles[0].coverImage)
   }
 
+  // Filter out vehicles with "Available Soon" status
+  const filteredVehicles = vehicles.filter((vehicle: Vehicle) => {
+    return vehicle?.inventory?.availability !== 'Available Soon'
+  })
+
   // Group vehicles by manufacturer for better organization
-  const vehiclesByManufacturer = vehicles.reduce((acc: any, vehicle: Vehicle) => {
+  const vehiclesByManufacturer = filteredVehicles.reduce((acc: any, vehicle: Vehicle) => {
     const manufacturer = vehicle.manufacturer?.name || 'Unknown Manufacturer'
     if (!acc[manufacturer]) {
       acc[manufacturer] = []

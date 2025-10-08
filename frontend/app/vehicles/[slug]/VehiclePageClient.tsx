@@ -151,12 +151,12 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
           {/* Mobile Layout - Stacked */}
           <div className="lg:hidden space-y-8">
             {/* Main Headline */}
-            <h1 className="text-center text-4xl md:text-4xl font-bold leading-none mb-4">
+            <h1 className="text-center text-5xl md:text-4xl font-bold leading-none mb-4">
               {vehicle.title}
             </h1>
             
             {/* Subtitle */}
-            <p className="text-lg font-light text-white/80 max-w-lg leading-tight text-center mx-auto">
+            <p className="text-lg font-normal text-white max-w-lg leading-tight text-center mx-auto">
               {headerAltText}
             </p>
             
@@ -253,7 +253,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             {/* Left Content */}
             <div className="space-y-8">
               {/* Main Headline */}
-              <h1 className="text-center sm:text-left text-4xl md:text-6xl font-bold leading-none">
+              <h1 className="uppercase text-center sm:text-left text-4xl md:text-6xl font-bold leading-none">
                 {vehicle.title}
               </h1>
               

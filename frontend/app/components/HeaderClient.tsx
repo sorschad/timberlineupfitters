@@ -513,7 +513,7 @@ export default function HeaderClient({
                   </div>
                 </div>
               ) : (
-                <div className="space-y-6">
+                <div className="space-y-1">
                   {groupedByManufacturer.map((group) => (
                     <div key={group.name}>
                       <div className="space-y-1.5">
