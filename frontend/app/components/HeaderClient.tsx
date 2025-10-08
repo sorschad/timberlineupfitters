@@ -6,6 +6,7 @@ import {Orbitron} from 'next/font/google'
 import {urlForImage} from '@/sanity/lib/utils'
 import {MagnifyingGlassIcon} from '@heroicons/react/24/outline'
 import SearchModal from '@/app/components/SearchModal'
+import CompactInventoryBadge from '@/app/components/CompactInventoryBadge'
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -56,6 +57,13 @@ export default function HeaderClient({
         }
       }
     }
+    inventory?: {
+      availability?: string
+      stockNumber?: string
+      vin?: string
+      location?: string
+      mileage?: number
+    }
   }>
   brands?: Array<{
     _id: string
@@ -95,6 +103,11 @@ export default function HeaderClient({
       
       // If no brand tag match, exclude the vehicle
       if (!hasBrandTag) return false
+      
+      // Hide vehicles with "Available Soon" status
+      if (vehicle?.inventory?.availability === 'Available Soon') {
+        return false
+      }
       
       // If brand has manufacturer associations, also check manufacturer filter
       if (activeBrandData?.manufacturers && activeBrandData.manufacturers.length > 0) {
@@ -509,8 +522,11 @@ export default function HeaderClient({
                             key={v._id}
                             href={`/vehicles/${(v as any).slug?.current}`}
                             onClick={() => setIsMegaOpen(false)}
-                            className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-[87px]"
+                            className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-[87px] relative"
                           >
+                            {/* Inventory Badge */}
+                            <CompactInventoryBadge availability={(v as any).inventory?.availability} />
+                            
                             <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[87px]">
                               {/* Left Section - Text Content */}
                               <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
