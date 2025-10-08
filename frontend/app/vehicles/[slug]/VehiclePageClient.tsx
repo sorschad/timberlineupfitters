@@ -120,11 +120,11 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
               <button 
                 onClick={() => {
                   setIsScrolling(true)
-                  const gallerySection = document.getElementById('vehicle-gallery-section')
-                  if (gallerySection) {
+                  const featuresSection = document.getElementById('features-options-section')
+                  if (featuresSection) {
                     // Add offset for sticky header
                     const offset = 80
-                    const elementPosition = gallerySection.offsetTop - offset
+                    const elementPosition = featuresSection.offsetTop - offset
                     window.scrollTo({
                       top: elementPosition,
                       behavior: 'smooth'
@@ -133,11 +133,9 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                     setTimeout(() => setIsScrolling(false), 1000)
                   }
                 }}
-                className={`bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 ${
-                  isScrolling ? 'animate-pulse' : ''
-                }`}
+                className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105"
               >
-                {isScrolling ? 'Scrolling...' : 'Explore'}
+                {isScrolling ? 'Scrolling...' : 'Explore All Features'}
               </button>
             </div>
             

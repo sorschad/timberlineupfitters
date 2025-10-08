@@ -46,7 +46,7 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
   }
 
   return (
-    <section className="max-w-4xl mx-auto mb-16 px-4 md:px-8 lg:px-16">
+    <section id="features-options-section" className="max-w-5xl mx-auto mb-16">
       <h2 className="text-3xl font-bold mb-6 text-black text-center">
         FEATURES & OPTIONS
       </h2>
