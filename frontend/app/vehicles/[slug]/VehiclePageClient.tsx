@@ -20,7 +20,12 @@ interface Vehicle {
   }
   coverImage?: any
   headerVehicleImage?: any
-  vehicleDetailsPageHeaderBackgroundImage?: any
+  vehicleDetailsPageHeaderBackgroundImage?: {
+    asset?: any
+    alt?: string
+    hotspot?: any
+    crop?: any
+  }
   gallery?: any[]
   videoTour?: any
   specifications?: any
@@ -36,29 +41,6 @@ interface VehiclePageClientProps {
   vehicle: Vehicle
 }
 
-// Utility function to extract plain text from block content
-const extractTextFromBlocks = (blocks: any[]): string => {
-  if (!blocks || !Array.isArray(blocks)) return ''
-  
-  console.log('Processing blocks:', blocks) // Debug log
-  
-  return blocks
-    .map(block => {
-      if (block._type === 'block' && block.children) {
-        const text = block.children
-          .map((child: any) => {
-            console.log('Processing child:', child) // Debug log
-            return child.text || ''
-          })
-          .join('')
-        console.log('Extracted text from block:', text) // Debug log
-        return text
-      }
-      return ''
-    })
-    .join(' ')
-    .trim()
-}
 
 export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null)
@@ -67,14 +49,12 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   
   // Debug: Log vehicle data to see what's available
   console.log('Vehicle data:', vehicle)
-  console.log('Vehicle description:', vehicle.description)
+  console.log('Header background image alt text:', vehicle.vehicleDetailsPageHeaderBackgroundImage?.alt)
   
-  // Extract description text for header
-  const descriptionText = vehicle.description 
-    ? extractTextFromBlocks(vehicle.description)
-    : ''
+  // Get alt text from header background image for subtitle
+  const headerAltText = vehicle.vehicleDetailsPageHeaderBackgroundImage?.alt || ''
   
-  console.log('Final descriptionText:', descriptionText) // Debug log
+  console.log('Final headerAltText:', headerAltText) // Debug log
 
   // Define filter tags for each card
   const filterCards = [
@@ -167,23 +147,23 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
         {/* Background Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/50" />
         
-        <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-20 pb-40">
+        <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-32 pb-40 min-h-[500px]">
           {/* Mobile Layout - Stacked */}
           <div className="lg:hidden space-y-8">
             {/* Main Headline */}
-            <h1 className="text-center text-3xl md:text-4xl font-bold leading-none">
+            <h1 className="text-center text-4xl md:text-4xl font-bold leading-none mb-4">
               {vehicle.title}
             </h1>
             
             {/* Subtitle */}
-            <p className="text-lg font-light text-white/60 max-w-lg leading-tight text-center mx-auto">
-              {vehicle.description}
+            <p className="text-lg font-light text-white/80 max-w-lg leading-tight text-center mx-auto">
+              {headerAltText}
             </p>
             
             {/* Vehicle Image - Mobile Only */}
-            <div className="relative flex justify-center">
+            <div className="relative flex justify-center min-h-[400px]">
               {(vehicle.headerVehicleImage && urlForImage(vehicle.headerVehicleImage)?.url()) ? (
-                <div className="relative">
+                <div className="relative hidden">
                   <Image
                     src={urlForImage(vehicle.headerVehicleImage)!.width(1200).height(800).fit('crop').url()}
                     alt={vehicle.title}
@@ -193,7 +173,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                   />
                 </div>
               ) : (vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
-                <div className="relative">
+                <div className="relative hidden">
                   <Image
                     src={urlForImage(vehicle.coverImage)!.width(1200).height(800).fit('crop').url()}
                     alt={vehicle.title}
@@ -273,13 +253,13 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             {/* Left Content */}
             <div className="space-y-8">
               {/* Main Headline */}
-              <h1 className="text-center sm:text-left text-3xl md:text-4xl font-bold leading-none">
+              <h1 className="text-center sm:text-left text-4xl md:text-6xl font-bold leading-none">
                 {vehicle.title}
               </h1>
               
               {/* Subtitle */}
               <p className="text-lg font-light text-white/60 max-w-lg leading-tight">
-                {descriptionText}
+                {headerAltText}
               </p>
               
               {/* CTA Button - Desktop Only */}
@@ -325,7 +305,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             </div>
             
             {/* Right Content - Vehicle Image */}
-            <div className="relative flex justify-center lg:justify-end">
+            <div className="relative flex justify-center lg:justify-end min-h-[500px]">
               {(vehicle.headerVehicleImage && urlForImage(vehicle.headerVehicleImage)?.url()) ? (
                 <div className="relative">
                   <Image
@@ -337,7 +317,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                   />
                 </div>
               ) : (vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
-                <div className="relative">
+                <div className="relative hidden">
                   <Image
                     src={urlForImage(vehicle.coverImage)!.width(1200).height(800).fit('crop').url()}
                     alt={vehicle.title}
@@ -369,7 +349,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             <div className="bg-white">
               <div className="container mx-auto px-4">
                 <div className="text-center">
-                  <h2 className="uppercase text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+                  <h2 className="uppercase text-3xl md:text-4xl lg:text-4xl font-bold text-gray-900/80 mb-4 animate-fade-in">
                     Features to Love
                   </h2>
                   <p className="text-base md:text-lg text-gray-600/70 max-w-3xl mx-auto animate-fade-in-delay">
