@@ -14,7 +14,7 @@ interface Props {
 
 const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
   const [open, setOpen] = useState<Record<string, boolean>>({
-    exteriorFeatures: false,
+    exteriorFeatures: true,
     interiorFeatures: false,
     safetyFeatures: false,
     technologyFeatures: false,
