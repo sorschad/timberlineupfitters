@@ -36,10 +36,45 @@ interface VehiclePageClientProps {
   vehicle: Vehicle
 }
 
+// Utility function to extract plain text from block content
+const extractTextFromBlocks = (blocks: any[]): string => {
+  if (!blocks || !Array.isArray(blocks)) return ''
+  
+  console.log('Processing blocks:', blocks) // Debug log
+  
+  return blocks
+    .map(block => {
+      if (block._type === 'block' && block.children) {
+        const text = block.children
+          .map((child: any) => {
+            console.log('Processing child:', child) // Debug log
+            return child.text || ''
+          })
+          .join('')
+        console.log('Extracted text from block:', text) // Debug log
+        return text
+      }
+      return ''
+    })
+    .join(' ')
+    .trim()
+}
+
 export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null)
   const [isScrolling, setIsScrolling] = useState(false)
   const [scrollComplete, setScrollComplete] = useState(false)
+  
+  // Debug: Log vehicle data to see what's available
+  console.log('Vehicle data:', vehicle)
+  console.log('Vehicle description:', vehicle.description)
+  
+  // Extract description text for header
+  const descriptionText = vehicle.description 
+    ? extractTextFromBlocks(vehicle.description)
+    : ''
+  
+  console.log('Final descriptionText:', descriptionText) // Debug log
 
   // Define filter tags for each card
   const filterCards = [
@@ -142,7 +177,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             
             {/* Subtitle */}
             <p className="text-lg font-light text-white/60 max-w-lg leading-tight text-center mx-auto">
-              New all electric crossover with long range for road trips and comfort.
+              {vehicle.description}
             </p>
             
             {/* Vehicle Image - Mobile Only */}
@@ -244,7 +279,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
               
               {/* Subtitle */}
               <p className="text-lg font-light text-white/60 max-w-lg leading-tight">
-                New all electric crossover with long range for road trips and comfort.
+                {descriptionText}
               </p>
               
               {/* CTA Button - Desktop Only */}
@@ -334,7 +369,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             <div className="bg-white">
               <div className="container mx-auto px-4">
                 <div className="text-center">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+                  <h2 className="uppercase text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
                     Features to Love
                   </h2>
                   <p className="text-base md:text-lg text-gray-600/70 max-w-3xl mx-auto animate-fade-in-delay">
