@@ -304,35 +304,9 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
               </button>
             </div>
             
-            {/* Right Content - Vehicle Image */}
+
             <div className="relative flex justify-center lg:justify-end min-h-[500px]">
-              {(vehicle.headerVehicleImage && urlForImage(vehicle.headerVehicleImage)?.url()) ? (
-                <div className="relative">
-                  <Image
-                    src={urlForImage(vehicle.headerVehicleImage)!.width(1200).height(800).fit('crop').url()}
-                    alt={vehicle.title}
-                    width={600}
-                    height={400}
-                    className="rounded-2xl shadow-2xl"
-                  />
-                </div>
-              ) : (vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
-                <div className="relative hidden">
-                  <Image
-                    src={urlForImage(vehicle.coverImage)!.width(1200).height(800).fit('crop').url()}
-                    alt={vehicle.title}
-                    width={600}
-                    height={400}
-                    className="rounded-2xl shadow-2xl"
-                  />
-                </div>
-              ) : (
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl h-96 w-96 flex items-center justify-center">
-                  <span className="text-6xl font-bold text-gray-400">
-                    {vehicle.manufacturer.name.charAt(0)}
-                  </span>
-                </div>
-              ))}
+                &nbsp;
             </div>
           </div>
           
