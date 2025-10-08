@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {sanityFetch} from '@/sanity/lib/live'
 import {allVehiclesQuery} from '@/sanity/lib/queries'
+import InventoryStatusBadge from '@/app/components/InventoryStatusBadge'
 
 interface Vehicle {
   _id: string
@@ -17,16 +18,16 @@ interface Vehicle {
     logo?: {
       asset?: {
         _id: string
-        url: string
-      }
-    }
+        url: string | null
+      } | null
+    } | null
   }
   coverImage?: {
     asset?: {
       _id: string
-      url: string
-    }
-  }
+      url: string | null
+    } | null
+  } | null
   specifications?: any
   features?: any
   inventory?: any
@@ -109,6 +110,9 @@ export const HomepageVehicles = async () => {
                     <div className="">
                        {/* Right Section - Vehicle Image */}
                        <div className="relative h-[280px] sm:h-[220px]">
+                        {/* Inventory Status Badge */}
+                        <InventoryStatusBadge availability={vehicle.inventory?.availability} />
+                        
                         <div className="h-[280px] sm:h-[220px] overflow-hidden group-hover:border-[#ff8c42]/30 transition-all duration-300">
                           {vehicle?.coverImage?.asset?.url ? (
                             <img 

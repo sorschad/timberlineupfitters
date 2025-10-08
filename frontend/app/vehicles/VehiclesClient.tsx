@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import InventoryStatusBadge from '@/app/components/InventoryStatusBadge'
 
 interface Vehicle {
   _id: string
@@ -174,8 +175,11 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
                           {vehicle.modelYear}
                         </div>
                         
+                        {/* Inventory Status Badge */}
+                        <InventoryStatusBadge availability={vehicle.inventory?.availability} />
+                        
                         {/* Vehicle Type Badge */}
-                        <div className="absolute top-4 right-4 bg-white/90 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold capitalize z-10">
+                        <div className="absolute top-16 right-4 bg-white/90 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold capitalize z-10">
                           {vehicle.vehicleType}
                         </div>
                         
@@ -243,15 +247,6 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
                               <span className="text-white font-semibold group-hover:text-brand transition-colors duration-300">
                                 View Details →
                               </span>
-                              {vehicle.inventory?.availability && (
-                                <span className={`text-xs px-2 py-1 rounded-full backdrop-blur-sm border ${
-                                  vehicle.inventory.availability === 'In Stock' 
-                                    ? 'bg-green-500/20 text-green-200 border-green-400/30' 
-                                    : 'bg-yellow-500/20 text-yellow-200 border-yellow-400/30'
-                                }`}>
-                                  {vehicle.inventory.availability}
-                                </span>
-                              )}
                             </div>
                           </div>
                         </div>

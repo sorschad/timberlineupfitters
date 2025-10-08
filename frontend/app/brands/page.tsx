@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import BrandsLandingPageHeader from '@/app/components/BrandsLandingPageHeader'
 import PortableText from '@/app/components/PortableText'
+import InventoryStatusBadge from '@/app/components/InventoryStatusBadge'
 import {sanityFetch} from '@/sanity/lib/live'
 import {allBrandsQuery, timberlineVehiclesQuery} from '@/sanity/lib/queries'
 import {AllBrandsQueryResult} from '@/sanity.types'
@@ -317,6 +318,9 @@ export default async function BrandsPage() {
                         
                         {/* Right Section - Vehicle Image */}
                         <div className="relative h-[87px]">
+                          {/* Inventory Status Badge */}
+                          <InventoryStatusBadge availability={vehicle.inventory?.availability} />
+                          
                           <div className="h-[87px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
                             {vehicle?.coverImage?.asset?.url ? (
                               <img 
