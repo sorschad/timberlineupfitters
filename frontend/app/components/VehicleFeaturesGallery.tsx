@@ -27,7 +27,7 @@ interface VehicleFeaturesGalleryProps {
 }
 
 export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalleryProps) {
-  const [activeView, setActiveView] = useState<'interior' | 'exterior'>('interior')
+  const [activeView, setActiveView] = useState<'interior' | 'exterior'>('exterior')
   const [activeFeature, setActiveFeature] = useState<string | null>(null)
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
@@ -96,7 +96,7 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-1 gap-12 items-center">
           <h2 className="text-4xl md:text-5xl font-bold text-center text-white leading-tight">
-            Comfort, Technology & Prowless
+            Spotlight Features
           </h2>
         </div>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
