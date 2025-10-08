@@ -92,7 +92,7 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
   }, [vehicle])
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+    <section className="py-16 bg-gradient-to-br from-orange-300 via-orange-500/80 to-orange-700/80">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-1 gap-12 items-center">
           <h2 className="text-4xl md:text-5xl font-bold text-center text-white leading-tight">
@@ -171,8 +171,8 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
               {features.slice(0, 2).map((feature, index) => (
                 <div
                   key={(feature as any).id ?? `${feature.title}-${index}`}
-                  className={`bg-blue-500 rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl ring-2 ring-blue-500 shadow-blue-500/20 ${
-                    activeFeature === ((feature as any).id ?? `${feature.title}-${index}`) ? 'ring-2 ring-blue-500 shadow-blue-500/20' : ''
+                  className={`bg-orange-500 rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl ring-2 ring-orange-500 shadow-orange-500/20 ${
+                    activeFeature === ((feature as any).id ?? `${feature.title}-${index}`) ? 'ring-2 ring-orange-500 shadow-orange-500/20' : ''
                   }`}
                   onClick={() => {
                     const featureId = (feature as any).id ?? `${feature.title}-${index}`
@@ -183,8 +183,8 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
                 >
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                       </div>
