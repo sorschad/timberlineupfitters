@@ -112,6 +112,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [scrollComplete])
 
+
   return (
     <div className="scroll-smooth">
       {/* Hero Section - Scenic Background with Vehicle */}
@@ -132,20 +133,51 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/50" />
         
         <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-20 pb-40">
-          <div className="grid lg:grid-cols-2 gap-12 items-center h-full">
-            {/* Left Content */}
-            <div className="space-y-8">
-              {/* Main Headline */}
-              <h1 className="text-center sm:text-left text-3xl md:text-4xl font-bold leading-none">
-                {vehicle.title}
-              </h1>
-              
-              {/* Subtitle */}
-              <p className="text-lg font-light text-white/60 max-w-lg leading-tight">
-                New all electric crossover with long range for road trips and comfort.
-              </p>
-              
-              {/* CTA Button */}
+          {/* Mobile Layout - Stacked */}
+          <div className="lg:hidden space-y-8">
+            {/* Main Headline */}
+            <h1 className="text-center text-3xl md:text-4xl font-bold leading-none">
+              {vehicle.title}
+            </h1>
+            
+            {/* Subtitle */}
+            <p className="text-lg font-light text-white/60 max-w-lg leading-tight text-center mx-auto">
+              New all electric crossover with long range for road trips and comfort.
+            </p>
+            
+            {/* Vehicle Image - Mobile Only */}
+            <div className="relative flex justify-center">
+              {(vehicle.headerVehicleImage && urlForImage(vehicle.headerVehicleImage)?.url()) ? (
+                <div className="relative">
+                  <Image
+                    src={urlForImage(vehicle.headerVehicleImage)!.width(1200).height(800).fit('crop').url()}
+                    alt={vehicle.title}
+                    width={600}
+                    height={400}
+                    className="rounded-2xl shadow-2xl"
+                  />
+                </div>
+              ) : (vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
+                <div className="relative">
+                  <Image
+                    src={urlForImage(vehicle.coverImage)!.width(1200).height(800).fit('crop').url()}
+                    alt={vehicle.title}
+                    width={600}
+                    height={400}
+                    className="rounded-2xl shadow-2xl"
+                  />
+                </div>
+              ) : (
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl h-96 w-96 flex items-center justify-center">
+                  <span className="text-6xl font-bold text-gray-400">
+                    {vehicle.manufacturer.name.charAt(0)}
+                  </span>
+                </div>
+              ))}
+            </div>
+            
+            {/* CTA Button - Mobile Only, positioned after vehicle image */}
+            <div className="mt-3">
               <button 
                 onClick={() => {
                   setIsScrolling(true)
@@ -169,10 +201,26 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                     }, 1200) // Slightly longer to ensure scroll is complete
                   }
                 }}
-                className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full sm:w-auto"
+                className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full"
               >
                 {isScrolling ? 'Scrolling...' : 'Explore All Features'}
               </button>
+            </div>
+          </div>
+
+          {/* Desktop Layout - Grid */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center h-full">
+            {/* Left Content */}
+            <div className="space-y-8">
+              {/* Main Headline */}
+              <h1 className="text-center sm:text-left text-3xl md:text-4xl font-bold leading-none">
+                {vehicle.title}
+              </h1>
+              
+              {/* Subtitle */}
+              <p className="text-lg font-light text-white/60 max-w-lg leading-tight">
+                New all electric crossover with long range for road trips and comfort.
+              </p>
             </div>
             
             {/* Right Content - Vehicle Image */}
