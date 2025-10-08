@@ -46,13 +46,34 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
   }
 
   return (
-    <section id="features-options-section" className="max-w-5xl mx-auto mb-16">
-      <h2 className="text-3xl font-bold mb-6 text-black text-center">
-        FEATURES & OPTIONS
-      </h2>
+    <>
+      <style jsx>{`
+        @keyframes expandSection {
+          0% {
+            transform: scaleY(0);
+            opacity: 0;
+          }
+          50% {
+            transform: scaleY(0.5);
+            opacity: 0.5;
+          }
+          100% {
+            transform: scaleY(1);
+            opacity: 1;
+          }
+        }
+        
+        .animate-expand {
+          animation: expandSection 0.6s ease-out forwards;
+        }
+      `}</style>
+      <section id="features-options-section" className="max-w-5xl mx-auto mb-16">
+        <h2 className="text-3xl font-bold mb-6 text-black text-center">
+          FEATURES & OPTIONS
+        </h2>
       <div className="w-full max-w-4xl mx-auto">
         {categories.map(cat => cat.items.length > 0 && (
-          <div key={cat.key} className="mb-1.5">
+          <div key={cat.key} data-category={cat.key} className="mb-1.5">
             {/* Collapsible Header */}
             <div
               className={`w-full flex justify-between items-center p-4 font-bold text-md cursor-pointer hover:text-timberline-orange hover:bg-stone-gray-700 focus:outline-none transition-all duration-300 ease-in-out ${
@@ -97,7 +118,8 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
           </div>
         ))}
       </div>
-    </section>
+      </section>
+    </>
   )
 }
 

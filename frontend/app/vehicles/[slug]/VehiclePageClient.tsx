@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
 import VehicleGallery from '@/app/components/VehicleGallery'
@@ -39,6 +39,7 @@ interface VehiclePageClientProps {
 export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null)
   const [isScrolling, setIsScrolling] = useState(false)
+  const [scrollComplete, setScrollComplete] = useState(false)
 
   // Define filter tags for each card
   const filterCards = [
@@ -83,6 +84,34 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
 
   const filteredGallery = getFilteredGallery()
 
+  // Enhanced scroll detection for Features & Options section
+  useEffect(() => {
+    const handleScroll = () => {
+      const featuresSection = document.getElementById('features-options-section')
+      if (featuresSection) {
+        const rect = featuresSection.getBoundingClientRect()
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0
+        
+        if (isVisible && scrollComplete) {
+          // Trigger animation for first section when Features & Options comes into view
+          const firstSection = featuresSection.querySelector('[data-category="exteriorFeatures"]')
+          if (firstSection) {
+            setTimeout(() => {
+              firstSection.classList.add('animate-expand')
+            }, 300)
+          }
+        }
+      }
+    }
+
+    if (scrollComplete) {
+      window.addEventListener('scroll', handleScroll)
+      handleScroll() // Check immediately
+    }
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [scrollComplete])
+
   return (
     <div className="scroll-smooth">
       {/* Hero Section - Scenic Background with Vehicle */}
@@ -120,17 +149,24 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
               <button 
                 onClick={() => {
                   setIsScrolling(true)
+                  setScrollComplete(false)
                   const featuresSection = document.getElementById('features-options-section')
                   if (featuresSection) {
                     // Add offset for sticky header
                     const offset = 80
                     const elementPosition = featuresSection.offsetTop - offset
+                    
+                    // Wait for scroll to complete before enabling scroll detection
                     window.scrollTo({
                       top: elementPosition,
                       behavior: 'smooth'
                     })
-                    // Reset scrolling state after animation
-                    setTimeout(() => setIsScrolling(false), 1000)
+                    
+                    // Wait for scroll animation to complete
+                    setTimeout(() => {
+                      setIsScrolling(false)
+                      setScrollComplete(true)
+                    }, 1200) // Slightly longer to ensure scroll is complete
                   }
                 }}
                 className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105"
@@ -173,15 +209,17 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
           
         </div>
         
-        {/* Fade Transition Section */}
+        {/* Fade Transition Section - Enhanced for better background visibility */}
         <div className="absolute bottom-0 left-0 right-0 z-20">
           <div className="relative">
-            {/* Softened gradient fade overlay */}
-            <div className="h-20 bg-gradient-to-b from-transparent via-white/5 to-white/40"></div>
-            <div className="h-20 bg-gradient-to-b from-white/40 via-white/70 to-white"></div>
+            {/* Multi-layer gradient for smoother, taller transition */}
+            <div className="h-32 bg-gradient-to-b from-transparent via-black/10 to-black/20"></div>
+            <div className="h-24 bg-gradient-to-b from-black/20 via-white/10 to-white/30"></div>
+            <div className="h-20 bg-gradient-to-b from-white/30 via-white/50 to-white/70"></div>
+            <div className="h-16 bg-gradient-to-b from-white/70 via-white/85 to-white/95"></div>
             
             {/* Dynamic subtitle section with smooth transition */}
-            <div className="bg-white">
+            <div className="bg-white/95 backdrop-blur-sm">
               <div className="container mx-auto px-4">
                 <div className="text-center">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
