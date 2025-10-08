@@ -278,7 +278,7 @@ export default function HeaderClient({
             </button>
 
             {/* Desktop Navigation */}
-            <nav className={`hidden lg:flex items-center gap-6 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}>
+            <nav className={`hidden lg:flex items-center gap-6 mr-6 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}>
               <button
                 type="button"
                 onClick={() => setIsMegaOpen((v) => !v)}
