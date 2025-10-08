@@ -177,7 +177,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             </div>
             
             {/* CTA Button - Mobile Only, positioned after vehicle image */}
-            <div className="-mt-12">
+            <div className="mt-6">
               <button 
                 onClick={() => {
                   console.log('Mobile button clicked') // Debug log
@@ -226,7 +226,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                     setTimeout(scrollToFeatures, 100)
                   }
                 }}
-                className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full"
+                className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full cursor-pointer"
               >
                 {isScrolling ? 'Scrolling...' : 'Explore All Features'}
               </button>
@@ -283,7 +283,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                     }, 1000)
                   }
                 }}
-                className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full sm:w-auto"
+                className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full sm:w-auto cursor-pointer"
               >
                 {isScrolling ? 'Scrolling...' : 'Explore All Features'}
               </button>
@@ -324,7 +324,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
         </div>
         
         {/* Fade Transition Section */}
-        <div className="absolute bottom-0 left-0 right-0 z-20">
+        <div className="absolute bottom-0 left-0 right-0 z-0">
           <div className="relative">
             {/* Softened gradient fade overlay */}
             <div className="h-20 bg-gradient-to-b from-transparent via-white/5 to-white/40"></div>
