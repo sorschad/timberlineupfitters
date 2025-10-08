@@ -111,7 +111,7 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
                     className="object-cover"
                   />
                   {/* Interactive Hotspots */}
-                  {activeView === 'interior' && features.map((feature, index) => (
+                  {activeView === 'exterior' && features.map((feature, index) => (
                     <button
                       key={(feature as any).id ?? `${feature.title}-${index}`}
                       onClick={() => {
@@ -136,29 +136,6 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
                       </div>
                     </button>
                   ))}
-                  {/* View Selector */}
-                  <div className="absolute bottom-0 right-4 flex gap-2 left-4 w-full justify-center">
-                    <button
-                      onClick={() => setActiveView('exterior')}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                        activeView === 'exterior'
-                          ? 'bg-white text-slate-900'
-                          : 'bg-slate-900/50 text-white hover:bg-slate-900/70'
-                      }`}
-                    >
-                      Exterior
-                    </button>
-                    <button
-                      onClick={() => setActiveView('interior')}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                        activeView === 'interior'
-                          ? 'bg-white text-slate-900'
-                          : 'bg-slate-900/50 text-white hover:bg-slate-900/70'
-                      }`}
-                    >
-                      Interior
-                    </button>
-                  </div>
               </div>
             </div>
           </div>
@@ -171,7 +148,7 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
               {features.slice(0, 2).map((feature, index) => (
                 <div
                   key={(feature as any).id ?? `${feature.title}-${index}`}
-                  className={`bg-orange-500 rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl ring-2 ring-orange-500 shadow-orange-500/20 ${
+                  className={`bg-white-500 rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl ring-2 ring-orange-500 shadow-white-500/20 ${
                     activeFeature === ((feature as any).id ?? `${feature.title}-${index}`) ? 'ring-2 ring-orange-500 shadow-orange-500/20' : ''
                   }`}
                   onClick={() => {
