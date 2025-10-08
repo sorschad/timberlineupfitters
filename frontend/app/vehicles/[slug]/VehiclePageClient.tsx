@@ -182,13 +182,15 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                 onClick={() => {
                   setIsScrolling(true)
                   setScrollComplete(false)
+                  
+                  // Target the Features & Options section
                   const featuresSection = document.getElementById('features-options-section')
                   if (featuresSection) {
                     // Add offset for sticky header
                     const offset = 80
                     const elementPosition = featuresSection.offsetTop - offset
                     
-                    // Wait for scroll to complete before enabling scroll detection
+                    // Smooth scroll to the Features & Options section
                     window.scrollTo({
                       top: elementPosition,
                       behavior: 'smooth'
@@ -199,6 +201,16 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                       setIsScrolling(false)
                       setScrollComplete(true)
                     }, 1200) // Slightly longer to ensure scroll is complete
+                  } else {
+                    // Fallback: scroll to bottom of page if section not found
+                    window.scrollTo({
+                      top: document.body.scrollHeight,
+                      behavior: 'smooth'
+                    })
+                    setTimeout(() => {
+                      setIsScrolling(false)
+                      setScrollComplete(true)
+                    }, 1000)
                   }
                 }}
                 className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full"
@@ -221,6 +233,47 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
               <p className="text-lg font-light text-white/60 max-w-lg leading-tight">
                 New all electric crossover with long range for road trips and comfort.
               </p>
+              
+              {/* CTA Button - Desktop Only */}
+              <button 
+                onClick={() => {
+                  setIsScrolling(true)
+                  setScrollComplete(false)
+                  
+                  // Target the Features & Options section
+                  const featuresSection = document.getElementById('features-options-section')
+                  if (featuresSection) {
+                    // Add offset for sticky header
+                    const offset = 80
+                    const elementPosition = featuresSection.offsetTop - offset
+                    
+                    // Smooth scroll to the Features & Options section
+                    window.scrollTo({
+                      top: elementPosition,
+                      behavior: 'smooth'
+                    })
+                    
+                    // Wait for scroll animation to complete
+                    setTimeout(() => {
+                      setIsScrolling(false)
+                      setScrollComplete(true)
+                    }, 1200) // Slightly longer to ensure scroll is complete
+                  } else {
+                    // Fallback: scroll to bottom of page if section not found
+                    window.scrollTo({
+                      top: document.body.scrollHeight,
+                      behavior: 'smooth'
+                    })
+                    setTimeout(() => {
+                      setIsScrolling(false)
+                      setScrollComplete(true)
+                    }, 1000)
+                  }
+                }}
+                className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full sm:w-auto"
+              >
+                {isScrolling ? 'Scrolling...' : 'Explore All Features'}
+              </button>
             </div>
             
             {/* Right Content - Vehicle Image */}
