@@ -221,7 +221,7 @@ export default async function BrandsPage() {
                             : 'bg-[#ff8c42]/10 hover:bg-[#ff8c42]/20 border border-[#ff8c42]/20'
                         }`}
                       >
-                        <h4 className={`font-semibold ${
+                        <h4 className={`font-semibold font-orbitron ${
                           index % 3 === 0 
                             ? 'text-gray-900' 
                             : index % 3 === 1 
@@ -286,7 +286,7 @@ export default async function BrandsPage() {
             {brand.vehicles && brand.vehicles.length > 0 && (
               <div className="mt-12">
                 <div className="text-left mb-3">
-                  <h3 className={`text-2xl font-semibold ${brandColors.text} mb-4`}>
+                  <h3 className={`text-2xl font-semibold font-orbitron ${brandColors.text} mb-4`}>
                     {brand.name} Vehicles
                   </h3>
                 </div>
@@ -303,12 +303,12 @@ export default async function BrandsPage() {
                         <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                           <div>
                             {/* Vehicle Title */}
-                            <h3 className="text-white text-xs sm:text-sm font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                            <h3 className="text-white text-xs sm:text-sm font-bold font-orbitron mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
                               {vehicle.title}
                             </h3>
                             
                             {/* Vehicle Details */}
-                            <div className="text-white/60 text-xs leading-tight">
+                            <div className="text-white/60 text-xs leading-tight font-lato">
                               {vehicle?.model && (
                                 <span className="block">{vehicle.model}</span>
                               )}

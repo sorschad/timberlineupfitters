@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Montserrat } from 'next/font/google'
+import { Orbitron, Lato } from 'next/font/google'
 
 interface HeroSlide {
   id: number
@@ -11,9 +11,15 @@ interface HeroSlide {
   alt: string
 }
 
-const montserrat = Montserrat({
+const orbitron = Orbitron({
   subsets: ['latin'],
-  weight: ['300', '400', '700', '800'],
+  weight: ['400', '700', '900'],
+  display: 'swap',
+})
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
   display: 'swap',
 })
 
@@ -115,10 +121,10 @@ export default function HeroClient({ slides }: HeroClientProps) {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-5xl mx-auto text-center text-white pt-32 sm:pt-24">
-                  <h1 className={`${montserrat.className} uppercase antialiased text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-4 sm:mb-6 leading-[0.9] tracking-[0.08em]`}>
+                  <h1 className={`${orbitron.className} uppercase antialiased text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-4 sm:mb-6 leading-[0.9] tracking-[0.08em]`}>
                     {slide.title}
                   </h1>
-                  <p className={`${montserrat.className} antialiased text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal mb-8 sm:mb-12 max-w-4xl mx-auto leading-[1.4] tracking-[0.01em]`}>
+                  <p className={`${lato.className} antialiased text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal mb-8 sm:mb-12 max-w-4xl mx-auto leading-[1.4] tracking-[0.01em]`}>
                     {slide.subtitle}
                   </p>
                   <div className="flex flex-col justify-center items-center">

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Montserrat } from 'next/font/google'
+import { Orbitron, Lato } from 'next/font/google'
 
 type HeritageHeroCategory = {
   label: string
@@ -23,9 +23,15 @@ type HeritageHeroProps = {
   categories?: HeritageHeroCategory[]
 }
 
-const montserrat = Montserrat({
+const orbitron = Orbitron({
   subsets: ['latin'],
-  weight: ['300', '400', '700', '800'],
+  weight: ['400', '700', '900'],
+  display: 'swap',
+})
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
   display: 'swap',
 })
 
@@ -98,9 +104,9 @@ export default function HeritageHero({ heroBackgroundImages, title = 'Timberline
         <div className="container h-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-full items-center">
             <div className="text-white drop-shadow-md max-w-6xl">
-              <h1 className={`${montserrat.className} uppercase antialiased font-extrabold leading-[0.9] tracking-[0.02em] text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] xl:text-[6vw]`}>{title}</h1>
+              <h1 className={`${orbitron.className} uppercase antialiased font-extrabold leading-[0.9] tracking-[0.02em] text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] xl:text-[6vw]`}>{title}</h1>
               {subtitle && (
-                <p className={`${montserrat.className} antialiased mt-4 sm:mt-6 text-white/95 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold max-w-xl`}>{subtitle}</p>
+                <p className={`${lato.className} antialiased mt-4 sm:mt-6 text-white/95 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold max-w-xl`}>{subtitle}</p>
               )}
             </div>
           </div>

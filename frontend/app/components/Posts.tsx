@@ -56,11 +56,11 @@ const Brands = ({
 }) => (
   <div>
     {heading && (
-      <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+      <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl font-orbitron">
         {heading}
       </h2>
     )}
-    {subHeading && <p className="mt-2 text-lg leading-8 text-gray-600">{subHeading}</p>}
+    {subHeading && <p className="mt-2 text-lg leading-8 text-gray-600 font-lato">{subHeading}</p>}
     <div className="pt-6 space-y-6">{children}</div>
   </div>
 )

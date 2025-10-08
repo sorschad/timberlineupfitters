@@ -66,8 +66,8 @@
   --color-gray-950: #13141b;
   --color-brown: #241e16;
 
-  --font-display: 'Inter', 'sans-serif';
-  --font-sans: 'Inter', 'sans-serif';
+  --font-display: 'Orbitron', 'sans-serif';
+  --font-sans: 'Lato', 'sans-serif';
 
   --default-transition-duration: 250ms;
 }
