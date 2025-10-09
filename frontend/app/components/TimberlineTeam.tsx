@@ -88,7 +88,7 @@ export default function TimberlineTeam({
         </div>
 
         {/* Team Members Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-4">
           {teamMembers.map((member, index) => (
             <div 
               key={member.name}
@@ -96,7 +96,7 @@ export default function TimberlineTeam({
             >
               {/* Profile Image */}
               <div className="relative mb-4">
-                <div className="w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden bg-gradient-to-br from-[#ff8c42] to-[#d4852b] p-0.5 group-hover:scale-105 transition-transform duration-300">
+                <div className="w-20 h-20 md:w-24 md:h-24 lg:w-20 lg:h-20 rounded-full overflow-hidden bg-gradient-to-br from-[#ff8c42] to-[#d4852b] p-0.5 group-hover:scale-105 transition-transform duration-300">
                   {member.imageUrl ? (
                     <img 
                       src={member.imageUrl} 
@@ -115,13 +115,13 @@ export default function TimberlineTeam({
 
               {/* Member Info */}
               <div className="space-y-1">
-                <h3 className={`${lato.className} text-lg font-bold text-gray-900 group-hover:text-[#ff8c42] transition-colors duration-300`}>
+                <h3 className={`${lato.className} text-base md:text-lg lg:text-sm font-bold text-gray-900 group-hover:text-[#ff8c42] transition-colors duration-300`}>
                   {member.name}
                 </h3>
-                <p className={`${lato.className} text-sm font-medium text-gray-700`}>
+                <p className={`${lato.className} text-sm md:text-sm lg:text-xs font-medium text-gray-700`}>
                   {member.title}
                 </p>
-                <p className={`${lato.className} text-xs text-gray-500`}>
+                <p className={`${lato.className} text-xs lg:text-xs text-gray-500`}>
                   {member.location}
                 </p>
               </div>
