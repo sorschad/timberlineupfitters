@@ -4,6 +4,7 @@
   "scripts": {
     "prebuild": "npm run typegen",
     "build": "next build",
+    "export": "next build",
     "predev": "npm run typegen",
     "dev": "next dev --turbopack",
     "lint": "next lint",

@@ -1,5 +1,4 @@
 import type {Metadata} from 'next'
-import Head from 'next/head'
 
 import PageBuilderPage from '@/app/components/PageBuilder'
 import {sanityFetch} from '@/sanity/lib/live'
@@ -58,10 +57,6 @@ export default async function Page(props: Props) {
 
   return (
     <div className="my-12 lg:my-24">
-      <Head>
-        <title>{page.heading}</title>
-      </Head>
-
       <div className="">
         <div className="container">
           <div className="pb-6 border-b border-gray-100">
