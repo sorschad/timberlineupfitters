@@ -83,7 +83,13 @@ export default async function ManufacturerPage(props: Props) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <ManufacturerHero manufacturer={manufacturer} />
+      <ManufacturerHero manufacturer={{
+        ...manufacturer,
+        description: manufacturer.description || undefined,
+        heroTitle: manufacturer.heroTitle || undefined,
+        heroSubtitle: manufacturer.heroSubtitle || undefined,
+        heroCtaText: manufacturer.heroCtaText || undefined
+      }} />
 
       {/* Breadcrumb Navigation */}
       <Breadcrumb 
@@ -105,13 +111,25 @@ export default async function ManufacturerPage(props: Props) {
       ))}
 
       {/* Interactive Specs Table */}
-      <SpecsTable vehicles={manufacturer.vehicles} manufacturer={manufacturer} />
+      <SpecsTable vehicles={manufacturer.vehicles.filter(v => v.vehicleType !== null) as any} manufacturer={manufacturer} />
 
       {/* Gallery Section */}
-      <GallerySection manufacturer={manufacturer} />
+      <GallerySection manufacturer={{
+        ...manufacturer,
+        galleryImages: manufacturer.galleryImages?.map(img => ({
+          ...img,
+          altText: img.altText || undefined
+        })) || undefined
+      }} />
 
       {/* Final CTA Section */}
-      <CtaSection manufacturer={manufacturer} />
+      <CtaSection manufacturer={{
+        ...manufacturer,
+        ctaTitle: manufacturer.ctaTitle || undefined,
+        ctaDescription: manufacturer.ctaDescription || undefined,
+        ctaStats: manufacturer.ctaStats || undefined,
+        additionalLinks: manufacturer.additionalLinks || undefined
+      }} />
     </div>
   )
 }

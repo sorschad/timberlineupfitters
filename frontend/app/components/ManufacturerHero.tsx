@@ -61,11 +61,11 @@ export default function ManufacturerHero({ manufacturer }: ManufacturerHeroProps
             </div>
           )}
           
-          <h1 className="text-3xl md:text-5xl font-bold mb-6">
+          <h1 className="text-3xl md:text-5xl font-bold mb-6 font-orbitron">
             {manufacturer.heroTitle || manufacturer.name}
           </h1>
           
-          <p className="text-xl md:text-2xl mb-8 text-gray-200">
+          <p className="text-xl md:text-2xl mb-8 text-gray-200 font-lato">
             {manufacturer.heroSubtitle || manufacturer.description || `Explore ${vehicleCount} ${manufacturer.name} vehicles designed for every adventure.`}
           </p>
 

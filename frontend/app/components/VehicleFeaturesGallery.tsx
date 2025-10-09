@@ -27,7 +27,7 @@ interface VehicleFeaturesGalleryProps {
 }
 
 export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalleryProps) {
-  const [activeView, setActiveView] = useState<'interior' | 'exterior'>('interior')
+  const [activeView, setActiveView] = useState<'interior' | 'exterior'>('exterior')
   const [activeFeature, setActiveFeature] = useState<string | null>(null)
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
@@ -92,14 +92,14 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
   }, [vehicle])
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+    <section className="py-16 bg-gradient-to-br from-orange-300 via-orange-500/80 to-orange-700/80">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-1 gap-12 items-center">
           <h2 className="text-4xl md:text-5xl font-bold text-center text-white leading-tight">
-            Comfort, Technology & Prowless
+            Spotlight Features
           </h2>
         </div>
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 sm:gap-4 items-center mt-0 sm:mt-12 md:mt-auto">
           {/* Left Section - Hero Content */}
           <div className="space-y-8">
             <div className="space-y-6">
@@ -111,7 +111,7 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
                     className="object-cover"
                   />
                   {/* Interactive Hotspots */}
-                  {activeView === 'interior' && features.map((feature, index) => (
+                  {activeView === 'exterior' && features.map((feature, index) => (
                     <button
                       key={(feature as any).id ?? `${feature.title}-${index}`}
                       onClick={() => {
@@ -136,29 +136,6 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
                       </div>
                     </button>
                   ))}
-                  {/* View Selector */}
-                  <div className="absolute bottom-0 right-4 flex gap-2 left-4 w-full justify-center">
-                    <button
-                      onClick={() => setActiveView('exterior')}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                        activeView === 'exterior'
-                          ? 'bg-white text-slate-900'
-                          : 'bg-slate-900/50 text-white hover:bg-slate-900/70'
-                      }`}
-                    >
-                      Exterior
-                    </button>
-                    <button
-                      onClick={() => setActiveView('interior')}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                        activeView === 'interior'
-                          ? 'bg-white text-slate-900'
-                          : 'bg-slate-900/50 text-white hover:bg-slate-900/70'
-                      }`}
-                    >
-                      Interior
-                    </button>
-                  </div>
               </div>
             </div>
           </div>
@@ -171,8 +148,8 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
               {features.slice(0, 2).map((feature, index) => (
                 <div
                   key={(feature as any).id ?? `${feature.title}-${index}`}
-                  className={`bg-blue-500 rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl ring-2 ring-blue-500 shadow-blue-500/20 ${
-                    activeFeature === ((feature as any).id ?? `${feature.title}-${index}`) ? 'ring-2 ring-blue-500 shadow-blue-500/20' : ''
+                  className={`bg-white-500 rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl ring-2 ring-orange-500 shadow-white-500/20 ${
+                    activeFeature === ((feature as any).id ?? `${feature.title}-${index}`) ? 'ring-2 ring-orange-500 shadow-orange-500/20' : ''
                   }`}
                   onClick={() => {
                     const featureId = (feature as any).id ?? `${feature.title}-${index}`
@@ -182,18 +159,12 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
                   }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                    </div>
+                    
                     <div className="flex-1">
                       <h3 className="text-lg font-bold text-slate-900 mb-2">
                         {feature.title}
                       </h3>
-                      <p className="text-slate-600 text-sm leading-relaxed mb-3">
+                      <p className="text-slate-600 text-sm leading-relaxed">
                         {feature.description}
                       </p>
                     </div>

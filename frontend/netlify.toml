@@ -1,0 +1,39 @@
+[build]
+  # Build command
+  command = "npm run build"
+  
+  # Directory to publish (Next.js output)
+  publish = ".next"
+  
+  # Functions directory for API routes
+  functions = ".next/server"
+
+# Node.js version
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirect rules for Next.js
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Handle Next.js routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

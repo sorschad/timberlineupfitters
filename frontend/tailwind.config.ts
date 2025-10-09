@@ -95,7 +95,10 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)'],
+        sans: ['var(--font-lato)', 'sans-serif'],
+        display: ['var(--font-orbitron)', 'sans-serif'],
+        orbitron: ['var(--font-orbitron)', 'sans-serif'],
+        lato: ['var(--font-lato)', 'sans-serif'],
       },
     },
   },

@@ -70,10 +70,9 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
     }
   }, [debouncedResize])
 
-  if (!gallery || gallery.length === 0) return null
-
   // Build a stable, filtered list of renderable images so tile indexes match lightbox indexes
   const validImages = useMemo(() => {
+    if (!gallery || gallery.length === 0) return []
     return (gallery || []).filter((img: any) => {
       try {
         return Boolean(urlForImage(img)?.url())
@@ -100,6 +99,8 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
     })
     return items
   }, [validImages, vehicleTitle])
+
+  if (!gallery || gallery.length === 0) return null
 
   return (
     <section id="vehicle-gallery-section" className="py-8 pb-16 bg-white">
@@ -266,12 +267,6 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
                 )}
                 {/* Subtle hover overlay with professional styling */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-transparent to-white/5 group-hover:from-black/10 group-hover:via-black/5 group-hover:to-white/10 transition-all duration-500 ease-out" />
-                {/* Info button overlay */}
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-black/80 text-white text-xs font-medium px-3 py-1.5 rounded-lg backdrop-blur-sm">
-                    Info
-                  </div>
-                </div>
               </div>
             )
             return lastBlock

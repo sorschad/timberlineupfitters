@@ -11,7 +11,7 @@ export const vehicle = defineType({
       name: 'title',
       title: 'Vehicle Title',
       type: 'string',
-      description: 'e.g., 2024 Ford F-150 Lariat',
+      description: 'Description of the build + vehicle model',
       validation: (Rule) => Rule.required().max(255)
     }),
 
@@ -24,6 +24,25 @@ export const vehicle = defineType({
         maxLength: 255
       },
       validation: (Rule) => Rule.required()
+    }),
+
+    // Inventory & Availability
+    defineField({
+      name: 'inventory',
+      title: 'Inventory Information',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'availability',
+          title: 'Availability Status',
+          type: 'string',
+          options: {
+            list: [
+              'In Stock', 'Available Soon'
+            ]
+          }
+        }),
+      ]
     }),
 
     defineField({
@@ -73,6 +92,55 @@ export const vehicle = defineType({
       validation: (Rule) => Rule.required().min(1900).max(2030)
     }),
 
+     // Additional Content
+     defineField({
+      name: 'description',
+      title: 'Detailed Description',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'H1', value: 'h1' },
+            { title: 'H2', value: 'h2' },
+            { title: 'H3', value: 'h3' },
+            { title: 'Quote', value: 'blockquote' }
+          ],
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' }
+          ]
+        })
+      ]
+    }),
+
+    defineField({
+      name: 'excerpt',
+      title: 'Vehicle Excerpt',
+      type: 'text',
+      description: 'Short 1-2 sentence summary describing the vehicle build for customers and dealerships',
+      validation: (Rule) => Rule.max(500)
+    }),
+
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags'
+      }
+    }),
+
+    defineField({
+      name: 'sidebarSortOrder',
+      title: 'Sidebar Sort Order',
+      type: 'number',
+      description: 'Custom sort order for vehicles in the sidebar mega menu. Lower numbers appear first.',
+      validation: (Rule) => Rule.integer().min(0),
+      initialValue: 0
+    }),
 
     // Vehicle Specifications
     defineField({
@@ -105,26 +173,6 @@ export const vehicle = defineType({
               '2WD', '4WD', 'AWD', '4x4'
             ]
           }
-        }),
-        defineField({
-          name: 'towingCapacity',
-          title: 'Towing Capacity (lbs)',
-          type: 'number'
-        }),
-        defineField({
-          name: 'payloadCapacity',
-          title: 'Payload Capacity (lbs)',
-          type: 'number'
-        }),
-        defineField({
-          name: 'fuelEconomy',
-          title: 'Fuel Economy',
-          type: 'object',
-          fields: [
-            defineField({ name: 'city', type: 'number', title: 'City MPG' }),
-            defineField({ name: 'highway', type: 'number', title: 'Highway MPG' }),
-            defineField({ name: 'combined', type: 'number', title: 'Combined MPG' })
-          ]
         }),
         defineField({
           name: 'bedLength',
@@ -178,6 +226,12 @@ export const vehicle = defineType({
         defineField({
           name: 'performanceFeatures',
           title: 'Performance Features',
+          type: 'array',
+          of: [{ type: 'string' }]
+        }),
+        defineField({
+          name: 'additionalOptions',
+          title: 'Additional Options',
           type: 'array',
           of: [{ type: 'string' }]
         })
@@ -306,47 +360,6 @@ export const vehicle = defineType({
       ]
     }),
 
-    // Inventory & Availability
-    defineField({
-      name: 'inventory',
-      title: 'Inventory Information',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'stockNumber',
-          title: 'Stock Number',
-          type: 'string'
-        }),
-        defineField({
-          name: 'vin',
-          title: 'VIN',
-          type: 'string',
-          description: 'Vehicle Identification Number'
-        }),
-        defineField({
-          name: 'availability',
-          title: 'Availability Status',
-          type: 'string',
-          options: {
-            list: [
-              'In Stock', 'In Transit', 'Available Soon', 'Out of Stock', 'Special Order'
-            ]
-          }
-        }),
-        defineField({
-          name: 'location',
-          title: 'Vehicle Location',
-          type: 'string'
-        }),
-        defineField({
-          name: 'mileage',
-          title: 'Mileage',
-          type: 'number',
-          description: 'For used vehicles'
-        })
-      ]
-    }),
-
     // Customization Options (Based on TSportTruck's customization focus)
     defineField({
       name: 'customizationOptions',
@@ -416,54 +429,13 @@ export const vehicle = defineType({
       ]
     }),
 
-    // Additional Content
-    defineField({
-      name: 'description',
-      title: 'Detailed Description',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'block',
-          styles: [
-            { title: 'Normal', value: 'normal' },
-            { title: 'H1', value: 'h1' },
-            { title: 'H2', value: 'h2' },
-            { title: 'H3', value: 'h3' },
-            { title: 'Quote', value: 'blockquote' }
-          ],
-          lists: [
-            { title: 'Bullet', value: 'bullet' },
-            { title: 'Numbered', value: 'number' }
-          ]
-        })
-      ]
-    }),
-
-    defineField({
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'tags'
-      }
-    }),
-
     defineField({
       name: 'publishedAt',
       title: 'Published At',
       type: 'datetime',
       initialValue: () => new Date().toISOString()
-    }),
-
-    defineField({
-      name: 'sidebarSortOrder',
-      title: 'Sidebar Sort Order',
-      type: 'number',
-      description: 'Custom sort order for vehicles in the sidebar mega menu. Lower numbers appear first.',
-      validation: (Rule) => Rule.integer().min(0),
-      initialValue: 0
     })
+
   ],
 
   preview: {

@@ -61,18 +61,6 @@ export default async function BrandPage(props: Props) {
     return notFound()
   }
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'anthem':
-        return 'bg-red-100 text-red-800 border-red-200'
-      case 'alpine':
-        return 'bg-blue-100 text-blue-800 border-blue-200'
-      case 'timberline':
-        return 'bg-green-100 text-green-800 border-green-200'
-      default:
-        return 'bg-gray-100 text-gray-800 border-gray-200'
-    }
-  }
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -95,9 +83,6 @@ export default async function BrandPage(props: Props) {
             <div className="pb-6 grid gap-6 mb-6 border-b border-gray-100">
               <div className="max-w-3xl flex flex-col gap-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <span className={`px-3 py-1 text-sm font-medium rounded-full border ${getCategoryColor(brand.category)}`}>
-                    {brand.category?.replace('-', ' ')}
-                  </span>
                   <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(brand.status)}`}>
                     {brand.status?.replace('-', ' ')}
                   </span>

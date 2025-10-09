@@ -147,23 +147,23 @@ export default function BrandsLandingPageHeader() {
             {/* Orange line */}
             <div className="w-16 h-0.5 bg-[#ff8c42]"></div>
             
-            <div className="text-[#ff8c42] text-sm uppercase tracking-widest font-semibold">
+            <div className="text-[#ff8c42] text-sm uppercase tracking-widest font-semibold font-lato">
               Brands We Work With
             </div>
             
             {/* Main heading */}
             <div className="space-y-2">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase leading-[0.9]">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase leading-[0.9] font-orbitron">
                 Team Work
               </h1>
-              <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-[#ff8c42] uppercase leading-[0.9]">
+              <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-[#ff8c42] uppercase leading-[0.9] font-orbitron">
                 Makes the Dream Work
               </h1>
             </div>
             
             {/* Description */}
-            <p className="text-lg text-gray-300 leading-relaxed max-w-lg">
-              Every detail, from the sophisticated audio integration to the exclusive vehicle add-ons, was meticulously brought to life by Timberline Upfitters' technical team. The result is a fleet where boundary-pushing sound meets uncompromising off-road performance, crafted to the highest standard.
+            <p className="text-lg text-gray-300 leading-relaxed max-w-lg font-lato">
+              Every detail, from the sophisticated audio integration to the exclusive vehicle add-ons, was meticulously brought to life by Timberline Upfitters&apos; technical team. The result is a fleet where boundary-pushing sound meets uncompromising off-road performance, crafted to the highest standard.
             </p>
           </div>
 

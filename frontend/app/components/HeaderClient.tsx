@@ -6,6 +6,7 @@ import {Orbitron} from 'next/font/google'
 import {urlForImage} from '@/sanity/lib/utils'
 import {MagnifyingGlassIcon} from '@heroicons/react/24/outline'
 import SearchModal from '@/app/components/SearchModal'
+import CompactInventoryBadge from '@/app/components/CompactInventoryBadge'
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -56,6 +57,13 @@ export default function HeaderClient({
         }
       }
     }
+    inventory?: {
+      availability?: string
+      stockNumber?: string
+      vin?: string
+      location?: string
+      mileage?: number
+    }
   }>
   brands?: Array<{
     _id: string
@@ -95,6 +103,11 @@ export default function HeaderClient({
       
       // If no brand tag match, exclude the vehicle
       if (!hasBrandTag) return false
+      
+      // Hide vehicles with "Available Soon" status
+      if (vehicle?.inventory?.availability === 'Available Soon') {
+        return false
+      }
       
       // If brand has manufacturer associations, also check manufacturer filter
       if (activeBrandData?.manufacturers && activeBrandData.manufacturers.length > 0) {
@@ -232,14 +245,14 @@ export default function HeaderClient({
             )}
             <div className="hidden lg:flex items-baseline -ml-[23px] select-none">
               <span
-                className={`${orbitron.className} select-none tracking-[0.02em] antialiased text-white text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
+                className={`${orbitron.className} select-none tracking-[0.02em] antialiased text-white text-xl sm:text-2xl font-black leading-none transition-colors duration-300 ${
                   isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,1)]'
                 }`}
               >
                 TIMBERLINE
               </span>
               <span
-                className={`${orbitron.className} select-none tracking-[0.01em] antialiased text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
+                className={`${orbitron.className} select-none tracking-[0.01em] antialiased text-xl sm:text-2xl font-black leading-none transition-colors duration-300 ${
                   'text-[#ff8c42]'
                 }`}
               >
@@ -265,7 +278,7 @@ export default function HeaderClient({
             </button>
 
             {/* Desktop Navigation */}
-            <nav className={`hidden lg:flex items-center gap-6 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}>
+            <nav className={`hidden lg:flex items-center gap-6 mr-6 ${(isMegaOpen || isSearchOpen) ? 'backdrop-blur-lg' : ''}`}>
               <button
                 type="button"
                 onClick={() => setIsMegaOpen((v) => !v)}
@@ -339,7 +352,7 @@ export default function HeaderClient({
             </div>
 
             {/* Brand Cards */}
-            <div className="p-4 sm:p-6 space-y-3 max-h-[50vh] sm:max-h-none overflow-y-auto">
+            <div className="flex sm:flex-col gap-0.5 sm:gap-auto p-4 sm:p-6 space-y-3 max-h-[50vh] sm:max-h-none overflow-y-auto">
               {brands?.sort((a, b) => {
                 // Define explicit order: Timberline, TSport, Alpine
                 const order = ['Timberline', 'TSport', 'Alpine']
@@ -360,7 +373,7 @@ export default function HeaderClient({
               }).map((brand) => (
                 <div 
                   key={brand._id} 
-                  className={`rounded-xl border transition-all duration-300 cursor-pointer relative group ${
+                  className={`max-h-[64px] sm:max-h-none rounded-xl border transition-all duration-300 cursor-pointer relative group ${
                     activeBrand === brand.name 
                       ? 'bg-[#ff8c42]/15 border-[#ff8c42]/50 shadow-lg shadow-[#ff8c42]/10' 
                       : 'bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30'
@@ -390,9 +403,9 @@ export default function HeaderClient({
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <div className="text-white text-lg font-bold mb-1 uppercase">{brand.name}</div>
-                        <div className="text-white/60 text-xs leading-tight"><small>{brand.slogan || 'SLOGAN_GOES_HERE'}</small></div>
+                        <div className="hidden sm:block text-white/60 text-xs leading-tight"><small>{brand.slogan || 'SLOGAN_GOES_HERE'}</small></div>
                       </div>
-                      <div className="ml-3">
+                      <div className="hidden sm:block ml-3">
                         <svg className={`w-5 h-5 transition-all duration-200 ${
                           activeBrand === brand.name ? 'text-[#ff8c42] rotate-0' : 'text-white/40 group-hover:text-[#ff8c42] group-hover:translate-x-1'
                         }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -403,7 +416,7 @@ export default function HeaderClient({
                     
                     {/* Manufacturer Filter - Only show when this brand is active */}
                     {activeBrand === brand.name && brand.manufacturers && brand.manufacturers.length > 0 && (
-                      <div className="mt-1 pt-1">
+                      <div className="hidden sm:block mt-1 pt-1">
                         <div className="flex flex-wrap gap-2">
                           {brand.manufacturers.map((manufacturer) => (
                             <button
@@ -500,7 +513,7 @@ export default function HeaderClient({
                   </div>
                 </div>
               ) : (
-                <div className="space-y-6">
+                <div className="space-y-1">
                   {groupedByManufacturer.map((group) => (
                     <div key={group.name}>
                       <div className="space-y-1.5">
@@ -509,9 +522,12 @@ export default function HeaderClient({
                             key={v._id}
                             href={`/vehicles/${(v as any).slug?.current}`}
                             onClick={() => setIsMegaOpen(false)}
-                            className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-[87px]"
+                            className="group block bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-auto sm:h-[87px] relative"
                           >
-                            <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[87px]">
+                            {/* Inventory Badge */}
+                            <CompactInventoryBadge availability={(v as any).inventory?.availability} />
+                            
+                            <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-auto sm:h-[87px]">
                               {/* Left Section - Text Content */}
                               <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                                 <div>
@@ -530,8 +546,8 @@ export default function HeaderClient({
                               </div>
                               
                               {/* Right Section - Vehicle Image */}
-                              <div className="relative h-[87px]">
-                                <div className="h-[87px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                              <div className="relative h-auto sm:h-[87px]">
+                                <div className="h-auto sm:h-[87px] overflow-hidden bg-transparent border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
                                   {v?.coverImage?.asset?.url ? (
                                     <img 
                                       src={v.coverImage.asset.url} 
@@ -553,7 +569,7 @@ export default function HeaderClient({
                                 </div>
                                 
                                 {/* Hover Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               </div>
                             </div>
                           </Link>

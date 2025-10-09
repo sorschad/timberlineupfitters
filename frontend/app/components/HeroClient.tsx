@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Montserrat } from 'next/font/google'
+import { Orbitron, Lato } from 'next/font/google'
 
 interface HeroSlide {
   id: number
@@ -11,9 +11,15 @@ interface HeroSlide {
   alt: string
 }
 
-const montserrat = Montserrat({
+const orbitron = Orbitron({
   subsets: ['latin'],
-  weight: ['300', '400', '700', '800'],
+  weight: ['400', '700', '900'],
+  display: 'swap',
+})
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
   display: 'swap',
 })
 
@@ -24,6 +30,7 @@ interface HeroClientProps {
 export default function HeroClient({ slides }: HeroClientProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [heroHeight, setHeroHeight] = useState('80vh')
+  const [isPaused, setIsPaused] = useState(false)
 
   // Calculate hero height (20% less than device fold)
   useEffect(() => {
@@ -40,14 +47,14 @@ export default function HeroClient({ slides }: HeroClientProps) {
 
   // Auto-advance slides
   useEffect(() => {
-    if (slides.length <= 1) return
+    if (slides.length <= 1 || isPaused) return
     
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 5000) // Change slide every 5 seconds
 
     return () => clearInterval(interval)
-  }, [slides])
+  }, [slides, isPaused])
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index)
@@ -71,6 +78,14 @@ export default function HeroClient({ slides }: HeroClientProps) {
     }
   }
 
+  const handleMouseEnter = () => {
+    setIsPaused(true)
+  }
+
+  const handleMouseLeave = () => {
+    setIsPaused(false)
+  }
+
   // Show empty state if no slides
   if (slides.length === 0) {
     return (
@@ -90,6 +105,8 @@ export default function HeroClient({ slides }: HeroClientProps) {
     <div 
       className="relative w-full overflow-hidden"
       style={{ height: heroHeight }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Slides Container */}
       <div className="relative w-full h-full">
@@ -115,10 +132,10 @@ export default function HeroClient({ slides }: HeroClientProps) {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-5xl mx-auto text-center text-white pt-32 sm:pt-24">
-                  <h1 className={`${montserrat.className} uppercase antialiased text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-4 sm:mb-6 leading-[0.9] tracking-[0.08em]`}>
+                  <h1 className={`${orbitron.className} uppercase antialiased text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-4 sm:mb-6 leading-[0.9] tracking-[0.08em]`}>
                     {slide.title}
                   </h1>
-                  <p className={`${montserrat.className} antialiased text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal mb-8 sm:mb-12 max-w-4xl mx-auto leading-[1.4] tracking-[0.01em]`}>
+                  <p className={`${lato.className} antialiased text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal mb-8 sm:mb-12 max-w-4xl mx-auto leading-[1.4] tracking-[0.01em]`}>
                     {slide.subtitle}
                   </p>
                   <div className="flex flex-col justify-center items-center">

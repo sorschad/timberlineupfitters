@@ -14,7 +14,7 @@ interface Props {
 
 const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
   const [open, setOpen] = useState<Record<string, boolean>>({
-    exteriorFeatures: false,
+    exteriorFeatures: true,
     interiorFeatures: false,
     safetyFeatures: false,
     technologyFeatures: false,
@@ -46,13 +46,14 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
   }
 
   return (
-    <section className="max-w-4xl mx-auto mb-16 px-4 md:px-8 lg:px-16">
-      <h2 className="text-3xl font-bold mb-6 text-black text-center">
-        FEATURES & OPTIONS
-      </h2>
-      <div className="w-full max-w-4xl mx-auto">
+    <>
+      <section id="features-options-section" className="max-w-5xl mx-auto mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 text-black/80">
+          FEATURES & OPTIONS
+        </h2>
+      <div className="container w-full">
         {categories.map(cat => cat.items.length > 0 && (
-          <div key={cat.key} className="mb-1.5">
+          <div key={cat.key} data-category={cat.key} className="mb-1.5">
             {/* Collapsible Header */}
             <div
               className={`w-full flex justify-between items-center p-4 font-bold text-md cursor-pointer hover:text-timberline-orange hover:bg-stone-gray-700 focus:outline-none transition-all duration-300 ease-in-out ${
@@ -60,7 +61,9 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
               }`} 
               onClick={() => toggleCategory(cat.key)}
             >
-              <span className="hover:text-white transition-colors duration-200">{cat.label}</span>
+              <span className={`transition-colors duration-200 ${
+                open[cat.key] ? 'text-timberline-orange' : 'hover:text-white'
+              }`}>{cat.label}</span>
               <span className={`text-xl font-light transition-transform duration-300 ease-in-out ${
                 open[cat.key] ? 'rotate-180' : 'rotate-0'
               }`}>
@@ -97,7 +100,8 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
           </div>
         ))}
       </div>
-    </section>
+      </section>
+    </>
   )
 }
 

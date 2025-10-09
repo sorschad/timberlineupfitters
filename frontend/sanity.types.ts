@@ -1005,7 +1005,7 @@ export type HomepageSettingsQueryResult = {
   }> | null
 } | null
 // Variable: homepageQuery
-// Query: *[_type == "page" && name == "Homepage"][0]{  _id,  name,  heading,  subheading,  heroBackgroundImages[]{    asset->{      _id,      url    },    alt  }}
+// Query: *[_type == "page" && name == "Homepage"][0]{  _id,  name,  heading,  subheading,  heroBackgroundImages[]{    asset->{      _id,      url    },    alt,    title,    subtitle  }}
 export type HomepageQueryResult = {
   _id: string
   name: string
@@ -1973,7 +1973,7 @@ declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]{\n  ...,\n  appLogo\n}': SettingsQueryResult
     '*[_type == "homepageSettings"][0]{\n  heroSlides[]{\n    title,\n    subtitle,\n    image,\n  }\n}': HomepageSettingsQueryResult
-    '*[_type == "page" && name == "Homepage"][0]{\n  _id,\n  name,\n  heading,\n  subheading,\n  heroBackgroundImages[]{\n    asset->{\n      _id,\n      url\n    },\n    alt\n  }\n}': HomepageQueryResult
+    '*[_type == "page" && name == "Homepage"][0]{\n  _id,\n  name,\n  heading,\n  subheading,\n  heroBackgroundImages[]{\n    asset->{\n      _id,\n      url\n    },\n    alt,\n    title,\n    subtitle\n  }\n}': HomepageQueryResult
     '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    heroBackgroundImages[]{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
     '\n  *[_type == "brand" && defined(slug.current)] | order(launchDate desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  description,\n  coverImage,\n  sectionImage,\n  primaryLogo,\n  secondaryLogo,\n  website,\n  primaryColor,\n  secondaryColor,\n  accentColor,\n  features,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': AllBrandsQueryResult

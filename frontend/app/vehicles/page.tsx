@@ -42,10 +42,10 @@ export default async function VehiclesPage() {
       <div className="min-h-screen">
         <div className="py-40 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
           <div className="container text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 font-orbitron">
               Vehicle Models
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-lato">
               No vehicles are currently available. Please check back later or contact us for more information.
             </p>
           </div>
@@ -54,5 +54,5 @@ export default async function VehiclesPage() {
     )
   }
 
-  return <VehiclesClient vehicles={vehicles} />
+  return <VehiclesClient vehicles={vehicles.filter(v => v.vehicleType !== null) as any} />
 }

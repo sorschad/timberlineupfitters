@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Footer() {
   return (
     <footer className="relative bg-[var(--color-brown)] text-[var(--color-gray-200)]">
@@ -16,7 +18,7 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h3 className="text-lg font-semibold text-[var(--color-gray-100)]">Links</h3>
             <ul className="mt-4 space-y-3 text-[var(--color-gray-300)]">
-              <li><a className="hover:text-[var(--color-white)] transition-colors" href="/heritage">Heritage</a></li>
+              <li><Link className="hover:text-[var(--color-white)] transition-colors" href="/heritage">Heritage</Link></li>
               <li><a className="hover:text-[var(--color-white)] transition-colors" href="#">Order Form</a></li>
               <li><a className="hover:text-[var(--color-white)] transition-colors" href="#">Vehicle Models</a></li>
               <li><a className="hover:text-[var(--color-white)] transition-colors" href="#">Dealer Packets</a></li>
@@ -58,9 +60,9 @@ export default function Footer() {
           </div>
 
           <nav className="order-2 md:order-2 md:flex-1 flex items-center gap-6 md:justify-end">
-            <a className="hover:text-[var(--color-white)] transition-colors" href="/privacy-policy">Privacy Policy</a>
-            <a className="hover:text-[var(--color-white)] transition-colors" href="/terms-of-service">Terms of Service</a>
-            <a className="hover:text-[var(--color-white)] transition-colors" href="/warranty">Warranty</a>
+            <Link className="hover:text-[var(--color-white)] transition-colors" href="/privacy-policy">Privacy Policy</Link>
+            <Link className="hover:text-[var(--color-white)] transition-colors" href="/terms-of-service">Terms of Service</Link>
+            <Link className="hover:text-[var(--color-white)] transition-colors" href="/warranty">Warranty</Link>
           </nav>
         </div>
       </div>

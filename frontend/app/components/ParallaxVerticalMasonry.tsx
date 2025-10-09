@@ -12,26 +12,26 @@ type ParallaxVerticalMasonryProps = {
 }
 
 export default function ParallaxVerticalMasonry({images}: ParallaxVerticalMasonryProps) {
-  // Fallback Unsplash images for testing
-  const unsplashImages = [
-    { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', alt: 'Mountain landscape' },
-    { url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop', alt: 'Forest trail' },
-    { url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop', alt: 'Lake reflection' },
-    { url: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=500&fit=crop', alt: 'Desert dunes' },
-    { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=700&fit=crop', alt: 'Ocean waves' },
-    { url: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&h=600&fit=crop', alt: 'Forest canopy' },
-    { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop', alt: 'Mountain vista' },
-    { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop', alt: 'Mountain range' },
-    { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=700&fit=crop', alt: 'Alpine landscape' },
-    { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', alt: 'Mountain lake' },
-    { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop', alt: 'Peak view' },
-    { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop', alt: 'Mountain peak' },
-    { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=700&fit=crop', alt: 'Valley view' },
-    { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', alt: 'Summit' },
-    { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop', alt: 'Highlands' },
-  ]
-
   const safe = useMemo(() => {
+    // Fallback Unsplash images for testing
+    const unsplashImages = [
+      { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', alt: 'Mountain landscape' },
+      { url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop', alt: 'Forest trail' },
+      { url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop', alt: 'Lake reflection' },
+      { url: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=500&fit=crop', alt: 'Desert dunes' },
+      { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=700&fit=crop', alt: 'Ocean waves' },
+      { url: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&h=600&fit=crop', alt: 'Forest canopy' },
+      { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop', alt: 'Mountain vista' },
+      { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop', alt: 'Mountain range' },
+      { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=700&fit=crop', alt: 'Alpine landscape' },
+      { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', alt: 'Mountain lake' },
+      { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop', alt: 'Peak view' },
+      { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop', alt: 'Mountain peak' },
+      { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=700&fit=crop', alt: 'Valley view' },
+      { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', alt: 'Summit' },
+      { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop', alt: 'Highlands' },
+    ]
+    
     const filtered = images?.filter((i) => !!i?.url) ?? []
     return filtered.length > 0 ? filtered : unsplashImages
   }, [images])

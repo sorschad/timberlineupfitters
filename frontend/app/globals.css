@@ -66,8 +66,8 @@
   --color-gray-950: #13141b;
   --color-brown: #241e16;
 
-  --font-display: 'Inter', 'sans-serif';
-  --font-sans: 'Inter', 'sans-serif';
+  --font-display: 'Orbitron', 'sans-serif';
+  --font-sans: 'Lato', 'sans-serif';
 
   --default-transition-duration: 250ms;
 }
@@ -188,9 +188,20 @@
   animation: scale-in 0.6s ease-out forwards;
 }
 
-/* Smooth scroll behavior */
+/* Smooth scroll behavior and font rendering optimizations */
 html {
   scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body font rendering optimizations */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
 /* Parallax effect for hero section */
@@ -271,4 +282,58 @@ html {
 /* Enhanced focus states for accessibility */
 .focus-ring-orange {
   @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange-500/30 focus-visible:ring-offset-4;
+}
+
+/* Font rendering optimizations for custom fonts */
+.font-orbitron {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+.font-lato {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* Enhanced text rendering for headings */
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* Enhanced text rendering for body text */
+p, span, div, a, li, td, th {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  html, body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+  
+  .font-orbitron, .font-lato {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+/* Dark mode text rendering optimizations */
+@media (prefers-color-scheme: dark) {
+  html, body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }

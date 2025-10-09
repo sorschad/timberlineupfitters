@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import BrandsLandingPageHeader from '@/app/components/BrandsLandingPageHeader'
 import PortableText from '@/app/components/PortableText'
+import InventoryStatusBadge from '@/app/components/InventoryStatusBadge'
 import {sanityFetch} from '@/sanity/lib/live'
 import {allBrandsQuery, timberlineVehiclesQuery} from '@/sanity/lib/queries'
 import {AllBrandsQueryResult} from '@/sanity.types'
@@ -220,7 +221,7 @@ export default async function BrandsPage() {
                             : 'bg-[#ff8c42]/10 hover:bg-[#ff8c42]/20 border border-[#ff8c42]/20'
                         }`}
                       >
-                        <h4 className={`font-semibold ${
+                        <h4 className={`font-semibold font-orbitron ${
                           index % 3 === 0 
                             ? 'text-gray-900' 
                             : index % 3 === 1 
@@ -285,7 +286,7 @@ export default async function BrandsPage() {
             {brand.vehicles && brand.vehicles.length > 0 && (
               <div className="mt-12">
                 <div className="text-left mb-3">
-                  <h3 className={`text-2xl font-semibold ${brandColors.text} mb-4`}>
+                  <h3 className={`text-2xl font-semibold font-orbitron ${brandColors.text} mb-4`}>
                     {brand.name} Vehicles
                   </h3>
                 </div>
@@ -302,12 +303,12 @@ export default async function BrandsPage() {
                         <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                           <div>
                             {/* Vehicle Title */}
-                            <h3 className="text-white text-xs sm:text-sm font-bold mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                            <h3 className="text-white text-xs sm:text-sm font-bold font-orbitron mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
                               {vehicle.title}
                             </h3>
                             
                             {/* Vehicle Details */}
-                            <div className="text-white/60 text-xs leading-tight">
+                            <div className="text-white/60 text-xs leading-tight font-lato">
                               {vehicle?.model && (
                                 <span className="block">{vehicle.model}</span>
                               )}
@@ -317,6 +318,9 @@ export default async function BrandsPage() {
                         
                         {/* Right Section - Vehicle Image */}
                         <div className="relative h-[87px]">
+                          {/* Inventory Status Badge */}
+                          <InventoryStatusBadge availability={vehicle.inventory?.availability} />
+                          
                           <div className="h-[87px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
                             {vehicle?.coverImage?.asset?.url ? (
                               <img 
