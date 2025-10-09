@@ -3,6 +3,7 @@ import Head from 'next/head'
 
 import HeritageHero from '@/app/components/HeritageHero'
 import HeritageTimeline from '@/app/components/HeritageTimeline'
+import TimberlineTeam from '@/app/components/TimberlineTeam'
 import {sanityFetch} from '@/sanity/lib/live'
 import {getPageQuery} from '@/sanity/lib/queries'
 import {PageOnboarding} from '@/app/components/Onboarding'
@@ -59,6 +60,11 @@ export default async function HeritagePage() {
       {/* Timeline directly under the headline */}
       <div className="mt-8 lg:mt-12">
         <HeritageTimeline heading={''} />
+      </div>
+
+      {/* Timberline Team Section */}
+      <div className="mt-16 lg:mt-24">
+        <TimberlineTeam />
       </div>
 
     </div>
