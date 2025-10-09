@@ -172,7 +172,7 @@ export const HomepageBrands = async () => {
                             alt={brand.primaryLogo.alt || `${brand.name} logo`}
                             width={600}
                             height={300}
-                            className="w-auto h-auto max-w-full max-h-[80px] object-contain"
+                            className="w-auto h-auto max-w-full max-h-[80px] object-contain z-10"
                           />
                         </div>
                       </div>
@@ -185,16 +185,16 @@ export const HomepageBrands = async () => {
                   </div>
                 </div>
 
-                <div className="absolute inset-0 bg-amber-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-                  <p className="text-amber-50 text-sm sm:text-base text-center leading-relaxed">
-                    {brand.excerpt}
+                <div className="absolute inset-0 bg-amber-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 z-1">
+                  <p className="flex flex-col font-extrabold text-amber-50 text-lg sm:text-xl text-center leading-tight">
+                    <span className="">LEARN MORE ABOUT</span>
+                    <span className="">THE BRAND</span>
                   </p>
                 </div>
               </div>
             )
           })}
         </div>
-
       </div>
     </section>
   )

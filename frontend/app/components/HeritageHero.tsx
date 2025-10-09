@@ -37,6 +37,7 @@ const lato = Lato({
 
 export default function HeritageHero({ heroBackgroundImages, title = 'Timberline Upfitters', subtitle = "Go anywhere in a moment's notice", categories }: HeritageHeroProps) {
   const [heroHeight, setHeroHeight] = useState('80vh')
+  const [isPaused, setIsPaused] = useState(false)
   const tabs: HeritageHeroCategory[] = (categories && categories.length > 0)
     ? categories
     : [
@@ -68,14 +69,14 @@ export default function HeritageHero({ heroBackgroundImages, title = 'Timberline
 
   // Auto-cycle through background images (only when no tab is actively selected)
   useEffect(() => {
-    if (!heroBackgroundImages || heroBackgroundImages.length <= 1) return
+    if (!heroBackgroundImages || heroBackgroundImages.length <= 1 || isPaused) return
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroBackgroundImages.length)
     }, 5000) // Change image every 5 seconds
 
     return () => clearInterval(interval)
-  }, [heroBackgroundImages])
+  }, [heroBackgroundImages, isPaused])
 
   useEffect(() => {
     const updateHeight = () => {
@@ -88,8 +89,21 @@ export default function HeritageHero({ heroBackgroundImages, title = 'Timberline
     return () => window.removeEventListener('resize', updateHeight)
   }, [])
 
+  const handleMouseEnter = () => {
+    setIsPaused(true)
+  }
+
+  const handleMouseLeave = () => {
+    setIsPaused(false)
+  }
+
   return (
-    <section className="relative w-full overflow-hidden" style={{ height: heroHeight }}>
+    <section 
+      className="relative w-full overflow-hidden" 
+      style={{ height: heroHeight }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {currentImage ? (
         <div 
           className="absolute inset-0 bg-center bg-cover transition-opacity duration-1000" 

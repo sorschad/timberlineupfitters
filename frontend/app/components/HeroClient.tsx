@@ -30,6 +30,7 @@ interface HeroClientProps {
 export default function HeroClient({ slides }: HeroClientProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [heroHeight, setHeroHeight] = useState('80vh')
+  const [isPaused, setIsPaused] = useState(false)
 
   // Calculate hero height (20% less than device fold)
   useEffect(() => {
@@ -46,14 +47,14 @@ export default function HeroClient({ slides }: HeroClientProps) {
 
   // Auto-advance slides
   useEffect(() => {
-    if (slides.length <= 1) return
+    if (slides.length <= 1 || isPaused) return
     
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 5000) // Change slide every 5 seconds
 
     return () => clearInterval(interval)
-  }, [slides])
+  }, [slides, isPaused])
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index)
@@ -77,6 +78,14 @@ export default function HeroClient({ slides }: HeroClientProps) {
     }
   }
 
+  const handleMouseEnter = () => {
+    setIsPaused(true)
+  }
+
+  const handleMouseLeave = () => {
+    setIsPaused(false)
+  }
+
   // Show empty state if no slides
   if (slides.length === 0) {
     return (
@@ -96,6 +105,8 @@ export default function HeroClient({ slides }: HeroClientProps) {
     <div 
       className="relative w-full overflow-hidden"
       style={{ height: heroHeight }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Slides Container */}
       <div className="relative w-full h-full">
