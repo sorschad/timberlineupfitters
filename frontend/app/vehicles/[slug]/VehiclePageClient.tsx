@@ -243,7 +243,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                 }}
                 className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full cursor-pointer"
               >
-                {isScrolling ? 'Scrolling...' : 'Explore All Features'}
+                {isScrolling ? 'Scrolling...' : 'explore features'}
               </button>
             </div>
           </div>
@@ -300,7 +300,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                 }}
                 className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full sm:w-auto cursor-pointer"
               >
-                {isScrolling ? 'Scrolling...' : 'Explore All Features'}
+                {isScrolling ? 'Scrolling...' : 'explore features'}
               </button>
             </div>
             
