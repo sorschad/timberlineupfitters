@@ -339,8 +339,8 @@ export const vehicle = defineType({
                 title: 'Desktop (3+ columns)',
                 type: 'object',
                 fields: [
-                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 2, validation: Rule => Rule.min(1) }),
-                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 2, validation: Rule => Rule.min(1) })
+                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1) }),
+                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1) })
                 ]
               })
             ]
