@@ -11,7 +11,7 @@ export const vehicle = defineType({
       name: 'title',
       title: 'Vehicle Title',
       type: 'string',
-      description: 'e.g., 2024 Ford F-150 Lariat',
+      description: 'Description of the build + vehicle model',
       validation: (Rule) => Rule.required().max(255)
     }),
 
@@ -228,6 +228,12 @@ export const vehicle = defineType({
           title: 'Performance Features',
           type: 'array',
           of: [{ type: 'string' }]
+        }),
+        defineField({
+          name: 'additionalOptions',
+          title: 'Additional Options',
+          type: 'array',
+          of: [{ type: 'string' }]
         })
       ]
     }),
@@ -324,8 +330,8 @@ export const vehicle = defineType({
                 title: 'Tablet (2 columns)',
                 type: 'object',
                 fields: [
-                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 2, validation: Rule => Rule.min(1) }),
-                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 2, validation: Rule => Rule.min(1) })
+                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 1, validation: Rule => Rule.min(1) }),
+                  defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 1, validation: Rule => Rule.min(1) })
                 ]
               }),
               defineField({
@@ -333,7 +339,7 @@ export const vehicle = defineType({
                 title: 'Desktop (3+ columns)',
                 type: 'object',
                 fields: [
-                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 3, validation: Rule => Rule.min(1) }),
+                  defineField({ name: 'col', type: 'number', title: 'Columns', initialValue: 2, validation: Rule => Rule.min(1) }),
                   defineField({ name: 'row', type: 'number', title: 'Rows', initialValue: 2, validation: Rule => Rule.min(1) })
                 ]
               })
