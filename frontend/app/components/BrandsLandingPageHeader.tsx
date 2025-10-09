@@ -163,7 +163,7 @@ export default function BrandsLandingPageHeader() {
             
             {/* Description */}
             <p className="text-lg text-gray-300 leading-relaxed max-w-lg font-lato">
-              Every detail, from the sophisticated audio integration to the exclusive vehicle add-ons, was meticulously brought to life by Timberline Upfitters' technical team. The result is a fleet where boundary-pushing sound meets uncompromising off-road performance, crafted to the highest standard.
+              Every detail, from the sophisticated audio integration to the exclusive vehicle add-ons, was meticulously brought to life by Timberline Upfitters&apos; technical team. The result is a fleet where boundary-pushing sound meets uncompromising off-road performance, crafted to the highest standard.
             </p>
           </div>
 

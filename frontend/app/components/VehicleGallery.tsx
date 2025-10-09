@@ -70,10 +70,9 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
     }
   }, [debouncedResize])
 
-  if (!gallery || gallery.length === 0) return null
-
   // Build a stable, filtered list of renderable images so tile indexes match lightbox indexes
   const validImages = useMemo(() => {
+    if (!gallery || gallery.length === 0) return []
     return (gallery || []).filter((img: any) => {
       try {
         return Boolean(urlForImage(img)?.url())
@@ -100,6 +99,8 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
     })
     return items
   }, [validImages, vehicleTitle])
+
+  if (!gallery || gallery.length === 0) return null
 
   return (
     <section id="vehicle-gallery-section" className="py-8 pb-16 bg-white">

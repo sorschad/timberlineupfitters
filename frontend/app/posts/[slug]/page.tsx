@@ -45,11 +45,8 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
   const ogImage = resolveOpenGraphImage(brand?.coverImage)
 
   return {
-    authors:
-      brand?.author?.firstName && brand?.author?.lastName
-        ? [{name: `${brand.author.firstName} ${brand.author.lastName}`}]
-        : [],
-    title: brand?.title,
+    authors: [],
+    title: brand?.name,
     description: brand?.excerpt,
     openGraph: {
       images: ogImage ? [ogImage, ...previousImages] : previousImages,
@@ -73,21 +70,16 @@ export default async function BrandPage(props: Props) {
             <div className="pb-6 grid gap-6 mb-6 border-b border-gray-100">
               <div className="max-w-3xl flex flex-col gap-6">
                 <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-7xl">
-                  {brand.title}
+                  {brand.name}
                 </h2>
-              </div>
-              <div className="max-w-3xl flex gap-4 items-center">
-                {brand.author && brand.author.firstName && brand.author.lastName && (
-                  <Avatar person={brand.author} date={brand.date} />
-                )}
               </div>
             </div>
             <article className="gap-6 grid max-w-4xl">
               <div className="">
                 {brand?.coverImage && <CoverImage image={brand.coverImage} priority />}
               </div>
-              {brand.content?.length && (
-                <PortableText className="max-w-2xl" value={brand.content as PortableTextBlock[]} />
+              {brand.description?.length && (
+                <PortableText className="max-w-2xl" value={brand.description as PortableTextBlock[]} />
               )}
             </article>
           </div>

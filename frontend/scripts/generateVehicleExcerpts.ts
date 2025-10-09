@@ -61,7 +61,7 @@ function generateVehicleExcerpt(vehicle: Vehicle): string {
   ) || 'Timberline'
   
   const manufacturerName = manufacturer?.name || 'Unknown'
-  const vehicleTypeFormatted = vehicleType?.charAt(0).toUpperCase() + vehicleType?.slice(1) || 'Vehicle'
+  const vehicleTypeFormatted = vehicleType ? vehicleType.charAt(0).toUpperCase() + vehicleType.slice(1) : 'Vehicle'
   
   // Build key specifications for the excerpt
   const keySpecs = []

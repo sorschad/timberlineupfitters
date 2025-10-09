@@ -54,5 +54,5 @@ export default async function VehiclesPage() {
     )
   }
 
-  return <VehiclesClient vehicles={vehicles} />
+  return <VehiclesClient vehicles={vehicles.filter(v => v.vehicleType !== null) as any} />
 }

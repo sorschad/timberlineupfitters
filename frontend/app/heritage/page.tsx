@@ -42,9 +42,9 @@ export default async function HeritagePage() {
 
       <div className="mb-12 lg:mb-24 -mt-12 lg:-mt-24">
         <HeritageHero 
-          heroBackgroundImages={page?.heroBackgroundImages} 
+          heroBackgroundImages={page?.heroBackgroundImages || undefined} 
           title={page?.heading || "Timberline Upfitters"} 
-          subtitle={page?.subheading}
+          subtitle={page?.subheading || undefined}
         />
       </div>
 

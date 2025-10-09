@@ -55,7 +55,7 @@ export default function VehicleShowcase({ group, index, manufacturer }: VehicleS
 
   // Find matching showcase image for this model
   const showcaseImage = manufacturer.showcaseImages?.find(
-    img => img.model.toLowerCase() === group.model.toLowerCase()
+    (img: any) => img.model.toLowerCase() === group.model.toLowerCase()
   )
 
   return (

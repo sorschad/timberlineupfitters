@@ -9,7 +9,6 @@ import {vehicleQuery, vehicleSlugs} from '@/sanity/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import SpecsTable from '@/app/components/SpecsTable'
 import VehicleFeaturesGallery from '@/app/components/VehicleFeaturesGallery'
-// @ts-expect-error - FeaturesAndOptionsSection module may be missing or not typed
 import FeaturesAndOptionsSection from '@/app/components/FeaturesAndOptionsSection'
 import VehiclePageClient from './VehiclePageClient'
 import {urlForImage} from '@/sanity/lib/utils'
@@ -42,16 +41,17 @@ interface Vehicle {
 }
 
 interface VehiclePageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 /**
  * Generate metadata for the page.
  */
 export async function generateMetadata({params}: VehiclePageProps): Promise<Metadata> {
-  const vehicle = await client.fetch(vehicleQuery, {slug: params.slug}) as Vehicle | null
+  const {slug} = await params
+  const vehicle = await client.fetch(vehicleQuery, {slug}) as Vehicle | null
   
   if (!vehicle) {
     return {
@@ -76,7 +76,8 @@ export async function generateStaticParams() {
 }
 
 export default async function VehiclePage({params}: VehiclePageProps) {
-  const vehicle = await client.fetch(vehicleQuery, {slug: params.slug}) as Vehicle | null
+  const {slug} = await params
+  const vehicle = await client.fetch(vehicleQuery, {slug}) as Vehicle | null
 
   if (!vehicle) {
     notFound()

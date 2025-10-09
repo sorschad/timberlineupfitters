@@ -9,12 +9,12 @@ import Avatar from '@/app/components/Avatar'
 import {createDataAttribute} from 'next-sanity'
 
 const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
-  const {_id, title, slug, excerpt, date, author} = brand
+  const {_id, name, slug, excerpt} = brand
 
   const attr = createDataAttribute({
     id: _id,
     type: 'brand',
-    path: 'title',
+    path: 'name',
   })
 
   return (
@@ -27,19 +27,9 @@ const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
         <span className="absolute inset-0 z-10" />
       </Link>
       <div>
-        <h3 className="text-2xl font-bold mb-4 leading-tight">{title}</h3>
+        <h3 className="text-2xl font-bold mb-4 leading-tight">{name}</h3>
 
         <p className="line-clamp-3 text-sm leading-6 text-gray-600 max-w-[70ch]">{excerpt}</p>
-      </div>
-      <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
-        {author && author.firstName && author.lastName && (
-          <div className="flex items-center">
-            <Avatar person={author} small={true} />
-          </div>
-        )}
-        <time className="text-gray-500 text-xs font-mono" dateTime={date}>
-          <DateComponent dateString={date} />
-        </time>
       </div>
     </article>
   )
