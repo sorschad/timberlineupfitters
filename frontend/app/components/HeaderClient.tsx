@@ -245,14 +245,14 @@ export default function HeaderClient({
             )}
             <div className="hidden lg:flex items-baseline -ml-[23px] select-none">
               <span
-                className={`${orbitron.className} select-none tracking-[0.02em] antialiased text-white text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
+                className={`${orbitron.className} select-none tracking-[0.02em] antialiased text-white text-xl sm:text-2xl font-black leading-none transition-colors duration-300 ${
                   isSticky ? '' : 'drop-shadow-[0_0_1px_rgba(0,0,0,1)]'
                 }`}
               >
                 TIMBERLINE
               </span>
               <span
-                className={`${orbitron.className} select-none tracking-[0.01em] antialiased text-xl sm:text-3xl font-black leading-none transition-colors duration-300 ${
+                className={`${orbitron.className} select-none tracking-[0.01em] antialiased text-xl sm:text-2xl font-black leading-none transition-colors duration-300 ${
                   'text-[#ff8c42]'
                 }`}
               >
