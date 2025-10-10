@@ -18,11 +18,12 @@ Set these in your Netlify dashboard under Site Settings > Environment Variables:
 1. **Connect to Netlify:**
    - Go to [netlify.com](https://netlify.com)
    - Connect your GitHub repository
-   - Select the `frontend` folder as the base directory
+   - The `netlify.toml` in the root directory will automatically configure the build
 
-2. **Build Settings:**
+2. **Build Settings (Auto-configured):**
+   - Base directory: `frontend`
    - Build command: `npm run build`
-   - Publish directory: `.next`
+   - Publish directory: `frontend/.next`
    - Node version: 18
 
 3. **Environment Variables:**
@@ -35,7 +36,8 @@ Set these in your Netlify dashboard under Site Settings > Environment Variables:
 
 ## Notes
 
-- The `netlify.toml` file is already configured for Next.js
+- The `netlify.toml` file in the root directory is configured for the monorepo structure
 - API routes will be available at your domain + `/api/*`
 - Static assets will be served from the CDN
 - Draft mode and preview functionality will work with proper environment variables
+- The Next.js plugin handles all the complex routing and optimization automatically
