@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   },
   // Removed output: 'export' to allow dynamic API routes
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -21,6 +22,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Removed output: 'export' - Netlify Next.js plugin handles deployment
 }
 
 export default nextConfig
