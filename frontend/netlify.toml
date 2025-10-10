@@ -1,3 +1,7 @@
+# Netlify Next.js Plugin Configuration
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [build]
   # Build command
   command = "npm run build"
@@ -11,18 +15,6 @@
 # Node.js version
 [build.environment]
   NODE_VERSION = "18"
-
-# Redirect rules for Next.js
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-# Handle Next.js routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
 
 # Headers for security and performance
 [[headers]]
