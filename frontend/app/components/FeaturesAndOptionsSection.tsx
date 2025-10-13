@@ -4,21 +4,15 @@ import React, { useState } from 'react'
 
 interface Props {
   features?: {
-    exteriorFeatures?: string[]
-    interiorFeatures?: string[]
-    safetyFeatures?: string[]
-    technologyFeatures?: string[]
-    performanceFeatures?: string[]
+    baseFeatures?: string[]
+    additionalOptions?: string[]
   } | null
 }
 
 const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
   const [open, setOpen] = useState<Record<string, boolean>>({
-    exteriorFeatures: true,
-    interiorFeatures: false,
-    safetyFeatures: false,
-    technologyFeatures: false,
-    performanceFeatures: false,
+    baseFeatures: true,
+    additionalOptions: false,
   })
 
   const toggleCategory = (key: keyof NonNullable<Props['features']>) => {
@@ -31,11 +25,8 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
   }
 
   const categories = [
-    { key: 'exteriorFeatures' as const, label: 'EXTERIOR FEATURES', items: features.exteriorFeatures || [] },
-    { key: 'interiorFeatures' as const, label: 'INTERIOR FEATURES', items: features.interiorFeatures || [] },
-    { key: 'safetyFeatures' as const, label: 'SAFETY FEATURES', items: features.safetyFeatures || [] },
-    { key: 'technologyFeatures' as const, label: 'TECHNOLOGY FEATURES', items: features.technologyFeatures || [] },
-    { key: 'performanceFeatures' as const, label: 'PERFORMANCE FEATURES', items: features.performanceFeatures || [] },
+    { key: 'baseFeatures' as const, label: 'BASE FEATURES', items: features.baseFeatures || [] },
+    { key: 'additionalOptions' as const, label: 'ADDITIONAL OPTIONS', items: features.additionalOptions || [] },
   ]
 
   // Check if any categories have items

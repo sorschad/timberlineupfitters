@@ -155,6 +155,8 @@ export type Vehicle = {
     safetyFeatures?: Array<string>
     technologyFeatures?: Array<string>
     performanceFeatures?: Array<string>
+    baseFeatures?: Array<string>
+    additionalOptions?: Array<string>
   }
   coverImage?: {
     asset?: {
@@ -984,7 +986,7 @@ export type SettingsQueryResult = {
   } | null
 } | null
 // Variable: homepageSettingsQuery
-// Query: *[_type == "homepageSettings"][0]{  heroSlides[]{    title,    subtitle,    image,  }}
+// Query: *[_type == "homepageSettings"][0]{  heroSlides[]{\n    title,\n    subtitle,\n    image,\n  }\n}
 export type HomepageSettingsQueryResult = {
   heroSlides: Array<{
     title: string | null
