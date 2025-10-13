@@ -1,0 +1,476 @@
+[
+  {
+    "_createdAt": "2025-09-22T18:31:39Z",
+    "_id": "75290cd7-56b3-4304-9d6d-e713a9785e96",
+    "_rev": "pRlcpvz6Xc5z2Mc0MGI6M8",
+    "_system": {
+      "base": {
+        "id": "75290cd7-56b3-4304-9d6d-e713a9785e96",
+        "rev": "OI7fv4Ewn1q07huVxnmes1"
+      }
+    },
+    "_type": "brand",
+    "_updatedAt": "2025-10-09T15:48:02Z",
+    "accentColor": "53a5d1",
+    "coverImage": {
+      "_type": "image",
+      "alt": "two jeep wranglers are parked on top of a hill at sunset .",
+      "asset": {
+        "_ref": "image-2d66d8050437728de4ac6cd714e6f96a683812e3-1920x993-jpg",
+        "_type": "reference"
+      }
+    },
+    "description": [
+      {
+        "_key": "4e6dbf090c12",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "cb4902a8fc91",
+            "_type": "span",
+            "marks": [],
+            "text": "Alpine's acoustic mastery and Rebel Off Road's legendary off-road engineering have joined forces, giving rise to an unparalleled series of custom Jeep® vehicles. To bring these visionary builds to life, they entrusted the skilled artisans at Timberline Upfitters to execute the premium installation and intricate customization."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "1845e709568a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "eb9a38fe6fb6",
+            "_type": "span",
+            "marks": [],
+            "text": "Every detail, from the sophisticated audio integration to the exclusive vehicle add-ons, was meticulously brought to life by Timberline Upfitters' technical team. The result is a fleet where boundary-pushing sound meets uncompromising off-road performance, crafted to the highest standard."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "3e2ba390d958",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "2bef20e32c08",
+            "_type": "span",
+            "marks": [],
+            "text": "These landmark builds are not merely for display; they are available for acquisition. This is a rare opportunity to own a vehicle born from a collaboration of industry leaders."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "Alpine & Rebel Off Road’s visionary builds, brought to life by Timberline Upfitters' expert installation, redefine adventure and audio. Experience the fusion.",
+    "launchDate": "2025-09-22T18:31:32.266Z",
+    "logo": {
+      "_type": "image",
+      "alt": "Alpine Audio Logo",
+      "asset": {
+        "_ref": "image-6ee49431936ec3dee1dcef5d8ec39e388e195633-500x500-webp",
+        "_type": "reference"
+      }
+    },
+    "manufacturers": [
+      {
+        "_key": "fb6cce6beb91",
+        "_ref": "manufacturer-jeep",
+        "_type": "reference"
+      }
+    ],
+    "name": "Alpine",
+    "primaryColor": "212121",
+    "primaryLogo": {
+      "_type": "image",
+      "alt": "the word milan is written in blue on a black background .",
+      "asset": {
+        "_ref": "image-35c5964d75296bda36e3436b9c08180e9f0acdfe-365x205-webp",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0.3747443109179238,
+        "left": 0,
+        "right": 0,
+        "top": 0.22992781713355828
+      },
+      "height": 140,
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.25918349953123665,
+        "width": 1,
+        "x": 0.5,
+        "y": 0.49566393931645786
+      }
+    },
+    "secondaryColor": "105798",
+    "slogan": "The Alpine Touch",
+    "slug": {
+      "_type": "slug",
+      "current": "alpine"
+    },
+    "website": "https://www.alpine-usa.com/"
+  },
+  {
+    "_createdAt": "2025-09-22T20:07:50Z",
+    "_id": "9e7ae94e-23e5-4109-b15b-54af0535a684",
+    "_rev": "5v8OuqFn5O4X8PYE5uMBc0",
+    "_system": {
+      "base": {
+        "id": "9e7ae94e-23e5-4109-b15b-54af0535a684",
+        "rev": "7MAYpyO4GR94MtR0VLeJMZ"
+      }
+    },
+    "_type": "brand",
+    "_updatedAt": "2025-10-10T21:09:28Z",
+    "coverImage": {
+      "_type": "image",
+      "alt": "a white ram truck is parked in a rocky area built by TimberlineUpfitters",
+      "asset": {
+        "_ref": "image-0f4ce3524a12134683b4c9e43a789a3f0f526a3f-2000x1545-png",
+        "_type": "reference"
+      }
+    },
+    "description": [
+      {
+        "_key": "ed78a7d9c4b5",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "9c680c320eaf",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "Timberline Upfitters — Built for the Trail Ahead"
+          }
+        ],
+        "markDefs": [],
+        "style": "h4"
+      },
+      {
+        "_key": "e6574290a07f",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "619c2b11e88a",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "cbfb753264c6",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "cf4af4967625",
+            "_type": "span",
+            "marks": [],
+            "text": "Timberline Upfitters is a new vehicle upfitter brand dedicated to off-road enthusiasts who want adventure-ready vehicles built with precision, performance, and style. Every Timberline build starts with a foundation designed to maximize off-road capability, while offering customers the freedom to choose how far they want to take their build."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "f530ec7a93c7",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "79fc8b274a17",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "acd8b8457dc8",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d0f0dcccde0a",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "Trailhead"
+          },
+          {
+            "_key": "c13d4baf5661",
+            "_type": "span",
+            "marks": [],
+            "text": " and "
+          },
+          {
+            "_key": "3e26ef154dce",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "Overlook"
+          },
+          {
+            "_key": "f6ef65e7f350",
+            "_type": "span",
+            "marks": [],
+            "text": " are Timberline’s "
+          },
+          {
+            "_key": "44b6627651e2",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "build-your-own"
+          },
+          {
+            "_key": "f3f106bb2e36",
+            "_type": "span",
+            "marks": [],
+            "text": " packages — the same base platform offered at different ride heights. Customers simply choose their preferred height, and Timberline matches the ideal tire size for peak performance. From there, buyers can personalize their rig by adding recommended accessories and features to create a setup that fits their unique style and needs."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "1bfeae2ac549",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "5c4cd60b40b5",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "9a6ec5790d3c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "350231f3aec0",
+            "_type": "span",
+            "marks": [],
+            "text": "For those who prefer a fully curated build, "
+          },
+          {
+            "_key": "d9b67d320aa9",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "Waypoint"
+          },
+          {
+            "_key": "427c9efed751",
+            "_type": "span",
+            "marks": [],
+            "text": " and "
+          },
+          {
+            "_key": "51f1e9d10e68",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "NorthTrail"
+          },
+          {
+            "_key": "0f3587813e7f",
+            "_type": "span",
+            "marks": [],
+            "text": " packages deliver complete, ready-to-roll configurations crafted entirely by Timberline Upfitters. These fixed builds use the same proven foundations as Trailhead or Overlook (depending on vehicle model), but come exactly as designed — no modifications or substitutions."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "Timberline Upfitters — Adventure Ready Off-road Builds builds for every explorer.\n\nTrailhead & Overlook — pick your ride height, we match the tires, then add your favorite accessories.\nWaypoint & NorthTrail — pre-curated, turn-key builds with no changes, crafted by Timberline.\n\nYour ride. Your adventure. Built to perform.",
+    "launchDate": "2025-09-22T20:01:42.321Z",
+    "manufacturers": [
+      {
+        "_key": "e5adc7c99a8a",
+        "_ref": "manufacturer-ford",
+        "_type": "reference"
+      },
+      {
+        "_key": "f5a6653eafb7",
+        "_ref": "manufacturer-jeep",
+        "_type": "reference"
+      }
+    ],
+    "name": "Timberline",
+    "primaryColor": "fa8c43",
+    "primaryLogo": {
+      "_type": "image",
+      "alt": "timberline upfitters logo (black and white )",
+      "asset": {
+        "_ref": "image-f5f91887e702e64a075f1842d8c6a391a59a1c55-900x600-png",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0.34363547259865335,
+        "left": 0.2619179522145515,
+        "right": 0.2551457427767836,
+        "top": 0.3981398619278958
+      },
+      "height": 130,
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.2502024205233102,
+        "width": 0.3374137049347993,
+        "x": 0.5297540413079918,
+        "y": 0.5312633171396915
+      }
+    },
+    "secondaryColor": "241e16",
+    "slogan": "Where Timberline Ends, Adventure Begins",
+    "slug": {
+      "_type": "slug",
+      "current": "timberline"
+    }
+  },
+  {
+    "_createdAt": "2025-09-22T20:01:45Z",
+    "_id": "d47152c4-7407-4432-ba38-9b51cada25ad",
+    "_rev": "pRlcpvz6Xc5z2Mc0MGI78O",
+    "_system": {
+      "base": {
+        "id": "d47152c4-7407-4432-ba38-9b51cada25ad",
+        "rev": "pRlcpvz6Xc5z2Mc0LTe6HU"
+      }
+    },
+    "_type": "brand",
+    "_updatedAt": "2025-10-09T15:48:03Z",
+    "accentColor": "651d26",
+    "coverImage": {
+      "_type": "image",
+      "alt": "TSPORT F-150 close up of the side of a truck parked in a parking lot",
+      "asset": {
+        "_ref": "image-86931dc013495e4656f156ad2493d901eb876297-2560x1536-webp",
+        "_type": "reference"
+      }
+    },
+    "description": [
+      {
+        "_key": "0a96992999d7",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "b08bd1301efc",
+            "_type": "span",
+            "marks": [],
+            "text": "ThorSport Racing, the longest-tenured team in the NASCAR Truck Series, is excited to introduce TSPORT, the ultimate off-road package for truck enthusiasts. Partnering with Southern Off-Road Specialists, the TSPORT line of trucks is Built Ford Tough. Focusing on the F-150 and SuperDuty platforms, we’ve crafted custom trucks tailored to the needs of off-road lovers—from 6” suspension lift kits and BFGoodrich tires to digital-fit floor liners and center console storage vaults. "
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "c30f62d4d407",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8c5228773f54",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "1d1c14aa63c5",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "36ec2c1686e6",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "These vehicles are designed to take on any adventure and are now available straight from the dealership!"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "Partnering with Southern Off-Road Specialists, the TSPORT line of trucks is Built Ford Tough. Focusing on the F-150 and SuperDuty platforms, we’ve crafted custom trucks tailored to the needs of off-road lovers—from 6” suspension lift kits and BFGoodrich tires to digital-fit floor liners and center console storage vaults. These vehicles are designed to take on any adventure and are now available straight from the dealership!",
+    "launchDate": "2025-09-22T20:01:42.321Z",
+    "logo": {
+      "_type": "image",
+      "alt": "TSport Logo ",
+      "asset": {
+        "_ref": "image-debb9f587e2906f534994468e377a827a02d13d7-200x48-png",
+        "_type": "reference"
+      }
+    },
+    "manufacturers": [
+      {
+        "_key": "5cf8e9b2df67",
+        "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+        "_type": "reference"
+      }
+    ],
+    "name": "TSport",
+    "primaryColor": "D22127",
+    "primaryLogo": {
+      "_type": "image",
+      "alt": "TSportTruck.com - ThorSport Racing ",
+      "asset": {
+        "_ref": "image-b4d179dbe3d020d92f3c20e8dba808712bb9ed79-500x183-png",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0
+      },
+      "height": 187,
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 1,
+        "width": 1,
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "secondaryColor": "777777",
+    "secondaryLogo": {
+      "_type": "image",
+      "alt": "TSport Emblem",
+      "asset": {
+        "_ref": "image-66fa68693d29fefa0b972da917c6b9a991d4eb37-300x300-png",
+        "_type": "reference"
+      }
+    },
+    "slogan": "Championship Winning Performance Engineered for Your Truck",
+    "slug": {
+      "_type": "slug",
+      "current": "tsport"
+    },
+    "website": "https://tsporttruck.com/"
+  }
+]
