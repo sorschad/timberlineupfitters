@@ -91,8 +91,6 @@ export default async function VehiclePage({params}: VehiclePageProps) {
       {/* Features & Options Section */}
       <FeaturesAndOptionsSection features={vehicle.features} />
       
-      {/* Features Gallery Section */}
-      <VehicleFeaturesGallery vehicle={vehicle} />
     </div>
   )
 }

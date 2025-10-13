@@ -1,20 +1,24 @@
-# Netlify Next.js Plugin Configuration
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
+# Netlify Configuration for Monorepo
 [build]
+  # Base directory for the Next.js app
+  base = "frontend"
+  
   # Build command
   command = "npm run build"
   
   # Directory to publish (Next.js output)
-  publish = ".next"
+  publish = "frontend/.next"
   
   # Functions directory for API routes
-  functions = ".next/server"
+  functions = "frontend/.next/server"
 
 # Node.js version
 [build.environment]
   NODE_VERSION = "18"
+
+# Netlify Next.js Plugin Configuration
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 # Headers for security and performance
 [[headers]]
