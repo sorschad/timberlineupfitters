@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
+import { IMAGE_SIZES } from '@/sanity/lib/imageUtils'
 
 interface LazyImageProps {
   src: string
@@ -17,6 +18,8 @@ interface LazyImageProps {
   onBatchLoad?: (batchIndex: number) => void
   onClick?: () => void
   style?: React.CSSProperties
+  sizes?: string
+  priority?: boolean
 }
 
 export default function LazyImage({
@@ -32,7 +35,9 @@ export default function LazyImage({
   onClick,
   batchIndex = 0,
   onBatchLoad,
-  style
+  style,
+  sizes,
+  priority = false
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isInView, setIsInView] = useState(false)
@@ -76,6 +81,9 @@ export default function LazyImage({
     onLoad?.()
   }
 
+  // Use provided sizes or default based on layout
+  const imageSizes = sizes || (fill ? IMAGE_SIZES.gallery : IMAGE_SIZES.content)
+
   return (
     <div 
       ref={imgRef}
@@ -92,6 +100,8 @@ export default function LazyImage({
               src={src}
               alt={alt}
               fill
+              sizes={imageSizes}
+              priority={priority}
               className={`object-cover hover:scale-105 transition-transform duration-500 ${className}`}
               onLoad={handleLoad}
             />
@@ -101,6 +111,8 @@ export default function LazyImage({
               alt={alt}
               width={width}
               height={height}
+              sizes={imageSizes}
+              priority={priority}
               className={`hover:scale-105 transition-transform duration-500 ${className}`}
               onLoad={handleLoad}
             />

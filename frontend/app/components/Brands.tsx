@@ -8,6 +8,7 @@ import DateComponent from '@/app/components/Date'
 import OnBoarding from '@/app/components/Onboarding'
 import {createDataAttribute} from 'next-sanity'
 import {urlForImage} from '@/sanity/lib/utils'
+import { IMAGE_SIZES } from '@/sanity/lib/imageUtils'
 
 const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
   const {_id, name, slug, excerpt, launchDate, features} = brand
@@ -155,7 +156,7 @@ export const HomepageBrands = async () => {
                       alt={brand?.coverImage?.alt || brand.name}
                       fill
                       className="object-cover transition-transform duration-300 "
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes={IMAGE_SIZES.card}
                     />
                   )}
                   <div className="absolute inset-0 bg-amber-900/30" />
@@ -172,6 +173,7 @@ export const HomepageBrands = async () => {
                             alt={brand.primaryLogo.alt || `${brand.name} logo`}
                             width={600}
                             height={300}
+                            sizes={IMAGE_SIZES.logo}
                             className="w-auto h-auto max-w-full max-h-[80px] object-contain z-10"
                           />
                         </div>
