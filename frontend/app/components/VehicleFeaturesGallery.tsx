@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
+import { IMAGE_SIZES } from '@/sanity/lib/imageUtils'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
@@ -108,6 +109,7 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
                     src={urlForImage(mainImage)!.width(1200).height(800).fit('crop').url()}
                     alt={`${vehicle.title} ${activeView} view`}
                     fill
+                    sizes={IMAGE_SIZES.twoColumn}
                     className="object-cover"
                   />
                   {/* Interactive Hotspots */}

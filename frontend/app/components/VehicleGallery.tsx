@@ -3,6 +3,7 @@
 import { useMemo, useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
+import { IMAGE_SIZES } from '@/sanity/lib/imageUtils'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 
@@ -267,6 +268,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
                   src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
                   alt={image.alt || `${vehicleTitle} Gallery Image ${idx + 1}`}
                   fill
+                  sizes={IMAGE_SIZES.gallery}
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 {image.caption && (

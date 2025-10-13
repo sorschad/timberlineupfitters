@@ -986,7 +986,7 @@ export type SettingsQueryResult = {
   } | null
 } | null
 // Variable: homepageSettingsQuery
-// Query: *[_type == "homepageSettings"][0]{  heroSlides[]{\n    title,\n    subtitle,\n    image,\n  }\n}
+// Query: *[_type == "homepageSettings"][0]{  heroSlides[]{    title,    subtitle,    image,  }}
 export type HomepageSettingsQueryResult = {
   heroSlides: Array<{
     title: string | null
