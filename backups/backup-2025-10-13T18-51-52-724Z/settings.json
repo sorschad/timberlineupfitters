@@ -1,0 +1,62 @@
+[
+  {
+    "_createdAt": "2025-09-19T17:57:05Z",
+    "_id": "siteSettings",
+    "_rev": "5v8OuqFn5O4X8PYE5f4hqU",
+    "_system": {
+      "base": {
+        "id": "siteSettings",
+        "rev": "acbM26hXTlXtanWSsFGlv9"
+      }
+    },
+    "_type": "settings",
+    "_updatedAt": "2025-10-09T15:48:05Z",
+    "appLogo": {
+      "_type": "image",
+      "alt": "Timberline Upfitters - Builds for any Adventure",
+      "asset": {
+        "_ref": "image-aafe8e75724f67991ad2ee9df3979d38780e3d7a-375x375-png",
+        "_type": "reference"
+      }
+    },
+    "description": [
+      {
+        "_key": "780cbad022b6",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1f2f95ff0141",
+            "_type": "span",
+            "marks": [],
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea!"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "ogImage": {
+      "_type": "image",
+      "alt": "a logo for timberline upfitters with a mountain and trees",
+      "asset": {
+        "_ref": "image-6c838f9090f896ae28c036c3e0ea793d9d33c57c-411x236-png",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0,
+        "left": 0.24571043594468842,
+        "right": 0.2566507132868047,
+        "top": 0
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 1,
+        "width": 0.49763885076850684,
+        "x": 0.49452986132894183,
+        "y": 0.5
+      }
+    },
+    "title": "Timberline Upfitters"
+  }
+]

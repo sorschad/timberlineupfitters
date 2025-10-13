@@ -8,6 +8,7 @@ import 'yet-another-react-lightbox/styles.css'
 
 interface VehicleGalleryProps {
   gallery: any[]
+  originalGallery?: any[] // Add original gallery for empty state detection
   vehicleTitle: string
   activeFilter?: string | null
   onClearFilter?: () => void
@@ -20,7 +21,7 @@ interface VehicleGalleryProps {
   onFilterChange?: (tag: string | null) => void
 }
 
-export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, onClearFilter, filterCards, onFilterChange }: VehicleGalleryProps) {
+export default function VehicleGallery({ gallery, originalGallery, vehicleTitle, activeFilter, onClearFilter, filterCards, onFilterChange }: VehicleGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [gridCols, setGridCols] = useState(4)
@@ -100,12 +101,18 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
     return items
   }, [validImages, vehicleTitle])
 
-  if (!gallery || gallery.length === 0) return null
+  // Check if we have any gallery images at all (use original gallery if available, otherwise use current gallery)
+  const sourceGallery = originalGallery || gallery
+  const hasAnyGalleryImages = sourceGallery && sourceGallery.length > 0
+
+
+  // If there are no gallery images at all, don't render the section
+  if (!hasAnyGalleryImages) return null
 
   return (
     <section id="vehicle-gallery-section" className="py-8 pb-16 bg-white">
       <div className="container mx-auto px-4">
-        {/* Filter Cards Section - Sticky on scroll */}
+        {/* Filter Cards Section - Always show if filterCards exist */}
         {filterCards && filterCards.length > 0 && (
           <div className="top-4 z-10 mb-8">
             <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
@@ -152,15 +159,17 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
         )}
 
         
-        <div 
-          className={`grid gap-6 auto-rows-[200px] grid-flow-dense transition-all duration-300 ease-in-out ${
-            isResizing ? 'opacity-75' : 'opacity-100'
-          }`}
-          style={{
-            gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))`
-          }}
-        >
-          {validImages.map((image: any, idx: number) => {
+        {/* Gallery Grid or Empty State */}
+        {validImages.length > 0 ? (
+          <div 
+            className={`grid gap-6 auto-rows-[200px] grid-flow-dense transition-all duration-300 ease-in-out ${
+              isResizing ? 'opacity-75' : 'opacity-100'
+            }`}
+            style={{
+              gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))`
+            }}
+          >
+            {validImages.map((image: any, idx: number) => {
             // Get grid span from Sanity data or use defaults
             const getGridSpan = (image: any, currentGridCols: number) => {
               const gridSpan = image?.gridSpan
@@ -271,7 +280,66 @@ export default function VehicleGallery({ gallery, vehicleTitle, activeFilter, on
             )
             return lastBlock
           })}
-        </div>
+          </div>
+        ) : (
+          /* Empty State - Show when no images match the current filter */
+          <div className="flex flex-col items-center justify-center py-16 px-4">
+            <div className="text-center max-w-md mx-auto">
+              {/* Icon */}
+              <div className="mb-6">
+                <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center">
+                  <svg 
+                    className="w-8 h-8 text-gray-400" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={1.5} 
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" 
+                    />
+                  </svg>
+                </div>
+              </div>
+              
+              {/* Message */}
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                No images found
+              </h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                {activeFilter 
+                  ? `No images found for the "${activeFilter}" filter. Please try another filter or check back later.`
+                  : "No images found for the selected filter. Please try another filter or check back later."
+                }
+              </p>
+              
+              {/* Action Button */}
+              {activeFilter && (
+                <button
+                  onClick={() => onClearFilter?.()}
+                  className="inline-flex items-center px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors duration-200 font-medium"
+                >
+                  <svg 
+                    className="w-4 h-4 mr-2" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M6 18L18 6M6 6l12 12" 
+                    />
+                  </svg>
+                  Clear Filter
+                </button>
+              )}
+            </div>
+          </div>
+        )}
         
         {/* No skeleton grid; all images render immediately */}
         {/* Lightbox for gallery images */}
