@@ -303,7 +303,7 @@ export default function HeaderClient({
               {/* Dealer Portal Button - Hidden on mobile, visible on tablet+ */}
               <Link
                 className="hidden sm:flex items-center bg-brown/90 hover:bg-[#1a130e] py-2 px-4 sm:py-3 sm:px-6 text-white text-xs uppercase tracking-wide transition-colors duration-200 rounded-full"
-                href="https://github.com/sanity-io/sanity-template-nextjs-clean"
+                href="https://sorsga.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
