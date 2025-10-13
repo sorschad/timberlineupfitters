@@ -230,6 +230,12 @@ export const vehicle = defineType({
           of: [{ type: 'string' }]
         }),
         defineField({
+          name: 'baseFeatures',
+          title: 'Base Features',
+          type: 'array',
+          of: [{ type: 'string' }]
+        }),
+        defineField({
           name: 'additionalOptions',
           title: 'Additional Options',
           type: 'array',
