@@ -339,6 +339,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
       {/* Gallery Section - Now with Filtering */}
       <VehicleGallery 
         gallery={filteredGallery || []} 
+        originalGallery={vehicle.gallery || []}
         vehicleTitle={vehicle.title}
         activeFilter={activeFilter}
         onClearFilter={() => setActiveFilter(null)}
