@@ -91,7 +91,19 @@ export default function HomepageVehiclesClient({ vehicles, brands }: HomepageVeh
   }
 
   return (
-    <section id="vehicles-section" className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black py-20 lg:py-32 relative overflow-hidden">
+    <section id="vehicles-section" className="w-full bg-black py-20 lg:py-32 relative overflow-hidden">
+      {/* Topographic Map Background Overlay */}
+      <div className="absolute inset-0 w-full h-full">
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/images/topographic-map.svg)',
+            opacity: 0.3
+          }}
+        />
+        <div className="absolute inset-0 bg-black opacity-70"></div>
+      </div>
+      
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-[#ff6a00]/10 to-[#5a3e2b]/10 rounded-full blur-3xl animate-float-bounce"></div>
