@@ -177,11 +177,11 @@ export default function HomepageVehiclesClient({ vehicles, brands }: HomepageVeh
                     >
                       <div className="">
                          {/* Right Section - Vehicle Image */}
-                         <div className="relative h-[280px] sm:h-[220px]">
+                         <div className="relative h-[170px] sm:h-[220px]">
                           {/* Inventory Status Badge */}
                           <InventoryStatusBadge availability={vehicle.inventory?.availability} />
                           
-                          <div className="h-[280px] sm:h-[220px] overflow-hidden group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                          <div className="h-[170px] sm:h-[220px] overflow-hidden group-hover:border-[#ff8c42]/30 transition-all duration-300">
                             {vehicle?.coverImage?.asset?.url ? (
                               <img 
                                 src={vehicle.coverImage.asset.url} 
