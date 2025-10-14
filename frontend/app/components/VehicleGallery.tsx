@@ -84,23 +84,53 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
     })
   }, [gallery])
 
+  // Group images by caption for automatic organization
+  const groupedImages = useMemo(() => {
+    if (!validImages || validImages.length === 0) return []
+    
+    // Group images by caption
+    const groups = validImages.reduce((acc: any, image: any, index: number) => {
+      const caption = image?.caption || 'General'
+      
+      if (!acc[caption]) {
+        acc[caption] = []
+      }
+      acc[caption].push({ ...image, originalIndex: index })
+      
+      return acc
+    }, {})
+    
+    // Convert to array format for rendering, sorted alphabetically by caption
+    return Object.entries(groups)
+      .map(([caption, images]) => ({
+        caption,
+        images: images as any[]
+      }))
+      .sort((a, b) => a.caption.localeCompare(b.caption))
+  }, [validImages])
+
   // No lazy loading; render all images immediately
 
   const slides = useMemo(() => {
     const items: Array<{ src: string; description?: string }> = []
-    ;(validImages || []).forEach((image: any) => {
-      try {
-        const builder = urlForImage(image)
-        if (!builder) return
-        const src = builder.width(2000).height(1334).fit('max').url()
-        if (!src) return
-        items.push({ src, description: image?.caption || `${vehicleTitle}` })
-      } catch {
-        // skip invalid images
-      }
+    groupedImages.forEach(group => {
+      group.images.forEach((image: any) => {
+        try {
+          const builder = urlForImage(image)
+          if (!builder) return
+          const src = builder.width(2000).height(1334).fit('max').url()
+          if (!src) return
+          items.push({ 
+            src, 
+            description: image?.caption || `${vehicleTitle} - ${group.caption}` 
+          })
+        } catch {
+          // skip invalid images
+        }
+      })
     })
     return items
-  }, [validImages, vehicleTitle])
+  }, [groupedImages, vehicleTitle])
 
   // Check if we have any gallery images at all (use original gallery if available, otherwise use current gallery)
   const sourceGallery = originalGallery || gallery
@@ -160,17 +190,36 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
         )}
 
         
-        {/* Gallery Grid or Empty State */}
-        {validImages.length > 0 ? (
-          <div 
-            className={`grid gap-6 auto-rows-[200px] grid-flow-dense transition-all duration-300 ease-in-out ${
-              isResizing ? 'opacity-75' : 'opacity-100'
-            }`}
-            style={{
-              gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))`
-            }}
-          >
-            {validImages.map((image: any, idx: number) => {
+        {/* Gallery Grid with Grouping or Empty State */}
+        {groupedImages.length > 0 ? (
+          <div className="space-y-12">
+            {groupedImages.map((group, groupIndex) => (
+              <div key={group.caption} className="gallery-group">
+                {/* Section Header */}
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {group.caption}
+                  </h3>
+                  <div className="w-12 h-0.5 bg-orange-500"></div>
+                </div>
+                
+                {/* Group Grid */}
+                <div 
+                  className={`grid gap-6 auto-rows-[200px] grid-flow-dense transition-all duration-300 ease-in-out ${
+                    isResizing ? 'opacity-75' : 'opacity-100'
+                  }`}
+                  style={{
+                    gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))`
+                  }}
+                >
+                  {group.images.map((image: any, idx: number) => {
+                    // Calculate global index for lightbox across all groups
+                    let globalIndex = 0
+                    for (let i = 0; i < groupIndex; i++) {
+                      globalIndex += groupedImages[i].images.length
+                    }
+                    globalIndex += idx
+                    
             // Get grid span from Sanity data or use defaults
             const getGridSpan = (image: any, currentGridCols: number) => {
               const gridSpan = image?.gridSpan
@@ -207,82 +256,84 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
               return { col: span.col || 1, row: span.row || 1 }
             }
             
-            const gridSpan = getGridSpan(image, gridCols)
-            const isLast = idx === (validImages?.length || 0) - 1
-            const imageUrl = urlForImage(image)?.url()
-            
-            if (!imageUrl) {
-              return null
-            }
-            
-            // Enhanced responsive grid span calculation
-            const getFilteredGridSpan = () => {
-              if (!activeFilter) {
-                // Respect the custom grid span from CMS data
-                return {
-                  gridColumn: `span ${Math.min(gridSpan.col, gridCols)}`,
-                  gridRow: `span ${gridSpan.row}`
-                }
-              }
-              
-              // When filtering, make images larger to fill space based on current grid columns
-              const totalImages = validImages.length
-              const responsiveCols = Math.min(gridCols, 4) // Cap at 4 for better layout
-              
-              if (totalImages <= 2) {
-                // For 1-2 images, make them span full width
-                return {
-                  gridColumn: '1 / -1',
-                  gridRow: 'span 2'
-                }
-              } else if (totalImages <= 4) {
-                // For 3-4 images, make them span responsive width
-                const spanCols = Math.max(2, Math.floor(responsiveCols / 2))
-                return {
-                  gridColumn: `span ${Math.min(spanCols, gridCols)}`,
-                  gridRow: 'span 2'
-                }
-              } else {
-                // For 5+ images, use responsive spans
-                const enhancedCols = Math.min(gridCols, gridSpan.col + 1)
-                return {
-                  gridColumn: `span ${Math.min(enhancedCols, gridCols)}`,
-                  gridRow: `span ${gridSpan.row + 1}`
-                }
-              }
-            }
-            
-            const filteredGridStyle = getFilteredGridSpan()
-            
-            // Render all images immediately with smooth transitions
-            const lastBlock = (
-              <div 
-                key={idx} 
-                className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white border border-gray-100" 
-                onClick={() => { setLightboxIndex(idx); setLightboxOpen(true) }}
-                style={{
-                  ...filteredGridStyle,
-                  transition: 'grid-column 0.3s ease-in-out, grid-row 0.3s ease-in-out, transform 0.3s ease-in-out'
-                }}
-              >
-                <Image
-                  src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
-                  alt={image.alt || `${vehicleTitle} Gallery Image ${idx + 1}`}
-                  fill
-                  sizes={IMAGE_SIZES.gallery}
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                {image.caption && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent text-white p-4">
-                    <p className="text-sm font-medium leading-relaxed">{image.caption}</p>
-                  </div>
-                )}
-                {/* Subtle hover overlay with professional styling */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-transparent to-white/5 group-hover:from-black/10 group-hover:via-black/5 group-hover:to-white/10 transition-all duration-500 ease-out" />
+                    const gridSpan = getGridSpan(image, gridCols)
+                    const isLast = idx === (group.images?.length || 0) - 1
+                    const imageUrl = urlForImage(image)?.url()
+                    
+                    if (!imageUrl) {
+                      return null
+                    }
+                    
+                    // Enhanced responsive grid span calculation
+                    const getFilteredGridSpan = () => {
+                      if (!activeFilter) {
+                        // Respect the custom grid span from CMS data
+                        return {
+                          gridColumn: `span ${Math.min(gridSpan.col, gridCols)}`,
+                          gridRow: `span ${gridSpan.row}`
+                        }
+                      }
+                      
+                      // When filtering, make images larger to fill space based on current grid columns
+                      const totalImages = validImages.length
+                      const responsiveCols = Math.min(gridCols, 4) // Cap at 4 for better layout
+                      
+                      if (totalImages <= 2) {
+                        // For 1-2 images, make them span full width
+                        return {
+                          gridColumn: '1 / -1',
+                          gridRow: 'span 2'
+                        }
+                      } else if (totalImages <= 4) {
+                        // For 3-4 images, make them span responsive width
+                        const spanCols = Math.max(2, Math.floor(responsiveCols / 2))
+                        return {
+                          gridColumn: `span ${Math.min(spanCols, gridCols)}`,
+                          gridRow: 'span 2'
+                        }
+                      } else {
+                        // For 5+ images, use responsive spans
+                        const enhancedCols = Math.min(gridCols, gridSpan.col + 1)
+                        return {
+                          gridColumn: `span ${Math.min(enhancedCols, gridCols)}`,
+                          gridRow: `span ${gridSpan.row + 1}`
+                        }
+                      }
+                    }
+                    
+                    const filteredGridStyle = getFilteredGridSpan()
+                    
+                    // Render all images immediately with smooth transitions
+                    return (
+                      <div 
+                        key={`${groupIndex}-${idx}`} 
+                        className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white border border-gray-100" 
+                        onClick={() => { setLightboxIndex(globalIndex); setLightboxOpen(true) }}
+                        style={{
+                          ...filteredGridStyle,
+                          transition: 'grid-column 0.3s ease-in-out, grid-row 0.3s ease-in-out, transform 0.3s ease-in-out'
+                        }}
+                      >
+                        <Image
+                          src={urlForImage(image)!.width(1200).height(800).fit('crop').url()}
+                          alt={image.alt || `${vehicleTitle} Gallery Image ${globalIndex + 1}`}
+                          fill
+                          sizes={IMAGE_SIZES.gallery}
+                          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        />
+                        {image.caption && (
+                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent text-white p-4">
+                            <p className="text-sm font-medium leading-relaxed">{image.caption}</p>
+                          </div>
+                        )}
+                        {/* Subtle hover overlay with professional styling */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-transparent to-white/5 group-hover:from-black/10 group-hover:via-black/5 group-hover:to-white/10 transition-all duration-500 ease-out" />
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
-            )
-            return lastBlock
-          })}
+            ))}
           </div>
         ) : (
           /* Empty State - Show when no images match the current filter */
