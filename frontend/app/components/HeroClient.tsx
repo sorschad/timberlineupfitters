@@ -132,9 +132,10 @@ export default function HeroClient({ slides }: HeroClientProps) {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-5xl mx-auto text-center text-white pt-32 sm:pt-24">
-                  <h1 className={`${orbitron.className} uppercase antialiased text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-4 sm:mb-6 leading-[0.9] tracking-[0.08em]`}>
-                    {slide.title}
-                  </h1>
+                  <h1 
+                    className={`${orbitron.className} uppercase antialiased text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-4 sm:mb-6 leading-[0.9] tracking-[0.08em]`}
+                    dangerouslySetInnerHTML={{ __html: slide.title }}
+                  />
                   <p className={`${lato.className} antialiased text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal mb-8 sm:mb-12 max-w-4xl mx-auto leading-[1.4] tracking-[0.01em]`}>
                     {slide.subtitle}
                   </p>
