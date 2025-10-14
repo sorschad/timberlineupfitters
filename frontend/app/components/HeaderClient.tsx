@@ -71,6 +71,7 @@ export default function HeaderClient({
     slug: { current: string }
     slogan?: string
     logo?: any
+    sidebarMenuSortOrder?: number
     manufacturers?: Array<{
       _id: string
       name: string
@@ -85,6 +86,7 @@ export default function HeaderClient({
   const [activeBrand, setActiveBrand] = useState<string | null>(null)
   const [isLoadingVehicles, setIsLoadingVehicles] = useState(false)
   const [selectedManufacturers, setSelectedManufacturers] = useState<string[]>([])
+  const [isMobile, setIsMobile] = useState(false)
 
   const filteredVehicles = useMemo(() => {
     if (!activeBrand) return timberlineVehicles || []
@@ -125,18 +127,18 @@ export default function HeaderClient({
     })
   }, [timberlineVehicles, activeBrand, brands, selectedManufacturers])
 
-  const groupedByManufacturer = useMemo(() => {
-    const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string; sidebarSortOrder?: number; coverImage?: { asset?: { _id: string; url: string } }; manufacturer?: { _id: string; name: string; logo?: { asset?: { _id: string; url: string } } } }>> = {}
+  const groupedByModel = useMemo(() => {
+    const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string; modelYear?: number; sidebarSortOrder?: number; coverImage?: { asset?: { _id: string; url: string } }; manufacturer?: { _id: string; name: string; logo?: { asset?: { _id: string; url: string } } } }>> = {}
     filteredVehicles.forEach((v: any) => {
-      const name = v?.manufacturer?.name || 'Other'
-      if (!groups[name]) groups[name] = []
-      groups[name].push(v)
+      const modelName = v?.model || 'Other'
+      if (!groups[modelName]) groups[modelName] = []
+      groups[modelName].push(v)
     })
 
-    const sortedManufacturerNames = Object.keys(groups).sort((a, b) => a.localeCompare(b))
-    return sortedManufacturerNames.map((name) => ({
-      name,
-      vehicles: groups[name].sort((a, b) => {
+    const sortedModelNames = Object.keys(groups).sort((a, b) => a.localeCompare(b))
+    return sortedModelNames.map((modelName) => ({
+      name: modelName,
+      vehicles: groups[modelName].sort((a, b) => {
         // First sort by sidebarSortOrder (lower numbers first)
         const sortOrderA = a.sidebarSortOrder ?? 999
         const sortOrderB = b.sidebarSortOrder ?? 999
@@ -153,9 +155,21 @@ export default function HeaderClient({
     const onScroll = () => {
       setIsSticky(window.scrollY > 10)
     }
+    
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640) // sm breakpoint
+    }
+    
     onScroll()
+    checkMobile()
+    
     window.addEventListener('scroll', onScroll, {passive: true})
-    return () => window.removeEventListener('scroll', onScroll)
+    window.addEventListener('resize', checkMobile)
+    
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', checkMobile)
+    }
   }, [])
 
   useEffect(() => {
@@ -330,7 +344,182 @@ export default function HeaderClient({
         ${isMegaOpen ? 'translate-x-0' : '-translate-x-full'}`}
         aria-hidden={!isMegaOpen}
       >
-        <div className="flex flex-col sm:grid sm:grid-cols-[1.6fr_2.4fr] md:grid-cols-[1.7fr_2.3fr] lg:grid-cols-[1.8fr_2.2fr] h-full border border-white/30 shadow-2xl">
+        {isMobile ? (
+          // Mobile Layout
+          <div className="flex flex-col h-full bg-black/25 backdrop-blur-2xl text-white">
+            {/* Mobile Header */}
+            <div className="h-16 px-4 flex items-center justify-between border-b border-white/20 bg-gradient-to-r from-black/30 to-black/10">
+              <div>
+                <div className="uppercase text-white/80 text-xs tracking-[0.15em] mt-1 font-medium">TIMBERLINE UPFITTERS</div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsMegaOpen(false)}
+                className="w-8 h-8 grid place-items-center rounded-full text-[#ff8c42] hover:bg-[#ff8c42]/20 transition-all duration-200 hover:scale-110"
+                aria-label="Close menu"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile Content */}
+            <div className="flex-1 overflow-y-auto">
+              {/* Top Level Navigation */}
+              <div className="px-4 py-4 border-b border-white/20">
+                <div className="space-y-2">
+                  <Link
+                    href="/brands"
+                    onClick={() => setIsMegaOpen(false)}
+                    className="block w-full text-left px-4 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors duration-200"
+                  >
+                    <div className="text-white font-semibold text-sm uppercase tracking-wide">Brands</div>
+                    <div className="text-white/70 text-xs mt-1">Explore our vehicle brands</div>
+                  </Link>
+                  
+                  <Link
+                    href="/heritage"
+                    onClick={() => setIsMegaOpen(false)}
+                    className="block w-full text-left px-4 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors duration-200"
+                  >
+                    <div className="text-white font-semibold text-sm uppercase tracking-wide">Heritage</div>
+                    <div className="text-white/70 text-xs mt-1">Our story and legacy</div>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Brand Selection */}
+              <div className="px-4 py-4 border-b border-white/20">
+                <div className={`${orbitron.className} uppercase tracking-[0.2em] text-[#ff8c42] text-sm font-bold mb-3`}>BRANDS</div>
+                <div className="grid grid-cols-1 gap-2">
+                  {brands?.sort((a, b) => {
+                    const aOrder = a.sidebarMenuSortOrder ?? 999
+                    const bOrder = b.sidebarMenuSortOrder ?? 999
+                    if (aOrder !== bOrder) return aOrder - bOrder
+                    return a.name.localeCompare(b.name)
+                  }).map((brand) => (
+                    <button
+                      key={brand._id}
+                      onClick={() => {
+                        setActiveBrand(brand.name)
+                        // Set up manufacturer associations for mobile
+                        if (brand.manufacturers && brand.manufacturers.length > 0) {
+                          setSelectedManufacturers(brand.manufacturers.map(m => m._id))
+                        } else {
+                          setSelectedManufacturers([])
+                        }
+                      }}
+                      className={`w-full text-left px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer ${
+                        activeBrand === brand.name
+                          ? 'bg-[#ff8c42]/20 border border-[#ff8c42]/50 text-[#ff8c42]'
+                          : 'bg-white/5 hover:bg-white/10 text-white border border-transparent'
+                      }`}
+                    >
+                      <div className="text-sm font-medium uppercase font-bold">{brand.name}</div>
+                      {brand.slogan && (
+                        <div className="text-xs opacity-70 mt-1">{brand.slogan}</div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Vehicles Section */}
+              {activeBrand && (
+                <div className="px-4 py-4">
+                  <div className={`${orbitron.className} uppercase tracking-[0.2em] text-[#ff8c42] text-sm font-bold mb-3`}>
+                    {activeBrand.toUpperCase()} VEHICLES
+                  </div>
+                  
+                  <div className="space-y-2">
+                    {groupedByModel.length > 0 ? (
+                      groupedByModel.map((group) => (
+                        <div key={group.name} className="space-y-1">
+                          <div className="text-white/80 text-xs font-medium uppercase tracking-wide px-2">
+                            {group.name}
+                          </div>
+                          <div className="space-y-1">
+                            {group.vehicles.map((v) => (
+                            <Link
+                              key={v._id}
+                              href={`/vehicles/${(v as any).slug?.current}`}
+                              onClick={() => setIsMegaOpen(false)}
+                              className="block bg-white/8 hover:bg-white/12 rounded-lg border border-white/15 transition-all duration-200"
+                            >
+                              <div className="flex items-center gap-3 p-3">
+                                {/* Compact Vehicle Image */}
+                                <div className="w-12 h-12 rounded-lg overflow-hidden bg-white/10 flex-shrink-0">
+                                  {(() => {
+                                    // Try to get optimized image URL first
+                                    let imageUrl = null
+                                    if (v.coverImage?.asset?.url) {
+                                      const optimizedUrl = urlForImage(v.coverImage)?.width(48).height(48).fit('crop').quality(80).format('webp').url()
+                                      imageUrl = optimizedUrl
+                                      // Fallback to direct asset URL if optimized URL fails
+                                      if (!imageUrl) {
+                                        imageUrl = v.coverImage.asset.url
+                                      }
+                                      // Debug logging (remove in production)
+                                      if (process.env.NODE_ENV === 'development') {
+                                        console.log('Mobile image URL:', { optimizedUrl, fallbackUrl: v.coverImage.asset.url, finalUrl: imageUrl })
+                                      }
+                                    }
+                                    
+                                    return imageUrl ? (
+                                      <img
+                                        src={imageUrl}
+                                        alt={v.title}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                        onError={(e) => {
+                                          e.currentTarget.style.display = 'none'
+                                          e.currentTarget.nextElementSibling?.classList.remove('hidden')
+                                        }}
+                                      />
+                                    ) : null
+                                  })()}
+                                  <div className={`w-full h-full bg-white/20 flex items-center justify-center ${(() => {
+                                    const hasImage = v.coverImage?.asset?.url && urlForImage(v.coverImage)?.width(48).height(48).fit('crop').quality(80).format('webp').url()
+                                    return hasImage ? 'hidden' : ''
+                                  })()}`}>
+                                    <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                  </div>
+                                </div>
+                                
+                                {/* Vehicle Info */}
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-white text-sm font-medium truncate">{v.title}</div>
+                                  <div className="text-white/60 text-xs truncate">
+                                    {v.model}
+                                  </div>
+                                </div>
+                                
+                                {/* Inventory Badge */}
+                                <CompactInventoryBadge availability={(v as any).inventory?.availability} />
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))
+                    ) : (
+                      <div className="text-center py-8">
+                        <div className="text-white/60 text-sm">No vehicles found for {activeBrand}</div>
+                        <div className="text-white/40 text-xs mt-2">Try selecting a different brand</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          // Desktop Layout (existing)
+          <div className="flex flex-col sm:grid sm:grid-cols-[1.6fr_2.4fr] md:grid-cols-[1.7fr_2.3fr] lg:grid-cols-[1.8fr_2.2fr] h-full border border-white/30 shadow-2xl">
           {/* Left Section: Brands */}
           <div className="bg-black/25 backdrop-blur-2xl text-white border-r-0 sm:border-r border-white/20 flex-shrink-0">
             {/* Header */}
@@ -354,21 +543,15 @@ export default function HeaderClient({
             {/* Brand Cards */}
             <div className="flex sm:flex-col gap-0.5 sm:gap-auto p-4 sm:p-6 space-y-3 max-h-[50vh] sm:max-h-none overflow-y-auto">
               {brands?.sort((a, b) => {
-                // Define explicit order: Timberline, TSport, Alpine
-                const order = ['Timberline', 'TSport', 'Alpine']
-                const aIndex = order.indexOf(a.name)
-                const bIndex = order.indexOf(b.name)
+                // First sort by sidebarMenuSortOrder (ascending), then by name
+                const aOrder = a.sidebarMenuSortOrder ?? 999
+                const bOrder = b.sidebarMenuSortOrder ?? 999
                 
-                // If both brands are in the order array, sort by their position
-                if (aIndex !== -1 && bIndex !== -1) {
-                  return aIndex - bIndex
+                if (aOrder !== bOrder) {
+                  return aOrder - bOrder
                 }
                 
-                // If only one brand is in the order array, prioritize it
-                if (aIndex !== -1) return -1
-                if (bIndex !== -1) return 1
-                
-                // If neither brand is in the order array, sort alphabetically
+                // If sort orders are the same, sort alphabetically by name
                 return a.name.localeCompare(b.name)
               }).map((brand) => (
                 <div 
@@ -514,7 +697,7 @@ export default function HeaderClient({
                 </div>
               ) : (
                 <div className="space-y-1">
-                  {groupedByManufacturer.map((group) => (
+                  {groupedByModel.map((group) => (
                     <div key={group.name}>
                       <div className="space-y-1.5">
                         {group.vehicles.map((v) => (
@@ -582,6 +765,7 @@ export default function HeaderClient({
             </div>
           </div>
         </div>
+        )}
       </div>
 
       {/* Search Modal */}

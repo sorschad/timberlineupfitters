@@ -65,6 +65,7 @@ const brandFieldsWithSlogan = /* groq */ `
   logo,
   features,
   slogan,
+  sidebarMenuSortOrder,
   "launchDate": coalesce(launchDate, _updatedAt),
   "manufacturers": manufacturers[]->{
     _id,
@@ -366,7 +367,7 @@ export const vehicleSlugs = defineQuery(`
 
 // Brands query for sidebar mega menu with slogans
 export const brandsWithSloganQuery = defineQuery(`
-  *[_type == "brand" && defined(slug.current)] | order(name asc) {
+  *[_type == "brand" && defined(slug.current)] | order(sidebarMenuSortOrder asc, name asc) {
     ${brandFieldsWithSlogan}
   }
 `)

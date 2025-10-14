@@ -240,6 +240,14 @@ export const brand = defineType({
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
     }),
+    defineField({
+      name: 'sidebarMenuSortOrder',
+      title: 'Sidebar Menu Sort Order',
+      type: 'number',
+      description: 'Controls the order of brands in the sidebar mega menu. Lower numbers appear higher in the list.',
+      validation: (rule) => rule.min(0).integer(),
+      initialValue: 0,
+    }),
   ],
   // List preview configuration. https://www.sanity.io/docs/previews-list-views
   preview: {
