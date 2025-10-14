@@ -30,7 +30,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-[var(--color-gray-100)]">Get in Touch</h3>
             <ul className="mt-4 space-y-3 text-[var(--color-gray-300)]">
               <li><a className="hover:text-[var(--color-white)] transition-colors" href="tel:18882503012">1-800-250-3012</a></li>
-              <li><a className="hover:text-[var(--color-white)] transition-colors" href="mailto:sales@timberlineupfitters.com">sales@timberlineupfitters.com</a></li>
+              <li><a className="hover:text-[var(--color-white)] transition-colors" href="mailto:randy@timberlineupfitters.com">randy@timberlineupfitters.com</a></li>
               <li><span>Mon-Fri 8AM-6PM EST</span></li>
             </ul>
           </div>
