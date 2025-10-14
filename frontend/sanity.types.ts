@@ -1896,7 +1896,7 @@ export type VehicleSlugsResult = Array<{
   slug: string
 }>
 // Variable: brandsWithSloganQuery
-// Query: *[_type == "brand" && defined(slug.current)] | order(name asc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  sectionImage,  logo,  features,  slogan,  "launchDate": coalesce(launchDate, _updatedAt),  "manufacturers": manufacturers[]->{    _id,    name,    "slug": slug.current,    logo  },  }
+// Query: *[_type == "brand" && defined(slug.current)] | order(sidebarMenuSortOrder asc, name asc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "name": coalesce(name, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  sectionImage,  logo,  features,  slogan,  sidebarMenuSortOrder,  "launchDate": coalesce(launchDate, _updatedAt),  "manufacturers": manufacturers[]->{    _id,    name,    "slug": slug.current,    logo  },  }
 export type BrandsWithSloganQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
@@ -1932,6 +1932,7 @@ export type BrandsWithSloganQueryResult = Array<{
   logo: null
   features: Array<string> | null
   slogan: string | null
+  sidebarMenuSortOrder: null
   launchDate: string
   manufacturers: Array<{
     _id: string
@@ -1991,7 +1992,7 @@ declare module '@sanity/client' {
     '\n  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    sidebarSortOrder,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    coverImage{\n      asset->{\n        _id,\n        url\n      }\n    },\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': TimberlineVehiclesQueryResult
     '\n  *[_type == "vehicle" && slug.current == $slug][0] {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    vehicleDetailsPageHeaderBackgroundImage,\n    headerVehicleImage,\n    gallery,\n    videoTour,\n    specifications,\n    features,\n    customizationOptions,\n    inventory,\n    description,\n    tags,\n    seo\n  }\n': VehicleQueryResult
     '\n  *[_type == "vehicle" && defined(slug.current)]\n  {"slug": slug.current}\n': VehicleSlugsResult
-    '\n  *[_type == "brand" && defined(slug.current)] | order(name asc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  sectionImage,\n  logo,\n  features,\n  slogan,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': BrandsWithSloganQueryResult
+    '\n  *[_type == "brand" && defined(slug.current)] | order(sidebarMenuSortOrder asc, name asc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  sectionImage,\n  logo,\n  features,\n  slogan,\n  sidebarMenuSortOrder,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': BrandsWithSloganQueryResult
     '\n  *[_type == "vehicle" && references($brandId) && defined(slug.current)] | order(modelYear desc, title asc) [0...6] {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    coverImage{\n      asset->{\n        _id,\n        url\n      }\n    }\n  }\n': VehiclesByBrandQueryResult
   }
 }

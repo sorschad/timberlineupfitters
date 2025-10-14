@@ -71,6 +71,7 @@ export default function HeaderClient({
     slug: { current: string }
     slogan?: string
     logo?: any
+    sidebarMenuSortOrder?: number
     manufacturers?: Array<{
       _id: string
       name: string
@@ -354,21 +355,15 @@ export default function HeaderClient({
             {/* Brand Cards */}
             <div className="flex sm:flex-col gap-0.5 sm:gap-auto p-4 sm:p-6 space-y-3 max-h-[50vh] sm:max-h-none overflow-y-auto">
               {brands?.sort((a, b) => {
-                // Define explicit order: Timberline, TSport, Alpine
-                const order = ['Timberline', 'TSport', 'Alpine']
-                const aIndex = order.indexOf(a.name)
-                const bIndex = order.indexOf(b.name)
+                // First sort by sidebarMenuSortOrder (ascending), then by name
+                const aOrder = a.sidebarMenuSortOrder ?? 999
+                const bOrder = b.sidebarMenuSortOrder ?? 999
                 
-                // If both brands are in the order array, sort by their position
-                if (aIndex !== -1 && bIndex !== -1) {
-                  return aIndex - bIndex
+                if (aOrder !== bOrder) {
+                  return aOrder - bOrder
                 }
                 
-                // If only one brand is in the order array, prioritize it
-                if (aIndex !== -1) return -1
-                if (bIndex !== -1) return 1
-                
-                // If neither brand is in the order array, sort alphabetically
+                // If sort orders are the same, sort alphabetically by name
                 return a.name.localeCompare(b.name)
               }).map((brand) => (
                 <div 
