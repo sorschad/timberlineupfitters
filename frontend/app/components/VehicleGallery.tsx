@@ -90,7 +90,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
     
     // Group images by caption
     const groups = validImages.reduce((acc: any, image: any, index: number) => {
-      const caption = image?.caption || 'General'
+      const caption = image?.caption || null
       
       if (!acc[caption]) {
         acc[caption] = []
@@ -106,7 +106,13 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
         caption,
         images: images as any[]
       }))
-      .sort((a, b) => a.caption.localeCompare(b.caption))
+      .sort((a, b) => {
+        // Handle null captions - put them at the end
+        if (a.caption === null && b.caption === null) return 0
+        if (a.caption === null) return 1
+        if (b.caption === null) return -1
+        return a.caption.localeCompare(b.caption)
+      })
   }, [validImages])
 
   // No lazy loading; render all images immediately
@@ -195,13 +201,15 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
           <div className="space-y-12">
             {groupedImages.map((group, groupIndex) => (
               <div key={group.caption} className="gallery-group">
-                {/* Section Header */}
-                <div className="mb-6 mr-0 ml-0 sm:mr-1.5 sm:ml-1.5">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {group.caption}
-                  </h3>
-                  <div className="min-w-12 w-full h-0.5 bg-orange-500/35"></div>
-                </div>
+                {/* Section Header - Only show if caption exists and is not null */}
+                {group.caption && group.caption !== 'null' && (
+                  <div className="mb-6 mr-0 ml-0 sm:mr-1.5 sm:ml-1.5">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {group.caption}
+                    </h3>
+                    <div className="min-w-12 w-full h-0.5 bg-orange-500/35"></div>
+                  </div>
+                )}
                 
                 {/* Group Grid */}
                 <div 
