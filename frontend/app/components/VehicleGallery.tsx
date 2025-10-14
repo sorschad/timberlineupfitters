@@ -218,9 +218,10 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
             // Enhanced responsive grid span calculation
             const getFilteredGridSpan = () => {
               if (!activeFilter) {
+                // Respect the custom grid span from CMS data
                 return {
-                  gridColumn: isLast ? '1 / -1' : `span ${Math.min(gridSpan.col, gridCols)}`,
-                  gridRow: isLast ? 'span 2' : `span ${gridSpan.row}`
+                  gridColumn: `span ${Math.min(gridSpan.col, gridCols)}`,
+                  gridRow: `span ${gridSpan.row}`
                 }
               }
               
