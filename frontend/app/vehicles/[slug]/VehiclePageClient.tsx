@@ -72,7 +72,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
     },
     {
       id: 'audio',
-      title: 'Sound System',
+      title: 'Sound',
       description: 'high-fidelity audio',
       tag: 'audio'
     },
@@ -338,10 +338,10 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
               <div className="container mx-auto px-4">
                 <div className="text-center">
                   <h2 className="uppercase text-3xl md:text-4xl lg:text-4xl font-bold text-gray-900/80 mb-4 animate-fade-in">
-                    Features to Love
+                    Features we Love
                   </h2>
                   <p className="text-base md:text-lg text-gray-600/70 max-w-3xl mx-auto animate-fade-in-delay">
-                    feature, addons and customization options offered on this vehicle
+                    features and options available on this vehicle
                   </p>
                 </div>
               </div>

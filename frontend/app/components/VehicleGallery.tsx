@@ -196,11 +196,11 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
             {groupedImages.map((group, groupIndex) => (
               <div key={group.caption} className="gallery-group">
                 {/* Section Header */}
-                <div className="mb-6">
+                <div className="mb-6 mr-0 ml-0 sm:mr-1.5 sm:ml-1.5">
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {group.caption}
                   </h3>
-                  <div className="w-12 h-0.5 bg-orange-500"></div>
+                  <div className="min-w-12 w-full h-0.5 bg-orange-500/35"></div>
                 </div>
                 
                 {/* Group Grid */}
