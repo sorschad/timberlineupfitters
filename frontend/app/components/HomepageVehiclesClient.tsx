@@ -126,7 +126,7 @@ export default function HomepageVehiclesClient({ vehicles, brands }: HomepageVeh
                 </span>
                 <button
                   onClick={clearFilter}
-                  className="text-[#ff6a00] hover:text-white transition-colors duration-200"
+                  className="text-[#ff6a00] hover:text-white transition-colors duration-200 cursor-pointer"
                   title="Show all vehicles"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,14 +155,16 @@ export default function HomepageVehiclesClient({ vehicles, brands }: HomepageVeh
           ) : (
             Object.entries(vehiclesByManufacturer).map(([manufacturerName, manufacturerVehicles]: [string, any], manufacturerIndex: number) => (
               <div key={manufacturerName} className="space-y-8 animate-fade-in-up" style={{animationDelay: `${manufacturerIndex * 0.2}s`}}>
-                {/* Manufacturer Header */}
-                <div className="flex flex-row items-center justify-center gap-4 mb-8">
-                  <div className="w-full h-0.5 bg-white/20"></div>
-                  <div className="flex items-center gap-3">
-                    <h3 className="text-2xl lg:text-3xl font-bold text-white uppercase">{manufacturerName}</h3>
+                {/* Manufacturer Header - Hidden when brand filter is applied */}
+                {!isFiltered && (
+                  <div className="flex flex-row items-center justify-center gap-4 mb-8">
+                    <div className="w-full h-0.5 bg-white/20"></div>
+                    <div className="flex items-center gap-3">
+                      <h3 className="text-2xl lg:text-3xl font-bold text-white uppercase">{manufacturerName}</h3>
+                    </div>
+                    <div className="w-full h-0.5 bg-white/20"></div>
                   </div>
-                  <div className="w-full h-0.5 bg-white/20"></div>
-                </div>
+                )}
 
                 {/* Vehicles Grid - Compact Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
@@ -233,7 +235,7 @@ export default function HomepageVehiclesClient({ vehicles, brands }: HomepageVeh
                       href="/vehicles"
                       className="inline-flex items-center gap-2 text-[#ff6a00] hover:text-[#5a3e2b] font-semibold transition-colors duration-300"
                     >
-                      View All {manufacturerName} Vehicles
+                      View All {isFiltered ? 'Vehicles' : `${manufacturerName} Vehicles`}
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
