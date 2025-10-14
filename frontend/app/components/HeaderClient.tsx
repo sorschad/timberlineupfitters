@@ -450,20 +450,40 @@ export default function HeaderClient({
                               <div className="flex items-center gap-3 p-3">
                                 {/* Compact Vehicle Image */}
                                 <div className="w-12 h-12 rounded-lg overflow-hidden bg-white/10 flex-shrink-0">
-                                  {v.coverImage?.asset?.url ? (
-                                    <img
-                                      src={urlForImage(v.coverImage)?.width(48).height(48).fit('crop').quality(80).format('webp').url()}
-                                      alt={v.title}
-                                      className="w-full h-full object-cover"
-                                      loading="lazy"
-                                      decoding="async"
-                                      onError={(e) => {
-                                        e.currentTarget.style.display = 'none'
-                                        e.currentTarget.nextElementSibling?.classList.remove('hidden')
-                                      }}
-                                    />
-                                  ) : null}
-                                  <div className={`w-full h-full bg-white/20 flex items-center justify-center ${v.coverImage?.asset?.url ? 'hidden' : ''}`}>
+                                  {(() => {
+                                    // Try to get optimized image URL first
+                                    let imageUrl = null
+                                    if (v.coverImage?.asset?.url) {
+                                      const optimizedUrl = urlForImage(v.coverImage)?.width(48).height(48).fit('crop').quality(80).format('webp').url()
+                                      imageUrl = optimizedUrl
+                                      // Fallback to direct asset URL if optimized URL fails
+                                      if (!imageUrl) {
+                                        imageUrl = v.coverImage.asset.url
+                                      }
+                                      // Debug logging (remove in production)
+                                      if (process.env.NODE_ENV === 'development') {
+                                        console.log('Mobile image URL:', { optimizedUrl, fallbackUrl: v.coverImage.asset.url, finalUrl: imageUrl })
+                                      }
+                                    }
+                                    
+                                    return imageUrl ? (
+                                      <img
+                                        src={imageUrl}
+                                        alt={v.title}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                        onError={(e) => {
+                                          e.currentTarget.style.display = 'none'
+                                          e.currentTarget.nextElementSibling?.classList.remove('hidden')
+                                        }}
+                                      />
+                                    ) : null
+                                  })()}
+                                  <div className={`w-full h-full bg-white/20 flex items-center justify-center ${(() => {
+                                    const hasImage = v.coverImage?.asset?.url && urlForImage(v.coverImage)?.width(48).height(48).fit('crop').quality(80).format('webp').url()
+                                    return hasImage ? 'hidden' : ''
+                                  })()}`}>
                                     <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
