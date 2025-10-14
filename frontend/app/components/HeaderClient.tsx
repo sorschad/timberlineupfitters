@@ -126,18 +126,18 @@ export default function HeaderClient({
     })
   }, [timberlineVehicles, activeBrand, brands, selectedManufacturers])
 
-  const groupedByManufacturer = useMemo(() => {
+  const groupedByModel = useMemo(() => {
     const groups: Record<string, Array<{ _id: string; title: string; slug: { current: string }; vehicleType?: string; model?: string; sidebarSortOrder?: number; coverImage?: { asset?: { _id: string; url: string } }; manufacturer?: { _id: string; name: string; logo?: { asset?: { _id: string; url: string } } } }>> = {}
     filteredVehicles.forEach((v: any) => {
-      const name = v?.manufacturer?.name || 'Other'
-      if (!groups[name]) groups[name] = []
-      groups[name].push(v)
+      const modelName = v?.model || 'Other'
+      if (!groups[modelName]) groups[modelName] = []
+      groups[modelName].push(v)
     })
 
-    const sortedManufacturerNames = Object.keys(groups).sort((a, b) => a.localeCompare(b))
-    return sortedManufacturerNames.map((name) => ({
-      name,
-      vehicles: groups[name].sort((a, b) => {
+    const sortedModelNames = Object.keys(groups).sort((a, b) => a.localeCompare(b))
+    return sortedModelNames.map((modelName) => ({
+      name: modelName,
+      vehicles: groups[modelName].sort((a, b) => {
         // First sort by sidebarSortOrder (lower numbers first)
         const sortOrderA = a.sidebarSortOrder ?? 999
         const sortOrderB = b.sidebarSortOrder ?? 999
@@ -509,7 +509,7 @@ export default function HeaderClient({
                 </div>
               ) : (
                 <div className="space-y-1">
-                  {groupedByManufacturer.map((group) => (
+                  {groupedByModel.map((group) => (
                     <div key={group.name}>
                       <div className="space-y-1.5">
                         {group.vehicles.map((v) => (
