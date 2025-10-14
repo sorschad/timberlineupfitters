@@ -76,12 +76,12 @@ export default async function BrandsPage() {
   }) || []
 
   const getBrandSectionClass = (brand: any, index: number) => {
-    // Use secondary color if available, otherwise fall back to default pattern
-    if (brand.secondaryColor) {
+    // Use background color if available, otherwise fall back to default pattern
+    if (brand.backgroundColor) {
       return `py-20 lg:py-32 text-white`
     }
     
-    // Fallback to original pattern if no secondary color
+    // Fallback to original pattern if no background color
     switch (index % 3) {
       case 0:
         return 'py-20 lg:py-32 bg-white'
@@ -95,10 +95,10 @@ export default async function BrandsPage() {
   }
 
   const getBrandSectionStyle = (brand: any) => {
-    if (brand.secondaryColor) {
-      return { backgroundColor: `#${brand.secondaryColor}` }
+    if (brand.backgroundColor) {
+      return { backgroundColor: `#${brand.backgroundColor}` }
     }
-    // Fallback to bg-stone with 20% opacity if no secondary color
+    // Fallback to bg-stone with 20% opacity if no background color
     return { backgroundColor: 'rgba(120, 113, 108, 0.2)' }
   }
 
@@ -286,9 +286,7 @@ export default async function BrandsPage() {
             {brand.vehicles && brand.vehicles.length > 0 && (
               <div className="mt-12">
                 <div className="text-left mb-3">
-                  <h3 className={`text-2xl font-semibold font-orbitron ${brandColors.text} mb-4`}>
-                    {brand.name} Vehicles
-                  </h3>
+                  
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -296,14 +294,14 @@ export default async function BrandsPage() {
                     <Link
                       key={vehicle._id}
                       href={`/vehicles/${(vehicle as any).slug?.current}`}
-                      className="group flex-1 bg-white/8 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/12 hover:border-white/25 hover:shadow-xl hover:shadow-black/20 transition-all duration-500 overflow-hidden max-h-[87px]"
+                      className="group flex-1 backdrop-blur-sm transition-all duration-500"
                     >
-                      <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[87px]">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[230px] sm:h-[187px]">
                         {/* Left Section - Text Content */}
                         <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                           <div>
                             {/* Vehicle Title */}
-                            <h3 className="text-white text-xs sm:text-sm font-bold font-orbitron mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                            <h3 className="text-white text-xs sm:text-md md:text-lg font-bold font-orbitron mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
                               {vehicle.title}
                             </h3>
                             
@@ -317,16 +315,16 @@ export default async function BrandsPage() {
                         </div>
                         
                         {/* Right Section - Vehicle Image */}
-                        <div className="relative h-[87px]">
+                        <div className="relative h-[180px] sm:h-[187px]">
                           {/* Inventory Status Badge */}
                           <InventoryStatusBadge availability={vehicle.inventory?.availability} />
                           
-                          <div className="h-[87px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
+                          <div className="h-[180px] sm:h-[187px] transition-all duration-300">
                             {vehicle?.coverImage?.asset?.url ? (
                               <img 
                                 src={vehicle.coverImage.asset.url} 
                                 alt={vehicle.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                               />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center">
@@ -343,7 +341,7 @@ export default async function BrandsPage() {
                           </div>
                           
                           {/* Hover Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                       </div>
                     </Link>

@@ -143,21 +143,19 @@ export default function BrandsLandingPageHeader() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 items-center relative">
           {/* Left Section - Text Content */}
-          <div className="space-y-8">
-            {/* Orange line */}
-            <div className="w-16 h-0.5 bg-[#ff8c42]"></div>
-            
-            <div className="text-[#ff8c42] text-sm uppercase tracking-widest font-semibold font-lato">
-              Brands We Work With
-            </div>
-            
+          <div className="space-y-8 mt-32">                        
             {/* Main heading */}
             <div className="space-y-2">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase leading-[0.9] font-orbitron">
-                Team Work
-              </h1>
+              {/* Orange line */}
+              <div className="w-16 h-0.5 bg-[#ff8c42]"></div>
               <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-[#ff8c42] uppercase leading-[0.9] font-orbitron">
-                Makes the Dream Work
+                BRANDS WE
+              </h1>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase leading-[0.9] font-orbitron">
+                WORK
+              </h1>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase leading-[0.9] font-orbitron">
+                WITH
               </h1>
             </div>
             

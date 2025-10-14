@@ -44,6 +44,7 @@ const brandFields = /* groq */ `
   primaryColor,
   secondaryColor,
   accentColor,
+  backgroundColor,
   features,
   "launchDate": coalesce(launchDate, _updatedAt),
   "manufacturers": manufacturers[]->{
