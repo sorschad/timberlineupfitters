@@ -3904,6 +3904,13 @@
         },
         "optional": true
       },
+      "backgroundColor": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "sectionImage": {
         "type": "objectAttribute",
         "value": {

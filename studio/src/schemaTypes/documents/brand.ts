@@ -199,6 +199,16 @@ export const brand = defineType({
       }).error('Please enter a valid hex color code (e.g., #0000ff)'),
     }),
     defineField({
+      name: 'backgroundColor',
+      title: 'Background Color',
+      type: 'string',
+      description: 'Background brand color (hex code, e.g., #0000ff)',
+      validation: (rule) => rule.regex(/^#[0-9A-Fa-f]{6}$/, {
+        name: 'hex',
+        invert: true
+      }).error('Please enter a valid hex color code (e.g., #0000ff)'),
+    }),
+    defineField({
       name: 'sectionImage',
       title: 'Section Image',
       type: 'image',

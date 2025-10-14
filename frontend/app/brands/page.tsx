@@ -76,12 +76,12 @@ export default async function BrandsPage() {
   }) || []
 
   const getBrandSectionClass = (brand: any, index: number) => {
-    // Use secondary color if available, otherwise fall back to default pattern
-    if (brand.secondaryColor) {
+    // Use background color if available, otherwise fall back to default pattern
+    if (brand.backgroundColor) {
       return `py-20 lg:py-32 text-white`
     }
     
-    // Fallback to original pattern if no secondary color
+    // Fallback to original pattern if no background color
     switch (index % 3) {
       case 0:
         return 'py-20 lg:py-32 bg-white'
@@ -95,10 +95,10 @@ export default async function BrandsPage() {
   }
 
   const getBrandSectionStyle = (brand: any) => {
-    if (brand.secondaryColor) {
-      return { backgroundColor: `#${brand.secondaryColor}` }
+    if (brand.backgroundColor) {
+      return { backgroundColor: `#${brand.backgroundColor}` }
     }
-    // Fallback to bg-stone with 20% opacity if no secondary color
+    // Fallback to bg-stone with 20% opacity if no background color
     return { backgroundColor: 'rgba(120, 113, 108, 0.2)' }
   }
 
