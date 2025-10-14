@@ -98,7 +98,7 @@ export default function HomepageVehiclesClient({ vehicles, brands }: HomepageVeh
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(/images/topographic-map.svg)',
-            opacity: 0.3
+            opacity: 0.2
           }}
         />
         <div className="absolute inset-0 bg-black opacity-70"></div>
