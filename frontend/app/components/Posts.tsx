@@ -23,7 +23,7 @@ const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
       key={_id}
       className="border border-gray-200 rounded-sm p-6 bg-gray-50 flex flex-col justify-between transition-colors hover:bg-white relative"
     >
-      <Link className="hover:text-brand underline transition-colors" href={`/brands/${slug}`}>
+      <Link className="hover:text-timberline-orange underline transition-colors" href={`/brands/${slug}`}>
         <span className="absolute inset-0 z-10" />
       </Link>
       <div>

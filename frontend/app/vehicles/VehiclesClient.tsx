@@ -186,7 +186,7 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
                         {/* Vehicle Info */}
                         <div className="p-6 flex flex-col h-full relative z-10">
                           <div className="flex-1">
-                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-brand transition-colors duration-300 drop-shadow-lg">
+                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-timberline-orange transition-colors duration-300 drop-shadow-lg">
                               {vehicle.title}
                             </h3>
                             
@@ -244,7 +244,7 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
                           {/* CTA */}
                           <div className="mt-auto">
                             <div className="flex items-center justify-between">
-                              <span className="text-white font-semibold group-hover:text-brand transition-colors duration-300">
+                              <span className="text-white font-semibold group-hover:text-timberline-orange transition-colors duration-300">
                                 View Details →
                               </span>
                             </div>

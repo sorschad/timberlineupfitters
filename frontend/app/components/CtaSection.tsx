@@ -45,7 +45,7 @@ export default function CtaSection({ manufacturer }: CtaSectionProps) {
             {manufacturer.ctaStats && manufacturer.ctaStats.length > 0 ? (
               manufacturer.ctaStats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-4xl font-bold text-brand mb-2">
+                  <div className="text-4xl font-bold text-timberline-orange mb-2">
                     {stat.value}
                   </div>
                   <div className="text-gray-300">
@@ -56,7 +56,7 @@ export default function CtaSection({ manufacturer }: CtaSectionProps) {
             ) : (
               <>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-brand mb-2">
+                  <div className="text-4xl font-bold text-timberline-orange mb-2">
                     {vehicleCount}
                   </div>
                   <div className="text-gray-300">
@@ -64,7 +64,7 @@ export default function CtaSection({ manufacturer }: CtaSectionProps) {
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-brand mb-2">
+                  <div className="text-4xl font-bold text-timberline-orange mb-2">
                     100%
                   </div>
                   <div className="text-gray-300">
@@ -72,7 +72,7 @@ export default function CtaSection({ manufacturer }: CtaSectionProps) {
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-brand mb-2">
+                  <div className="text-4xl font-bold text-timberline-orange mb-2">
                     24/7
                   </div>
                   <div className="text-gray-300">

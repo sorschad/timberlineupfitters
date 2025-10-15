@@ -27,13 +27,13 @@ const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
       key={_id}
       className="border border-gray-200 rounded-lg p-6 bg-white flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:border-brand relative group"
     >
-      <Link className="hover:text-brand transition-colors" href={`/brands#${slug}`}>
+      <Link className="hover:text-timberline-orange transition-colors" href={`/brands#${slug}`}>
         <span className="absolute inset-0 z-10" />
       </Link>
       
       <div>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors">{name}</h3>
+          <h3 className="text-2xl font-bold leading-tight group-hover:text-timberline-orange transition-colors">{name}</h3>
         </div>
 
         <p className="line-clamp-3 text-sm leading-6 text-gray-600 max-w-[70ch] mb-4">{excerpt}</p>
