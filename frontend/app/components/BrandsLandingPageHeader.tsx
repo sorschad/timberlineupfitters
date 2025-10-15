@@ -17,7 +17,7 @@ interface BrandCard {
 
 const brandCards: BrandCard[] = [
   {
-    id: 'timberline-upfitters',
+    id: 'timberline',
     name: 'Timberline',
     tagline: 'Premium off-road upfits',
     category: 'Performance & Luxury',
