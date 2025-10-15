@@ -8,9 +8,35 @@
  *
  */
 
+import React from 'react'
 import {PortableText, type PortableTextComponents, type PortableTextBlock} from 'next-sanity'
 
 import ResolvedLink from '@/app/components/ResolvedLink'
+
+// Helper function to parse HTML content and convert it to React elements
+function parseHtmlContent(content: any): React.ReactNode {
+  if (typeof content === 'string') {
+    // Check if the string contains HTML tags
+    if (content.includes('<br>') || content.includes('<br/>') || content.includes('<br />')) {
+      // Split by line breaks and render each part
+      return content.split(/(<br\s*\/?>)/gi).map((part, index) => {
+        if (part.match(/<br\s*\/?>/gi)) {
+          return <br key={index} />
+        }
+        return part
+      })
+    }
+    return content
+  }
+  
+  if (Array.isArray(content)) {
+    return content.map((item, index) => (
+      <span key={index}>{parseHtmlContent(item)}</span>
+    ))
+  }
+  
+  return content
+}
 
 export default function CustomPortableText({
   className,
@@ -74,7 +100,9 @@ export default function CustomPortableText({
         )
       },
       normal: ({children}) => (
-        <p className="font-lato">{children}</p>
+        <p className="font-lato">
+          {parseHtmlContent(children)}
+        </p>
       ),
     },
     marks: {
