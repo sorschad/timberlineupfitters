@@ -1,6 +1,9 @@
+import {settingsQuery} from '@/sanity/lib/queries'
+import {sanityFetch} from '@/sanity/lib/live'
 import Link from 'next/link'
 
-export default function Footer() {
+export default async function Footer() {
+  const {data: settings} = await sanityFetch({ query: settingsQuery })
   return (
     <footer className="relative bg-[var(--color-brown)] text-[var(--color-gray-200)]">
       <div className="absolute inset-0 bg-[url(/images/tile-grid-black.png)] opacity-10 bg-repeat bg-size-[17px]" />
@@ -29,8 +32,8 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <h3 className="text-lg font-semibold text-[var(--color-gray-100)]">Get in Touch</h3>
             <ul className="mt-4 space-y-3 text-[var(--color-gray-300)]">
-              <li><a className="hover:text-[var(--color-white)] transition-colors" href="tel:18882503012">1-800-250-3012</a></li>
-              <li><a className="hover:text-[var(--color-white)] transition-colors" href="mailto:randy@timberlineupfitters.com">randy@timberlineupfitters.com</a></li>
+              <li><a className="hover:text-[var(--color-white)] transition-colors" href={`tel:${(settings as any)?.contactPhone}`}>{(settings as any)?.contactPhone}</a></li>
+              <li><a className="hover:text-[var(--color-white)] transition-colors" href={`mailto:${(settings as any)?.contactEmail}`}>{(settings as any)?.contactEmail}</a></li>
               <li><span>Mon-Fri 8AM-6PM EST</span></li>
             </ul>
           </div>

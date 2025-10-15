@@ -152,6 +152,18 @@ export const settings = defineType({
       ],
     }),
     defineField({
+      name: 'contactEmail',
+      description: 'This field is the primary contact email used on the site.',
+      title: 'Contact Email',
+      type: 'string',
+    }),
+    defineField({
+      name: 'contactPhone',
+      description: 'This field is the primary contact phone number of the site.',
+      title: 'Contact Phone',
+      type: 'string',
+    }),
+    defineField({
       name: 'appLogo',
       title: 'Application Logo',
       type: 'image',

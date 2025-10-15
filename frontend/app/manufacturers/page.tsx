@@ -79,7 +79,7 @@ export default async function ManufacturersPage() {
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-timberline-orange transition-colors duration-300">
                     {manufacturer.name}
                   </h3>
                   
@@ -87,7 +87,7 @@ export default async function ManufacturersPage() {
                     <span className="text-sm text-gray-600">
                       {manufacturer.vehicleCount} Vehicle{manufacturer.vehicleCount !== 1 ? 's' : ''}
                     </span>
-                    <span className="text-brand font-semibold">
+                    <span className="text-timberline-orange font-semibold">
                       View Details →
                     </span>
                   </div>
@@ -114,7 +114,7 @@ export default async function ManufacturersPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+              className="bg-timberline-orange hover:bg-timberline-orange/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
             >
               Contact Us
             </Link>

@@ -39,7 +39,7 @@ const OnboardingMessage = ({message, link, type, path}: OnboardingMessageProps) 
       <div>
         {!isPresentation ? (
           <Link
-            className="inline-flex rounded-full gap-2 items-center bg-white text-brand hover:bg-brand focus:bg-brand hover:text-white focus:text-white py-3 px-6 transition-colors duration-200"
+            className="inline-flex rounded-full gap-2 items-center bg-white text-timberline-orange hover:bg-timberline-orange focus:bg-timberline-orange hover:text-white focus:text-white py-3 px-6 transition-colors duration-200"
             href={link.href}
             target="_blank"
           >
@@ -52,7 +52,7 @@ const OnboardingMessage = ({message, link, type, path}: OnboardingMessageProps) 
           </Link>
         ) : (
           <button
-            className="cursor-pointer inline-flex rounded-full gap-2 items-center bg-white text-brand hover:bg-blue focus:bg-blue py-3 px-6 transition-colors duration-200"
+            className="cursor-pointer inline-flex rounded-full gap-2 items-center bg-white text-timberline-orange hover:bg-blue focus:bg-blue py-3 px-6 transition-colors duration-200"
             data-sanity={createDataAttribute({
               id: uuid(),
               type,
@@ -74,7 +74,7 @@ const OnboardingMessage = ({message, link, type, path}: OnboardingMessageProps) 
 
 export default function Onboarding() {
   return (
-    <div className="max-w-2xl mx-auto grid grid-flow-row gap-6 py-12 text-center bg-brand text-white rounded-lg p-8">
+    <div className="max-w-2xl mx-auto grid grid-flow-row gap-6 py-12 text-center bg-timberline-orange text-white rounded-lg p-8">
       <svg
         className="mx-auto h-10 w-10 text-gray-400"
         aria-hidden="true"
@@ -118,7 +118,7 @@ export default function Onboarding() {
 
 export function PageOnboarding() {
   return (
-    <div className="max-w-2xl mx-auto grid grid-flow-row gap-6 py-12 text-center bg-brand text-white rounded-lg p-8">
+    <div className="max-w-2xl mx-auto grid grid-flow-row gap-6 py-12 text-center bg-timberline-orange text-white rounded-lg p-8">
       <svg
         className="mx-auto h-10 w-10 text-gray-400"
         aria-hidden="true"

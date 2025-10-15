@@ -17,7 +17,7 @@ interface BrandCard {
 
 const brandCards: BrandCard[] = [
   {
-    id: 'timberline-upfitters',
+    id: 'timberline',
     name: 'Timberline',
     tagline: 'Premium off-road upfits',
     category: 'Performance & Luxury',
@@ -146,8 +146,6 @@ export default function BrandsLandingPageHeader() {
           <div className="space-y-8 mt-32">                        
             {/* Main heading */}
             <div className="space-y-2">
-              {/* Orange line */}
-              <div className="w-16 h-0.5 bg-[#ff8c42]"></div>
               <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-[#ff8c42] uppercase leading-[0.9] font-orbitron">
                 BRANDS WE
               </h1>
@@ -247,43 +245,11 @@ export default function BrandsLandingPageHeader() {
                       <h3 className="text-white text-4xl font-bold uppercase mb-4">
                         {card.name}
                       </h3>
-                      <p className="text-gray-300 text-lg uppercase font-semibold">
-                        {card.tagline}
-                      </p>
                     </div>
                   </div>
                 )
               })}
-            </div>
-            
-            {/* Navigation Arrows */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-8">
-              {/* Left Arrow */}
-              <button
-                onClick={prevCard}
-                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-4 transition-all duration-500 ease-out hover:scale-110 hover:shadow-lg"
-              >
-                <ChevronLeftIcon className="w-7 h-7 text-white transition-transform duration-300 ease-out" />
-              </button>
-              
-              {/* Auto-scroll indicator */}
-              <div className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full transition-all duration-500 ease-in-out ${isAutoScrolling ? 'bg-[#ff8c42] scale-110' : 'bg-white/50 scale-100'}`}></div>
-                <span className="text-white/70 text-sm uppercase tracking-wide transition-all duration-300 ease-out">
-                  {isAutoScrolling ? 'AUTO' : 'PAUSED'}
-                </span>
-              </div>
-              
-              {/* Right Arrow */}
-              <button
-                onClick={nextCard}
-                className="bg-[#ff8c42] hover:bg-[#ff8c42]/90 rounded-full p-4 transition-all duration-500 ease-out hover:scale-110 hover:shadow-xl shadow-lg"
-              >
-                <ChevronRightIcon className="w-7 h-7 text-white transition-transform duration-300 ease-out" />
-              </button>
-            </div>
-            
-            
+            </div>            
           </div>
         </div>
       </div>

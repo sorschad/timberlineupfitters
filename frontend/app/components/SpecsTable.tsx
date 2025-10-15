@@ -103,7 +103,7 @@ export default function SpecsTable({ vehicles, manufacturer }: SpecsTableProps) 
               onClick={() => setSelectedCategory(key as SpecCategory)}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                 selectedCategory === key
-                  ? 'bg-brand text-white'
+                  ? 'bg-timberline-orange text-white'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
               }`}
             >
@@ -143,7 +143,7 @@ export default function SpecsTable({ vehicles, manufacturer }: SpecsTableProps) 
                   <tr 
                     key={spec.key}
                     className={`border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200 ${
-                      highlightedSpec === spec.key ? 'bg-brand/10' : ''
+                      highlightedSpec === spec.key ? 'bg-timberline-orange/10' : ''
                     }`}
                     onClick={() => setHighlightedSpec(highlightedSpec === spec.key ? null : spec.key)}
                   >
@@ -167,7 +167,7 @@ export default function SpecsTable({ vehicles, manufacturer }: SpecsTableProps) 
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-          <button className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
+          <button className="bg-timberline-orange hover:bg-timberline-orange/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
             Download Full Specs
           </button>
           <Link
