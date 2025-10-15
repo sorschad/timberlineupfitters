@@ -245,9 +245,6 @@ export default function BrandsLandingPageHeader() {
                       <h3 className="text-white text-4xl font-bold uppercase mb-4">
                         {card.name}
                       </h3>
-                      <p className="text-gray-300 text-lg uppercase font-semibold">
-                        {card.tagline}
-                      </p>
                     </div>
                   </div>
                 )
