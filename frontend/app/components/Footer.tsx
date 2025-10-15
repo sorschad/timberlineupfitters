@@ -32,7 +32,7 @@ export default async function Footer() {
             <ul className="mt-4 space-y-3 text-[var(--color-gray-300)]">
               <li><a className="hover:text-[var(--color-white)] transition-colors" href={`tel:${(settings as any)?.contactPhone}`}>{(settings as any)?.contactPhone}</a></li>
               <li><a className="hover:text-[var(--color-white)] transition-colors" href={`mailto:${(settings as any)?.contactEmail}`}>{(settings as any)?.contactEmail}</a></li>
-              <li><span>Mon-Fri 8AM-6PM EST</span></li>
+              <li><span>Mon-Fri 8a-6p (EST)</span></li>
             </ul>
           </div>
         </div>
