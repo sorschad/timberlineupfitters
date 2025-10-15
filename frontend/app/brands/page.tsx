@@ -292,7 +292,7 @@ export default async function BrandsPage() {
                       href={`/vehicles/${(vehicle as any).slug?.current}`}
                       className="group flex-1 backdrop-blur-sm transition-all duration-500"
                     >
-                      <div className="flex flex-col sm:grid sm:grid-cols-[1fr_0.8fr] h-[230px] sm:h-[187px]">
+                      <div className="flex flex-col flex-col-reverse sm:grid sm:grid-cols-[1fr_0.8fr] h-[230px] sm:h-[187px]">
                         {/* Left Section - Text Content */}
                         <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                           <div>
@@ -318,7 +318,7 @@ export default async function BrandsPage() {
                           {/* Inventory Status Badge */}
                           <InventoryStatusBadge availability={vehicle.inventory?.availability} />
                           
-                          <div className="h-[180px] sm:h-[187px] transition-all duration-300">
+                          <div className="h-auto sm:h-[187px] transition-all duration-300">
                             {vehicle?.coverImage?.asset?.url ? (
                               <img 
                                 src={vehicle.coverImage.asset.url} 
