@@ -146,8 +146,6 @@ export default function BrandsLandingPageHeader() {
           <div className="space-y-8 mt-32">                        
             {/* Main heading */}
             <div className="space-y-2">
-              {/* Orange line */}
-              <div className="w-16 h-0.5 bg-[#ff8c42]"></div>
               <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-[#ff8c42] uppercase leading-[0.9] font-orbitron">
                 BRANDS WE
               </h1>
