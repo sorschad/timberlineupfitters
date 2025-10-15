@@ -102,65 +102,65 @@ export default async function BrandsPage() {
     return { backgroundColor: 'rgba(120, 113, 108, 0.2)' }
   }
 
-  const getBrandGradientClass = (index: number) => {
-    switch (index % 3) {
-      case 0:
-        return 'text-blue-600 animate-gradient bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent'
-      case 1:
-        return 'text-red-500 animate-gradient bg-gradient-to-r from-red-500 to-red-500 bg-clip-text text-transparent'
-      case 2:
-        return 'text-[#ff8c42] animate-gradient bg-gradient-to-r from-[#ff8c42] to-[#d0ad66] bg-clip-text text-transparent'
-      default:
-        return 'text-blue-600 animate-gradient bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent'
-    }
+  const getBrandGradientClass = (brandColors: any) => {
+    return `animate-gradient bg-gradient-to-r ${brandColors.primaryGradientFromTo} bg-clip-text text-transparent`
   }
 
-  const getBrandLineClass = (index: number) => {
-    switch (index % 3) {
-      case 0:
-        return 'w-full h-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full'
-      case 1:
-        return 'w-full h-1 bg-gradient-to-r from-red-500 to-red-500 rounded-full'
-      case 2:
-        return 'w-full h-1 bg-gradient-to-r from-[#ff8c42] to-[#d0ad66] rounded-full'
-      default:
-        return 'w-full h-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full'
-    }
+  const getBrandLineClass = (brandColors: any) => {
+    return `w-full h-1 bg-gradient-to-r ${brandColors.primaryGradientFromTo} rounded-full`
   }
 
-  const getBrandColors = (brandSlug: string) => {
-    const slug = brandSlug.toLowerCase()
-    if (slug.includes('alpine')) {
-      return {
-        primary: 'from-blue-600 to-cyan-500',
-        accent: 'bg-blue-600',
-        text: 'text-snow-white/70',
-        border: 'border-blue-200',
-        bg: 'bg-blue-50'
-      }
-    } else if (slug.includes('tsport')) {
-      return {
-        primary: 'text-red-500 to-red-500',
-        accent: 'text-red-500',
-        text: 'text-red-500',
-        border: 'border-red-200',
-        bg: 'bg-red-50'
-      }
-    } else if (slug.includes('timberline')) {
-      return {
-        primary: 'from-[#ff8c42] to-[#d0ad66]',
-        accent: 'bg-[#ff8c42]',
-        text: 'text-[#ff8c42]',
-        border: 'border-[#ff8c42]/20',
-        bg: 'bg-[#ff8c42]/5'
-      }
-    }
+  // Utility function to convert hex to RGB values
+  const hexToRgb = (hex: string) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null
+  }
+
+  // Utility function to get brand colors with fallbacks
+  const getBrandColors = (brand: any) => {
+    // Ensure colors have # prefix for proper hex format
+    const primaryColor = brand.primaryColor ? (brand.primaryColor.startsWith('#') ? brand.primaryColor : `#${brand.primaryColor}`) : '#3b82f6'
+    const secondaryColor = brand.secondaryColor ? (brand.secondaryColor.startsWith('#') ? brand.secondaryColor : `#${brand.secondaryColor}`) : '#06b6d4'
+    const accentColor = brand.accentColor ? (brand.accentColor.startsWith('#') ? brand.accentColor : `#${brand.accentColor}`) : primaryColor
+    const backgroundColor = brand.backgroundColor ? (brand.backgroundColor.startsWith('#') ? brand.backgroundColor : `#${brand.backgroundColor}`) : '#ffffff'
+
+    const primaryRgb = hexToRgb(primaryColor)
+    const secondaryRgb = hexToRgb(secondaryColor)
+    const accentRgb = hexToRgb(accentColor)
+    const backgroundRgb = hexToRgb(backgroundColor)
+
     return {
-      primary: 'from-gray-600 to-gray-500',
-      accent: 'bg-gray-600',
-      text: 'text-gray-600',
-      border: 'border-gray-200',
-      bg: 'bg-gray-50'
+      primaryColor,
+      secondaryColor,
+      accentColor,
+      backgroundColor,
+      primaryRgb,
+      secondaryRgb,
+      accentRgb,
+      backgroundRgb,
+      // CSS custom properties for dynamic styling
+      primaryGradient: `linear-gradient(to right, ${primaryColor}, ${secondaryColor})`,
+      primaryGradientFromTo: `from-[${primaryColor}] to-[${secondaryColor}]`,
+      primaryText: `text-[${primaryColor}]`,
+      secondaryText: `text-[${secondaryColor}]`,
+      accentText: `text-[${accentColor}]`,
+      primaryBorder: `border-[${primaryColor}]`,
+      secondaryBorder: `border-[${secondaryColor}]`,
+      accentBorder: `border-[${accentColor}]`,
+      primaryBg: `bg-[${primaryColor}]`,
+      secondaryBg: `bg-[${secondaryColor}]`,
+      accentBg: `bg-[${accentColor}]`,
+      // With opacity variants
+      primaryBg10: `bg-[${primaryColor}]/10`,
+      primaryBg20: `bg-[${primaryColor}]/20`,
+      primaryBorder20: `border-[${primaryColor}]/20`,
+      accentBg10: `bg-[${accentColor}]/10`,
+      accentBg20: `bg-[${accentColor}]/20`,
+      accentBorder20: `border-[${accentColor}]/20`,
     }
   }
 
@@ -171,13 +171,22 @@ export default async function BrandsPage() {
 
       {/* Dynamic Brand Sections */}
       {brandsWithVehicles?.map((brand: BrandWithSectionImage & { vehicles: any[] }, index: number) => {
-        const brandColors = getBrandColors(brand.slug)
+        const brandColors = getBrandColors(brand)
         return (
         <section 
           key={brand._id} 
           id={brand.slug} 
           className={getBrandSectionClass(brand, index)}
-          style={getBrandSectionStyle(brand)}
+          style={{
+            ...getBrandSectionStyle(brand),
+            '--brand-primary': brandColors.primaryColor,
+            '--brand-secondary': brandColors.secondaryColor,
+            '--brand-accent': brandColors.accentColor
+          } as React.CSSProperties & { 
+            '--brand-primary': string
+            '--brand-secondary': string
+            '--brand-accent': string
+          }}
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -196,12 +205,15 @@ export default async function BrandsPage() {
                       </div>
                     )}
                   </div>
-                  <div className={getBrandLineClass(index)}></div>
+                  <div className={getBrandLineClass(brandColors)}></div>
                 </div>
 
-                <div className={`text-lg leading-relaxed ${brandColors.text}`}>
+                <div 
+                  className="text-lg leading-relaxed"
+                  style={{ color: brandColors.primaryColor }}
+                >
                   {brand.description ? (
-                    <div className={brand.slug.toLowerCase().includes('timberline') ? 'text-[#ff8c42]' : ' '}>
+                    <div style={{ color: brandColors.primaryColor }}>
                       <PortableText value={brand.description as any} />
                     </div>
                   ) : (
@@ -213,21 +225,12 @@ export default async function BrandsPage() {
                     {(brand.features as string[]).slice(0, 4).map((feature: string, featureIndex: number) => (
                       <div 
                         key={featureIndex}
-                        className={`space-y-2 p-4 rounded-lg transition-colors duration-300 ${
-                          index % 3 === 0 
-                            ? 'bg-blue-50 hover:bg-blue-100' 
-                            : index % 3 === 1 
-                            ? 'bg-orange-900/20 hover:bg-orange-900/30' 
-                            : 'bg-[#ff8c42]/10 hover:bg-[#ff8c42]/20 border border-[#ff8c42]/20'
-                        }`}
+                        className={`space-y-2 p-4 rounded-lg transition-colors duration-300 ${brandColors.primaryBg10} hover:${brandColors.primaryBg20} ${brandColors.primaryBorder20} border`}
                       >
-                        <h4 className={`font-semibold font-orbitron ${
-                          index % 3 === 0 
-                            ? 'text-gray-900' 
-                            : index % 3 === 1 
-                            ? 'text-orange-400' 
-                            : 'text-[#ff8c42]'
-                        }`}>
+                        <h4 
+                          className="font-semibold font-orbitron"
+                          style={{ color: brandColors.primaryColor }}
+                        >
                           {feature}
                         </h4>
                       </div>
@@ -257,28 +260,21 @@ export default async function BrandsPage() {
                       <span className="text-gray-500">No image available</span>
                     </div>
                   )}
-                  <div className={`absolute inset-0 bg-gradient-to-t ${
-                    index % 3 === 0 
-                      ? 'from-blue-900/60 via-transparent to-transparent' 
-                      : index % 3 === 1 
-                      ? 'from-gray-900/60 via-transparent to-transparent' 
-                      : 'from-[#241e16]/80 via-transparent to-transparent'
-                  }`}></div>
+                  <div 
+                    className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
+                    style={{
+                      background: `linear-gradient(to top, ${brandColors.primaryColor}60, transparent, transparent)`
+                    }}
+                  ></div>
                 </div>
-                <div className={`absolute -bottom-6 -right-6 w-32 h-32 rounded-full opacity-20 animate-float-bounce ${
-                  index % 3 === 0 
-                    ? 'bg-blue-100' 
-                    : index % 3 === 1 
-                    ? 'bg-orange-100' 
-                    : 'bg-[#ff8c42]/20'
-                }`}></div>
-                <div className={`absolute -top-6 -left-6 w-24 h-24 rounded-full opacity-30 animate-bounce-slow ${
-                  index % 3 === 0 
-                    ? 'bg-cyan-100' 
-                    : index % 3 === 1 
-                    ? 'bg-red-100' 
-                    : 'bg-[#d0ad66]/20'
-                }`}></div>
+                <div 
+                  className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full opacity-20 animate-float-bounce"
+                  style={{ backgroundColor: `${brandColors.primaryColor}20` }}
+                ></div>
+                <div 
+                  className="absolute -top-6 -left-6 w-24 h-24 rounded-full opacity-30 animate-bounce-slow"
+                  style={{ backgroundColor: `${brandColors.secondaryColor}20` }}
+                ></div>
               </div>
             </div>
             
@@ -301,7 +297,9 @@ export default async function BrandsPage() {
                         <div className="flex flex-col justify-center gap-2 p-3 sm:p-2">
                           <div>
                             {/* Vehicle Title */}
-                            <h3 className="text-white text-xs sm:text-md md:text-lg font-bold font-orbitron mb-1 group-hover:text-[#ff8c42] transition-colors duration-300 leading-tight">
+                            <h3 
+                              className="text-white text-xs sm:text-md md:text-lg font-bold font-orbitron mb-1 transition-colors duration-300 leading-tight group-hover:[color:var(--brand-primary)]"
+                            >
                               {vehicle.title}
                             </h3>
                             
