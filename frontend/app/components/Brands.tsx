@@ -25,7 +25,7 @@ const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
     <article
       data-sanity={attr()}
       key={_id}
-      className="border border-gray-200 rounded-lg p-6 bg-white flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:border-brand relative group"
+      className="border border-gray-200 rounded-lg p-6 bg-white flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:border-timberline-orange relative group"
     >
       <Link className="hover:text-timberline-orange transition-colors" href={`/brands#${slug}`}>
         <span className="absolute inset-0 z-10" />
