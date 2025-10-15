@@ -190,16 +190,16 @@ export default async function BrandsPage() {
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className={`space-y-8 ${index % 2 === 1 ? 'order-1 lg:order-2' : 'animate-fade-in-left'}`}>
-                <div className="space-y-4">
+              <div className={`space-y-2 ${index % 2 === 1 ? 'order-1 lg:order-2' : 'animate-fade-in-left'}`}>
+                <div className="">
                   <div className="flex items-center gap-4">
                     {brand.primaryLogo?.asset?._ref && (
                       <div className="flex-shrink-0">
                         <Image
-                          src={urlForImage(brand.primaryLogo)?.width(brand.primaryLogo.width || 120).height(brand.primaryLogo.height || 120).fit('max').auto('format').url() || ''}
+                          src={urlForImage(brand.primaryLogo)?.width(brand.primaryLogo.width || 220).height(brand.primaryLogo.height || 220).fit('max').auto('format').url() || ''}
                           alt={brand.primaryLogo.alt || `${brand.name} logo`}
-                          width={brand.primaryLogo.width || 120}
-                          height={brand.primaryLogo.height || 120}
+                          width={brand.primaryLogo.width || 220}
+                          height={brand.primaryLogo.height || 220}
                           className="object-contain"
                         />
                       </div>
@@ -298,13 +298,14 @@ export default async function BrandsPage() {
                           <div>
                             {/* Vehicle Title */}
                             <h3 
-                              className="text-white text-xs sm:text-md md:text-lg font-bold font-orbitron mb-1 transition-colors duration-300 leading-tight group-hover:[color:var(--brand-primary)]"
+                              className="text-xs sm:text-md md:text-lg font-bold font-orbitron mb-1 transition-colors duration-300 leading-tight"
+                              style={{ color: brandColors.primaryColor }}
                             >
                               {vehicle.title}
                             </h3>
                             
                             {/* Vehicle Details */}
-                            <div className="text-white/60 text-xs leading-tight font-lato">
+                            <div className="text-xs leading-tight font-lato" style={{ color: `${brandColors.accentColor}70` }}>
                               {vehicle?.model && (
                                 <span className="block">{vehicle.model}</span>
                               )}
