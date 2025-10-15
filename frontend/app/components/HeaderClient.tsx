@@ -314,16 +314,6 @@ export default function HeaderClient({
 
             {/* Action Buttons */}
             <div className="flex items-center gap-2">
-              {/* Dealer Portal Button - Hidden on mobile, visible on tablet+ */}
-              <Link
-                className="hidden sm:flex items-center bg-brown/90 hover:bg-[#1a130e] py-2 px-4 sm:py-3 sm:px-6 text-white text-xs uppercase tracking-wide transition-colors duration-200 rounded-full"
-                href="https://sorsga.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="whitespace-nowrap">Dealer Portal</span>
-              </Link>
-              
               {/* Search Button */}
               <button
                 onClick={() => setIsSearchOpen(true)}
