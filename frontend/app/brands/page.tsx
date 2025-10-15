@@ -263,7 +263,7 @@ export default async function BrandsPage() {
                   <div 
                     className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
                     style={{
-                      background: `linear-gradient(to top, ${brandColors.primaryColor}60, transparent, transparent)`
+                      background: `linear-gradient(to top, ${brandColors.primaryColor}10, transparent, transparent)`
                     }}
                   ></div>
                 </div>
