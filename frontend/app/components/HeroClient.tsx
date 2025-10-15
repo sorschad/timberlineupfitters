@@ -160,7 +160,7 @@ export default function HeroClient({ slides }: HeroClientProps) {
                           />
                         </svg>
                       </span>
-                      <div className="absolute inset-0 rounded-lg bg-brand/20 animate-ping opacity-75"></div>
+                      <div className="absolute inset-0 rounded-lg bg-timberline-orange/20 animate-ping opacity-75"></div>
                     </button>
                   </div>
                 </div>

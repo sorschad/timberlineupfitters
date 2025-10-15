@@ -116,7 +116,7 @@ export default async function BrandPage(props: Props) {
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {brand.features.map((feature, index) => (
                       <li key={index} className="flex items-center text-gray-700">
-                        <span className="w-2 h-2 bg-brand rounded-full mr-3 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-timberline-orange rounded-full mr-3 flex-shrink-0"></span>
                         {feature}
                       </li>
                     ))}

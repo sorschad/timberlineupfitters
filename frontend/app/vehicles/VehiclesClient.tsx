@@ -97,7 +97,7 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
                 onClick={() => setActiveFilter(button.key as FilterType)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                   activeFilter === button.key
-                    ? 'bg-brand text-white hover:bg-brand/90'
+                    ? 'bg-timberline-orange text-white hover:bg-timberline-orange/90'
                     : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
                 }`}
               >
@@ -121,7 +121,7 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
               </p>
               <button
                 onClick={() => setActiveFilter('all')}
-                className="bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300"
+                className="bg-timberline-orange hover:bg-timberline-orange/90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300"
               >
                 Show All Vehicles
               </button>
@@ -171,7 +171,7 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
                         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/40 group-hover:from-black/10 group-hover:via-black/5 group-hover:to-black/30 transition-all duration-300" />
                         
                         {/* Year Badge */}
-                        <div className="absolute top-4 left-4 bg-brand text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                        <div className="absolute top-4 left-4 bg-timberline-orange text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
                           {vehicle.modelYear}
                         </div>
                         
@@ -272,7 +272,7 @@ export default function VehiclesClient({ vehicles }: VehiclesClientProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+              className="bg-timberline-orange hover:bg-timberline-orange/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
             >
               Contact Us
             </Link>

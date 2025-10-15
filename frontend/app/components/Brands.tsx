@@ -44,7 +44,7 @@ const Brand = ({brand}: {brand: AllBrandsQueryResult[number]}) => {
             <ul className="text-sm text-gray-600 space-y-1">
               {featuresList.slice(0, 3).map((feature: string, index: number) => (
                 <li key={index} className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-brand rounded-full mr-2"></span>
+                  <span className="w-1.5 h-1.5 bg-timberline-orange rounded-full mr-2"></span>
                   {feature}
                 </li>
               ))}

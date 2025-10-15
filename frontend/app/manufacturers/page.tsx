@@ -114,7 +114,7 @@ export default async function ManufacturersPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+              className="bg-timberline-orange hover:bg-timberline-orange/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
             >
               Contact Us
             </Link>

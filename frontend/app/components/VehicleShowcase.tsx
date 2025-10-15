@@ -91,7 +91,7 @@ export default function VehicleShowcase({ group, index, manufacturer }: VehicleS
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
               {/* Package Badge */}
               <div className="flex items-center gap-3 mb-6">
-                <span className="bg-brand text-white px-4 py-2 rounded-full text-sm font-semibold">
+                <span className="bg-timberline-orange text-white px-4 py-2 rounded-full text-sm font-semibold">
                   {packageCount} Package{packageCount > 1 ? 's' : ''}
                 </span>
                 {group.upfitter && (
@@ -126,7 +126,7 @@ export default function VehicleShowcase({ group, index, manufacturer }: VehicleS
               <ul className="space-y-3 mb-8">
                 {group.vehicles.slice(0, 4).map((vehicle, idx) => (
                   <li key={vehicle._id} className="flex items-center text-white">
-                    <div className="w-2 h-2 bg-brand rounded-full mr-3" />
+                    <div className="w-2 h-2 bg-timberline-orange rounded-full mr-3" />
                     <span className="text-lg">
                       {vehicle.package ? `${vehicle.package} Package` : 'Base Model'}
                     </span>
@@ -143,7 +143,7 @@ export default function VehicleShowcase({ group, index, manufacturer }: VehicleS
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href={`/vehicles/${primaryVehicle.slug.current}`}
-                  className="bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-full text-center font-semibold transition-all duration-300 transform hover:scale-105"
+                  className="bg-timberline-orange hover:bg-timberline-orange/90 text-white px-6 py-3 rounded-full text-center font-semibold transition-all duration-300 transform hover:scale-105"
                 >
                   View {group.model} Details
                 </Link>

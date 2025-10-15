@@ -87,7 +87,7 @@ export default function CtaSection({ manufacturer }: CtaSectionProps) {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link
               href="/contact"
-              className="bg-brand hover:bg-brand/90 text-white px-10 py-5 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="bg-timberline-orange hover:bg-timberline-orange/90 text-white px-10 py-5 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Locate a Dealer
             </Link>
@@ -147,7 +147,7 @@ export default function CtaSection({ manufacturer }: CtaSectionProps) {
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-brand/20 rounded-full blur-xl" />
+      <div className="absolute top-10 left-10 w-20 h-20 bg-timberline-orange/20 rounded-full blur-xl" />
       <div className="absolute bottom-10 right-10 w-32 h-32 bg-blue-500/20 rounded-full blur-xl" />
     </section>
   )

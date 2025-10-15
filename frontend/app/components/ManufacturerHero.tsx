@@ -85,7 +85,7 @@ export default function ManufacturerHero({ manufacturer }: ManufacturerHeroProps
               const firstSection = document.querySelector('[data-vehicle-section]')
               firstSection?.scrollIntoView({ behavior: 'smooth' })
             }}
-            className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 animate-bounce-slow"
+            className="bg-timberline-orange hover:bg-timberline-orange/90 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 animate-bounce-slow"
           >
             {manufacturer.heroCtaText || 'Explore Vehicles'}
           </button>

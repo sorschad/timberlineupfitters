@@ -103,7 +103,7 @@ export default function GallerySection({ manufacturer }: GallerySectionProps) {
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 capitalize ${
                 selectedCategory === category
-                  ? 'bg-brand text-white'
+                  ? 'bg-timberline-orange text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
@@ -138,7 +138,7 @@ export default function GallerySection({ manufacturer }: GallerySectionProps) {
                         {image.caption}
                       </h3>
                       <div className="flex items-center gap-2">
-                        <span className="bg-brand px-3 py-1 rounded-full text-sm font-medium">
+                        <span className="bg-timberline-orange px-3 py-1 rounded-full text-sm font-medium">
                           {image.category}
                         </span>
                       </div>
@@ -156,7 +156,7 @@ export default function GallerySection({ manufacturer }: GallerySectionProps) {
             Have photos of your {manufacturer.name} in action? Share them with us!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
+            <button className="bg-timberline-orange hover:bg-timberline-orange/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
               Share Your Photos
             </button>
             <button className="bg-white hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-full font-semibold transition-all duration-300 border border-gray-200">
@@ -189,7 +189,7 @@ export default function GallerySection({ manufacturer }: GallerySectionProps) {
                 {selectedImage.caption}
               </h3>
               <div className="flex items-center gap-2">
-                <span className="bg-brand text-white px-3 py-1 rounded-full text-sm font-medium">
+                <span className="bg-timberline-orange text-white px-3 py-1 rounded-full text-sm font-medium">
                   {selectedImage.category}
                 </span>
               </div>
