@@ -1,6 +1,10 @@
 import Link from 'next/link'
+import {settingsQuery} from '@/sanity/lib/queries'
+import {sanityFetch} from '@/sanity/lib/live'
 
-export default function HomepageCta() {
+export default async function HomepageCta() {
+  const {data: settings} = await sanityFetch({ query: settingsQuery })
+
   return (
     <section className="relative bg-[#2f3f24] text-white">
       <div className="absolute inset-0 bg-[url(/images/tile-1-black.png)] opacity-10 bg-[length:24px]" />
@@ -12,10 +16,8 @@ export default function HomepageCta() {
           Join our network of dealers and bring Timberline Upfitted Vehicles to your customers. Upfit experts, proven builds and a trusted warranty program
         </p>
         <div className="mt-10 flex justify-center">
-          <Link
-            href="#"
-            className="group relative inline-flex items-center gap-4 bg-gradient-to-r from-[#ff6a00] to-[#ff8c42] px-6 py-3 text-sm font-bold text-white uppercase tracking-wider shadow-xl transition-all duration-300 hover:shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#ff6a00]/30 focus-visible:ring-offset-4 focus-visible:ring-offset-[#2f3f24] transform hover:-translate-y-1 overflow-hidden animate-button-glow"
-          >
+          <a href={`tel:${(settings as any)?.contactPhone}`} className="group relative inline-flex items-center gap-4 bg-gradient-to-r from-[#ff6a00] to-[#ff8c42] px-6 py-3 text-sm font-bold text-white uppercase tracking-wider shadow-xl transition-all duration-300 hover:shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#ff6a00]/30 focus-visible:ring-offset-4 focus-visible:ring-offset-[#2f3f24] transform hover:-translate-y-1 overflow-hidden animate-button-glow">
+
             {/* Primary gradient background */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#ff6a00] to-[#ff8c42]"></div>
             
@@ -26,7 +28,7 @@ export default function HomepageCta() {
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             
             {/* Button content */}
-            <span className="relative z-10 font-bold tracking-wider">Dealer Resources</span>
+            <span className="relative z-10 font-bold tracking-wider">GET IN CONTACT</span>
             
             {/* Enhanced arrow icon with sophisticated animation */}
             <div className="relative z-10 flex items-center justify-center">
@@ -45,7 +47,7 @@ export default function HomepageCta() {
             
             {/* Subtle border glow effect */}
             <div className="absolute inset-0 border-2 border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </Link>
+          </a>
         </div>
       </div>
     </section>
