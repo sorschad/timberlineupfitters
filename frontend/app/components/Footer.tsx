@@ -22,7 +22,7 @@ export default async function Footer() {
             <h3 className="text-lg font-semibold text-[var(--color-gray-100)]">Links</h3>
             <ul className="mt-4 space-y-3 text-[var(--color-gray-300)]">
               <li><Link className="hover:text-[var(--color-white)] transition-colors" href="/heritage">Heritage</Link></li>
-              <li><a className="hover:text-[var(--color-white)] transition-colors" href="#">Vehicle Models</a></li>
+              <li><a className="hover:text-[var(--color-white)] transition-colors" href="/brands">Associated Brands</a></li>
             </ul>
           </div>
 
