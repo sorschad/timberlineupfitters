@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   },
   // Removed output: 'export' to allow dynamic API routes
   images: {
-    unoptimized: true, // Keep unoptimized for static export compatibility
+    unoptimized: false, // Enable optimization for Vercel deployment
     remotePatterns: [
       {
         protocol: 'https',
@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox; style-src 'self' 'unsafe-inline';",
   },
   // Removed output: 'export' - Netlify Next.js plugin handles deployment
 }
