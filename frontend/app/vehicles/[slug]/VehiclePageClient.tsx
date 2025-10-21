@@ -338,10 +338,10 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
               <div className="container mx-auto px-4">
                 <div className="text-center">
                   <h2 className="uppercase text-3xl md:text-4xl lg:text-4xl font-bold text-gray-900/80 mb-4 animate-fade-in">
-                    Features we Love
+                    {vehicle.title} Builds
                   </h2>
                   <p className="text-base md:text-lg text-gray-600/70 max-w-3xl mx-auto animate-fade-in-delay">
-                    features and options available on this vehicle
+                    Explore our {vehicle.title} vehicle builds. Each build showcases unique configurations designed for specific adventures and work environments.
                   </p>
                 </div>
               </div>

@@ -133,8 +133,8 @@ export default function GallerySectionByBuild({ manufacturer }: GallerySectionPr
             {manufacturer.name} Builds
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore our {manufacturer.name} vehicle builds. Each build showcases 
-            unique configurations designed for specific adventures and work environments.
+            Explore {manufacturer.name} vehicle builds. Each build highlights 
+            various features and options available on this vehicle
           </p>
         </div>
 

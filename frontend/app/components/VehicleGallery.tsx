@@ -225,15 +225,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
     return (
       <section id="vehicle-gallery-section" className="py-8 pb-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              {vehicleTitle} Builds
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Explore our {vehicleTitle} vehicle builds. Each build showcases 
-              unique configurations designed for specific adventures and work environments.
-            </p>
-          </div>
+         
 
           {/* Build Gallery Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
