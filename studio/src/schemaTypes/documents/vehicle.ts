@@ -284,6 +284,22 @@ export const vehicle = defineType({
       of: [defineArrayMember({
         type: 'image',
         options: { hotspot: true },
+        preview: {
+          select: {
+            asset: 'asset',
+            alt: 'alt',
+            caption: 'caption',
+            isBuildCoverImage: 'isBuildCoverImage'
+          },
+          prepare(selection) {
+            const { asset, alt, caption, isBuildCoverImage } = selection
+            return {
+              title: caption || alt || 'Gallery Image',
+              subtitle: isBuildCoverImage ? 'Cover Image' : 'Gallery Image',
+              media: asset
+            }
+          }
+        },
         fields: [
           defineField({
             name: 'isBuildCoverImage',
