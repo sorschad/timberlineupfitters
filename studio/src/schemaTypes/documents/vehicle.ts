@@ -285,6 +285,13 @@ export const vehicle = defineType({
         type: 'image',
         options: { hotspot: true },
         fields: [
+          defineField({
+            name: 'isBuildCoverImage',
+            title: 'Is Cover Image for Build',
+            type: 'boolean',
+            description: 'Whether this image will be used for the build cover image to open the build gallery. When true, image will be shown on vehicle details page and clicking the image will open the build gallery.',
+            initialValue: false
+          }),
           defineField({ name: 'alt', type: 'string', title: 'Alt Text' }),
           defineField({ name: 'caption', type: 'string', title: 'Caption' }),
           defineField({ 

@@ -5,7 +5,9 @@ import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
 import { IMAGE_SIZES } from '@/sanity/lib/imageUtils'
 import Lightbox from 'yet-another-react-lightbox'
+import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
 import 'yet-another-react-lightbox/styles.css'
+import 'yet-another-react-lightbox/plugins/thumbnails.css'
 
 interface VehicleGalleryProps {
   gallery: any[]
@@ -20,11 +22,18 @@ interface VehicleGalleryProps {
     tag: string
   }>
   onFilterChange?: (tag: string | null) => void
+  useBuildGallery?: boolean // New prop to enable build-based gallery
 }
 
-export default function VehicleGallery({ gallery, originalGallery, vehicleTitle, activeFilter, onClearFilter, filterCards, onFilterChange }: VehicleGalleryProps) {
+interface BuildGallery {
+  buildName: string
+  images: any[]
+}
+
+export default function VehicleGallery({ gallery, originalGallery, vehicleTitle, activeFilter, onClearFilter, filterCards, onFilterChange, useBuildGallery = false }: VehicleGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
+  const [currentBuildIndex, setCurrentBuildIndex] = useState(0)
   const [gridCols, setGridCols] = useState(4)
   const [isResizing, setIsResizing] = useState(false)
 
@@ -115,6 +124,46 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
       })
   }, [validImages])
 
+  // Build-based gallery processing
+  const buildGalleries = useMemo(() => {
+    if (!useBuildGallery || !validImages || validImages.length === 0) return []
+    
+    // Find all cover images (isBuildCoverImage: true)
+    const coverImages = validImages.filter((image: any) => image?.isBuildCoverImage === true)
+    
+    // If no cover images are marked, create a default build with the first image as cover
+    if (coverImages.length === 0) {
+      const defaultBuild = {
+        buildName: 'Default Build',
+        coverImage: validImages[0],
+        images: validImages
+      }
+      return [defaultBuild]
+    }
+    
+    // Create builds based on cover images
+    const builds = coverImages.map((coverImage: any) => {
+      // Find all images that belong to the same build as this cover image
+      // For now, we'll use the caption to group images, but this could be enhanced
+      // to use a specific build identifier field if added to the schema
+      const buildName = coverImage?.caption || 'Build'
+      const buildImages = validImages.filter((image: any) => {
+        // If images have the same caption, they belong to the same build
+        // This is a simple grouping strategy - could be enhanced with a buildId field
+        return image?.caption === coverImage?.caption || 
+               (image?.caption === null && coverImage?.caption === null)
+      })
+      
+      return {
+        buildName,
+        coverImage,
+        images: buildImages
+      }
+    })
+    
+    return builds
+  }, [validImages, useBuildGallery])
+
   // No lazy loading; render all images immediately
 
   const slides = useMemo(() => {
@@ -138,6 +187,31 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
     return items
   }, [groupedImages, vehicleTitle])
 
+  // Build gallery slides for lightbox
+  const buildGallerySlides = useMemo(() => {
+    if (!useBuildGallery || buildGalleries.length === 0) return []
+    
+    const currentBuild = buildGalleries[currentBuildIndex]
+    if (!currentBuild) return []
+    
+    const slides = currentBuild.images.map((image: any) => {
+      try {
+        const builder = urlForImage(image)
+        if (!builder) return null
+        const src = builder.width(2000).height(1334).fit('max').url()
+        if (!src) return null
+        return {
+          src,
+          description: image?.caption || `${vehicleTitle} - ${currentBuild.buildName}`
+        }
+      } catch {
+        return null
+      }
+    }).filter((slide): slide is { src: string; description: string } => slide !== null)
+    
+    return slides
+  }, [buildGalleries, currentBuildIndex, vehicleTitle, useBuildGallery])
+
   // Check if we have any gallery images at all (use original gallery if available, otherwise use current gallery)
   const sourceGallery = originalGallery || gallery
   const hasAnyGalleryImages = sourceGallery && sourceGallery.length > 0
@@ -145,6 +219,99 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
 
   // If there are no gallery images at all, don't render the section
   if (!hasAnyGalleryImages) return null
+
+  // Render build-based gallery if enabled
+  if (useBuildGallery && buildGalleries.length > 0) {
+    return (
+      <section id="vehicle-gallery-section" className="py-8 pb-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              {vehicleTitle} Builds
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Explore our {vehicleTitle} vehicle builds. Each build showcases 
+              unique configurations designed for specific adventures and work environments.
+            </p>
+          </div>
+
+          {/* Build Gallery Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {buildGalleries.map((build, buildIndex) => {
+              const coverImage = build.coverImage || build.images[0] // Use designated cover image
+              
+              return (
+                <div
+                  key={build.buildName}
+                  className="group cursor-pointer"
+                  onClick={() => {
+                    setCurrentBuildIndex(buildIndex)
+                    setLightboxOpen(true)
+                  }}
+                >
+                  <div className="relative overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300 transform">
+                    <div className="aspect-[4/3] relative">
+                      <Image
+                        src={urlForImage(coverImage)!.width(800).height(600).fit('crop').url()}
+                        alt={coverImage.alt || `${vehicleTitle} ${build.buildName}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300" />
+                      
+                      {/* Overlay Content */}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <div className="text-white text-center">
+                          <h3 className="text-xl font-bold mb-2">
+                            {build.buildName}
+                          </h3>
+                          <p className="text-sm mb-3">
+                            {build.images.length} {build.images.length === 1 ? 'photo' : 'photos'}
+                          </p>
+                          <div className="flex items-center justify-center gap-2">
+                            <span className="bg-orange-500 px-3 py-1 rounded-full text-sm font-medium">
+                              View Gallery
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Build Info */}
+                  <div className="mt-4 text-center">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      {build.buildName}
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      lorem ipsum dolor sit amet
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Lightbox with Thumbnails */}
+          {buildGallerySlides.length > 0 && (
+            <Lightbox
+              open={lightboxOpen}
+              close={() => setLightboxOpen(false)}
+              slides={buildGallerySlides}
+              plugins={[Thumbnails]}
+              thumbnails={{ 
+                position: "bottom", 
+                width: 100, 
+                height: 70,
+                gap: 8
+              }}
+            />
+          )}
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="vehicle-gallery-section" className="py-8 pb-16 bg-white">
@@ -411,6 +578,13 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
             close={() => setLightboxOpen(false)}
             slides={slides}
             index={lightboxIndex}
+            plugins={[Thumbnails]}
+            thumbnails={{ 
+              position: "bottom", 
+              width: 100, 
+              height: 70,
+              gap: 8
+            }}
           />
         )}
       </div>

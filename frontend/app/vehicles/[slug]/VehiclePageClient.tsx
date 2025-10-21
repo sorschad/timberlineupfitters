@@ -359,6 +359,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
         onClearFilter={() => setActiveFilter(null)}
         filterCards={filterCards}
         onFilterChange={(tag) => setActiveFilter(tag)}
+        useBuildGallery={true}
       />
     </div>
   )
