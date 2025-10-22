@@ -75,7 +75,7 @@ const getBuildGalleries = (manufacturer: Manufacturer): BuildGallery[] => {
     // Group by build name
     const buildMap = new Map<string, GalleryImage[]>()
     images.forEach(img => {
-      const buildName = (img as any).buildName || 'Default Build'
+      const buildName = (img as any).buildName || '#1'
       if (!buildMap.has(buildName)) {
         buildMap.set(buildName, [])
       }
@@ -101,7 +101,7 @@ const getBuildGalleries = (manufacturer: Manufacturer): BuildGallery[] => {
   // Group by build name
   const buildMap = new Map<string, GalleryImage[]>()
   images.forEach(img => {
-    const buildName = (img as any).buildName || 'Default Build'
+    const buildName = (img as any).buildName || '#1'
     if (!buildMap.has(buildName)) {
       buildMap.set(buildName, [])
     }

@@ -137,7 +137,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
     // If no cover images are marked, create a default build with the first image as cover
     if (coverImages.length === 0) {
       const defaultBuild = {
-        buildName: 'Default Build',
+        buildName: '#1',
         coverImage: validImages[0],
         images: validImages
       }
@@ -261,27 +261,21 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
                           <h3 className="text-xl font-bold mb-2">
                             {build.buildName}
                           </h3>
-                          <p className="text-sm mb-3">
-                            {build.images.length} {build.images.length === 1 ? 'photo' : 'photos'}
-                          </p>
                           <div className="flex items-center justify-center gap-2">
-                            <span className="bg-orange-500 px-3 py-1 rounded-full text-sm font-medium">
+                            <span className="bg-timberline-orange px-3 py-1 rounded-full text-sm font-medium">
                               View Build Gallery
                             </span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
                   
-                  {/* Build Info */}
-                  <div className="mt-4 text-center">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      {build.buildName}
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      lorem ipsum dolor sit amet
-                    </p>
+                    {/* Build Info */}
+                    <div className="absolute top-0 right-0 p-4 text-center">
+                      <h3 className="text-2xl font-extrabold text-white mb-1">
+                        {build.buildName}
+                      </h3>
+                    </div>
                   </div>
                 </div>
               )
@@ -345,7 +339,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
                 </div>
                 {/* Active Filter Badge - Absolutely Positioned */}
                 {activeFilter === card.tag && (
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white rounded-full shadow-md border border-white opacity-85">
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-timberline-orange text-white rounded-full shadow-md border border-white opacity-85">
                     <div className="flex items-center px-1.5 py-0">
                       <span className="text-xs font-medium lowercase">active</span>
                       <button
@@ -381,7 +375,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
                       {group.caption}
                     </h3>
-                    <div className="min-w-12 w-full h-0.5 bg-orange-500/35"></div>
+                    <div className="min-w-12 w-full h-0.5 bg-timberline-orange/35"></div>
                   </div>
                 )}
                 
@@ -555,7 +549,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
               {activeFilter && (
                 <button
                   onClick={() => onClearFilter?.()}
-                  className="inline-flex items-center px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors duration-200 font-medium"
+                  className="inline-flex items-center px-4 py-2 bg-timberline-orange text-white rounded-lg hover:bg-orange-600 transition-colors duration-200 font-medium"
                 >
                   <svg 
                     className="w-4 h-4 mr-2" 
