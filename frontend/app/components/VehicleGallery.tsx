@@ -7,7 +7,6 @@ import { IMAGE_SIZES } from '@/sanity/lib/imageUtils'
 import Lightbox from 'yet-another-react-lightbox'
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
 import Slideshow from 'yet-another-react-lightbox/plugins/slideshow'
-// import Carousel from 'yet-another-react-lightbox/plugins/carousel'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import 'yet-another-react-lightbox/styles.css'
 import 'yet-another-react-lightbox/plugins/thumbnails.css'
@@ -290,7 +289,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
             slides={buildGallerySlides}
             plugins={[Thumbnails, Slideshow, Zoom]}
             thumbnails={{ 
-              position: "end", 
+              position: "bottom", 
               width: 80, 
               height: 60,
               gap: 2,
