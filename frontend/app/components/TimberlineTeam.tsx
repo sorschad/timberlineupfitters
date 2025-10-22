@@ -1,6 +1,7 @@
 'use client'
 
 import { Orbitron, Lato } from 'next/font/google'
+import Image from 'next/image'
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -98,9 +99,11 @@ export default function TimberlineTeam({
               <div className="relative mb-4">
                 <div className="w-20 h-20 md:w-24 md:h-24 lg:w-20 lg:h-20 rounded-full overflow-hidden bg-gradient-to-br from-[#ff8c42] to-[#d4852b] p-0.5 group-hover:scale-105 transition-transform duration-300">
                   {member.imageUrl ? (
-                    <img 
+                    <Image 
                       src={member.imageUrl} 
                       alt={member.name}
+                      width={80}
+                      height={80}
                       className="w-full h-full rounded-full object-cover"
                     />
                   ) : (

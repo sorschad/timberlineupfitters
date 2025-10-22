@@ -284,7 +284,30 @@ export const vehicle = defineType({
       of: [defineArrayMember({
         type: 'image',
         options: { hotspot: true },
+        preview: {
+          select: {
+            asset: 'asset',
+            alt: 'alt',
+            caption: 'caption',
+            isBuildCoverImage: 'isBuildCoverImage'
+          },
+          prepare(selection) {
+            const { asset, alt, caption, isBuildCoverImage } = selection
+            return {
+              title: caption || alt || 'Gallery Image',
+              subtitle: isBuildCoverImage ? 'Cover Image' : 'Gallery Image',
+              media: asset
+            }
+          }
+        },
         fields: [
+          defineField({
+            name: 'isBuildCoverImage',
+            title: 'Is Cover Image for Build',
+            type: 'boolean',
+            description: 'Whether this image will be used for the build cover image to open the build gallery. When true, image will be shown on vehicle details page and clicking the image will open the build gallery.',
+            initialValue: false
+          }),
           defineField({ name: 'alt', type: 'string', title: 'Alt Text' }),
           defineField({ name: 'caption', type: 'string', title: 'Caption' }),
           defineField({ 

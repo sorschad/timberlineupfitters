@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 
 interface SalesRepresentative {
   _id: string
@@ -247,9 +248,11 @@ export function SalesRepresentativeSearchModal({ isOpen, onClose }: SalesReprese
                       {/* Profile Image */}
                       <div className="w-16 h-16 bg-gradient-to-br from-[#d4852b] to-[#f36f21] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
                         {rep.profileImage ? (
-                          <img 
+                          <Image 
                             src={rep.profileImage.asset.url} 
                             alt={rep.profileImage.alt || rep.name}
+                            width={64}
+                            height={64}
                             className="w-full h-full rounded-full object-cover"
                           />
                         ) : (
