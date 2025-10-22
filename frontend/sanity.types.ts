@@ -155,8 +155,6 @@ export type Vehicle = {
     safetyFeatures?: Array<string>
     technologyFeatures?: Array<string>
     performanceFeatures?: Array<string>
-    baseFeatures?: Array<string>
-    additionalOptions?: Array<string>
   }
   coverImage?: {
     asset?: {
@@ -985,27 +983,6 @@ export type SettingsQueryResult = {
     alt?: string
     _type: 'image'
   } | null
-} | null
-// Variable: homepageSettingsQuery
-// Query: *[_type == "homepageSettings"][0]{  heroSlides[]{    title,    subtitle,    image,  }}
-export type HomepageSettingsQueryResult = {
-  heroSlides: Array<{
-    title: string | null
-    subtitle: string | null
-    image: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      media?: unknown
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      alt?: string
-      _type: 'image'
-    } | null
-  }> | null
 } | null
 // Variable: homepageQuery
 // Query: *[_type == "page" && name == "Homepage"][0]{  _id,  name,  heading,  subheading,  heroBackgroundImages[]{    asset->{      _id,      url    },    alt,    title,    subtitle  }}
@@ -1980,7 +1957,6 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]{\n  ...,\n  appLogo\n}': SettingsQueryResult
-    '*[_type == "homepageSettings"][0]{\n  heroSlides[]{\n    title,\n    subtitle,\n    image,\n  }\n}': HomepageSettingsQueryResult
     '*[_type == "page" && name == "Homepage"][0]{\n  _id,\n  name,\n  heading,\n  subheading,\n  heroBackgroundImages[]{\n    asset->{\n      _id,\n      url\n    },\n    alt,\n    title,\n    subtitle\n  }\n}': HomepageQueryResult
     '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    heroBackgroundImages[]{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "brand": brand->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "brand" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
