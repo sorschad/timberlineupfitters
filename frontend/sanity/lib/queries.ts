@@ -5,14 +5,6 @@ export const settingsQuery = defineQuery(`*[_type == "settings"][0]{
   appLogo
 }`)
 
-export const homepageSettingsQuery = defineQuery(`*[_type == "homepageSettings"][0]{
-  heroSlides[]{
-    title,
-    subtitle,
-    image,
-  }
-}`)
-
 export const homepageQuery = defineQuery(`*[_type == "page" && name == "Homepage"][0]{
   _id,
   name,
