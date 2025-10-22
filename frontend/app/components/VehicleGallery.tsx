@@ -225,7 +225,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
   // Render build-based gallery if enabled
   if (useBuildGallery && buildGalleries.length > 0) {
     return (
-      <section id="vehicle-gallery-section" className="py-8 pb-16 bg-white">
+      <section id="vehicle-gallery-section-1" className="py-8 pb-16 bg-white">
         <div className="container mx-auto px-4">
          
 
@@ -314,7 +314,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
   }
 
   return (
-    <section id="vehicle-gallery-section" className="py-8 pb-16 bg-white">
+    <section id="vehicle-gallery-section-2" className="py-8 pb-16 bg-white">
       <div className="container mx-auto px-4">
         {/* Filter Cards Section - Always show if filterCards exist */}
         {filterCards && filterCards.length > 0 && (

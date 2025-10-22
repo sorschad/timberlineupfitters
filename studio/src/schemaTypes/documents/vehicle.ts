@@ -77,6 +77,14 @@ export const vehicle = defineType({
       description: 'e.g., F-150, F-250, Ranger',
       validation: (Rule) => Rule.required()
     }),
+    
+    defineField({
+      name: 'brand',
+      title: 'Brand',
+      type: 'string',
+      description: 'e.g., Timberline, TSport, Alpine, ...',
+      validation: (Rule) => Rule.required()
+    }),
 
     defineField({
       name: 'trim',

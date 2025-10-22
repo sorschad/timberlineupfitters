@@ -332,6 +332,7 @@ export const vehicleQuery = defineQuery(`
     model,
     vehicleType,
     modelYear,
+    brand,
     trim,
     "manufacturer": manufacturer->{
       _id,

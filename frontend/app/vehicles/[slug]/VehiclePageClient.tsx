@@ -46,14 +46,14 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null)
   const [isScrolling, setIsScrolling] = useState(false)
   const [scrollComplete, setScrollComplete] = useState(false)
-  
+
   // Debug: Log vehicle data to see what's available
   console.log('Vehicle data:', vehicle)
   console.log('Header background image alt text:', vehicle.vehicleDetailsPageHeaderBackgroundImage?.alt)
-  
+
   // Get alt text from header background image for subtitle
   const headerAltText = vehicle.vehicleDetailsPageHeaderBackgroundImage?.alt || ''
-  
+
   console.log('Final headerAltText:', headerAltText) // Debug log
 
   // Define filter tags for each card
@@ -91,7 +91,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
     return vehicle.gallery.filter((image: any) => {
       // Check if image has tags that match the active filter
       const imageTags = image.tags || []
-      return imageTags.some((tag: string) => 
+      return imageTags.some((tag: string) =>
         tag.toLowerCase().includes(activeFilter.toLowerCase())
       )
     })
@@ -106,7 +106,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
       if (featuresSection) {
         const rect = featuresSection.getBoundingClientRect()
         const isVisible = rect.top < window.innerHeight && rect.bottom > 0
-        
+
         if (isVisible && scrollComplete) {
           // Trigger animation for first section when Features & Options comes into view
           const firstSection = featuresSection.querySelector('[data-category="exteriorFeatures"]')
@@ -131,7 +131,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   return (
     <div className="scroll-smooth">
       {/* Hero Section - Scenic Background with Vehicle */}
-      <section 
+      <section
         className="relative min-h-[50vh] lg:min-h-[320px] text-white overflow-hidden"
         style={{
           backgroundImage: (vehicle.vehicleDetailsPageHeaderBackgroundImage && urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.url())
@@ -146,7 +146,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
       >
         {/* Background Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/50" />
-        
+
         <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-32 pb-40 min-h-[500px]">
           {/* Mobile Layout - Stacked */}
           <div className="lg:hidden space-y-8">
@@ -154,19 +154,19 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
             <h1 className="text-center text-5xl md:text-4xl font-bold leading-none mb-2">
               {vehicle.title}
             </h1>
-            
+
             {/* Vehicle Model */}
             {vehicle.model && (
               <p className="text-xl font-medium text-white/70 max-w-lg leading-tight text-center mx-auto mb-2 uppercase">
                 {vehicle.model}
               </p>
             )}
-            
+
             {/* Subtitle */}
             <p className="text-lg font-normal text-white max-w-lg leading-tight text-center mx-auto">
               {headerAltText}
             </p>
-            
+
             {/* Vehicle Image - Mobile Only */}
             <div className="relative flex justify-center min-h-[400px]">
               {(vehicle.headerVehicleImage && urlForImage(vehicle.headerVehicleImage)?.url()) ? (
@@ -197,32 +197,32 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                 </div>
               ))}
             </div>
-            
+
             {/* CTA Button - Mobile Only, positioned after vehicle image */}
             <div className="mt-6">
-              <button 
+              <button
                 onClick={() => {
                   console.log('Mobile button clicked') // Debug log
                   setIsScrolling(true)
                   setScrollComplete(false)
-                  
+
                   // Wait for DOM to be ready and try to find the section
                   const scrollToFeatures = () => {
                     const featuresSection = document.getElementById('features-options-section')
                     console.log('Features section found:', featuresSection) // Debug log
-                    
+
                     if (featuresSection) {
                       // Add offset for sticky header
                       const offset = 80
                       const elementPosition = featuresSection.offsetTop - offset
                       console.log('Scrolling to position:', elementPosition) // Debug log
-                      
+
                       // Smooth scroll to the Features & Options section
                       window.scrollTo({
                         top: elementPosition,
                         behavior: 'smooth'
                       })
-                      
+
                       // Wait for scroll animation to complete
                       setTimeout(() => {
                         setIsScrolling(false)
@@ -241,7 +241,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                       }, 1000)
                     }
                   }
-                  
+
                   // Try immediately, then retry after a short delay if not found
                   scrollToFeatures()
                   if (!document.getElementById('features-options-section')) {
@@ -259,42 +259,43 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
           <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center h-full">
             {/* Left Content */}
             <div className="space-y-8">
+              <Image src={urlForImage(vehicle.manufacturer.logo)!.width(1200).height(800).fit('crop').url()} alt={vehicle.manufacturer.name} width={1200} height={800} className="w-24 h-auto mb-2" />
               {/* Main Headline */}
               <h1 className="uppercase text-center sm:text-left text-4xl md:text-6xl font-extrabold leading-none mb-1">
                 {vehicle.title}
               </h1>
-              
+
               {/* Vehicle Model */}
               {vehicle.model && (
                 <p className="text-xl font-bold text-white/70 max-w-lg leading-tight mb-1 uppercase">
                   {vehicle.model}
                 </p>
               )}
-              
+
               {/* Subtitle */}
               <p className="text-lg font-base text-white max-w-lg leading-tight">
                 {headerAltText}
               </p>
-              
+
               {/* CTA Button - Desktop Only */}
-              <button 
+              <button
                 onClick={() => {
                   setIsScrolling(true)
                   setScrollComplete(false)
-                  
+
                   // Target the Features & Options section
                   const featuresSection = document.getElementById('features-options-section')
                   if (featuresSection) {
                     // Add offset for sticky header
                     const offset = 80
                     const elementPosition = featuresSection.offsetTop - offset
-                    
+
                     // Smooth scroll to the Features & Options section
                     window.scrollTo({
                       top: elementPosition,
                       behavior: 'smooth'
                     })
-                    
+
                     // Wait for scroll animation to complete
                     setTimeout(() => {
                       setIsScrolling(false)
@@ -317,32 +318,72 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
                 {isScrolling ? 'Scrolling...' : 'explore features'}
               </button>
             </div>
-            
+
 
             <div className="relative flex justify-center lg:justify-end min-h-[500px]">
-                &nbsp;
+              &nbsp;
             </div>
           </div>
-          
+
         </div>
-        
+
         {/* Fade Transition Section */}
         <div className="absolute bottom-0 left-0 right-0 z-0">
           <div className="relative">
             {/* Softened gradient fade overlay */}
-            <div className="h-20 bg-gradient-to-b from-transparent via-white/5 to-white/40"></div>
-            <div className="h-20 bg-gradient-to-b from-white/40 via-white/70 to-white"></div>
-            
-            {/* Dynamic subtitle section with smooth transition */}
-            <div className="bg-white">
-              <div className="container mx-auto px-4">
-                <div className="text-center">
-                  <h2 className="uppercase text-3xl md:text-4xl lg:text-4xl font-bold text-gray-900/80 mb-4 animate-fade-in">
-                    {vehicle.title} Builds
-                  </h2>
-                  <p className="text-base md:text-lg text-gray-600/70 max-w-3xl mx-auto animate-fade-in-delay">
-                    Explore our {vehicle.title} vehicle builds. Each build showcases unique configurations designed for specific adventures and work environments.
-                  </p>
+            <div className="h-50 bg-gradient-to-b from-transparent via-brown/5 to-brown/40"></div>
+            <div className="h-60 bg-gradient-to-b from-brown/40 via-brown/70 to-brown"></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="bg-brown py-20 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5"></div>
+          <div className="max-w-7xl mx-auto px-8 relative z-10">
+            <div className="grid grid-cols-2 gap-16"><div>
+              <h2 className="text-6xl font-base tracking-tighter mb-6 leading-none uppercase text-timberline-orange">
+                {vehicle.brand} {vehicle.model} Builds
+              </h2>
+              <p className="text-xl text-neutral-400 leading-relaxed">
+                Explore our {vehicle.title} vehicle builds. Each build showcases unique configurations designed for specific adventures and work environments.
+              </p>
+            </div>
+            <div>
+              <div className="bg-neutral-100/95 p-8 border-l-4 border-orange-600">
+                <h3 className="text-sm tracking-widest mb-6 text-neutral-500">KEY FEATURES</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-4">
+                    <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
+                    </div>
+                    <span className="text-lg text-neutral-800">3-inch performance lift with FOX racing shocks</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                      <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
+                      </div>
+                    <span className="text-lg text-neutral-800">Custom 22-inch forged wheels with all-terrain tires</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
+                      </div>
+                    <span className="text-lg text-neutral-800">Carbon fiber hood and performance aero package</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
+                      </div>
+                    <span className="text-lg text-neutral-800">Brembo 6-piston brake system</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
+                      </div>
+                    <span className="text-lg text-neutral-800">Active exhaust with track mode</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
+                      </div>
+                    <span className="text-lg text-neutral-800">Recaro racing seats with Alcantara trim</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -350,9 +391,10 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
         </div>
       </section>
 
+
       {/* Gallery Section - Now with Filtering */}
-      <VehicleGallery 
-        gallery={filteredGallery || []} 
+      <VehicleGallery
+        gallery={filteredGallery || []}
         originalGallery={vehicle.gallery || []}
         vehicleTitle={vehicle.title}
         activeFilter={activeFilter}

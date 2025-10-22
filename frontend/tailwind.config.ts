@@ -43,6 +43,7 @@ export default {
       },
       colors: {
         black: '#0d0e12',
+        neutral: '#a0a0a0',
         white: '#fff',
         cyan: {
           50: '#e7fefe',
