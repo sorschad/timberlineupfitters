@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { MagnifyingGlassIcon, XMarkIcon, ClockIcon, ChartBarIcon } from '@heroicons/react/24/outline'
 
 interface SearchModalProps {
@@ -240,7 +241,7 @@ export default function SearchModal({ isOpen, onClose, vehicles = [], brands = [
                             className="flex items-center gap-3 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/20 hover:border-[#ff8c42]/50 transition-all duration-200"
                           >
                             {thumb ? (
-                              <img src={thumb} alt={v.title || ''} className="w-14 h-10 object-cover rounded-md border border-white/10" />
+                              <Image src={thumb} alt={v.title || ''} width={56} height={40} className="w-14 h-10 object-cover rounded-md border border-white/10" />
                             ) : (
                               <div className="w-14 h-10 rounded-md bg-white/5 border border-white/10" />
                             )}
@@ -279,7 +280,7 @@ export default function SearchModal({ isOpen, onClose, vehicles = [], brands = [
                             className="flex items-center gap-3 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/20 hover:border-[#ff8c42]/50 transition-all duration-200"
                           >
                             {logoUrl ? (
-                              <img src={logoUrl} alt={b.name} className="w-10 h-10 object-contain rounded-md border border-white/10 bg-white/5" />
+                              <Image src={logoUrl} alt={b.name} width={40} height={40} className="w-10 h-10 object-contain rounded-md border border-white/10 bg-white/5" />
                             ) : (
                               <div className="w-10 h-10 rounded-md bg-white/5 border border-white/10" />
                             )}

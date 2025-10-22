@@ -320,9 +320,11 @@ export default async function BrandsPage() {
                           
                           <div className="h-auto sm:h-[187px] transition-all duration-300">
                             {vehicle?.coverImage?.asset?.url ? (
-                              <img 
+                              <Image 
                                 src={vehicle.coverImage.asset.url} 
                                 alt={vehicle.title}
+                                width={300}
+                                height={187}
                                 className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                               />
                             ) : (

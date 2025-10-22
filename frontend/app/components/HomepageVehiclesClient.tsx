@@ -195,9 +195,11 @@ export default function HomepageVehiclesClient({ vehicles, brands }: HomepageVeh
                           
                           <div className="h-[170px] sm:h-[220px] overflow-hidden group-hover:border-[#ff8c42]/30 transition-all duration-300">
                             {vehicle?.coverImage?.asset?.url ? (
-                              <img 
+                              <Image 
                                 src={vehicle.coverImage.asset.url} 
                                 alt={vehicle.title}
+                                width={300}
+                                height={220}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
                             ) : (

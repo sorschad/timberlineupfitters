@@ -1,6 +1,7 @@
 "use client"
 
 import Link from 'next/link'
+import Image from 'next/image'
 import {useEffect, useMemo, useState} from 'react'
 import {Orbitron} from 'next/font/google'
 import {urlForImage} from '@/sanity/lib/utils'
@@ -251,9 +252,11 @@ export default function HeaderClient({
           >
             <span className="sr-only">{settingsTitle}</span>
             {appLogo?.asset?._ref && (
-              <img
+              <Image
                 src={`${urlForImage(appLogo)?.url()}`}
                 alt={appLogo?.alt || 'Application Logo'}
+                width={84}
+                height={84}
                 className="w-21 h-21 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain select-none shrink-0"
               />
             )}
@@ -453,12 +456,12 @@ export default function HeaderClient({
                                     }
                                     
                                     return imageUrl ? (
-                                      <img
+                                      <Image
                                         src={imageUrl}
                                         alt={v.title}
+                                        width={300}
+                                        height={87}
                                         className="w-full h-full object-cover"
-                                        loading="lazy"
-                                        decoding="async"
                                         onError={(e) => {
                                           e.currentTarget.style.display = 'none'
                                           e.currentTarget.nextElementSibling?.classList.remove('hidden')
@@ -718,9 +721,11 @@ export default function HeaderClient({
                               <div className="relative h-auto sm:h-[87px]">
                                 <div className="h-auto sm:h-[87px] overflow-hidden bg-transparent border border-white/10 group-hover:border-[#ff8c42]/30 transition-all duration-300">
                                   {v?.coverImage?.asset?.url ? (
-                                    <img 
+                                    <Image 
                                       src={v.coverImage.asset.url} 
                                       alt={v.title}
+                                      width={300}
+                                      height={87}
                                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
                                   ) : (
