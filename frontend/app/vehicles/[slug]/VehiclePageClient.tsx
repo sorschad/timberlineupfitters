@@ -12,6 +12,7 @@ interface Vehicle {
   model: string
   vehicleType: string
   modelYear: number
+  brand?: string
   trim?: string
   manufacturer: {
     _id: string
