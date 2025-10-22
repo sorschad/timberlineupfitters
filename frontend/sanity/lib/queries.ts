@@ -345,7 +345,15 @@ export const vehicleQuery = defineQuery(`
     gallery,
     videoTour,
     specifications,
-    features,
+    features{
+      baseFeatures,
+      exteriorFeatures,
+      interiorFeatures,
+      safetyFeatures,
+      technologyFeatures,
+      performanceFeatures,
+      additionalOptions
+    },
     customizationOptions,
     inventory,
     description,

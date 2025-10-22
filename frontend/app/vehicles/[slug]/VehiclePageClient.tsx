@@ -29,7 +29,15 @@ interface Vehicle {
   gallery?: any[]
   videoTour?: any
   specifications?: any
-  features?: any
+  features?: {
+    baseFeatures?: string[]
+    exteriorFeatures?: string[]
+    interiorFeatures?: string[]
+    safetyFeatures?: string[]
+    technologyFeatures?: string[]
+    performanceFeatures?: string[]
+    additionalOptions?: string[]
+  }
   customizationOptions?: any[]
   inventory?: any
   description?: any[]
@@ -343,49 +351,35 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
           <div className="max-w-7xl mx-auto px-8 relative z-10">
             <div className="grid grid-cols-2 gap-16"><div>
               <h2 className="text-6xl font-base tracking-tighter mb-6 leading-none uppercase text-timberline-orange">
-                {vehicle.brand} {vehicle.model} Builds
+                {vehicle.manufacturer.name} {vehicle.model} Built by {vehicle.brand}
               </h2>
-              <p className="text-xl text-neutral-400 leading-relaxed">
+              <p className="text-xl text-neutral-400 leading-relaxed mb-4">
                 Explore our {vehicle.title} vehicle builds. Each build showcases unique configurations designed for specific adventures and work environments.
+              </p>
+              <p className="text-xl text-neutral-400 leading-relaxed">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Dolor sit amet consectetur adipisicing elit. Quisquam, quos.
               </p>
             </div>
             <div>
               <div className="bg-neutral-100/95 p-8 border-l-4 border-orange-600">
-                <h3 className="text-sm tracking-widest mb-6 text-neutral-500">KEY FEATURES</h3>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-4">
-                    <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
-                    </div>
-                    <span className="text-lg text-neutral-800">3-inch performance lift with FOX racing shocks</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                      <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
-                      </div>
-                    <span className="text-lg text-neutral-800">Custom 22-inch forged wheels with all-terrain tires</span>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
-                      </div>
-                    <span className="text-lg text-neutral-800">Carbon fiber hood and performance aero package</span>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
-                      </div>
-                    <span className="text-lg text-neutral-800">Brembo 6-piston brake system</span>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
-                      </div>
-                    <span className="text-lg text-neutral-800">Active exhaust with track mode</span>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
-                      </div>
-                    <span className="text-lg text-neutral-800">Recaro racing seats with Alcantara trim</span>
-                    </li>
+                <h3 className="text-md tracking-widest mb-6 text-neutral-500">KEY FEATURES</h3>
+                {vehicle.features?.baseFeatures && vehicle.features.baseFeatures.length > 0 ? (
+                  <ul className="space-y-4">
+                    {vehicle.features.baseFeatures.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-4">
+                        <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
+                        </div>
+                        <span className="text-lg text-neutral-800">{feature}</span>
+                      </li>
+                    ))}
                   </ul>
-                </div>
+                ) : (
+                  <div className="text-neutral-600 italic">
+                    Key features will be displayed here once they are added to this vehicle.
+                  </div>
+                )}
               </div>
+            </div>
             </div>
           </div>
         </div>
