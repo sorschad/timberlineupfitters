@@ -6,6 +6,9 @@ import { urlForImage } from '@/sanity/lib/utils'
 import { IMAGE_SIZES } from '@/sanity/lib/imageUtils'
 import Lightbox from 'yet-another-react-lightbox'
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
+import Slideshow from 'yet-another-react-lightbox/plugins/slideshow'
+// import Carousel from 'yet-another-react-lightbox/plugins/carousel'
+import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import 'yet-another-react-lightbox/styles.css'
 import 'yet-another-react-lightbox/plugins/thumbnails.css'
 
@@ -263,7 +266,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
                           </p>
                           <div className="flex items-center justify-center gap-2">
                             <span className="bg-orange-500 px-3 py-1 rounded-full text-sm font-medium">
-                              View Full Gallery
+                              View Build Gallery
                             </span>
                           </div>
                         </div>
@@ -288,17 +291,29 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
           {/* Lightbox with Thumbnails */}
           {buildGallerySlides.length > 0 && (
             <Lightbox
-              open={lightboxOpen}
-              close={() => setLightboxOpen(false)}
-              slides={buildGallerySlides}
-              plugins={[Thumbnails]}
-              thumbnails={{ 
-                position: "bottom", 
-                width: 100, 
-                height: 70,
-                gap: 8
-              }}
-            />
+            open={lightboxOpen}
+            close={() => setLightboxOpen(false)}
+            slides={buildGallerySlides}
+            plugins={[Thumbnails, Slideshow, Zoom]}
+            thumbnails={{ 
+              position: "end", 
+              width: 80, 
+              height: 60,
+              gap: 2,
+              showToggle: false,
+            }}
+            slideshow={{
+              autoplay: false,
+              delay: 2000,
+            }}
+            carousel={{
+              finite: false,
+              preload: 12,
+              spacing: 4,
+              imageFit: 'contain',
+            }}
+            zoom={{}}
+          />
           )}
         </div>
       </section>
@@ -572,10 +587,10 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
             index={lightboxIndex}
             plugins={[Thumbnails]}
             thumbnails={{ 
-              position: "bottom", 
+              position: "end", 
               width: 100, 
               height: 70,
-              gap: 8
+              gap: 4
             }}
           />
         )}
