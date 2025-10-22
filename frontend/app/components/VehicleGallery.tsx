@@ -263,7 +263,7 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
                           </p>
                           <div className="flex items-center justify-center gap-2">
                             <span className="bg-orange-500 px-3 py-1 rounded-full text-sm font-medium">
-                              View Gallery
+                              View Full Gallery
                             </span>
                           </div>
                         </div>
