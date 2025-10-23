@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
 import VehicleGallery from '@/app/components/VehicleGallery'
+import VehicleHeroSection from '@/app/components/VehicleHeroSection'
+import VehicleDescriptionSection from '@/app/components/VehicleDescriptionSection'
+import VehicleGalleryShowcase from '@/app/components/VehicleGalleryShowcase'
 
 interface Vehicle {
   _id: string
@@ -137,257 +140,51 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
   }, [scrollComplete])
 
 
+  const handleScrollToFeatures = () => {
+    setIsScrolling(true)
+    setScrollComplete(false)
+
+    // Target the Features & Options section
+    const featuresSection = document.getElementById('features-options-section')
+    if (featuresSection) {
+      // Add offset for sticky header
+      const offset = 80
+      const elementPosition = featuresSection.offsetTop - offset
+
+      // Smooth scroll to the Features & Options section
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      })
+
+      // Wait for scroll animation to complete
+      setTimeout(() => {
+        setIsScrolling(false)
+        setScrollComplete(true)
+      }, 1200) // Slightly longer to ensure scroll is complete
+    } else {
+      // Fallback: scroll to bottom of page if section not found
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      })
+      setTimeout(() => {
+        setIsScrolling(false)
+        setScrollComplete(true)
+      }, 1000)
+    }
+  }
+
   return (
     <div className="scroll-smooth">
-      {/* Hero Section - Scenic Background with Vehicle */}
-      <section
-        className="relative min-h-[50vh] lg:min-h-[320px] text-white overflow-hidden"
-        style={{
-          backgroundImage: (vehicle.vehicleDetailsPageHeaderBackgroundImage && urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.url())
-            ? `url(${urlForImage(vehicle.vehicleDetailsPageHeaderBackgroundImage)?.width(1920).height(1080).fit('crop').url()})`
-            : (vehicle.coverImage && urlForImage(vehicle.coverImage)?.url())
-              ? `url(${urlForImage(vehicle.coverImage)?.width(1920).height(1080).fit('crop').url()})`
-              : 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1d4ed8 100%)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        {/* Background Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/50" />
-
-        <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-32 pb-40 min-h-[500px]">
-          {/* Mobile Layout - Stacked */}
-          <div className="lg:hidden space-y-8">
-            {/* Main Headline */}
-            <h1 className="text-center text-5xl md:text-4xl font-bold leading-none mb-2">
-              {vehicle.title}
-            </h1>
-
-            {/* Vehicle Model */}
-            {vehicle.model && (
-              <p className="text-xl font-medium text-white/70 max-w-lg leading-tight text-center mx-auto mb-2 uppercase">
-                {vehicle.model}
-              </p>
-            )}
-
-            {/* Subtitle */}
-            <p className="text-lg font-normal text-white max-w-lg leading-tight text-center mx-auto">
-              {headerAltText}
-            </p>
-
-            {/* Vehicle Image - Mobile Only */}
-            <div className="relative flex justify-center min-h-[400px]">
-              {(vehicle.headerVehicleImage && urlForImage(vehicle.headerVehicleImage)?.url()) ? (
-                <div className="relative hidden">
-                  <Image
-                    src={urlForImage(vehicle.headerVehicleImage)!.width(1200).height(800).fit('crop').url()}
-                    alt={vehicle.title}
-                    width={600}
-                    height={400}
-                    className="rounded-2xl shadow-2xl"
-                  />
-                </div>
-              ) : (vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
-                <div className="relative hidden">
-                  <Image
-                    src={urlForImage(vehicle.coverImage)!.width(1200).height(800).fit('crop').url()}
-                    alt={vehicle.title}
-                    width={600}
-                    height={400}
-                    className="rounded-2xl shadow-2xl"
-                  />
-                </div>
-              ) : (
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl h-96 w-96 flex items-center justify-center">
-                  <span className="text-6xl font-bold text-gray-400">
-                    {vehicle.manufacturer.name.charAt(0)}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Button - Mobile Only, positioned after vehicle image */}
-            <div className="mt-6">
-              <button
-                onClick={() => {
-                  console.log('Mobile button clicked') // Debug log
-                  setIsScrolling(true)
-                  setScrollComplete(false)
-
-                  // Wait for DOM to be ready and try to find the section
-                  const scrollToFeatures = () => {
-                    const featuresSection = document.getElementById('features-options-section')
-                    console.log('Features section found:', featuresSection) // Debug log
-
-                    if (featuresSection) {
-                      // Add offset for sticky header
-                      const offset = 80
-                      const elementPosition = featuresSection.offsetTop - offset
-                      console.log('Scrolling to position:', elementPosition) // Debug log
-
-                      // Smooth scroll to the Features & Options section
-                      window.scrollTo({
-                        top: elementPosition,
-                        behavior: 'smooth'
-                      })
-
-                      // Wait for scroll animation to complete
-                      setTimeout(() => {
-                        setIsScrolling(false)
-                        setScrollComplete(true)
-                      }, 1200) // Slightly longer to ensure scroll is complete
-                    } else {
-                      console.log('Features section not found, using fallback') // Debug log
-                      // Fallback: scroll to bottom of page if section not found
-                      window.scrollTo({
-                        top: document.body.scrollHeight,
-                        behavior: 'smooth'
-                      })
-                      setTimeout(() => {
-                        setIsScrolling(false)
-                        setScrollComplete(true)
-                      }, 1000)
-                    }
-                  }
-
-                  // Try immediately, then retry after a short delay if not found
-                  scrollToFeatures()
-                  if (!document.getElementById('features-options-section')) {
-                    setTimeout(scrollToFeatures, 100)
-                  }
-                }}
-                className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full cursor-pointer"
-              >
-                {isScrolling ? 'Scrolling...' : 'explore features'}
-              </button>
-            </div>
-          </div>
-
-          {/* Desktop Layout - Grid */}
-          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center h-full">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <Image src={urlForImage(vehicle.manufacturer.logo)!.width(1200).height(800).fit('crop').url()} alt={vehicle.manufacturer.name} width={1200} height={800} className="w-24 h-auto mb-2" />
-              {/* Main Headline */}
-              <h1 className="uppercase text-center sm:text-left text-4xl md:text-6xl font-extrabold leading-none mb-1">
-                {vehicle.title}
-              </h1>
-
-              {/* Vehicle Model */}
-              {vehicle.model && (
-                <p className="text-xl font-bold text-white/70 max-w-lg leading-tight mb-1 uppercase">
-                  {vehicle.model}
-                </p>
-              )}
-
-              {/* Subtitle */}
-              <p className="text-lg font-base text-white max-w-lg leading-tight">
-                {headerAltText}
-              </p>
-
-              {/* CTA Button - Desktop Only */}
-              <button
-                onClick={() => {
-                  setIsScrolling(true)
-                  setScrollComplete(false)
-
-                  // Target the Features & Options section
-                  const featuresSection = document.getElementById('features-options-section')
-                  if (featuresSection) {
-                    // Add offset for sticky header
-                    const offset = 80
-                    const elementPosition = featuresSection.offsetTop - offset
-
-                    // Smooth scroll to the Features & Options section
-                    window.scrollTo({
-                      top: elementPosition,
-                      behavior: 'smooth'
-                    })
-
-                    // Wait for scroll animation to complete
-                    setTimeout(() => {
-                      setIsScrolling(false)
-                      setScrollComplete(true)
-                    }, 1200) // Slightly longer to ensure scroll is complete
-                  } else {
-                    // Fallback: scroll to bottom of page if section not found
-                    window.scrollTo({
-                      top: document.body.scrollHeight,
-                      behavior: 'smooth'
-                    })
-                    setTimeout(() => {
-                      setIsScrolling(false)
-                      setScrollComplete(true)
-                    }, 1000)
-                  }
-                }}
-                className="bg-white text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:scale-105 w-full sm:w-auto cursor-pointer"
-              >
-                {isScrolling ? 'Scrolling...' : 'explore features'}
-              </button>
-            </div>
-
-
-            <div className="relative flex justify-center lg:justify-end min-h-[500px]">
-              &nbsp;
-            </div>
-          </div>
-
-        </div>
-
-        {/* Fade Transition Section */}
-        <div className="absolute bottom-0 left-0 right-0 z-0">
-          <div className="relative">
-            {/* Softened gradient fade overlay */}
-            <div className="h-50 bg-gradient-to-b from-transparent via-brown/5 to-brown/40"></div>
-            <div className="h-60 bg-gradient-to-b from-brown/40 via-brown/70 to-brown"></div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="bg-brown py-20 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-5"></div>
-          <div className="max-w-7xl mx-auto px-8 relative z-10">
-            <div className="grid grid-cols-2 gap-16"><div>
-              <h2 className="text-6xl font-base tracking-tighter mb-6 leading-none uppercase text-timberline-orange">
-                {vehicle.manufacturer.name} {vehicle.model} Built by {vehicle.brand}
-              </h2>
-              <p className="text-xl text-neutral-400 leading-relaxed mb-4">
-                Explore our {vehicle.title} vehicle builds. Each build showcases unique configurations designed for specific adventures and work environments.
-              </p>
-              <p className="text-xl text-neutral-400 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-              </p>
-            </div>
-            <div>
-              <div className="bg-neutral-100/95 p-8 border-l-4 border-orange-600">
-                <h3 className="text-md tracking-widest mb-6 text-neutral-500">KEY FEATURES</h3>
-                {vehicle.features?.baseFeatures && vehicle.features.baseFeatures.length > 0 ? (
-                  <ul className="space-y-4">
-                    {vehicle.features.baseFeatures.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-4">
-                        <div className="w-2 h-2 bg-orange-600 mt-2 flex-shrink-0">
-                        </div>
-                        <span className="text-lg text-neutral-800">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <div className="text-neutral-600 italic">
-                    Key features will be displayed here once they are added to this vehicle.
-                  </div>
-                )}
-              </div>
-            </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* Gallery Section - Now with Filtering */}
+      <VehicleHeroSection 
+        vehicle={vehicle}
+        onScrollToFeatures={handleScrollToFeatures}
+        isScrolling={isScrolling}
+      />
+      
+      <VehicleDescriptionSection vehicle={vehicle} />
+      
       <VehicleGallery
         gallery={filteredGallery || []}
         originalGallery={vehicle.gallery || []}
@@ -398,6 +195,8 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
         onFilterChange={(tag) => setActiveFilter(tag)}
         useBuildGallery={true}
       />
+      
+      <VehicleGalleryShowcase vehicle={vehicle} />
     </div>
   )
 }

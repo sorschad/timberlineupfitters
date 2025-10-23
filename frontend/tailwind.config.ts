@@ -123,12 +123,62 @@ export default {
           900: '#183122',
           950: '#14211a',
         },
+        // Custom Timberline colors
+        timberline: {
+          orange: '#e8743b',
+          brown: '#7d5a3f',
+          forest: {
+            black: '#1a1a1a',
+            green: '#2d4a3e',
+          },
+          stone: {
+            gray: '#8b8680',
+          },
+        },
+        brown: '#7d5a3f',
       },
       fontFamily: {
         sans: ['var(--font-lato)', 'sans-serif'],
         display: ['var(--font-orbitron)', 'sans-serif'],
         orbitron: ['var(--font-orbitron)', 'sans-serif'],
         lato: ['var(--font-lato)', 'sans-serif'],
+      },
+      animation: {
+        'fade-in-up': 'fadeInUp 0.3s ease-out forwards',
+        'expand': 'expand 0.5s ease-out forwards',
+        'slide-in': 'slideIn 0.4s ease-out forwards',
+      },
+      keyframes: {
+        fadeInUp: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+        expand: {
+          '0%': {
+            opacity: '0',
+            transform: 'scale(0.95)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'scale(1)',
+          },
+        },
+        slideIn: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(-20px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0)',
+          },
+        },
       },
     },
   },
