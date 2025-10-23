@@ -38,10 +38,10 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
 
   return (
     <>
-      <section id="features-options-section" className="max-w-5xl mx-auto mb-16">
+      <section id="features-options-section" className="max-w-7xl mx-auto mb-16">
         <div className="container w-full">
           <div className="bg-white py-20">
-            <div className="max-w-7xl mx-auto px-8">
+            <div className=" mx-auto px-8">
               <h2 className="text-5xl tracking-tighter mb-12 uppercase">Additional Options</h2>
               {features.additionalOptions && features.additionalOptions.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
