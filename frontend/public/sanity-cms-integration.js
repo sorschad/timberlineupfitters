@@ -2,11 +2,13 @@
  * Sanity CMS Integration for Figma Make
  * This JavaScript file provides easy integration with your Sanity headless CMS
  * for use in Figma Make websites.
+ * Configured for: https://carve-geo-83436247.figma.site/
  */
 
 class SanityCMS {
   constructor(baseUrl) {
-    this.baseUrl = baseUrl || window.location.origin + '/api/cms'
+    // Use production API URL for Figma Make integration
+    this.baseUrl = baseUrl || 'https://timberlineupfitters-frontend.vercel.app/api/cms'
   }
 
   /**
@@ -16,10 +18,18 @@ class SanityCMS {
    */
   async getContent(type = 'all') {
     try {
-      const response = await fetch(`${this.baseUrl}/simple?content=${type}`)
+      const response = await fetch(`${this.baseUrl}/simple?content=${type}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+      })
+      
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
+      
       const data = await response.json()
       return data
     } catch (error) {
@@ -76,10 +86,18 @@ class SanityCMS {
    */
   async getItem(type, slug) {
     try {
-      const response = await fetch(`${this.baseUrl}/content?type=${type}&slug=${slug}`)
+      const response = await fetch(`${this.baseUrl}/content?type=${type}&slug=${slug}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+      })
+      
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
+      
       const data = await response.json()
       return data
     } catch (error) {
@@ -124,10 +142,18 @@ class SanityCMS {
    */
   async getPaginatedContent(type, limit = 10, offset = 0) {
     try {
-      const response = await fetch(`${this.baseUrl}/content?type=${type}&limit=${limit}&offset=${offset}`)
+      const response = await fetch(`${this.baseUrl}/content?type=${type}&limit=${limit}&offset=${offset}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+      })
+      
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
+      
       const data = await response.json()
       return data
     } catch (error) {
@@ -178,8 +204,8 @@ class SanityCMS {
 // Create global instance
 window.SanityCMS = SanityCMS
 
-// Auto-initialize with default settings
-window.sanityCMS = new SanityCMS()
+// Auto-initialize with production API URL for Figma Make
+window.sanityCMS = new SanityCMS('https://timberlineupfitters-frontend.vercel.app/api/cms')
 
 // Usage examples (commented out to avoid execution)
 /*

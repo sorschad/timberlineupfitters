@@ -1,5 +1,14 @@
 import { client } from '@/sanity/lib/client'
 
+// Add CORS headers function
+function addCorsHeaders(response: Response) {
+  response.headers.set('Access-Control-Allow-Origin', 'https://carve-geo-83436247.figma.site')
+  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  response.headers.set('Access-Control-Allow-Credentials', 'true')
+  return response
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const contentType = searchParams.get('content') || 'all'
@@ -134,16 +143,26 @@ export async function GET(request: Request) {
         content = { brands, vehicles, manufacturers, homepage, settings }
     }
 
-    return Response.json({
+    const response = Response.json({
       success: true,
       content,
       lastUpdated: new Date().toISOString()
     })
 
+    return addCorsHeaders(response)
+
   } catch (error) {
-    return Response.json({ 
+    const response = Response.json({ 
       error: 'Failed to fetch content',
       message: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 })
+    
+    return addCorsHeaders(response)
   }
+}
+
+// Handle OPTIONS for CORS preflight
+export async function OPTIONS() {
+  const response = new Response(null, { status: 200 })
+  return addCorsHeaders(response)
 }

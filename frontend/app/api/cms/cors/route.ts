@@ -1,17 +1,21 @@
+// Add CORS headers function
+function addCorsHeaders(response: Response) {
+  response.headers.set('Access-Control-Allow-Origin', 'https://carve-geo-83436247.figma.site')
+  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  response.headers.set('Access-Control-Allow-Credentials', 'true')
+  return response
+}
+
 export async function OPTIONS() {
-  return new Response(null, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    },
-  })
+  const response = new Response(null, { status: 200 })
+  return addCorsHeaders(response)
 }
 
 export async function GET() {
-  return Response.json({ 
+  const response = Response.json({ 
     message: 'CORS enabled for Figma Make integration',
+    allowedOrigin: 'https://carve-geo-83436247.figma.site',
     endpoints: [
       '/api/cms/content',
       '/api/cms/simple',
@@ -26,11 +30,7 @@ export async function GET() {
       'Get specific vehicle': 'GET /api/cms/content?type=vehicle&slug=vehicle-name',
       'Get specific manufacturer': 'GET /api/cms/content?type=manufacturer&slug=manufacturer-name'
     }
-  }, {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    }
   })
+
+  return addCorsHeaders(response)
 }
