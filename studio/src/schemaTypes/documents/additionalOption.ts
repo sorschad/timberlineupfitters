@@ -182,64 +182,6 @@ export const additionalOption = defineType({
     }),
 
     defineField({
-      name: 'installation',
-      title: 'Installation Information',
-      type: 'object',
-      description: 'Installation details for this option',
-      fields: [
-        defineField({
-          name: 'required',
-          title: 'Installation Required',
-          type: 'boolean',
-          description: 'Whether professional installation is required',
-          initialValue: false,
-        }),
-        defineField({
-          name: 'time',
-          title: 'Installation Time',
-          type: 'string',
-          description: 'Estimated installation time (e.g., "2-4 hours", "1 day")',
-        }),
-        defineField({
-          name: 'difficulty',
-          title: 'Installation Difficulty',
-          type: 'string',
-          options: {
-            list: [
-              { title: 'Easy', value: 'easy' },
-              { title: 'Moderate', value: 'moderate' },
-              { title: 'Advanced', value: 'advanced' },
-              { title: 'Professional Only', value: 'professional' },
-            ],
-            layout: 'radio',
-          },
-        }),
-      ],
-    }),
-
-    defineField({
-      name: 'warranty',
-      title: 'Warranty Information',
-      type: 'object',
-      description: 'Warranty details for this option',
-      fields: [
-        defineField({
-          name: 'duration',
-          title: 'Warranty Duration',
-          type: 'string',
-          description: 'Warranty period (e.g., "1 year", "2 years", "Lifetime")',
-        }),
-        defineField({
-          name: 'coverage',
-          title: 'Warranty Coverage',
-          type: 'text',
-          description: 'What the warranty covers',
-          rows: 2,
-        }),
-      ],
-    }),
-
-    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',

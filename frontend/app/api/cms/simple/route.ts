@@ -79,6 +79,7 @@ export async function GET(request: Request) {
             url
           }
         },
+        gallery,
         specifications,
         features,
         inventory,
