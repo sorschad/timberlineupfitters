@@ -20,7 +20,7 @@ export default async function Footer() {
               </div>
             </div>
             <p className="text-neutral-400 mb-6 leading-relaxed">
-              Building America's most capable trucks since 2009. Performance, luxury, and adventure—engineered to perfection.
+              Building America&apos;s most capable trucks since 2009. Performance, luxury, and adventure—engineered to perfection.
             </p>
             <div className="flex gap-4">
               <button className="w-10 h-10 bg-neutral-900 border-2 border-neutral-800 hover:border-orange-600 transition-colors flex items-center justify-center group">
