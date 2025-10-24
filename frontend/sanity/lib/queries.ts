@@ -392,3 +392,142 @@ export const vehiclesByBrandQuery = defineQuery(`
     }
   }
 `)
+
+// Additional Options queries
+export const allAdditionalOptionsQuery = defineQuery(`
+  *[_type == "additionalOption" && defined(slug.current)] | order(sortOrder asc, name asc) {
+    _id,
+    name,
+    slug,
+    description,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    "brand": brand->{
+      _id,
+      name,
+      primaryColor
+    },
+    package,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt,
+      caption
+    },
+    price,
+    availability,
+    features,
+    isActive,
+    sortOrder
+  }
+`)
+
+export const additionalOptionQuery = defineQuery(`
+  *[_type == "additionalOption" && slug.current == $slug][0] {
+    _id,
+    name,
+    slug,
+    description,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    "brand": brand->{
+      _id,
+      name,
+      primaryColor
+    },
+    package,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt,
+      caption
+    },
+    price,
+    availability,
+    "compatibleVehicles": compatibleVehicles[]->{
+      _id,
+      title,
+      slug,
+      model,
+      vehicleType,
+      modelYear
+    },
+    features,
+    installation,
+    warranty,
+    tags,
+    isActive,
+    sortOrder
+  }
+`)
+
+export const additionalOptionsByPackageQuery = defineQuery(`
+  *[_type == "additionalOption" && package == $package && defined(slug.current)] | order(sortOrder asc, name asc) {
+    _id,
+    name,
+    slug,
+    description,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    price,
+    availability,
+    features,
+    isActive
+  }
+`)
+
+export const additionalOptionsByManufacturerQuery = defineQuery(`
+  *[_type == "additionalOption" && references($manufacturerId) && defined(slug.current)] | order(sortOrder asc, name asc) {
+    _id,
+    name,
+    slug,
+    description,
+    package,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    price,
+    availability,
+    features,
+    isActive
+  }
+`)

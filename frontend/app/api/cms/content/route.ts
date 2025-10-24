@@ -7,7 +7,11 @@ import {
   settingsQuery,
   brandQuery,
   vehicleQuery,
-  manufacturerQuery
+  manufacturerQuery,
+  allAdditionalOptionsQuery,
+  additionalOptionQuery,
+  additionalOptionsByPackageQuery,
+  additionalOptionsByManufacturerQuery
 } from '@/sanity/lib/queries'
 
 // Add CORS headers function
@@ -45,6 +49,9 @@ export async function GET(request: Request) {
       case 'settings':
         data = await client.fetch(settingsQuery)
         break
+      case 'additionalOptions':
+        data = await client.fetch(allAdditionalOptionsQuery)
+        break
       case 'brand':
         if (!slug) throw new Error('Slug required for brand')
         data = await client.fetch(brandQuery, { slug })
@@ -56,6 +63,20 @@ export async function GET(request: Request) {
       case 'manufacturer':
         if (!slug) throw new Error('Slug required for manufacturer')
         data = await client.fetch(manufacturerQuery, { slug })
+        break
+      case 'additionalOption':
+        if (!slug) throw new Error('Slug required for additional option')
+        data = await client.fetch(additionalOptionQuery, { slug })
+        break
+      case 'additionalOptionsByPackage':
+        const packageType = searchParams.get('package')
+        if (!packageType) throw new Error('Package parameter required')
+        data = await client.fetch(additionalOptionsByPackageQuery, { package: packageType })
+        break
+      case 'additionalOptionsByManufacturer':
+        const manufacturerId = searchParams.get('manufacturerId')
+        if (!manufacturerId) throw new Error('Manufacturer ID parameter required')
+        data = await client.fetch(additionalOptionsByManufacturerQuery, { manufacturerId })
         break
       default:
         const errorResponse = Response.json({ error: 'Invalid type parameter' }, { status: 400 })

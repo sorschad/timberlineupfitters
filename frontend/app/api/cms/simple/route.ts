@@ -1,4 +1,5 @@
 import { client } from '@/sanity/lib/client'
+import { allAdditionalOptionsQuery } from '@/sanity/lib/queries'
 
 // Add CORS headers function
 function addCorsHeaders(response: Response) {
@@ -17,7 +18,7 @@ export async function GET(request: Request) {
     let content = {}
 
     // Get all content types in one request for Figma Make
-    const [brands, vehicles, manufacturers, homepage, settings] = await Promise.all([
+    const [brands, vehicles, manufacturers, homepage, settings, additionalOptions] = await Promise.all([
       client.fetch(`*[_type == "brand" && defined(slug.current)] | order(name asc) {
         _id, 
         name, 
@@ -119,7 +120,8 @@ export async function GET(request: Request) {
             url
           }
         }
-      }`)
+      }`),
+      client.fetch(allAdditionalOptionsQuery)
     ])
 
     switch (contentType) {
@@ -138,9 +140,12 @@ export async function GET(request: Request) {
       case 'settings':
         content = { settings }
         break
+      case 'additionalOptions':
+        content = { additionalOptions }
+        break
       case 'all':
       default:
-        content = { brands, vehicles, manufacturers, homepage, settings }
+        content = { brands, vehicles, manufacturers, homepage, settings, additionalOptions }
     }
 
     const response = Response.json({

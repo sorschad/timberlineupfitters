@@ -63,6 +63,14 @@ class SanityCMS {
   }
 
   /**
+   * Get all additional options
+   * @returns {Promise<Object>} Additional options data
+   */
+  async getAdditionalOptions() {
+    return this.getContent('additionalOptions')
+  }
+
+  /**
    * Get homepage content
    * @returns {Promise<Object>} Homepage data
    */
@@ -131,6 +139,69 @@ class SanityCMS {
    */
   async getManufacturer(slug) {
     return this.getItem('manufacturer', slug)
+  }
+
+  /**
+   * Get specific additional option by slug
+   * @param {string} slug - Additional option slug
+   * @returns {Promise<Object>} Additional option data
+   */
+  async getAdditionalOption(slug) {
+    return this.getItem('additionalOption', slug)
+  }
+
+  /**
+   * Get additional options by package
+   * @param {string} package - Package type (performance, luxury, offroad, etc.)
+   * @returns {Promise<Object>} Additional options data
+   */
+  async getAdditionalOptionsByPackage(packageType) {
+    try {
+      const response = await fetch(`${this.baseUrl}/content?type=additionalOptionsByPackage&package=${packageType}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      return data
+    } catch (error) {
+      console.error('Failed to fetch additional options by package:', error)
+      return { success: false, error: error.message }
+    }
+  }
+
+  /**
+   * Get additional options by manufacturer
+   * @param {string} manufacturerId - Manufacturer ID
+   * @returns {Promise<Object>} Additional options data
+   */
+  async getAdditionalOptionsByManufacturer(manufacturerId) {
+    try {
+      const response = await fetch(`${this.baseUrl}/content?type=additionalOptionsByManufacturer&manufacturerId=${manufacturerId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      return data
+    } catch (error) {
+      console.error('Failed to fetch additional options by manufacturer:', error)
+      return { success: false, error: error.message }
+    }
   }
 
   /**

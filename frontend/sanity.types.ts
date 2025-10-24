@@ -1954,6 +1954,18 @@ export type VehiclesByBrandQueryResult = Array<{
     } | null
   } | null
 }>
+// Variable: allAdditionalOptionsQuery
+// Query: *[_type == "additionalOption" && defined(slug.current)] | order(sortOrder asc, name asc) {    _id,    name,    slug,    description,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    "brand": brand->{      _id,      name,      primaryColor    },    package,    image{      asset->{        _id,        url      },      alt,      caption    },    price,    availability,    features,    isActive,    sortOrder  }
+export type AllAdditionalOptionsQueryResult = Array<never>
+// Variable: additionalOptionQuery
+// Query: *[_type == "additionalOption" && slug.current == $slug][0] {    _id,    name,    slug,    description,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    "brand": brand->{      _id,      name,      primaryColor    },    package,    image{      asset->{        _id,        url      },      alt,      caption    },    price,    availability,    "compatibleVehicles": compatibleVehicles[]->{      _id,      title,      slug,      model,      vehicleType,      modelYear    },    features,    installation,    warranty,    tags,    isActive,    sortOrder  }
+export type AdditionalOptionQueryResult = null
+// Variable: additionalOptionsByPackageQuery
+// Query: *[_type == "additionalOption" && package == $package && defined(slug.current)] | order(sortOrder asc, name asc) {    _id,    name,    slug,    description,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    image{      asset->{        _id,        url      },      alt    },    price,    availability,    features,    isActive  }
+export type AdditionalOptionsByPackageQueryResult = Array<never>
+// Variable: additionalOptionsByManufacturerQuery
+// Query: *[_type == "additionalOption" && references($manufacturerId) && defined(slug.current)] | order(sortOrder asc, name asc) {    _id,    name,    slug,    description,    package,    image{      asset->{        _id,        url      },      alt    },    price,    availability,    features,    isActive  }
+export type AdditionalOptionsByManufacturerQueryResult = Array<never>
 
 // Query TypeMap
 import '@sanity/client'
@@ -1978,5 +1990,9 @@ declare module '@sanity/client' {
     '\n  *[_type == "vehicle" && defined(slug.current)]\n  {"slug": slug.current}\n': VehicleSlugsResult
     '\n  *[_type == "brand" && defined(slug.current)] | order(sidebarMenuSortOrder asc, name asc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  sectionImage,\n  logo,\n  features,\n  slogan,\n  sidebarMenuSortOrder,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': BrandsWithSloganQueryResult
     '\n  *[_type == "vehicle" && references($brandId) && defined(slug.current)] | order(modelYear desc, title asc) [0...6] {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    coverImage{\n      asset->{\n        _id,\n        url\n      }\n    }\n  }\n': VehiclesByBrandQueryResult
+    '\n  *[_type == "additionalOption" && defined(slug.current)] | order(sortOrder asc, name asc) {\n    _id,\n    name,\n    slug,\n    description,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    "brand": brand->{\n      _id,\n      name,\n      primaryColor\n    },\n    package,\n    image{\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      caption\n    },\n    price,\n    availability,\n    features,\n    isActive,\n    sortOrder\n  }\n': AllAdditionalOptionsQueryResult
+    '\n  *[_type == "additionalOption" && slug.current == $slug][0] {\n    _id,\n    name,\n    slug,\n    description,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    "brand": brand->{\n      _id,\n      name,\n      primaryColor\n    },\n    package,\n    image{\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      caption\n    },\n    price,\n    availability,\n    "compatibleVehicles": compatibleVehicles[]->{\n      _id,\n      title,\n      slug,\n      model,\n      vehicleType,\n      modelYear\n    },\n    features,\n    installation,\n    warranty,\n    tags,\n    isActive,\n    sortOrder\n  }\n': AdditionalOptionQueryResult
+    '\n  *[_type == "additionalOption" && package == $package && defined(slug.current)] | order(sortOrder asc, name asc) {\n    _id,\n    name,\n    slug,\n    description,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    image{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    price,\n    availability,\n    features,\n    isActive\n  }\n': AdditionalOptionsByPackageQueryResult
+    '\n  *[_type == "additionalOption" && references($manufacturerId) && defined(slug.current)] | order(sortOrder asc, name asc) {\n    _id,\n    name,\n    slug,\n    description,\n    package,\n    image{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    price,\n    availability,\n    features,\n    isActive\n  }\n': AdditionalOptionsByManufacturerQueryResult
   }
 }
