@@ -32,9 +32,6 @@ export default function VehicleDescriptionSection({ vehicle }: VehicleDescriptio
               <p className="text-xl text-neutral-400 leading-relaxed mb-4">
                 Explore our {vehicle.title} vehicle builds. Each build showcases unique configurations designed for specific adventures and work environments.
               </p>
-              <p className="text-xl text-neutral-400 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-              </p>
             </div>
             <div>
               <div className="bg-neutral-100/95 p-8 border-l-4 border-timberline-orange">
