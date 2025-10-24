@@ -1651,7 +1651,7 @@ export type TimberlineVehiclesQueryResult = Array<{
   tags: Array<string> | null
 }>
 // Variable: vehicleQuery
-// Query: *[_type == "vehicle" && slug.current == $slug][0] {    _id,    title,    slug,    model,    vehicleType,    modelYear,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo    },    coverImage,    vehicleDetailsPageHeaderBackgroundImage,    headerVehicleImage,    gallery,    videoTour,    specifications,    features,    customizationOptions,    inventory,    description,    tags,    seo  }
+// Query: *[_type == "vehicle" && slug.current == $slug][0] {    _id,    title,    slug,    model,    vehicleType,    modelYear,    brand,    trim,    "manufacturer": manufacturer->{      _id,      name,      logo    },    coverImage,    vehicleDetailsPageHeaderBackgroundImage,    headerVehicleImage,    gallery,    videoTour,    specifications,    features{      baseFeatures,      exteriorFeatures,      interiorFeatures,      safetyFeatures,      technologyFeatures,      performanceFeatures,      additionalOptions    },    customizationOptions,    inventory,    description,    tags,    seo  }
 export type VehicleQueryResult = {
   _id: string
   title: string
@@ -1659,6 +1659,7 @@ export type VehicleQueryResult = {
   model: string
   vehicleType: 'car' | 'suv' | 'truck' | 'utility' | 'van' | null
   modelYear: number
+  brand: null
   trim: string | null
   manufacturer: {
     _id: string
@@ -1792,11 +1793,13 @@ export type VehicleQueryResult = {
     cabStyle?: 'Regular Cab' | 'SuperCab' | 'SuperCrew'
   } | null
   features: {
-    exteriorFeatures?: Array<string>
-    interiorFeatures?: Array<string>
-    safetyFeatures?: Array<string>
-    technologyFeatures?: Array<string>
-    performanceFeatures?: Array<string>
+    baseFeatures: null
+    exteriorFeatures: Array<string> | null
+    interiorFeatures: Array<string> | null
+    safetyFeatures: Array<string> | null
+    technologyFeatures: Array<string> | null
+    performanceFeatures: Array<string> | null
+    additionalOptions: null
   } | null
   customizationOptions: Array<{
     category?:
@@ -1971,7 +1974,7 @@ declare module '@sanity/client' {
     '\n  *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {\n    _id,\n    name,\n    slug,\n    logo,\n    "vehicleCount": count(*[_type == "vehicle" && references(^._id)])\n  }\n': AllManufacturersQueryResult
     '\n  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    coverImage{\n      asset->{\n        _id,\n        url\n      }\n    },\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': AllVehiclesQueryResult
     '\n  *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    sidebarSortOrder,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    coverImage{\n      asset->{\n        _id,\n        url\n      }\n    },\n    specifications,\n    features,\n    inventory,\n    tags\n  }\n': TimberlineVehiclesQueryResult
-    '\n  *[_type == "vehicle" && slug.current == $slug][0] {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    vehicleDetailsPageHeaderBackgroundImage,\n    headerVehicleImage,\n    gallery,\n    videoTour,\n    specifications,\n    features,\n    customizationOptions,\n    inventory,\n    description,\n    tags,\n    seo\n  }\n': VehicleQueryResult
+    '\n  *[_type == "vehicle" && slug.current == $slug][0] {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    brand,\n    trim,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo\n    },\n    coverImage,\n    vehicleDetailsPageHeaderBackgroundImage,\n    headerVehicleImage,\n    gallery,\n    videoTour,\n    specifications,\n    features{\n      baseFeatures,\n      exteriorFeatures,\n      interiorFeatures,\n      safetyFeatures,\n      technologyFeatures,\n      performanceFeatures,\n      additionalOptions\n    },\n    customizationOptions,\n    inventory,\n    description,\n    tags,\n    seo\n  }\n': VehicleQueryResult
     '\n  *[_type == "vehicle" && defined(slug.current)]\n  {"slug": slug.current}\n': VehicleSlugsResult
     '\n  *[_type == "brand" && defined(slug.current)] | order(sidebarMenuSortOrder asc, name asc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "name": coalesce(name, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  sectionImage,\n  logo,\n  features,\n  slogan,\n  sidebarMenuSortOrder,\n  "launchDate": coalesce(launchDate, _updatedAt),\n  "manufacturers": manufacturers[]->{\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  },\n\n  }\n': BrandsWithSloganQueryResult
     '\n  *[_type == "vehicle" && references($brandId) && defined(slug.current)] | order(modelYear desc, title asc) [0...6] {\n    _id,\n    title,\n    slug,\n    model,\n    vehicleType,\n    modelYear,\n    trim,\n    coverImage{\n      asset->{\n        _id,\n        url\n      }\n    }\n  }\n': VehiclesByBrandQueryResult
