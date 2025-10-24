@@ -120,15 +120,6 @@ export default function VehicleHeroSection({ vehicle, onScrollToFeatures, isScro
         <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center h-full">
           {/* Left Content */}
           <div className="space-y-8">
-            {vehicle.manufacturer.logo && (
-              <Image 
-                src={urlForImage(vehicle.manufacturer.logo)!.width(1200).height(800).fit('crop').url()} 
-                alt={vehicle.manufacturer.name} 
-                width={1200} 
-                height={800} 
-                className="w-24 h-auto mb-2" 
-              />
-            )}
             
             {/* Main Headline */}
             <h1 className="uppercase text-center sm:text-left text-4xl md:text-6xl font-extrabold leading-none mb-1">
