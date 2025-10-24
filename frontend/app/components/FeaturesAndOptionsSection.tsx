@@ -48,18 +48,6 @@ const FeaturesAndOptionsSection: React.FC<Props> = ({ features }) => {
                   {features.additionalOptions.map((option, index) => (
                     <div key={index} className="group">
                       <div className="border-4 border-black hover:border-orange-600 transition-colors">
-                        <div className="aspect-square bg-neutral-100 overflow-hidden">
-                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                            <div className="text-center p-4">
-                              <div className="w-16 h-16 mx-auto mb-2 bg-orange-100 rounded-full flex items-center justify-center">
-                                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                              </div>
-                              <p className="text-sm text-gray-600 font-medium">Option Available</p>
-                            </div>
-                          </div>
-                        </div>
                         <div className="p-4 bg-white">
                           <h3 className="text-sm tracking-tight mb-2 font-medium">{option}</h3>
                         </div>
