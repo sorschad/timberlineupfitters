@@ -7,6 +7,7 @@ import VehicleGallery from '@/app/components/VehicleGallery'
 import VehicleHeroSection from '@/app/components/VehicleHeroSection'
 import VehicleDescriptionSection from '@/app/components/VehicleDescriptionSection'
 import VehicleGalleryShowcase from '@/app/components/VehicleGalleryShowcase'
+// import WarrantyDetailsComponent from '@/app/components/WarrantyDetailsComponent'
 
 interface Vehicle {
   _id: string
@@ -197,6 +198,8 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
       />
       
       <VehicleGalleryShowcase vehicle={vehicle} />
+      
+      {/* <WarrantyDetailsComponent vehicle={vehicle} /> */}
     </div>
   )
 }
