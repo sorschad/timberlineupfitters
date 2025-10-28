@@ -1,5 +1,6 @@
 // schemas/vehicle.ts
 import { defineType, defineField, defineArrayMember } from 'sanity'
+import { BulkImageUploadAction } from '../../components/BulkImageUploadAction'
 
 export const vehicle = defineType({
   name: 'vehicle',
@@ -283,6 +284,25 @@ export const vehicle = defineType({
       fields: [
         defineField({ name: 'alt', type: 'string', title: 'Alt Text' })
       ]
+    }),
+
+    // Bulk Upload Helper Field
+    defineField({
+      name: 'bulkUploadHelper',
+      title: 'Bulk Upload Images',
+      type: 'object',
+      description: 'Click the button below to upload multiple images at once. They will be added to the gallery below.',
+      fields: [
+        {
+          name: 'placeholder',
+          type: 'string',
+          hidden: true
+        }
+      ],
+      components: {
+        input: BulkImageUploadAction
+      },
+      hidden: ({ document }) => !document?.gallery
     }),
 
     defineField({
