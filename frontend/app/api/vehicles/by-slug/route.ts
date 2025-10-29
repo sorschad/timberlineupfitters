@@ -115,6 +115,26 @@ const comprehensiveVehicleQuery = `
         tags
       }
     },
+    "associatedVehicles": associatedVehicles[0...3]->{
+      _id,
+      title,
+      slug,
+      model,
+      modelYear,
+      brand,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      },
+      coverImage{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      excerpt
+    },
     customizationOptions[]{
       name,
       description,

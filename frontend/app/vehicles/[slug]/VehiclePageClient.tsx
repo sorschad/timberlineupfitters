@@ -38,6 +38,26 @@ interface Vehicle {
     baseFeatures?: string[]
     additionalOptions?: string[]
   }
+  associatedVehicles?: Array<{
+    _id: string
+    title: string
+    slug: { current: string }
+    model: string
+    modelYear: number
+    brand: string
+    manufacturer: {
+      _id: string
+      name: string
+    }
+    coverImage?: {
+      asset?: {
+        _id: string
+        url: string
+      }
+      alt?: string
+    }
+    excerpt?: string
+  }>
   customizationOptions?: any[]
   inventory?: any
   description?: any[]

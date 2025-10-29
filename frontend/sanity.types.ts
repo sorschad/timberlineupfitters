@@ -280,6 +280,13 @@ export type Vehicle = {
     baseFeatures?: Array<string>
     additionalOptions?: Array<string>
   }
+  associatedVehicles?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'vehicle'
+  }>
   coverImage?: {
     asset?: {
       _ref: string

@@ -232,6 +232,29 @@ export const vehicle = defineType({
       ]
     }),
 
+    // Associated Vehicles
+    defineField({
+      name: 'associatedVehicles',
+      title: 'Associated Vehicles',
+      type: 'array',
+      description: 'Select up to 3 related vehicles to display together',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'vehicle' }],
+          options: {
+            filter: '_id != $currentId' // Prevent self-reference
+          }
+        }
+      ],
+      validation: (Rule) => Rule.max(3).custom((vehicles, context) => {
+        if (vehicles && vehicles.length > 3) {
+          return 'Maximum 3 associated vehicles allowed'
+        }
+        return true
+      })
+    }),
+
     // Media Assets
     defineField({
       name: 'coverImage',

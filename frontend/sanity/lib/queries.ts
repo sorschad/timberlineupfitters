@@ -307,6 +307,26 @@ export const allVehiclesQuery = defineQuery(`
         tags
       }
     },
+    "associatedVehicles": associatedVehicles[0...3]->{
+      _id,
+      title,
+      slug,
+      model,
+      modelYear,
+      brand,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      },
+      coverImage{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      excerpt
+    },
     inventory,
     tags
   }
@@ -363,6 +383,26 @@ export const timberlineVehiclesQuery = defineQuery(`
         tags
       }
     },
+    "associatedVehicles": associatedVehicles[0...3]->{
+      _id,
+      title,
+      slug,
+      model,
+      modelYear,
+      brand,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      },
+      coverImage{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      excerpt
+    },
     inventory,
     tags
   }
@@ -411,6 +451,26 @@ export const vehicleQuery = defineQuery(`
         features,
         tags
       }
+    },
+    "associatedVehicles": associatedVehicles[0...3]->{
+      _id,
+      title,
+      slug,
+      model,
+      modelYear,
+      brand,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      },
+      coverImage{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      excerpt
     },
     customizationOptions,
     inventory,
