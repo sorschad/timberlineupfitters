@@ -111,6 +111,115 @@ export type BlockContent = Array<{
   _key: string
 }>
 
+export type AdditionalOption = {
+  _id: string
+  _type: 'additionalOption'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  slug: Slug
+  description?: string
+  manufacturer: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'manufacturer'
+  }
+  brand?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'brand'
+  }
+  package?:
+    | 'performance'
+    | 'luxury'
+    | 'offroad'
+    | 'interior'
+    | 'exterior'
+    | 'technology'
+    | 'safety'
+    | 'comfort'
+    | 'utility'
+    | 'custom'
+  image?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    caption?: string
+    _type: 'image'
+  }
+  price?: {
+    amount?: number
+    currency?: 'USD' | 'CAD'
+    isEstimate?: boolean
+  }
+  availability?: 'in-stock' | 'available-soon' | 'special-order' | 'discontinued'
+  compatibleVehicles?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'vehicle'
+  }>
+  features?: Array<string>
+  tags?: Array<string>
+  isActive?: boolean
+  sortOrder?: number
+}
+
+export type SalesRepresentative = {
+  _id: string
+  _type: 'salesRepresentative'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  territoryRegion: string
+  territoryZipCodes: Array<string>
+  email: string
+  phone: {
+    countryCode: string
+    number: string
+    extension?: string
+  }
+  mobile?: {
+    countryCode: string
+    number: string
+    extension?: string
+  }
+  fax?: {
+    countryCode?: string
+    number?: string
+    extension?: string
+  }
+  profileImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  bio?: string
+  specialties?: Array<string>
+  isActive?: boolean
+  sortOrder?: number
+}
+
 export type Vehicle = {
   _id: string
   _type: 'vehicle'
@@ -119,6 +228,9 @@ export type Vehicle = {
   _rev: string
   title: string
   slug: Slug
+  inventory?: {
+    availability?: 'In Stock' | 'Available Soon'
+  }
   vehicleType?: 'truck' | 'suv' | 'car' | 'van' | 'utility'
   manufacturer: {
     _ref: string
@@ -127,8 +239,30 @@ export type Vehicle = {
     [internalGroqTypeReferenceTo]?: 'manufacturer'
   }
   model: string
+  brand: string
   trim?: string
   modelYear: number
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  excerpt?: string
+  tags?: Array<string>
+  sidebarSortOrder?: number
   specifications?: {
     engine?: Array<{
       type?: string
@@ -139,13 +273,6 @@ export type Vehicle = {
       _key: string
     }>
     drivetrain?: Array<string>
-    towingCapacity?: number
-    payloadCapacity?: number
-    fuelEconomy?: {
-      city?: number
-      highway?: number
-      combined?: number
-    }
     bedLength?: '5.5 ft' | '6.5 ft' | '8 ft'
     cabStyle?: 'Regular Cab' | 'SuperCab' | 'SuperCrew'
   }
@@ -155,6 +282,8 @@ export type Vehicle = {
     safetyFeatures?: Array<string>
     technologyFeatures?: Array<string>
     performanceFeatures?: Array<string>
+    baseFeatures?: Array<string>
+    additionalOptions?: Array<string>
   }
   coverImage?: {
     asset?: {
@@ -195,6 +324,9 @@ export type Vehicle = {
     alt?: string
     _type: 'image'
   }
+  bulkUploadHelper?: {
+    placeholder?: string
+  }
   gallery?: Array<{
     asset?: {
       _ref: string
@@ -205,6 +337,7 @@ export type Vehicle = {
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
+    isBuildCoverImage?: boolean
     alt?: string
     caption?: string
     view?:
@@ -250,13 +383,6 @@ export type Vehicle = {
       _type: 'image'
     }
     description?: string
-  }
-  inventory?: {
-    stockNumber?: string
-    vin?: string
-    availability?: 'In Stock' | 'In Transit' | 'Available Soon' | 'Out of Stock' | 'Special Order'
-    location?: string
-    mileage?: number
   }
   customizationOptions?: Array<{
     category?:
@@ -305,27 +431,7 @@ export type Vehicle = {
     }
     keywords?: Array<string>
   }
-  description?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  tags?: Array<string>
   publishedAt?: string
-  sidebarSortOrder?: number
 }
 
 export type Manufacturer = {
@@ -431,32 +537,6 @@ export type Manufacturer = {
   }
 }
 
-export type HomepageSettings = {
-  _id: string
-  _type: 'homepageSettings'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  heroSlides?: Array<{
-    title?: string
-    subtitle?: string
-    image?: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      media?: unknown
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      alt?: string
-      _type: 'image'
-    }
-    _key: string
-  }>
-}
-
 export type Settings = {
   _id: string
   _type: 'settings'
@@ -510,6 +590,8 @@ export type Settings = {
     metadataBase?: string
     _type: 'image'
   }
+  contactEmail?: string
+  contactPhone?: string
   appLogo?: {
     asset?: {
       _ref: string
@@ -535,6 +617,22 @@ export type Page = {
   slug: Slug
   heading: string
   subheading?: string
+  heroBackgroundImages?: Array<{
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    title?: string
+    subtitle?: string
+    _type: 'image'
+    _key: string
+  }>
   pageBuilder?: Array<
     | ({
         _key: string
@@ -624,6 +722,7 @@ export type Brand = {
   }
   features?: Array<string>
   launchDate?: string
+  sidebarMenuSortOrder?: number
 }
 
 export type SanityAssistInstructionTask = {
@@ -884,9 +983,10 @@ export type AllSanitySchemaTypes =
   | Link
   | InfoSection
   | BlockContent
+  | AdditionalOption
+  | SalesRepresentative
   | Vehicle
   | Manufacturer
-  | HomepageSettings
   | Settings
   | Page
   | Brand
@@ -970,6 +1070,8 @@ export type SettingsQueryResult = {
     metadataBase?: string
     _type: 'image'
   }
+  contactEmail?: string
+  contactPhone?: string
   appLogo: {
     asset?: {
       _ref: string
@@ -991,7 +1093,15 @@ export type HomepageQueryResult = {
   name: string
   heading: string
   subheading: string | null
-  heroBackgroundImages: null
+  heroBackgroundImages: Array<{
+    asset: {
+      _id: string
+      url: string | null
+    } | null
+    alt: string | null
+    title: string | null
+    subtitle: string | null
+  }> | null
 } | null
 // Variable: getPageQuery
 // Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    heroBackgroundImages[]{      asset->{        _id,        url      },      alt    },    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "brand": brand->slug.current  }          }        }      },    },  }
@@ -1002,7 +1112,13 @@ export type GetPageQueryResult = {
   slug: Slug
   heading: string
   subheading: string | null
-  heroBackgroundImages: null
+  heroBackgroundImages: Array<{
+    asset: {
+      _id: string
+      url: string | null
+    } | null
+    alt: string | null
+  }> | null
   pageBuilder: Array<
     | {
         _key: string
@@ -1561,13 +1677,6 @@ export type AllVehiclesQueryResult = Array<{
       _key: string
     }>
     drivetrain?: Array<string>
-    towingCapacity?: number
-    payloadCapacity?: number
-    fuelEconomy?: {
-      city?: number
-      highway?: number
-      combined?: number
-    }
     bedLength?: '5.5 ft' | '6.5 ft' | '8 ft'
     cabStyle?: 'Regular Cab' | 'SuperCab' | 'SuperCrew'
   } | null
@@ -1577,13 +1686,11 @@ export type AllVehiclesQueryResult = Array<{
     safetyFeatures?: Array<string>
     technologyFeatures?: Array<string>
     performanceFeatures?: Array<string>
+    baseFeatures?: Array<string>
+    additionalOptions?: Array<string>
   } | null
   inventory: {
-    stockNumber?: string
-    vin?: string
-    availability?: 'Available Soon' | 'In Stock' | 'In Transit' | 'Out of Stock' | 'Special Order'
-    location?: string
-    mileage?: number
+    availability?: 'Available Soon' | 'In Stock'
   } | null
   tags: Array<string> | null
 }>
@@ -1624,13 +1731,6 @@ export type TimberlineVehiclesQueryResult = Array<{
       _key: string
     }>
     drivetrain?: Array<string>
-    towingCapacity?: number
-    payloadCapacity?: number
-    fuelEconomy?: {
-      city?: number
-      highway?: number
-      combined?: number
-    }
     bedLength?: '5.5 ft' | '6.5 ft' | '8 ft'
     cabStyle?: 'Regular Cab' | 'SuperCab' | 'SuperCrew'
   } | null
@@ -1640,13 +1740,11 @@ export type TimberlineVehiclesQueryResult = Array<{
     safetyFeatures?: Array<string>
     technologyFeatures?: Array<string>
     performanceFeatures?: Array<string>
+    baseFeatures?: Array<string>
+    additionalOptions?: Array<string>
   } | null
   inventory: {
-    stockNumber?: string
-    vin?: string
-    availability?: 'Available Soon' | 'In Stock' | 'In Transit' | 'Out of Stock' | 'Special Order'
-    location?: string
-    mileage?: number
+    availability?: 'Available Soon' | 'In Stock'
   } | null
   tags: Array<string> | null
 }>
@@ -1659,7 +1757,7 @@ export type VehicleQueryResult = {
   model: string
   vehicleType: 'car' | 'suv' | 'truck' | 'utility' | 'van' | null
   modelYear: number
-  brand: null
+  brand: string
   trim: string | null
   manufacturer: {
     _id: string
@@ -1726,6 +1824,7 @@ export type VehicleQueryResult = {
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
+    isBuildCoverImage?: boolean
     alt?: string
     caption?: string
     view?:
@@ -1782,24 +1881,17 @@ export type VehicleQueryResult = {
       _key: string
     }>
     drivetrain?: Array<string>
-    towingCapacity?: number
-    payloadCapacity?: number
-    fuelEconomy?: {
-      city?: number
-      highway?: number
-      combined?: number
-    }
     bedLength?: '5.5 ft' | '6.5 ft' | '8 ft'
     cabStyle?: 'Regular Cab' | 'SuperCab' | 'SuperCrew'
   } | null
   features: {
-    baseFeatures: null
+    baseFeatures: Array<string> | null
     exteriorFeatures: Array<string> | null
     interiorFeatures: Array<string> | null
     safetyFeatures: Array<string> | null
     technologyFeatures: Array<string> | null
     performanceFeatures: Array<string> | null
-    additionalOptions: null
+    additionalOptions: Array<string> | null
   } | null
   customizationOptions: Array<{
     category?:
@@ -1832,11 +1924,7 @@ export type VehicleQueryResult = {
     _key: string
   }> | null
   inventory: {
-    stockNumber?: string
-    vin?: string
-    availability?: 'Available Soon' | 'In Stock' | 'In Transit' | 'Out of Stock' | 'Special Order'
-    location?: string
-    mileage?: number
+    availability?: 'Available Soon' | 'In Stock'
   } | null
   description: Array<{
     children?: Array<{
@@ -1917,7 +2005,7 @@ export type BrandsWithSloganQueryResult = Array<{
   logo: null
   features: Array<string> | null
   slogan: string | null
-  sidebarMenuSortOrder: null
+  sidebarMenuSortOrder: number | null
   launchDate: string
   manufacturers: Array<{
     _id: string
@@ -1956,16 +2044,370 @@ export type VehiclesByBrandQueryResult = Array<{
 }>
 // Variable: allAdditionalOptionsQuery
 // Query: *[_type == "additionalOption" && defined(slug.current)] | order(sortOrder asc, name asc) {    _id,    name,    slug,    description,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    "brand": brand->{      _id,      name,      primaryColor    },    package,    image{      asset->{        _id,        url      },      alt,      caption    },    price,    availability,    features,    isActive,    sortOrder  }
-export type AllAdditionalOptionsQueryResult = Array<never>
+export type AllAdditionalOptionsQueryResult = Array<{
+  _id: string
+  name: string
+  slug: Slug
+  description: string | null
+  manufacturer: {
+    _id: string
+    name: string
+    logo: {
+      asset: {
+        _id: string
+        url: string | null
+      } | null
+    } | null
+  }
+  brand: {
+    _id: string
+    name: string
+    primaryColor: string | null
+  } | null
+  package:
+    | 'comfort'
+    | 'custom'
+    | 'exterior'
+    | 'interior'
+    | 'luxury'
+    | 'offroad'
+    | 'performance'
+    | 'safety'
+    | 'technology'
+    | 'utility'
+    | null
+  image: {
+    asset: {
+      _id: string
+      url: string | null
+    } | null
+    alt: string | null
+    caption: string | null
+  } | null
+  price: {
+    amount?: number
+    currency?: 'CAD' | 'USD'
+    isEstimate?: boolean
+  } | null
+  availability: 'available-soon' | 'discontinued' | 'in-stock' | 'special-order' | null
+  features: Array<string> | null
+  isActive: boolean | null
+  sortOrder: number | null
+}>
 // Variable: additionalOptionQuery
 // Query: *[_type == "additionalOption" && slug.current == $slug][0] {    _id,    name,    slug,    description,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    "brand": brand->{      _id,      name,      primaryColor    },    package,    image{      asset->{        _id,        url      },      alt,      caption    },    price,    availability,    "compatibleVehicles": compatibleVehicles[]->{      _id,      title,      slug,      model,      vehicleType,      modelYear    },    features,    installation,    warranty,    tags,    isActive,    sortOrder  }
-export type AdditionalOptionQueryResult = null
+export type AdditionalOptionQueryResult = {
+  _id: string
+  name: string
+  slug: Slug
+  description: string | null
+  manufacturer: {
+    _id: string
+    name: string
+    logo: {
+      asset: {
+        _id: string
+        url: string | null
+      } | null
+    } | null
+  }
+  brand: {
+    _id: string
+    name: string
+    primaryColor: string | null
+  } | null
+  package:
+    | 'comfort'
+    | 'custom'
+    | 'exterior'
+    | 'interior'
+    | 'luxury'
+    | 'offroad'
+    | 'performance'
+    | 'safety'
+    | 'technology'
+    | 'utility'
+    | null
+  image: {
+    asset: {
+      _id: string
+      url: string | null
+    } | null
+    alt: string | null
+    caption: string | null
+  } | null
+  price: {
+    amount?: number
+    currency?: 'CAD' | 'USD'
+    isEstimate?: boolean
+  } | null
+  availability: 'available-soon' | 'discontinued' | 'in-stock' | 'special-order' | null
+  compatibleVehicles: Array<{
+    _id: string
+    title: string
+    slug: Slug
+    model: string
+    vehicleType: 'car' | 'suv' | 'truck' | 'utility' | 'van' | null
+    modelYear: number
+  }> | null
+  features: Array<string> | null
+  installation: null
+  warranty: null
+  tags: Array<string> | null
+  isActive: boolean | null
+  sortOrder: number | null
+} | null
 // Variable: additionalOptionsByPackageQuery
 // Query: *[_type == "additionalOption" && package == $package && defined(slug.current)] | order(sortOrder asc, name asc) {    _id,    name,    slug,    description,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    image{      asset->{        _id,        url      },      alt    },    price,    availability,    features,    isActive  }
-export type AdditionalOptionsByPackageQueryResult = Array<never>
+export type AdditionalOptionsByPackageQueryResult = Array<{
+  _id: string
+  name: string
+  slug: Slug
+  description: string | null
+  manufacturer: {
+    _id: string
+    name: string
+    logo: {
+      asset: {
+        _id: string
+        url: string | null
+      } | null
+    } | null
+  }
+  image: {
+    asset: {
+      _id: string
+      url: string | null
+    } | null
+    alt: string | null
+  } | null
+  price: {
+    amount?: number
+    currency?: 'CAD' | 'USD'
+    isEstimate?: boolean
+  } | null
+  availability: 'available-soon' | 'discontinued' | 'in-stock' | 'special-order' | null
+  features: Array<string> | null
+  isActive: boolean | null
+}>
 // Variable: additionalOptionsByManufacturerQuery
 // Query: *[_type == "additionalOption" && references($manufacturerId) && defined(slug.current)] | order(sortOrder asc, name asc) {    _id,    name,    slug,    description,    package,    image{      asset->{        _id,        url      },      alt    },    price,    availability,    features,    isActive  }
-export type AdditionalOptionsByManufacturerQueryResult = Array<never>
+export type AdditionalOptionsByManufacturerQueryResult = Array<{
+  _id: string
+  name: string
+  slug: Slug
+  description: string | null
+  package:
+    | 'comfort'
+    | 'custom'
+    | 'exterior'
+    | 'interior'
+    | 'luxury'
+    | 'offroad'
+    | 'performance'
+    | 'safety'
+    | 'technology'
+    | 'utility'
+    | null
+  image: {
+    asset: {
+      _id: string
+      url: string | null
+    } | null
+    alt: string | null
+  } | null
+  price: {
+    amount?: number
+    currency?: 'CAD' | 'USD'
+    isEstimate?: boolean
+  } | null
+  availability: 'available-soon' | 'discontinued' | 'in-stock' | 'special-order' | null
+  features: Array<string> | null
+  isActive: boolean | null
+}>
+// Variable: searchAdditionalOptionsQuery
+// Query: *[_type == "additionalOption" && isActive == true && (    name match "*$query*" ||    slug.current match "*$query*" ||    tags[] match "*$query*"  )] | order(sortOrder asc, name asc) {    _id,    name,    slug,    description,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    "brand": brand->{      _id,      name,      primaryColor    },    package,    image{      asset->{        _id,        url      },      alt,      caption    },    price,    availability,    features,    tags,    isActive,    sortOrder  }
+export type SearchAdditionalOptionsQueryResult = Array<{
+  _id: string
+  name: string
+  slug: Slug
+  description: string | null
+  manufacturer: {
+    _id: string
+    name: string
+    logo: {
+      asset: {
+        _id: string
+        url: string | null
+      } | null
+    } | null
+  }
+  brand: {
+    _id: string
+    name: string
+    primaryColor: string | null
+  } | null
+  package:
+    | 'comfort'
+    | 'custom'
+    | 'exterior'
+    | 'interior'
+    | 'luxury'
+    | 'offroad'
+    | 'performance'
+    | 'safety'
+    | 'technology'
+    | 'utility'
+    | null
+  image: {
+    asset: {
+      _id: string
+      url: string | null
+    } | null
+    alt: string | null
+    caption: string | null
+  } | null
+  price: {
+    amount?: number
+    currency?: 'CAD' | 'USD'
+    isEstimate?: boolean
+  } | null
+  availability: 'available-soon' | 'discontinued' | 'in-stock' | 'special-order' | null
+  features: Array<string> | null
+  tags: Array<string> | null
+  isActive: boolean | null
+  sortOrder: number | null
+}>
+// Variable: searchAdditionalOptionsByVehicleMakeQuery
+// Query: *[_type == "additionalOption" && isActive == true &&     compatibleVehicles[]->manufacturer->name match "*$makeQuery*" &&    (      name match "*$optionQuery*" ||      slug.current match "*$optionQuery*" ||      tags[] match "*$optionQuery*"    )  ] | order(sortOrder asc, name asc) {    _id,    name,    slug,    description,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    "brand": brand->{      _id,      name,      primaryColor    },    package,    image{      asset->{        _id,        url      },      alt,      caption    },    price,    availability,    features,    tags,    "compatibleVehicles": compatibleVehicles[]->{      _id,      title,      slug,      model,      vehicleType,      modelYear,      "manufacturer": manufacturer->{        _id,        name      }    },    isActive,    sortOrder  }
+export type SearchAdditionalOptionsByVehicleMakeQueryResult = Array<{
+  _id: string
+  name: string
+  slug: Slug
+  description: string | null
+  manufacturer: {
+    _id: string
+    name: string
+    logo: {
+      asset: {
+        _id: string
+        url: string | null
+      } | null
+    } | null
+  }
+  brand: {
+    _id: string
+    name: string
+    primaryColor: string | null
+  } | null
+  package:
+    | 'comfort'
+    | 'custom'
+    | 'exterior'
+    | 'interior'
+    | 'luxury'
+    | 'offroad'
+    | 'performance'
+    | 'safety'
+    | 'technology'
+    | 'utility'
+    | null
+  image: {
+    asset: {
+      _id: string
+      url: string | null
+    } | null
+    alt: string | null
+    caption: string | null
+  } | null
+  price: {
+    amount?: number
+    currency?: 'CAD' | 'USD'
+    isEstimate?: boolean
+  } | null
+  availability: 'available-soon' | 'discontinued' | 'in-stock' | 'special-order' | null
+  features: Array<string> | null
+  tags: Array<string> | null
+  compatibleVehicles: Array<{
+    _id: string
+    title: string
+    slug: Slug
+    model: string
+    vehicleType: 'car' | 'suv' | 'truck' | 'utility' | 'van' | null
+    modelYear: number
+    manufacturer: {
+      _id: string
+      name: string
+    }
+  }> | null
+  isActive: boolean | null
+  sortOrder: number | null
+}>
+// Variable: searchAdditionalOptionsByMakeOnlyQuery
+// Query: *[_type == "additionalOption" && isActive == true &&     compatibleVehicles[]->manufacturer->name match "*$makeQuery*"  ] | order(sortOrder asc, name asc) {    _id,    name,    slug,    description,    "manufacturer": manufacturer->{      _id,      name,      logo{        asset->{          _id,          url        }      }    },    "brand": brand->{      _id,      name,      primaryColor    },    package,    image{      asset->{        _id,        url      },      alt,      caption    },    price,    availability,    features,    tags,    "compatibleVehicles": compatibleVehicles[]->{      _id,      title,      slug,      model,      vehicleType,      modelYear,      "manufacturer": manufacturer->{        _id,        name      }    },    isActive,    sortOrder  }
+export type SearchAdditionalOptionsByMakeOnlyQueryResult = Array<{
+  _id: string
+  name: string
+  slug: Slug
+  description: string | null
+  manufacturer: {
+    _id: string
+    name: string
+    logo: {
+      asset: {
+        _id: string
+        url: string | null
+      } | null
+    } | null
+  }
+  brand: {
+    _id: string
+    name: string
+    primaryColor: string | null
+  } | null
+  package:
+    | 'comfort'
+    | 'custom'
+    | 'exterior'
+    | 'interior'
+    | 'luxury'
+    | 'offroad'
+    | 'performance'
+    | 'safety'
+    | 'technology'
+    | 'utility'
+    | null
+  image: {
+    asset: {
+      _id: string
+      url: string | null
+    } | null
+    alt: string | null
+    caption: string | null
+  } | null
+  price: {
+    amount?: number
+    currency?: 'CAD' | 'USD'
+    isEstimate?: boolean
+  } | null
+  availability: 'available-soon' | 'discontinued' | 'in-stock' | 'special-order' | null
+  features: Array<string> | null
+  tags: Array<string> | null
+  compatibleVehicles: Array<{
+    _id: string
+    title: string
+    slug: Slug
+    model: string
+    vehicleType: 'car' | 'suv' | 'truck' | 'utility' | 'van' | null
+    modelYear: number
+    manufacturer: {
+      _id: string
+      name: string
+    }
+  }> | null
+  isActive: boolean | null
+  sortOrder: number | null
+}>
 
 // Query TypeMap
 import '@sanity/client'
@@ -1994,5 +2436,8 @@ declare module '@sanity/client' {
     '\n  *[_type == "additionalOption" && slug.current == $slug][0] {\n    _id,\n    name,\n    slug,\n    description,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    "brand": brand->{\n      _id,\n      name,\n      primaryColor\n    },\n    package,\n    image{\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      caption\n    },\n    price,\n    availability,\n    "compatibleVehicles": compatibleVehicles[]->{\n      _id,\n      title,\n      slug,\n      model,\n      vehicleType,\n      modelYear\n    },\n    features,\n    installation,\n    warranty,\n    tags,\n    isActive,\n    sortOrder\n  }\n': AdditionalOptionQueryResult
     '\n  *[_type == "additionalOption" && package == $package && defined(slug.current)] | order(sortOrder asc, name asc) {\n    _id,\n    name,\n    slug,\n    description,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    image{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    price,\n    availability,\n    features,\n    isActive\n  }\n': AdditionalOptionsByPackageQueryResult
     '\n  *[_type == "additionalOption" && references($manufacturerId) && defined(slug.current)] | order(sortOrder asc, name asc) {\n    _id,\n    name,\n    slug,\n    description,\n    package,\n    image{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    price,\n    availability,\n    features,\n    isActive\n  }\n': AdditionalOptionsByManufacturerQueryResult
+    '\n  *[_type == "additionalOption" && isActive == true && (\n    name match "*$query*" ||\n    slug.current match "*$query*" ||\n    tags[] match "*$query*"\n  )] | order(sortOrder asc, name asc) {\n    _id,\n    name,\n    slug,\n    description,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    "brand": brand->{\n      _id,\n      name,\n      primaryColor\n    },\n    package,\n    image{\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      caption\n    },\n    price,\n    availability,\n    features,\n    tags,\n    isActive,\n    sortOrder\n  }\n': SearchAdditionalOptionsQueryResult
+    '\n  *[_type == "additionalOption" && isActive == true && \n    compatibleVehicles[]->manufacturer->name match "*$makeQuery*" &&\n    (\n      name match "*$optionQuery*" ||\n      slug.current match "*$optionQuery*" ||\n      tags[] match "*$optionQuery*"\n    )\n  ] | order(sortOrder asc, name asc) {\n    _id,\n    name,\n    slug,\n    description,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    "brand": brand->{\n      _id,\n      name,\n      primaryColor\n    },\n    package,\n    image{\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      caption\n    },\n    price,\n    availability,\n    features,\n    tags,\n    "compatibleVehicles": compatibleVehicles[]->{\n      _id,\n      title,\n      slug,\n      model,\n      vehicleType,\n      modelYear,\n      "manufacturer": manufacturer->{\n        _id,\n        name\n      }\n    },\n    isActive,\n    sortOrder\n  }\n': SearchAdditionalOptionsByVehicleMakeQueryResult
+    '\n  *[_type == "additionalOption" && isActive == true && \n    compatibleVehicles[]->manufacturer->name match "*$makeQuery*"\n  ] | order(sortOrder asc, name asc) {\n    _id,\n    name,\n    slug,\n    description,\n    "manufacturer": manufacturer->{\n      _id,\n      name,\n      logo{\n        asset->{\n          _id,\n          url\n        }\n      }\n    },\n    "brand": brand->{\n      _id,\n      name,\n      primaryColor\n    },\n    package,\n    image{\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      caption\n    },\n    price,\n    availability,\n    features,\n    tags,\n    "compatibleVehicles": compatibleVehicles[]->{\n      _id,\n      title,\n      slug,\n      model,\n      vehicleType,\n      modelYear,\n      "manufacturer": manufacturer->{\n        _id,\n        name\n      }\n    },\n    isActive,\n    sortOrder\n  }\n': SearchAdditionalOptionsByMakeOnlyQueryResult
   }
 }

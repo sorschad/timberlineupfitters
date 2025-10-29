@@ -9,7 +9,6 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './src/schemaTypes'
 import {structure} from './src/structure'
 import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
-import {googleDrive, googleDriveAssetSource} from 'sanity-plugin-google-drive'
 import {
   presentationTool,
   defineDocuments,
@@ -20,7 +19,7 @@ import {assist} from '@sanity/assist'
 
 // Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID'
-const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
+const dataset = process.env.SANITY_STUDIO_DATASET || 'staging'
 
 // URL for preview functionality, defaults to localhost:3000 if not set
 const SANITY_STUDIO_PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
@@ -125,14 +124,6 @@ export default defineConfig({
     }),
     // Additional plugins for enhanced functionality
     unsplashImageAsset(),
-    googleDrive({
-      apiKey: process.env.SANITY_STUDIO_GOOGLE_API_KEY || '',
-      clientId: process.env.SANITY_STUDIO_GOOGLE_CLIENT_ID || '',
-    }) as any,
-    googleDriveAssetSource({
-      apiKey: process.env.SANITY_STUDIO_GOOGLE_API_KEY || '',
-      clientId: process.env.SANITY_STUDIO_GOOGLE_CLIENT_ID || '',
-    }) as any,
     assist(),
     visionTool(),
   ],

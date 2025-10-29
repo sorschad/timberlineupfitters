@@ -531,3 +531,158 @@ export const additionalOptionsByManufacturerQuery = defineQuery(`
     isActive
   }
 `)
+
+// Enhanced search queries for additional options
+export const searchAdditionalOptionsQuery = defineQuery(`
+  *[_type == "additionalOption" && isActive == true && (
+    name match "*$query*" ||
+    slug.current match "*$query*" ||
+    tags[] match "*$query*"
+  )] | order(sortOrder asc, name asc) {
+    _id,
+    name,
+    slug,
+    description,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    "brand": brand->{
+      _id,
+      name,
+      primaryColor
+    },
+    package,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt,
+      caption
+    },
+    price,
+    availability,
+    features,
+    tags,
+    isActive,
+    sortOrder
+  }
+`)
+
+export const searchAdditionalOptionsByVehicleMakeQuery = defineQuery(`
+  *[_type == "additionalOption" && isActive == true && 
+    compatibleVehicles[]->manufacturer->name match "*$makeQuery*" &&
+    (
+      name match "*$optionQuery*" ||
+      slug.current match "*$optionQuery*" ||
+      tags[] match "*$optionQuery*"
+    )
+  ] | order(sortOrder asc, name asc) {
+    _id,
+    name,
+    slug,
+    description,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    "brand": brand->{
+      _id,
+      name,
+      primaryColor
+    },
+    package,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt,
+      caption
+    },
+    price,
+    availability,
+    features,
+    tags,
+    "compatibleVehicles": compatibleVehicles[]->{
+      _id,
+      title,
+      slug,
+      model,
+      vehicleType,
+      modelYear,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      }
+    },
+    isActive,
+    sortOrder
+  }
+`)
+
+export const searchAdditionalOptionsByMakeOnlyQuery = defineQuery(`
+  *[_type == "additionalOption" && isActive == true && 
+    compatibleVehicles[]->manufacturer->name match "*$makeQuery*"
+  ] | order(sortOrder asc, name asc) {
+    _id,
+    name,
+    slug,
+    description,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    "brand": brand->{
+      _id,
+      name,
+      primaryColor
+    },
+    package,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt,
+      caption
+    },
+    price,
+    availability,
+    features,
+    tags,
+    "compatibleVehicles": compatibleVehicles[]->{
+      _id,
+      title,
+      slug,
+      model,
+      vehicleType,
+      modelYear,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      }
+    },
+    isActive,
+    sortOrder
+  }
+`)
