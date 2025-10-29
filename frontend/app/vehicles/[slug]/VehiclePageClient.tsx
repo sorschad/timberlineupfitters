@@ -36,11 +36,8 @@ interface Vehicle {
   specifications?: any
   features?: {
     baseFeatures?: string[]
-    exteriorFeatures?: string[]
-    interiorFeatures?: string[]
     safetyFeatures?: string[]
     technologyFeatures?: string[]
-    performanceFeatures?: string[]
     additionalOptions?: string[]
   }
   customizationOptions?: any[]
@@ -122,7 +119,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
 
         if (isVisible && scrollComplete) {
           // Trigger animation for first section when Features & Options comes into view
-          const firstSection = featuresSection.querySelector('[data-category="exteriorFeatures"]')
+          const firstSection = featuresSection.querySelector('[data-category="baseFeatures"]')
           if (firstSection) {
             setTimeout(() => {
               firstSection.classList.add('animate-expand')

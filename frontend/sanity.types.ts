@@ -277,11 +277,8 @@ export type Vehicle = {
     cabStyle?: 'Regular Cab' | 'SuperCab' | 'SuperCrew'
   }
   features?: {
-    exteriorFeatures?: Array<string>
-    interiorFeatures?: Array<string>
     safetyFeatures?: Array<string>
     technologyFeatures?: Array<string>
-    performanceFeatures?: Array<string>
     baseFeatures?: Array<string>
     additionalOptions?: Array<string>
   }
