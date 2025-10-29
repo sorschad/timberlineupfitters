@@ -36,8 +36,6 @@ interface Vehicle {
   specifications?: any
   features?: {
     baseFeatures?: string[]
-    safetyFeatures?: string[]
-    technologyFeatures?: string[]
     additionalOptions?: string[]
   }
   customizationOptions?: any[]

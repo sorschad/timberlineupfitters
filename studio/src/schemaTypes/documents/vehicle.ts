@@ -218,7 +218,16 @@ export const vehicle = defineType({
           name: 'additionalOptions',
           title: 'Additional Options',
           type: 'array',
-          of: [{ type: 'string' }]
+          description: 'Reference to Additional Option documents for this vehicle',
+          of: [
+            {
+              type: 'reference',
+              to: [{ type: 'additionalOption' }],
+              options: {
+                filter: 'isActive == true'
+              }
+            }
+          ]
         })
       ]
     }),

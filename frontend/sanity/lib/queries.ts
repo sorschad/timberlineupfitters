@@ -284,7 +284,29 @@ export const allVehiclesQuery = defineQuery(`
       }
     },
     specifications,
-    features,
+    features{
+      baseFeatures,
+      "additionalOptions": additionalOptions[]->{
+        _id,
+        name,
+        slug,
+        description,
+        "manufacturer": manufacturer->{
+          _id,
+          name
+        },
+        "brand": brand->{
+          _id,
+          name
+        },
+        package,
+        image,
+        price,
+        availability,
+        features,
+        tags
+      }
+    },
     inventory,
     tags
   }
@@ -318,7 +340,29 @@ export const timberlineVehiclesQuery = defineQuery(`
       }
     },
     specifications,
-    features,
+    features{
+      baseFeatures,
+      "additionalOptions": additionalOptions[]->{
+        _id,
+        name,
+        slug,
+        description,
+        "manufacturer": manufacturer->{
+          _id,
+          name
+        },
+        "brand": brand->{
+          _id,
+          name
+        },
+        package,
+        image,
+        price,
+        availability,
+        features,
+        tags
+      }
+    },
     inventory,
     tags
   }
@@ -347,12 +391,26 @@ export const vehicleQuery = defineQuery(`
     specifications,
     features{
       baseFeatures,
-      exteriorFeatures,
-      interiorFeatures,
-      safetyFeatures,
-      technologyFeatures,
-      performanceFeatures,
-      additionalOptions
+      "additionalOptions": additionalOptions[]->{
+        _id,
+        name,
+        slug,
+        description,
+        "manufacturer": manufacturer->{
+          _id,
+          name
+        },
+        "brand": brand->{
+          _id,
+          name
+        },
+        package,
+        image,
+        price,
+        availability,
+        features,
+        tags
+      }
     },
     customizationOptions,
     inventory,

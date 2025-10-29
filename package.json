@@ -30,7 +30,8 @@
     "type-check": "npm run type-check --workspaces",
     "backup": "node backup-sanity.js",
     "restore": "node restore-sanity.mjs",
-    "seed": "node scripts/seedVehiclesAndManufacturers.js"
+    "seed": "node scripts/seedVehiclesAndManufacturers.js",
+    "migrate-additional-options": "tsx scripts/migrateAdditionalOptions.ts"
   },
   "prettier": "@sanity/prettier-config",
   "devDependencies": {
@@ -38,7 +39,8 @@
     "@commitlint/config-conventional": "^20.0.0",
     "@sanity/prettier-config": "^2.0.1",
     "npm-run-all2": "^5.0.2",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "tsx": "^4.7.0"
   },
   "dependencies": {
     "@sanity/client": "^7.11.2",

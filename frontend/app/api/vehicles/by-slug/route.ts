@@ -94,12 +94,26 @@ const comprehensiveVehicleQuery = `
     },
     features{
       baseFeatures,
-      exteriorFeatures,
-      interiorFeatures,
-      safetyFeatures,
-      technologyFeatures,
-      performanceFeatures,
-      additionalOptions
+      "additionalOptions": additionalOptions[]->{
+        _id,
+        name,
+        slug,
+        description,
+        "manufacturer": manufacturer->{
+          _id,
+          name
+        },
+        "brand": brand->{
+          _id,
+          name
+        },
+        package,
+        image,
+        price,
+        availability,
+        features,
+        tags
+      }
     },
     customizationOptions[]{
       name,
