@@ -804,7 +804,7 @@
           },
           "dereferencesTo": "manufacturer"
         },
-        "optional": false
+        "optional": true
       },
       "brand": {
         "type": "objectAttribute",
