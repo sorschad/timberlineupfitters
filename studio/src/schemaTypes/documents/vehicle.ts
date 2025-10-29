@@ -243,7 +243,13 @@ export const vehicle = defineType({
           type: 'reference',
           to: [{ type: 'vehicle' }],
           options: {
-            filter: '_id != $currentId' // Prevent self-reference
+            filter: ({ document }) => {
+              // Prevent self-reference by filtering out the current document's ID
+              return {
+                filter: `_id != "${document._id}"`,
+                params: {}
+              }
+            }
           }
         }
       ],
