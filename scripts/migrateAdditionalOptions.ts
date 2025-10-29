@@ -1,11 +1,26 @@
 import { createClient } from '@sanity/client'
 import slugify from 'slugify'
+import dotenv from 'dotenv'
 
-// Use the same configuration as the frontend
+// Load environment variables from studio/.env
+dotenv.config({ path: './studio/.env' })
+
+// Validate required environment variables
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || '9jrxfm1d'
+const dataset = process.env.SANITY_STUDIO_DATASET || 'staging'
+const token = process.env.SANITY_WRITE_TOKEN || process.env.SANITY_API_TOKEN
+
+if (!token) {
+  console.error('❌ Error: SANITY_WRITE_TOKEN or SANITY_API_TOKEN environment variable is required')
+  console.error('   Please set this in studio/.env file')
+  process.exit(1)
+}
+
+// Use the same configuration as other scripts
 const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  token: process.env.SANITY_API_TOKEN!,
+  projectId,
+  dataset,
+  token,
   useCdn: false,
   apiVersion: '2024-10-28'
 })
@@ -26,6 +41,7 @@ interface AdditionalOption {
 
 async function migrateAdditionalOptions() {
   console.log('🚀 Starting Additional Options migration...')
+  console.log(`📋 Using project: ${projectId}, dataset: ${dataset}`)
 
   try {
     // Fetch all vehicles with their current additionalOptions
