@@ -209,36 +209,6 @@ export const vehicle = defineType({
       type: 'object',
       fields: [
         defineField({
-          name: 'exteriorFeatures',
-          title: 'Exterior Features',
-          type: 'array',
-          of: [{ type: 'string' }]
-        }),
-        defineField({
-          name: 'interiorFeatures',
-          title: 'Interior Features',
-          type: 'array',
-          of: [{ type: 'string' }]
-        }),
-        defineField({
-          name: 'safetyFeatures',
-          title: 'Safety Features',
-          type: 'array',
-          of: [{ type: 'string' }]
-        }),
-        defineField({
-          name: 'technologyFeatures',
-          title: 'Technology Features',
-          type: 'array',
-          of: [{ type: 'string' }]
-        }),
-        defineField({
-          name: 'performanceFeatures',
-          title: 'Performance Features',
-          type: 'array',
-          of: [{ type: 'string' }]
-        }),
-        defineField({
           name: 'baseFeatures',
           title: 'Base Features',
           type: 'array',
@@ -404,17 +374,6 @@ export const vehicle = defineType({
           })
         ]
       })]
-    }),
-
-    defineField({
-      name: 'videoTour',
-      title: 'Video Tour',
-      type: 'object',
-      fields: [
-        defineField({ name: 'youtubeUrl', type: 'url', title: 'YouTube URL' }),
-        defineField({ name: 'thumbnail', type: 'image', title: 'Video Thumbnail' }),
-        defineField({ name: 'description', type: 'text', title: 'Video Description' })
-      ]
     }),
 
     // Customization Options (Based on TSportTruck's customization focus)
