@@ -340,6 +340,7 @@ export type Vehicle = {
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
     isBuildCoverImage?: boolean
+    isBuildTextSummaryBlock?: boolean
     alt?: string
     caption?: string
     view?:
@@ -1827,6 +1828,7 @@ export type VehicleQueryResult = {
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
     isBuildCoverImage?: boolean
+    isBuildTextSummaryBlock?: boolean
     alt?: string
     caption?: string
     view?:

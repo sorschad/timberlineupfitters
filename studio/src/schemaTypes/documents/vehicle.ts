@@ -325,13 +325,22 @@ export const vehicle = defineType({
             asset: 'asset',
             alt: 'alt',
             caption: 'caption',
-            isBuildCoverImage: 'isBuildCoverImage'
+            isBuildCoverImage: 'isBuildCoverImage',
+            isBuildTextSummaryBlock: 'isBuildTextSummaryBlock'
           },
           prepare(selection) {
-            const { asset, alt, caption, isBuildCoverImage } = selection
+            const { asset, alt, caption, isBuildCoverImage, isBuildTextSummaryBlock } = selection
+            let subtitle = 'Gallery Image'
+            if (isBuildCoverImage && isBuildTextSummaryBlock) {
+              subtitle = 'Cover Image + Text Summary'
+            } else if (isBuildCoverImage) {
+              subtitle = 'Cover Image'
+            } else if (isBuildTextSummaryBlock) {
+              subtitle = 'Text Summary Block'
+            }
             return {
               title: caption || alt || 'Gallery Image',
-              subtitle: isBuildCoverImage ? 'Cover Image' : 'Gallery Image',
+              subtitle: subtitle,
               media: asset
             }
           }
@@ -342,6 +351,13 @@ export const vehicle = defineType({
             title: 'Is Cover Image for Build',
             type: 'boolean',
             description: 'Whether this image will be used for the build cover image to open the build gallery. When true, image will be shown on vehicle details page and clicking the image will open the build gallery.',
+            initialValue: false
+          }),
+          defineField({
+            name: 'isBuildTextSummaryBlock',
+            title: 'Is Text Summary Block for Build',
+            type: 'boolean',
+            description: 'Whether this block will be used to display the text summary block on the build gallery expandable section.',
             initialValue: false
           }),
           defineField({ name: 'alt', type: 'string', title: 'Alt Text' }),
