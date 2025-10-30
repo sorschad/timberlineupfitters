@@ -360,6 +360,36 @@ export const vehicle = defineType({
             description: 'Whether this block will be used to display the text summary block on the build gallery expandable section.',
             initialValue: false
           }),
+          defineField({
+            name: 'isBuildTextSummaryContent',
+            title: 'Text Summary Content',
+            type: 'array',
+            of: [
+              defineArrayMember({
+                type: 'block',
+                styles: [
+                  { title: 'Normal', value: 'normal' },
+                  { title: 'H1', value: 'h1' },
+                  { title: 'H2', value: 'h2' },
+                  { title: 'H3', value: 'h3' },
+                  { title: 'Quote', value: 'blockquote' }
+                ],
+                lists: [
+                  { title: 'Bullet', value: 'bullet' },
+                  { title: 'Numbered', value: 'number' }
+                ]
+              })
+            ],
+            description: 'Rich text content displayed with the build text summary block.',
+            hidden: ({ parent }) => !parent?.isBuildTextSummaryBlock,
+            validation: (Rule) => Rule.custom((value, context) => {
+              const isSummary = (context as any)?.parent?.isBuildTextSummaryBlock
+              if (isSummary) {
+                return value && value.length > 0 ? true : 'Text summary content is required when marked as a Text Summary Block'
+              }
+              return true
+            })
+          }),
           defineField({ name: 'alt', type: 'string', title: 'Alt Text' }),
           defineField({ name: 'caption', type: 'string', title: 'Caption' }),
           defineField({ 

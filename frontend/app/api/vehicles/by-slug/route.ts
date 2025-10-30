@@ -66,7 +66,14 @@ const comprehensiveVehicleQuery = `
       },
       hotspot,
       crop,
-      alt
+      alt,
+      caption,
+      isBuildCoverImage,
+      isBuildTextSummaryBlock,
+      isBuildTextSummaryContent,
+      view,
+      tags,
+      gridSpan
     },
     videoTour{
       url,

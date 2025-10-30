@@ -3,6 +3,7 @@
 import { useMemo, useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
+import PortableText from '@/app/components/PortableText'
 import { IMAGE_SIZES } from '@/sanity/lib/imageUtils'
 import Lightbox from 'yet-another-react-lightbox'
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
@@ -309,10 +310,14 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
                         <h3 className="text-xl font-semibold text-gray-900 mb-2">
                           {build.buildName} Summary
                         </h3>
-                        {build.textSummaryBlock.caption && (
-                          <p className="text-gray-700 leading-relaxed">
-                            {build.textSummaryBlock.caption}
-                          </p>
+                        {Array.isArray(build.textSummaryBlock.isBuildTextSummaryContent) && build.textSummaryBlock.isBuildTextSummaryContent.length > 0 ? (
+                          <PortableText value={build.textSummaryBlock.isBuildTextSummaryContent} />
+                        ) : (
+                          build.textSummaryBlock.caption && (
+                            <p className="text-gray-700 leading-relaxed">
+                              {build.textSummaryBlock.caption}
+                            </p>
+                          )
                         )}
                       </div>
                     </div>

@@ -341,6 +341,7 @@ export type Vehicle = {
     crop?: SanityImageCrop
     isBuildCoverImage?: boolean
     isBuildTextSummaryBlock?: boolean
+    isBuildTextSummaryContent?: BlockContent
     alt?: string
     caption?: string
     view?:
@@ -1829,6 +1830,7 @@ export type VehicleQueryResult = {
     crop?: SanityImageCrop
     isBuildCoverImage?: boolean
     isBuildTextSummaryBlock?: boolean
+    isBuildTextSummaryContent?: BlockContent
     alt?: string
     caption?: string
     view?:
