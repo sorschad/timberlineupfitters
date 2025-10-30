@@ -2372,6 +2372,22 @@
                             {
                               "type": "string",
                               "value": "blockquote"
+                            },
+                            {
+                              "type": "string",
+                              "value": "medium"
+                            },
+                            {
+                              "type": "string",
+                              "value": "small"
+                            },
+                            {
+                              "type": "string",
+                              "value": "extra-small"
+                            },
+                            {
+                              "type": "string",
+                              "value": "tiny"
                             }
                           ]
                         },

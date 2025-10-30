@@ -372,7 +372,11 @@ export const vehicle = defineType({
                   { title: 'H1', value: 'h1' },
                   { title: 'H2', value: 'h2' },
                   { title: 'H3', value: 'h3' },
-                  { title: 'Quote', value: 'blockquote' }
+                  { title: 'Quote', value: 'blockquote' },
+                  { title: 'Medium', value: 'medium' },
+                  { title: 'Small', value: 'small' },
+                  { title: 'Extra Small', value: 'extra-small' },
+                  { title: 'Tiny', value: 'tiny' }
                 ],
                 lists: [
                   { title: 'Bullet', value: 'bullet' },

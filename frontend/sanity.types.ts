@@ -51,7 +51,7 @@ export type InfoSection = {
       _type: 'span'
       _key: string
     }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote' | 'medium' | 'small' | 'extra-small' | 'tiny'
     listItem?: 'bullet' | 'number'
     markDefs?: Array<{
       linkType?: 'href' | 'page' | 'brand'
@@ -85,7 +85,7 @@ export type BlockContent = Array<{
     _type: 'span'
     _key: string
   }>
-  style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+  style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote' | 'medium' | 'small' | 'extra-small' | 'tiny'
   listItem?: 'bullet' | 'number'
   markDefs?: Array<{
     linkType?: 'href' | 'page' | 'brand'
