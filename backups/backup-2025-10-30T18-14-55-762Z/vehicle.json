@@ -1,0 +1,6408 @@
+[
+  {
+    "_createdAt": "2025-09-22T19:01:23Z",
+    "_id": "0e112a9c-2258-43aa-9355-e953925961da",
+    "_rev": "o1s1H9EbIWJQn22JkA2LuL",
+    "_system": {
+      "base": {
+        "id": "0e112a9c-2258-43aa-9355-e953925961da",
+        "rev": "kyM5SM6pgmmk6pzYM9mPud"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-29T21:21:44Z",
+    "associatedVehicles": [
+      {
+        "_key": "3d1b2ba6fabf",
+        "_ref": "ford-f-150-tsport-anthem",
+        "_type": "reference"
+      },
+      {
+        "_key": "c97c5bfaccc4",
+        "_ref": "ford-f-150-tsport-valor",
+        "_type": "reference"
+      },
+      {
+        "_key": "403770310794",
+        "_ref": "ford-superduty-tsport-sportsman",
+        "_type": "reference"
+      }
+    ],
+    "brand": "TSport",
+    "coverImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-5ecb4304ddc475215916b93320606f1cbc385317-600x400-png",
+        "_type": "reference"
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520626866-rnbnyssgx",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LUif3M",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LUif7k",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520626866-m9b0litdf",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LUifC8",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LUifGW",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520626866-bu2l0gq4b",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LUifKu",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LUifPI",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520626866-kx6dewrzb",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LUifTg",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LUifY4",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "description": [
+      {
+        "_key": "19de7b6067cb",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "f5637f9ab55d",
+            "_type": "span",
+            "marks": [],
+            "text": "Subtle strength. Timeless style. The "
+          },
+          {
+            "_key": "07d0ed924b00",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "Sportsman"
+          },
+          {
+            "_key": "092b2128c779",
+            "_type": "span",
+            "marks": [],
+            "text": " F-150 package is built for those who appreciate clean lines and real capability. With just the right mix of premium features and rugged readiness, this truck is equally at home cruising the streets or chasing trails — wherever your next adventure leads."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "Balanced for both off-road and daily driving, this package features a 2.5\" lift, 20\" wheels with 285/60R20 all-terrain tires, and integrated TSport styling accents.",
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BPAs",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEgQ",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BPCb",
+          "_ref": "kyM5SM6pgmmk6pzYM8xElb",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BPEK",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEqm",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BPG3",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEvx",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BPHm",
+          "_ref": "MGIGwn16t0272nFgJnqvng",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BPJV",
+          "_ref": "kyM5SM6pgmmk6pzYM8xF18",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BPLE",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMX3",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BPMx",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMht",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "2.5″ Lift Kit",
+        "20″ Wheels",
+        "285/60R20 All-Terrain Tires",
+        "Road Force Mount & Balance",
+        "Four Wheel Alignment",
+        "TSport Graphics & 3-D Badging",
+        "Complete ADAS System Calibration"
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "5c49efbb7987",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-ba44dbefbf56645669d0be75ec9510cda28955e5-5712x3808-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "6b5eda01a1ff",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9f36d0cebc4610cd0c669413574a4837b37b9c2b-5712x3808-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "f3c05ff5e89f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a144c9e7526ce7b15ab29dae566e0288e29063cc-5643x3761-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "81833218ca8f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-0de6ab8544d12d2471bd19ce57ed6cdc06ec923d-5712x3808-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "d0bce9216352",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-ce4a1f44807c59f61085cc1231fb490c0dd1d25f-5712x3808-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "7f7bdf0bbbc4",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-22c996d4b3dce23216763fd345f8c68029b682b4-5712x3808-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "e8b8e1477c58",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-f95e40916e38c6cb8003174be30ea6d48fb9af2e-3024x4032-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "7b993c3dde9a",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e6e056fe071ccd9a2da005e7ab7d9d82cb6ddaea-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true,
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "2780dce826f9",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-3ee0eae53cd437dab195ff6edbfb568ce44532f8-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "ff84d8551d82",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-74f95fd9cbaccf51ee75eb71db7aeda2ada57e5c-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "6e45a16cee21",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-5551b3726da3788952d01fcc39ee77e6f3ee5075-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "2d86735b54bf",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9872b2e4341923f0584569ceca25c299fa0d708a-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "4d9ab64873c8",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-73d6dea187b3a27230e9cd842450a2932663b133-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "b3ec34bce251",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-dff9d19221423e5b222bfbf4b1282b14a3ca898d-5605x4203-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "4c679e77b8a4",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-979cb978ef7f07842456164ed531a945eb3c7a90-4815x3611-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "dc6b3b7fbe4d",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b4936eb4296e86678f0efdd9911a12eed23bbc39-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "c30b8811dd7b",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-5e4ba59234860d43b403908b549ef35b7ac8e3b0-5566x4174-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "2b952c1d6083",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-dbb4a2809a6f602b5b9c2662fd0a8f175c588fae-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "fa374fa9a2c0",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-7506ff8afe20173221d86ccf682d64ec4fa231f9-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "88dfc4d26da9",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b650869e83129926a6522d7aff2529267c1ed5dd-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "a3a5c9f93abf",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-3b7275d6d3443fa3ace43a6864f97962cebc4dd9-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      }
+    ],
+    "manufacturer": {
+      "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+      "_type": "reference"
+    },
+    "model": "F-150",
+    "modelYear": 2025,
+    "publishedAt": "2025-09-22T19:00:45.435Z",
+    "slug": {
+      "_type": "slug",
+      "current": "ford-f-150-tsport-sportsman"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4x4"
+      ]
+    },
+    "tags": [
+      "Ford",
+      "TSport",
+      "F-150",
+      "Package: Sportsman",
+      "Sportsman"
+    ],
+    "title": "Sportsman",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "Balanced for both off-road and daily driving, this package features a 2.5″ lift, 20″ wheels with 285/60R20 all-terrain tires, and integrated TSport styling accents.",
+      "asset": {
+        "_ref": "image-1067fd851f51ceb602e6cb303c3102eebe9d155b-9267x4570-png",
+        "_type": "reference"
+      }
+    },
+    "vehicleType": "truck"
+  },
+  {
+    "_createdAt": "2025-09-22T21:21:26Z",
+    "_id": "ford-f-150-tsport-anthem",
+    "_rev": "o1s1H9EbIWJQn22Jk9rpvN",
+    "_system": {
+      "base": {
+        "id": "ford-f-150-tsport-anthem",
+        "rev": "MGIGwn16t0272nFgJqDH6g"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-29T20:20:52Z",
+    "associatedVehicles": [
+      {
+        "_key": "fa9740bb01f0",
+        "_ref": "0e112a9c-2258-43aa-9355-e953925961da",
+        "_type": "reference"
+      },
+      {
+        "_key": "6b3a61716a3a",
+        "_ref": "ford-f-150-tsport-valor",
+        "_type": "reference"
+      },
+      {
+        "_key": "f8595a5e0813",
+        "_ref": "ford-f-150-tsport-lowered-sportsman",
+        "_type": "reference"
+      }
+    ],
+    "brand": "TSport",
+    "coverImage": {
+      "_type": "image",
+      "alt": "TSport Anthem F-150",
+      "asset": {
+        "_ref": "image-c2d74ea5803402e8e3ba09057ba811a1c1a39a94-600x400-png",
+        "_type": "reference"
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520630898-fdlowwzxq",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSr5Vc",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSr5a0",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520630898-0uvu4y1he",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSr5eO",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSr5im",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520630898-60v38w1ci",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSr5nA",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSr5rY",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520630898-mk8r6stq4",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSr5vw",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSr60K",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "description": [
+      {
+        "_key": "5485f888d1be",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "c4f08ba14c87",
+            "_type": "span",
+            "marks": [],
+            "text": "Where legacy meets bold performance. The "
+          },
+          {
+            "_key": "b4e410c2386c",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "Anthem"
+          },
+          {
+            "_key": "0fd97ccf05f8",
+            "_type": "span",
+            "marks": [],
+            "text": " package is the ultimate expression of 25 years of craftsmanship at Southern Off-Road Specialists. Built with premium components and unstoppable style, every Anthem truck turns heads and takes names — on-road or off."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "The Anthem package is the ultimate expression of 25 years of craftsmanship at Southern Off-Road Specialists. Built with premium components and unstoppable style, every Anthem truck turns heads and takes names — on-road or off.",
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "MGIGwn16t0272nFgJoPMTg",
+          "_ref": "kyM5SM6pgmmk6pzYM8xF82",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJoPMYg",
+          "_ref": "kyM5SM6pgmmk6pzYM8xElb",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJoPMdg",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEqm",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJoPMig",
+          "_ref": "kyM5SM6pgmmk6pzYM8xFDD",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJoPMng",
+          "_ref": "o1s1H9EbIWJQn22Jk8mN8z",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJoPMsg",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEvx",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJoPMxg",
+          "_ref": "o1s1H9EbIWJQn22Jk8mNPF",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJoPN2g",
+          "_ref": "o1s1H9EbIWJQn22Jk8mNfV",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJoPN7g",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMX3",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJoPNCg",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMht",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "6″ Suspension System",
+        "20 x 10  Premium Alloy Wheels",
+        "35 x 12.50 x 20 Mud-Terrain Tires",
+        "Precise Paint – Matched Fender Flares",
+        "TSport Graphics & 3-D Badging",
+        "Road Force Mount & Balance",
+        "Four Wheel Alignment",
+        "Complete ADAS System Calibration",
+        "Speedometer Calibration"
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "7ffd9567b747",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-1f8c7addb7af5fc1946bf236ab70904909544566-5602x3734-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "6fac7192f46c",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-7a556ac27991d5072f9a5a21bb84b37c4561e195-5712x3807-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "d7e5a8f1e1ee",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-cda6ae5a424d4c2c5e0a7ea0cc6cdd00a6329b2a-5712x3807-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "tags": [
+          "accessories:exterior",
+          "performance"
+        ]
+      },
+      {
+        "_key": "72d63e9b9de2",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-c9ece73b6cd49572b7221ddf8ff659e8859a7af4-5630x3753-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.1358888627213879,
+          "left": 0,
+          "right": 0,
+          "top": 0.04464280498687588
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.8194683322917362,
+          "width": 1,
+          "x": 0.5,
+          "y": 0.454376971132744
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "6e2a14951e86",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9b304eea42c5dcabc6f8d7109e2f06510c743170-5562x3708-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "5b2f55e1787a",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-523d6af7e029325d69b94690f283a7a4964c0c1d-5712x3807-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        }
+      }
+    ],
+    "headerVehicleImage": {
+      "_type": "image",
+      "alt": "A premium, show-ready package with 6″ suspension, mud-terrain tires, matched fender flares, 3D badging, and top-tier components.",
+      "asset": {
+        "_ref": "image-4adbe87435e8888bfa1ca1f61cac43d18e02c59b-5712x4284-png",
+        "_type": "reference"
+      }
+    },
+    "manufacturer": {
+      "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+      "_type": "reference"
+    },
+    "model": "F-150",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "ford-f-150-tsport-anthem"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4x4"
+      ]
+    },
+    "tags": [
+      "TSport",
+      "F-150",
+      "Ford",
+      "Package:Anthem"
+    ],
+    "title": "Anthem",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "A premium, show-ready package with 6″ suspension, mud-terrain tires, matched fender flares, 3D badging, and top-tier components.",
+      "asset": {
+        "_ref": "image-8cfac1fa046b62bdf01a906c0c2f7b6207a60600-5120x2880-png",
+        "_type": "reference"
+      }
+    },
+    "vehicleType": "truck"
+  },
+  {
+    "_createdAt": "2025-09-22T21:21:27Z",
+    "_id": "ford-f-150-tsport-lowered-sportsman",
+    "_rev": "2i7iadib5QZf8Z2heb3Tp4",
+    "_system": {
+      "base": {
+        "id": "ford-f-150-tsport-lowered-sportsman",
+        "rev": "VzElbecBTke30RM0j051BG"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-30T16:41:54Z",
+    "associatedVehicles": [
+      {
+        "_key": "9307f7473f2f",
+        "_ref": "ford-f-150-tsport-valor",
+        "_type": "reference"
+      },
+      {
+        "_key": "d551b4f161d8",
+        "_ref": "0e112a9c-2258-43aa-9355-e953925961da",
+        "_type": "reference"
+      },
+      {
+        "_key": "61d7a61cfe5a",
+        "_ref": "ford-superduty-tsport-sportsman",
+        "_type": "reference"
+      }
+    ],
+    "brand": "TSport",
+    "coverImage": {
+      "_type": "image",
+      "alt": "A street-tuned, low-profile package with a 2–4″ suspension drop, 20″ alloy wheels, performance tires, TSport graphics, and full ADAS calibration",
+      "asset": {
+        "_ref": "image-da907d45e1cd9d79493ba2fc1f3ead05ac386f42-600x400-png",
+        "_type": "reference"
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520631910-4tebzqusv",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "OI7fv4Ewn1q07huVxlwjkn",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "OI7fv4Ewn1q07huVxlwjpY",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520631910-ztjugygb7",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "OI7fv4Ewn1q07huVxlwjuJ",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "OI7fv4Ewn1q07huVxlwjz4",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520631910-8tpidp2is",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "OI7fv4Ewn1q07huVxlwk3p",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "OI7fv4Ewn1q07huVxlwk8a",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520631910-vzvqrl7a6",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "OI7fv4Ewn1q07huVxlwkDL",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "OI7fv4Ewn1q07huVxlwkI6",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "description": [
+      {
+        "_key": "cd6d44e26a18",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d530633c328f",
+            "_type": "span",
+            "marks": [],
+            "text": "The F-150 4x4 Sport combines legendary Ford toughness with aggressive sport styling. This build features performance-tuned suspension, upgraded exhaust, and exclusive exterior enhancements that make a bold statement on any terrain."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "fb572fd49a7b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "90ea0a777a92",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "33aa15844e4c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "be19bde411f0",
+            "_type": "span",
+            "marks": [],
+            "text": "Built for the blacktop. Inspired by the TSport legacy, the "
+          },
+          {
+            "_key": "c2ca8949151e",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "Sport Truck"
+          },
+          {
+            "_key": "ce32550dc4ba",
+            "_type": "span",
+            "marks": [],
+            "text": " package is a street-tuned powerhouse with a sleek, low-profile stance. Whether you’re cruising the strip or putting the hammer down, this truck delivers head-turning style and pavement-pounding performance every mile of the way."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "These trucks pack enough features and can-do attitude to take on whatever adventure comes your way – on or off-road.",
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "MGIGwn16t0272nFgJnsrOg",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEvx",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJnsrYg",
+          "_ref": "kyM5SM6pgmmk6pzYM8xF18",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJnsrdg",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMht",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJnsrig",
+          "_ref": "MGIGwn16t0272nFgJnqwRg",
+          "_type": "reference"
+        },
+        {
+          "_key": "MGIGwn16t0272nFgJnsrng",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMX3",
+          "_type": "reference"
+        },
+        {
+          "_key": "06e2ebb20309",
+          "_ref": "30f7cf17-5a5b-4ef3-a11b-87f1f7c4903b",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "2/4\" Suspension Drop",
+        "20″ Premium Alloy Wheels",
+        "305/45R20 Performance Street Tires",
+        "TSport Graphics & 3-D Badging",
+        "Road Force Mount & Balance",
+        "Four Wheel Alignment",
+        "Complete ADAS System Calibration"
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "16b668d055fd",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-bea3c2d3cd264f9a3fe457fed89f7bb579816d04-4032x2687-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "bd03eacb17ed",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-0a02ee1329764a6e6bc5b3c246e4ea4f93552c39-4032x2687-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "1c8f3ad7dfaf",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e3e13d2dc805909dea59e978a25932285f210f79-4032x2687-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "1b3ce8a86412",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-4e09ec45ff299bd6579c413ca84a55bd89be5acd-4032x2687-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "fb37b944bdc7",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6f0eb0976e9bb48fd608a9e8b2236182326b2924-4000x2666-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "3ff34b737f1a",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-7fe7eb44c05b831deac292af4cc9fe84e51e4af1-4032x2688-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "ce7de1b9b7d8",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6e9ce14fd030e2ccd5c5172181b4b076a4fed4ae-4032x2687-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "e500cc2be46f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-92d1664436d9df4ae7ff1a3f922b8fc0bcf88139-4000x2666-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "aef06ed58a4a",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e379e8c75431809c78e8064a6b575e2b32c6b3ef-4032x2688-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "576bc434a6e9",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-d069f0658972b3d61fcfa33bed86965465174b23-4032x2688-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "195249d504e0",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-494c43ea4de1f22b0901593c33a4fc80e25bd95a-3978x2652-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "7b0836fcb441",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-922c47b2117cbf4e8bcd76d071ee934c324c9cee-3772x2515-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      }
+    ],
+    "manufacturer": {
+      "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+      "_type": "reference"
+    },
+    "model": "F-150",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "ford-f-150-tsport-4x4-sport"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4x4"
+      ]
+    },
+    "tags": [
+      "Ford",
+      "TSport",
+      "F-150",
+      "Lowered",
+      "4x4 Sport",
+      "Package:TSport 4x4 Sport"
+    ],
+    "title": "4x4 Sport",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "uilt for the blacktop. Inspired by the TSport legacy, the Sport Truck package is a street-tuned powerhouse with a sleek, low-profile stance.",
+      "asset": {
+        "_ref": "image-31f3c420f904ffae5a048d120c287b14b1215a8f-4480x2520-png",
+        "_type": "reference"
+      }
+    },
+    "vehicleType": "truck"
+  },
+  {
+    "_createdAt": "2025-09-22T21:21:25Z",
+    "_id": "ford-f-150-tsport-valor",
+    "_rev": "MGIGwn16t0272nFgJqIbag",
+    "_system": {
+      "base": {
+        "id": "ford-f-150-tsport-valor",
+        "rev": "o1s1H9EbIWJQn22Jk9YHYv"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-29T21:02:02Z",
+    "associatedVehicles": [
+      {
+        "_key": "b70b4eaf6991",
+        "_ref": "0e112a9c-2258-43aa-9355-e953925961da",
+        "_type": "reference"
+      },
+      {
+        "_key": "686da2a3e560",
+        "_ref": "ford-superduty-tsport-valor",
+        "_type": "reference"
+      },
+      {
+        "_key": "4bf4d9070de7",
+        "_ref": "ford-f-150-tsport-lowered-sportsman",
+        "_type": "reference"
+      }
+    ],
+    "brand": "TSport",
+    "coverImage": {
+      "_type": "image",
+      "alt": "TSport Valor Ford F-150",
+      "asset": {
+        "_ref": "image-113f07e1874e36bf5d5acab831d4d2a6f38f8360-600x400-png",
+        "_type": "reference"
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520632941-y8nt931wp",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSrM4C",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSrM8a",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520632941-5flhcnuon",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSrMCy",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSrMHM",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520632941-gilkv9g9m",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSrMLk",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSrMQ8",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520632941-qdgi156ky",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSrMUW",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LSrMYu",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "description": [
+      {
+        "_key": "d4bec72b5125",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e151deedf1c5",
+            "_type": "span",
+            "marks": [],
+            "text": "Proud. Purpose-built. "
+          },
+          {
+            "_key": "32dd11fdcb61",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "Valor"
+          },
+          {
+            "_key": "9af002b8355f",
+            "_type": "span",
+            "marks": [],
+            "text": " brings aggressive styling with everyday drivability — the perfect blend of form and function. Designed for lifted-truck enthusiasts who demand more, this package delivers a factory-fresh build with a custom attitude that’s anything but average.\n\nThe Valor package includes the aggressive yet practical styling that lifted-truck enthusiasts look for. This is the ideal aftermarket spec list, straight from the factory."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "A more aggressive lift package with 6″ suspension, 20″ wheels, 35″ all-terrain tires, TSport graphics, and optional speedometer calibration.",
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "o1s1H9EbIWJQn22Jk95zsP",
+          "_ref": "o1s1H9EbIWJQn22Jk8mNqL",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk95zv7",
+          "_ref": "kyM5SM6pgmmk6pzYM8xElb",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk95zxp",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEqm",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk9600X",
+          "_ref": "MGIGwn16t0272nFgJnqwgg",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk9603F",
+          "_ref": "o1s1H9EbIWJQn22Jk8mN8z",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk9605x",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEvx",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk9608f",
+          "_ref": "o1s1H9EbIWJQn22Jk8mNPF",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk960BN",
+          "_ref": "o1s1H9EbIWJQn22Jk8mNfV",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk960E5",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMX3",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk960Gn",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMht",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "6″ Suspension System",
+        "20″ Wheels",
+        "35″ All-Terrain Tires",
+        "TSport Graphics & 3-D Badging",
+        "Road Force Mount & Balance",
+        "Four Wheel Alignment",
+        "Complete ADAS System Calibration",
+        "Speedometer Calibration"
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "dd37f7827638",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-d4d4c0e41ecc946269b63183a4be246b5a6815a3-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        }
+      }
+    ],
+    "manufacturer": {
+      "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+      "_type": "reference"
+    },
+    "model": "F-150",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "ford-f-150-tsport-valor"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4x4"
+      ]
+    },
+    "tags": [
+      "TSport",
+      "Valor",
+      "Ford",
+      "F-150"
+    ],
+    "title": "Valor",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "The Valor package has aggressive yet practical styling that lifted-truck enthusiasts look for. This is the ideal aftermarket spec list, straight from the factory.",
+      "asset": {
+        "_ref": "image-95d398816ac6bb8c479a10ea3f213b4523819e61-5120x2880-png",
+        "_type": "reference"
+      }
+    },
+    "vehicleType": "truck"
+  },
+  {
+    "_createdAt": "2025-09-22T21:21:29Z",
+    "_id": "ford-superduty-tsport-sportsman",
+    "_rev": "kyM5SM6pgmmk6pzYM9p6Z2",
+    "_system": {
+      "base": {
+        "id": "ford-superduty-tsport-sportsman",
+        "rev": "MGIGwn16t0272nFgJqWEug"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-29T21:36:56Z",
+    "associatedVehicles": [
+      {
+        "_key": "dc0c37703568",
+        "_ref": "ford-superduty-tsport-valor",
+        "_type": "reference"
+      },
+      {
+        "_key": "569c805fecb4",
+        "_ref": "ford-f-150-tsport-lowered-sportsman",
+        "_type": "reference"
+      },
+      {
+        "_key": "ae81be9dbb15",
+        "_ref": "ford-f-150-tsport-valor",
+        "_type": "reference"
+      }
+    ],
+    "brand": "TSport",
+    "coverImage": {
+      "_type": "image",
+      "alt": "TSport SuperDuty Sportsman  ",
+      "asset": {
+        "_ref": "image-ef8608290a5f27560926bef74da6f7b87281542c-600x400-png",
+        "_type": "reference"
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520633960-mrjfmqdjk",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZyYW",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZycu",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520633960-obm4gbhl4",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZyhI",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZylg",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520633960-3yvtvd5ei",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZyq4",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZyuS",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520633960-dipoltfzm",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZyyq",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZz3E",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "description": [
+      {
+        "_key": "e360d6efb51d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "387849f8a502",
+            "_type": "span",
+            "marks": [],
+            "text": "Subtle strength. Timeless style. The "
+          },
+          {
+            "_key": "57609cd5f1ab",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "Sportsman"
+          },
+          {
+            "_key": "ff3b6bdc9288",
+            "_type": "span",
+            "marks": [],
+            "text": " SuperDuty package is built for those who appreciate clean lines and real capability. With just the right mix of premium features and rugged readiness, this truck is equally at home cruising the streets or chasing trails — wherever your next adventure leads.\n\nThe everyday working man’s truck that is able to perform to any desired needs. This is how Fords should have been produced from the factory."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "Designed for heavy duty use with a 2.5″ lift, 20×9 wheels, 37″ mud-terrain tires, and TSport badging, while retaining refined style.",
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "o1s1H9EbIWJQn22Jk96B45",
+          "_ref": "o1s1H9EbIWJQn22Jk8mO1B",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk96B6n",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEvx",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk96B9V",
+          "_ref": "MGIGwn16t0272nFgJnqvng",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk96BCD",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMX3",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk96BEv",
+          "_ref": "o1s1H9EbIWJQn22Jk8mO9J",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk96BHd",
+          "_ref": "kyM5SM6pgmmk6pzYM8xF18",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "2.5″ Lift Kit",
+        "20×9 Wheels",
+        "37×12.50×20 Mud-Terrain Tires",
+        "TSport Graphics & 3-D Badging",
+        "Road Force Mount & Balance",
+        "Four Wheel Alignment",
+        "Complete ADAS System Calibration",
+        "Speedometer Calibration"
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "d533f464ca1f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-2ebbd6b440147c989c57c2fc56d09dde113d5f56-5704x3803-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "7b303c0dea76",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-ffd6887e8c971c6f512c13d50802c0b6a94ff35b-5712x3808-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "f3324b3d50b5",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-5ace10ac7846043283ef33e75cd89911dc3863e0-5702x3801-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "aa61c5080e3e",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-3c5cf3bf15df75d3c373e2c8ce6b8e32e8d8ed41-5712x3808-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "3e89859413a2",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-be7d9649a5026da428ab1eb3de0f6c97cd1edbfd-5712x3808-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "68e4cae113c1",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a9b0d43de272fad605be1d1290e19f65627b5621-5646x3764-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "0480178f6a1d",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-d3f272717d353dcccbc05652d2336bfef46584dc-3024x2016-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      }
+    ],
+    "manufacturer": {
+      "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+      "_type": "reference"
+    },
+    "model": "SuperDuty",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "ford-superduty-tsport-sportsman"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4x4"
+      ]
+    },
+    "tags": [
+      "Ford",
+      "SuperDuty",
+      "TSport",
+      "Package:Sportsman",
+      "Sportsman"
+    ],
+    "title": "Sportsman",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "The Sportsman SuperDuty package is built for those who appreciate clean lines and real capability. With just the right mix of premium features and rugged readiness, this truck is equally at home cruising the streets or chasing trails",
+      "asset": {
+        "_ref": "image-8d9c852067f7b6c326d029ab1a47922c9b4bccdb-5120x2880-png",
+        "_type": "reference"
+      }
+    },
+    "vehicleType": "truck"
+  },
+  {
+    "_createdAt": "2025-09-22T21:21:31Z",
+    "_id": "ford-superduty-tsport-valor",
+    "_rev": "o1s1H9EbIWJQn22Jk9ubVZ",
+    "_system": {
+      "base": {
+        "id": "ford-superduty-tsport-valor",
+        "rev": "MGIGwn16t0272nFgJpNiyg"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-29T21:00:55Z",
+    "associatedVehicles": [
+      {
+        "_key": "72726ed3cc1b",
+        "_ref": "ford-superduty-tsport-sportsman",
+        "_type": "reference"
+      },
+      {
+        "_key": "5970af50526b",
+        "_ref": "ford-f-150-tsport-anthem",
+        "_type": "reference"
+      },
+      {
+        "_key": "627b93504a2f",
+        "_ref": "ford-f-150-tsport-lowered-sportsman",
+        "_type": "reference"
+      }
+    ],
+    "brand": "TSport",
+    "coverImage": {
+      "_type": "image",
+      "alt": "Built for bold performance, this package includes a 4.5″ radius-arm suspension, 20×9 wheels, 37″ mud-terrain tires, Dirt Logic shocks, and optional fender flares.",
+      "asset": {
+        "_ref": "image-951ba718c9f29a8350784ebcdcd44b6cde00b05f-600x400-png",
+        "_type": "reference"
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520634990-ydmr6sbwh",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTa3rY",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTa3vw",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520634990-tp81rq9jx",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTa40K",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTa44i",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520634990-njzff8byb",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTa496",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTa4DU",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520634990-yolv0y4za",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTa4Hs",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTa4MG",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "description": [
+      {
+        "_key": "5c84728659f8",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e4b91c8f0a98",
+            "_type": "span",
+            "marks": [],
+            "text": "Proud. Purpose-built. "
+          },
+          {
+            "_key": "3acf14e75375",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "Valor"
+          },
+          {
+            "_key": "26f85f028663",
+            "_type": "span",
+            "marks": [],
+            "text": " brings aggressive styling with everyday drivability — the perfect blend of form and function. Designed for lifted-truck enthusiasts who demand more, this package delivers a factory-fresh build with a custom attitude that’s anything but average.\n\nThe Valor package includes the aggressive yet practical styling that lifted-truck enthusiasts look for. This is the ideal aftermarket spec list, straight from the factory."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "Built for bold performance, this package includes a 4.5″ radius-arm suspension, 20×9 wheels, 37″ mud-terrain tires, Dirt Logic shocks, and optional fender flares.",
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AjJG",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEgQ",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AjKz",
+          "_ref": "kyM5SM6pgmmk6pzYM8xElb",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AjMi",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEqm",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AjOR",
+          "_ref": "o1s1H9EbIWJQn22Jk8mOHR",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AjQA",
+          "_ref": "o1s1H9EbIWJQn22Jk8mOPZ",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AjRt",
+          "_ref": "o1s1H9EbIWJQn22Jk8mO1B",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AjTc",
+          "_ref": "kyM5SM6pgmmk6pzYM8xEvx",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AjVL",
+          "_ref": "MGIGwn16t0272nFgJnqvng",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AjX4",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMX3",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AjYn",
+          "_ref": "o1s1H9EbIWJQn22Jk8mO9J",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "4.5″ Radius-Arm Suspension System",
+        "20×9 Wheels",
+        "37×12.50×20 Mud-Terrain Tires",
+        "2.25″ Dirt Logic Shocks",
+        "TSport Graphics & 3-D Badging",
+        "Road Force Mount & Balance",
+        "Four Wheel Alignment"
+      ]
+    },
+    "headerVehicleImage": {
+      "_type": "image",
+      "alt": "Built for bold performance, this package includes a 4.5″ radius-arm suspension, 20×9 wheels, 37″ mud-terrain tires, Dirt Logic shocks, and optional fender flares."
+    },
+    "manufacturer": {
+      "_ref": "9bd881e9-27e3-4e67-a85c-43eef953b052",
+      "_type": "reference"
+    },
+    "model": "SuperDuty",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "ford-superduty-tsport-valor"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4x4"
+      ]
+    },
+    "tags": [
+      "Ford",
+      "SuperDuty",
+      "TSport",
+      "Valor",
+      "Package:Valor"
+    ],
+    "title": "Valor",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "Valor brings aggressive styling with everyday drivability — the perfect blend of form and function. Designed for lifted-truck enthusiasts who demands more",
+      "asset": {
+        "_ref": "image-6a98e0cb63c4409170f5846b972700656f64ca0c-5120x2880-png",
+        "_type": "reference"
+      }
+    },
+    "vehicleType": "truck"
+  },
+  {
+    "_createdAt": "2025-09-22T21:22:37Z",
+    "_id": "jeep-gladiator-timberline-trailhead",
+    "_rev": "CLZyEnOmHFQ0HoyBtAUSYE",
+    "_system": {
+      "base": {
+        "id": "jeep-gladiator-timberline-trailhead",
+        "rev": "VzElbecBTke30RM0j0fx8m"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-30T17:49:04Z",
+    "associatedVehicles": [
+      {
+        "_key": "875f9c9a5fc4",
+        "_ref": "jeep-wrangler-jl-timberline-trailhead",
+        "_type": "reference"
+      },
+      {
+        "_key": "1167b8c9a866",
+        "_ref": "jeep-wrangler-jl-alpine-ocean",
+        "_type": "reference"
+      },
+      {
+        "_key": "5e3c6c513fcc",
+        "_ref": "jeep-wrangler-jl-alpine-brigade",
+        "_type": "reference"
+      }
+    ],
+    "brand": "Timberline",
+    "coverImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-3b513c25019b96807dfc1c19fcef2f59aa9664e2-600x400-png",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 1,
+        "width": 1,
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520615511-gc5wxtw8v",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZFLA",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZFPY",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520615511-1sccpsai9",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZFTw",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZFYK",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520615511-ngmbku3dn",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZFci",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZFh6",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520615511-0u5lm6w8y",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZFlU",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "pRlcpvz6Xc5z2Mc0LTZFps",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AqnV",
+          "_ref": "o1s1H9EbIWJQn22Jk8mOiX",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AqpE",
+          "_ref": "kyM5SM6pgmmk6pzYM8xFLq",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9Aqqx",
+          "_ref": "kyM5SM6pgmmk6pzYM8xFR1",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AquP",
+          "_ref": "kyM5SM6pgmmk6pzYM8xFbN",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9Ar1J",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMX3",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9Ar32",
+          "_ref": "o1s1H9EbIWJQn22Jk8mP6v",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9Ar4l",
+          "_ref": "MGIGwn16t0272nFgJnqxeg",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9Ar6U",
+          "_ref": "o1s1H9EbIWJQn22Jk8mPPt",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "2.5” Lift",
+        "35” Tire",
+        "17” Wheels",
+        "Body Decals & Badging",
+        "ADAS System Calibration",
+        "Speedometer Calibration",
+        "Four Wheel Alignment",
+        "Install",
+        "Warranty Portfolio"
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "c57ea06fe036",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-fa42a80b7a7ed6232ab5a66c0e940ceec897b605-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true,
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "61fe81dc95db",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-7b79da1a5c4b0ba55cd2f25a5ec4de212d0f7b06-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.057071933861757435,
+          "left": 0.012912298644847865,
+          "right": 0.06745397596522629,
+          "top": 0.03010738941447201
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.9128206767237705,
+          "width": 0.9196337253899258,
+          "x": 0.4727291613398108,
+          "y": 0.48651772777635727
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "60261343b707",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-1736dce4589bea563fd9bbd4b2867a006e3fa1cc-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.17706468933776529,
+          "left": 0,
+          "right": 0,
+          "top": 0.07786797920395466
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.74506733145828,
+          "width": 1,
+          "x": 0.5,
+          "y": 0.4504016449330947
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "72f6165d43ea",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-7e7810b61132883b3dc48317cc99cf414274e553-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.06374115741924485,
+          "left": 0.1765053694707236,
+          "right": 0.1411004218869854,
+          "top": 0.04646083695559533
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.8687782323361459,
+          "width": 0.682394208642291,
+          "x": 0.5177024737918691,
+          "y": 0.49191915963521693
+        },
+        "tags": [
+          "accessories:exterior",
+          "performance"
+        ]
+      },
+      {
+        "_key": "9d1af180cbba",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-10c029a3d660e05e2bce959e44c80c9b4a70eeb6-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "tags": [
+          "accessories:exterior",
+          "performance"
+        ]
+      },
+      {
+        "_key": "780ee08b237d",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-05476c50297e564798eb2ef147c6ea81e10c1236-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0,
+          "left": 0,
+          "right": 0.00025568908207619537,
+          "top": 0.22549646296769796
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.7394315179408506,
+          "width": 0.9997443109179238,
+          "x": 0.4998721554589619,
+          "y": 0.6127482314838489
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "55669608ac2b",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-149a0e0d216be1def201fa937f67b2e5f2b41e3b-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "075050f4889a",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-525cce2cb5ced719876adba5b099d4ba7e5b2391-1316x1038-png",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false,
+        "isBuildTextSummaryBlock": true,
+        "isBuildTextSummaryContent": [
+          {
+            "_key": "58cca39b7f79",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "24150407bcaa",
+                "_type": "span",
+                "marks": [],
+                "text": "Package Includes: 2.5\" Suspension Lift Kit with Falcon 2.1. Shocks, 35\" Tires, 17\" Wheels, Speed Calibration, Road Force Mount and Balance, Alignment, ADAS Calibration, and Professional Installation Steel Front Bumper with Winch Fixed Side Steps"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      }
+    ],
+    "manufacturer": {
+      "_ref": "manufacturer-jeep",
+      "_type": "reference"
+    },
+    "model": "Gladiator",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "jeep-gladiator-timberline-trailhead"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4WD"
+      ]
+    },
+    "tags": [
+      "Timberline",
+      "Jeep",
+      "Gladiator",
+      "Package:Trailhead",
+      "Trailhead"
+    ],
+    "title": "Trailhead",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "Basic entry-level experience offering the core features of Timberline Upfitters.",
+      "asset": {
+        "_ref": "image-12e5dffea90100bee2e359e5fa676a56a768a35d-5120x2880-png",
+        "_type": "reference"
+      }
+    },
+    "vehicleType": "truck"
+  },
+  {
+    "_createdAt": "2025-09-22T21:22:33Z",
+    "_id": "jeep-wrangler-jl-alpine-brigade",
+    "_rev": "kyM5SM6pgmmk6pzYM9oeJL",
+    "_system": {
+      "base": {
+        "id": "jeep-wrangler-jl-alpine-brigade",
+        "rev": "kyM5SM6pgmmk6pzYM9oaFN"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-29T21:18:04Z",
+    "associatedVehicles": [
+      {
+        "_key": "cf55592d53b7",
+        "_ref": "jeep-wrangler-jl-alpine-ocean",
+        "_type": "reference"
+      },
+      {
+        "_key": "071032649f8b",
+        "_ref": "jeep-gladiator-timberline-trailhead",
+        "_type": "reference"
+      },
+      {
+        "_key": "4a868c1262e1",
+        "_ref": "jeep-wrangler-jl-timberline-trailhead",
+        "_type": "reference"
+      }
+    ],
+    "brand": "Alpine",
+    "coverImage": {
+      "_type": "image",
+      "alt": "Jeep Wrangler - Alpine Brigade Build",
+      "asset": {
+        "_ref": "image-175db5bed3e4af968a4deb556f62828c65ec2e72-600x400-png",
+        "_type": "reference"
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520616762-38jsi6an2",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5KAWgy",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5KAWj8",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520616762-ihosyxgiu",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5KAWlI",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5KAWnS",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520616762-qi2btbve4",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5KAWpc",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5KAWrm",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520616762-kvi182m1r",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5KAWtw",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5KAWw6",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "excerpt": "Brigade comes fully equipped with everything you need for your next off-road adventure: commanding design, rugged capability, premium sound, and tactical styling that sets this Jeep apart.",
+    "features": {
+      "baseFeatures": [
+        "37\" Off/On Road Tires",
+        "3.5\" Suspension Lift",
+        "17\" Wheels",
+        "Front and Rear Bumpers by Rebel Off Road",
+        "Winch",
+        "Custom Katzkin Leather Interior",
+        "High-Fidelity Surround Sound System by Alpine Audio",
+        "10\" Big Bass Subwoofer by Alpine Audio"
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "37b6522f698f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b6456b6552c755bb56bc618c97db31a37461ab0d-1024x768-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 3,
+            "row": 6
+          },
+          "tablet": {
+            "col": 2,
+            "row": 2
+          }
+        }
+      },
+      {
+        "_key": "fc8594364b08",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b2ff117ae542e7ffb1e430cc25fe3299903926f1-1024x768-jpg",
+          "_type": "reference"
+        },
+        "caption": "01"
+      },
+      {
+        "_key": "5df48a144a4d",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e6734a8e05cc23d555607165c309bada67323b2c-1024x768-jpg",
+          "_type": "reference"
+        },
+        "caption": "01"
+      },
+      {
+        "_key": "8fa1772a2d0e",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-825da48faeadc118054ec9c646a90f970e115529-1024x768-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.09096139094860649,
+          "left": 0.11898331628739454,
+          "right": 0.07787330605983124,
+          "top": 0.1789184351828177
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.7301201738685759,
+          "width": 0.8031433776527742,
+          "x": 0.5205550051137816,
+          "y": 0.5439785221171056
+        }
+      },
+      {
+        "_key": "4a4849d29aec",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-2389bce5fe9197d2a22d1eb828b512c2e346e0d0-1024x768-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 2
+          },
+          "tablet": {
+            "col": 1,
+            "row": 2
+          }
+        },
+        "tags": [
+          "exterior",
+          "accessories:exterior",
+          "performance"
+        ]
+      },
+      {
+        "_key": "2a895a71549c",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-5d79dd14d0d168dfe2ecb9972d850fd3fd4b6e1a-768x1024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0.039960355493595875
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 3
+          },
+          "tablet": {
+            "col": 1,
+            "row": 2
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.9600396445064041,
+          "width": 1,
+          "x": 0.5,
+          "y": 0.519980177746798
+        },
+        "tags": [
+          "interior",
+          "accessories:interior"
+        ]
+      },
+      {
+        "_key": "915fc97e7fe9",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-ca53c860cc1f4ce54bc2caec947469606cda4d5e-768x1024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 2
+          }
+        },
+        "tags": [
+          "exterior",
+          "accessories:exterior",
+          "performance"
+        ]
+      },
+      {
+        "_key": "69df3c9e027b",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-4c19134f8b681a753cd1ee875f61d432473b5c71-768x1024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "tags": [
+          "audio",
+          "interior",
+          "accessories:interior"
+        ]
+      },
+      {
+        "_key": "4eb23e31acd7",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-946b1be58c25a4014c4bf222e89f30f9b32c27d7-1024x768-jpg",
+          "_type": "reference"
+        },
+        "caption": "01"
+      }
+    ],
+    "manufacturer": {
+      "_ref": "manufacturer-jeep",
+      "_type": "reference"
+    },
+    "model": "Wrangler",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "jeep-wrangler-alpine-brigade"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4WD",
+        "4x4"
+      ]
+    },
+    "tags": [
+      "Alpine",
+      "Jeep",
+      "Wrangler",
+      "Package:Brigade",
+      "Brigade"
+    ],
+    "title": "Brigade",
+    "trim": "JL",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "Brigade comes fully equipped with everything you need for your next off-road adventure: commanding design, rugged capability, premium sound, and tactical styling that sets this Jeep apart",
+      "asset": {
+        "_ref": "image-811ae7a697991d23470162b535658625effbb797-2000x1545-webp",
+        "_type": "reference"
+      }
+    },
+    "vehicleType": "suv"
+  },
+  {
+    "_createdAt": "2025-09-22T21:22:32Z",
+    "_id": "jeep-wrangler-jl-alpine-ocean",
+    "_rev": "kyM5SM6pgmmk6pzYM9oUb2",
+    "_system": {
+      "base": {
+        "id": "jeep-wrangler-jl-alpine-ocean",
+        "rev": "MGIGwn16t0272nFgJqHUsg"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-29T21:10:57Z",
+    "associatedVehicles": [
+      {
+        "_key": "7d9e918eeb55",
+        "_ref": "jeep-wrangler-jl-alpine-brigade",
+        "_type": "reference"
+      },
+      {
+        "_key": "fbc66c60a7f7",
+        "_ref": "jeep-wrangler-jl-timberline-trailhead",
+        "_type": "reference"
+      },
+      {
+        "_key": "8b49845807a3",
+        "_ref": "jeep-gladiator-timberline-trailhead",
+        "_type": "reference"
+      }
+    ],
+    "brand": "Alpine",
+    "coverImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-c3c5c360bba2e6c6a3a6452e750b419767d62608-600x400-png",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0.018026080286371773,
+        "left": 0.09618881218216427,
+        "right": 0.09980397170374149,
+        "top": 0.10133810619619875
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.8806358135174295,
+        "width": 0.8040072161140943,
+        "x": 0.4981924202392114,
+        "y": 0.5416560129549135
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520617789-hb37uonbk",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5Hh8UY",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5Hh8Wi",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520617789-g2lr327g6",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5Hh8Ys",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5Hh8b2",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520617789-sctu4i9w3",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5Hh8dC",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5Hh8fM",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520617789-ltpmbm99b",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5Hh8hW",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5Hh8jg",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "excerpt": "Beach or bust! Inspired by the sea, the Ocean build embodies the spirit of adventure and freedom — with bold, beach-ready design and a premium sound system made to turn heads wherever your journey takes you.",
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "o1s1H9EbIWJQn22Jk96w5h",
+          "_ref": "o1s1H9EbIWJQn22Jk8mPY1",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "Ocean Inspired Design",
+        "37\" On/Off Road Tires",
+        "3.5\" Suspension Lift",
+        "Bold 17\" Wheels",
+        "Bumpers by Rebel Off Road"
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "30f59131e4b3",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-8e4c80e1a0c287b4368af0965d1206cd08f8b237-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "5703ed881e66",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-5d950c26326b5631c872714677f82be239a710ff-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        }
+      },
+      {
+        "_key": "0c29d90fdd86",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-2974c225d964dae4f4a5b418302203a826734699-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "914338568b95",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-32de00aff2af751f08ce7b76746f2023cf3dc8b1-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.17117234208474136,
+          "left": 0.24038211593449443,
+          "right": 0.24303840655055886,
+          "top": 0.14993284810674984
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 4,
+            "row": 4
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.6788948098085088,
+          "width": 0.5165794775149467,
+          "x": 0.4986718546919678,
+          "y": 0.48938025301100424
+        },
+        "tags": [
+          "accessories:exterior",
+          "performance"
+        ]
+      },
+      {
+        "_key": "b0f4fa02b6c6",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-c25f13b37b1eb0b3e475aa07990be1c6f7754dd4-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "tags": [
+          "exterior",
+          "accessories:exterior",
+          "performance"
+        ]
+      },
+      {
+        "_key": "ee9b9849abd0",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e9886dfdca696a0ce1778d7a2dbf53afd125da9e-3024x4032-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        }
+      }
+    ],
+    "manufacturer": {
+      "_ref": "manufacturer-jeep",
+      "_type": "reference"
+    },
+    "model": "Wrangler",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "jeep-wrangler-alpine-ocean"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4x4"
+      ]
+    },
+    "tags": [
+      "Alpine",
+      "Jeep",
+      "Wrangler",
+      "Package:Ocean",
+      "Ocean"
+    ],
+    "title": "Ocean",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "Beach or bust! Inspired by the sea, the Ocean build embodies the spirit of adventure and freedom — with bold, beach-ready design and a premium sound system made to turn heads wherever your journey takes you.",
+      "asset": {
+        "_ref": "image-864ad04d96e7fdaadb09b5df954107e4ffb20aa7-9871x5364-png",
+        "_type": "reference"
+      }
+    },
+    "vehicleType": "suv"
+  },
+  {
+    "_createdAt": "2025-09-22T21:22:34Z",
+    "_id": "jeep-wrangler-jl-timberline-trailhead",
+    "_rev": "2i7iadib5QZf8Z2hebBGEk",
+    "_system": {
+      "base": {
+        "id": "jeep-wrangler-jl-timberline-trailhead",
+        "rev": "CLZyEnOmHFQ0HoyBtAVnAm"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-30T18:10:18Z",
+    "associatedVehicles": [
+      {
+        "_key": "de4efe618821",
+        "_ref": "jeep-gladiator-timberline-trailhead",
+        "_type": "reference"
+      },
+      {
+        "_key": "653d59c366f4",
+        "_ref": "jeep-wrangler-jl-alpine-ocean",
+        "_type": "reference"
+      },
+      {
+        "_key": "a9096ffabdd3",
+        "_ref": "jeep-wrangler-jl-timberline-trailhead",
+        "_type": "reference"
+      }
+    ],
+    "brand": "Timberline",
+    "coverImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-f03d07ffee9c89f1dd6a0c1e7cca4074b3f09d8e-7008x4672-png",
+        "_type": "reference"
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520638036-7laktbxxr",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJy3i",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJy5s",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520638036-zzdnfbf1m",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJy82",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJyAC",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520638036-kbaomlsbd",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJyCM",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJyEW",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520638036-3nfdeidvi",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJyGg",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJyIq",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "o1s1H9EbIWJQn22Jk965mD",
+          "_ref": "o1s1H9EbIWJQn22Jk8mOiX",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk965rd",
+          "_ref": "kyM5SM6pgmmk6pzYM8xFR1",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk965x3",
+          "_ref": "kyM5SM6pgmmk6pzYM8xFbN",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk9667t",
+          "_ref": "o1s1H9EbIWJQn22Jk8mP6v",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk966Ab",
+          "_ref": "MGIGwn16t0272nFgJnqxeg",
+          "_type": "reference"
+        },
+        {
+          "_key": "o1s1H9EbIWJQn22Jk966DJ",
+          "_ref": "o1s1H9EbIWJQn22Jk8mPPt",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "2.5\" Lift",
+        "35\" Tire",
+        "17\" wheels",
+        "Spare Tire Bracket",
+        "Body Decals & Badging",
+        "ADAS System Calibration",
+        "Speedometer Calibration",
+        "Four Wheel Alignment",
+        "Road Force Mount & Balance",
+        "Install",
+        "Warranty Portfolio"
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "89d56911add9",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-46f61eb14541078bfc9053975419acf1c9cecb98-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 3,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 2,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true,
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "df249d641bd4",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-ccfe4b496870c2f3a1baaf01e3a06805b8f4dc3a-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0,
+          "left": 0.15285412937867554,
+          "right": 0.14355343901815393,
+          "top": 0.0068503366572914
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.9931496633427086,
+          "width": 0.7035924316031705,
+          "x": 0.5046503451802609,
+          "y": 0.5034251683286457
+        }
+      },
+      {
+        "_key": "c4fce7ec9cae",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-1ebe14d79bb854a665bf1d8e8bd746cec8adc7cd-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.07404986459986927,
+          "left": 0.30109056567672554,
+          "right": 0.18267835995627707,
+          "top": 0.1747945653188907
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.75115557008124,
+          "width": 0.5162310743669973,
+          "x": 0.5592061028602242,
+          "y": 0.5503723503595107
+        },
+        "tags": [
+          "accessories:exterior",
+          "performance"
+        ]
+      },
+      {
+        "_key": "067e567a96d7",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-dd58811f54262b1d58e9e99c346c7f2c52310d6b-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.12850172751890934,
+          "left": 0.03440484758844914,
+          "right": 0.023418057836921448,
+          "top": 0.1819147446073396
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.689583527873751,
+          "width": 0.9421770945746294,
+          "x": 0.5054933948757638,
+          "y": 0.5267065085442151
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "c58209f9dece",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b64e1683469c4d8fd08bdc038725b6a6af802379-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.3144551311980577,
+          "left": 0.07449130995677195,
+          "right": 0.13189400350319985,
+          "top": 0.2487743953683817
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 3,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 2,
+            "row": 1
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.4367704734335607,
+          "width": 0.7936146865400282,
+          "x": 0.471298653226786,
+          "y": 0.467159632085162
+        },
+        "tags": [
+          "accessories:exterior"
+        ]
+      },
+      {
+        "_key": "1f6dcce2f3fc",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-f6017d6bc4e540ec59aa54a8f64023dfdd0cbe15-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 2,
+            "row": 2
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "eb8ad998ece9",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-615409b8fda7313c0352848e11c646497b12c266-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.1374022427658625,
+          "left": 0.15409181711938766,
+          "right": 0.12070030940439973,
+          "top": 0.039558479594393764
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 3,
+            "row": 3
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 2,
+            "row": 2
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.8230392776397437,
+          "width": 0.7252078734762126,
+          "x": 0.516695753857494,
+          "y": 0.4510781184142656
+        },
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "8263479c8fb2a5fd8d1ccbebf9d2cc4c",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-525cce2cb5ced719876adba5b099d4ba7e5b2391-1316x1038-png",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.1374022427658625,
+          "left": 0.15409181711938766,
+          "right": 0.12070030940439973,
+          "top": 0.039558479594393764
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 3,
+            "row": 3
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 2,
+            "row": 2
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.8230392776397437,
+          "width": 0.7252078734762126,
+          "x": 0.516695753857494,
+          "y": 0.4510781184142656
+        },
+        "isBuildTextSummaryBlock": true,
+        "isBuildTextSummaryContent": [
+          {
+            "_key": "981831d301d6",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "452255f3d904",
+                "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "Package Includes:"
+              },
+              {
+                "_key": "26068641991c",
+                "_type": "span",
+                "marks": [],
+                "text": " 2.5\" Suspension Lift System with Coil Spring and Shocks, 35\" Tires and \"17 Wheels, Full Size Spare Tire with Upgraded HD Relocation Bracket, and Speed Calibration, Includes Professional Installation, Alignment and ADAS Calibration, and TrailHead Decal Package DV8 OE Plus Steps"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "f05d852e4613",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-328969b9bce08225cde8491e99b9fe434de19378-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "5e29af4b3f5f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-626fee6661c54ca31b4fff2e0e78d6ef16739f2a-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "195f7fde5064",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-fa320688f489f8ab219ff4806754bcd0cbf846b6-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "bbc2e69607e8",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-ece61ca7f3ecbc854b316145633e31f93a2b5011-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "accde7a1f356",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-315c5c3d49db3b87868ad713c3e5a3984a3c47b3-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "ba9da193c9bc",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-18564f8f40bbfc7eb50be6b7ce4923d685c924c2-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "249aa174e2c4",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-d42b9aeefefeb6cf77d7ac0e261219b0fbaadbfa-3024x4032-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "03db115961cb10e8b4be07d09d0ae2c6",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-525cce2cb5ced719876adba5b099d4ba7e5b2391-1316x1038-png",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.1374022427658625,
+          "left": 0.15409181711938766,
+          "right": 0.12070030940439973,
+          "top": 0.039558479594393764
+        },
+        "gridSpan": {
+          "desktop": {
+            "col": 3,
+            "row": 3
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 2,
+            "row": 2
+          }
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.8230392776397437,
+          "width": 0.7252078734762126,
+          "x": 0.516695753857494,
+          "y": 0.4510781184142656
+        },
+        "isBuildTextSummaryBlock": true,
+        "isBuildTextSummaryContent": [
+          {
+            "_key": "981831d301d6",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "452255f3d904",
+                "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "Package Includes:"
+              },
+              {
+                "_key": "26068641991c",
+                "_type": "span",
+                "marks": [],
+                "text": " 2.5\" Suspension Lift with 35\" Tires and \"17 Wheels, Full Size Spare Tire with Relocation Bracket, and Speed Calibration, Includes Professional Installation, Alignment and ADAS Calibration OE Leather DV8 OE Plus Steps Upgrade to 20\" Wheel and Tire package"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "tags": [
+          "exterior"
+        ]
+      },
+      {
+        "_key": "168131052dfb",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-c38d25e0fb002707616b13382501eab0df8b2295-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "278222c81004",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-ccfe4b496870c2f3a1baaf01e3a06805b8f4dc3a-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "d92c4ddf9183",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-1ebe14d79bb854a665bf1d8e8bd746cec8adc7cd-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "d388518d6a8b",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-dd58811f54262b1d58e9e99c346c7f2c52310d6b-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "f5ed37388f65",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b64e1683469c4d8fd08bdc038725b6a6af802379-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "3d124683426c",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6188881b6a5dd1b4d4aac6ec6642185a4d73bd1f-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "c91c811a1d18",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-615409b8fda7313c0352848e11c646497b12c266-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      }
+    ],
+    "manufacturer": {
+      "_ref": "manufacturer-jeep",
+      "_type": "reference"
+    },
+    "model": "Wrangler",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "jeep-wrangler-timberline-trailhead"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4x4"
+      ]
+    },
+    "tags": [
+      "Timberline",
+      "Jeep",
+      "Package:Trailhead",
+      "Trailhead"
+    ],
+    "title": "Trailhead",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "TrailHead– Modestly lifted offering the core features of Timberline Upfitters providing comprehensive onroad and offroad performance",
+      "asset": {
+        "_ref": "image-abed4af3f099f52c982af7c4ebcebcf3398a5f93-5120x2880-png",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0,
+        "left": 0.006808378067484663,
+        "right": 0,
+        "top": 0
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.9830265848670756,
+        "width": 0.9931916219325153,
+        "x": 0.5034041890337423,
+        "y": 0.4915132924335378
+      }
+    },
+    "vehicleType": "suv"
+  },
+  {
+    "_createdAt": "2025-09-22T21:21:37Z",
+    "_id": "ram-25003500-timberline-overlook",
+    "_rev": "CLZyEnOmHFQ0HoyBtAWP38",
+    "_system": {
+      "base": {
+        "id": "ram-25003500-timberline-overlook",
+        "rev": "2i7iadib5QZf8Z2hebBnyg"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-30T18:14:50Z",
+    "associatedVehicles": [
+      {
+        "_key": "9b82ebd5dfc4",
+        "_ref": "ram-25003500-timberline-trailhead",
+        "_type": "reference"
+      },
+      {
+        "_key": "4f19d984a23a",
+        "_ref": "ford-superduty-tsport-valor",
+        "_type": "reference"
+      },
+      {
+        "_key": "350999f5d398",
+        "_ref": "0e112a9c-2258-43aa-9355-e953925961da",
+        "_type": "reference"
+      }
+    ],
+    "brand": "Timberline",
+    "coverImage": {
+      "_type": "image",
+      "alt": "Timberline Overlook Edition of the RAM 2500",
+      "asset": {
+        "_ref": "image-191a5af6eaa301a79290b28eceea1ef339fd39cb-600x400-png",
+        "_type": "reference"
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520642138-1nvn7ro0g",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "OI7fv4Ewn1q07huVxno0yr",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "OI7fv4Ewn1q07huVxno13c",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520642138-qdmtfupkj",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "OI7fv4Ewn1q07huVxno18N",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "OI7fv4Ewn1q07huVxno1D8",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520642138-thwohw239",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "OI7fv4Ewn1q07huVxno1Ht",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "OI7fv4Ewn1q07huVxno1Me",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520642138-sgi3q7ttr",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "OI7fv4Ewn1q07huVxno1RP",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "OI7fv4Ewn1q07huVxno1WA",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJ1T",
+          "_ref": "o1s1H9EbIWJQn22Jk8mPg9",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJ3C",
+          "_ref": "o1s1H9EbIWJQn22Jk8mPoH",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJ6e",
+          "_ref": "kyM5SM6pgmmk6pzYM8xFR1",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJA6",
+          "_ref": "o1s1H9EbIWJQn22Jk8mPwP",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJBp",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMX3",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJDY",
+          "_ref": "o1s1H9EbIWJQn22Jk8mQ4X",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJFH",
+          "_ref": "MGIGwn16t0272nFgJnqyDg",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJH0",
+          "_ref": "o1s1H9EbIWJQn22Jk8mOPZ",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJUo",
+          "_ref": "kyM5SM6pgmmk6pzYM8xFbN",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJWX",
+          "_ref": "MGIGwn16t0272nFgJnqxeg",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9BJYG",
+          "_ref": "o1s1H9EbIWJQn22Jk8mPPt",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "4.5” Lift",
+        "37” Tire",
+        "20”x10” Wheel",
+        "Body Decals & Badging",
+        "Dual Steering Stabilizer",
+        "ADAS System Calibration",
+        "Speedometer Calibration",
+        "Four Wheel Alignment",
+        "Road Force balancing",
+        "Install",
+        "Warranty portfolio "
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "2f73622d553c",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-fbe4bb0669b0cab030ac1c7f6976ce85e4fb68d8-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "bfa6d9a13ae4",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-f1bda84ef22edab23398f6efc4f522ab7974bdb1-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "7c1af879cd49",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-98e04452e2f2cfd385a8506c5575bad92582b598-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "e8153a90328b",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-dc25a48b8682d264558ec0ed64e3bdfe0fe5702a-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "efcb34d449e8",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6cef3fc4b12dd517bff5f06d6a362e57412bfa32-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "8f201f24ef14",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-77881a09d1bc9c60240b1bf4231aeb9b16e30af4-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "43574a64c300",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-49618533f55970f8391b518f27c2a0d761ac97ff-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "0d77127efad2",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-0c694e52218c2b643a079c8ab5d9bba899bf22b9-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "6f0f1b3e8daa",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-051a9389572e415d08c3181140a0bf8c01ab7415-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "2cc7a357006d",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-04762972a05acfb26a34131062b327107fec5129-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "5506daff8850",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-f7dfb307cef140ff70e9691a9546a7729295d8f8-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "3aa9122436a6",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-525cce2cb5ced719876adba5b099d4ba7e5b2391-1316x1038-png",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false,
+        "isBuildTextSummaryBlock": true,
+        "isBuildTextSummaryContent": [
+          {
+            "_key": "f763b5c932c7",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "5727330de444",
+                "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "Package Includes:"
+              },
+              {
+                "_key": "bf8d0d329c43",
+                "_type": "span",
+                "marks": [],
+                "text": " TrailHead Package Includes: 2.5\" Suspension, Falcon 2.1 Shock Kit, 37\" Tires, 20x9\" Wheels, Road Force Mount and Balance, Alignment, ADAS Calibration, Warranty Portfolio, and Professional Installation Premium Power Boards Factory Match Leather"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "1e171b9d7bf7",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-69d959a9e3d5469c2f094a5be0ccc31bd2efb5d6-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "04af8075c96a",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-077bf577254cef806d678aff49efc18fbdffa1e2-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "329ed26492cd",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-8bb800fe9680f95be161fc8ec990a17c620d4e6a-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "f7097fb95012",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e17e8c70ae793539a6aa273fc4acffb448cd75cb-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "d7091b52c0cd",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-194dc52ba2e4db0dae582f188cc80feacc25333e-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "eb3c8b21762a",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-59169ea12d8417b3cfd28cbcd41bff3f8b0fad0e-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "d5457c7f12a3",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-8cd7d6a1a80427c5f089fe1ac2f8cf92199d7d85-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "f0e893ecb9754118594e26deee2c1c55",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-525cce2cb5ced719876adba5b099d4ba7e5b2391-1316x1038-png",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false,
+        "isBuildTextSummaryBlock": true,
+        "isBuildTextSummaryContent": [
+          {
+            "_key": "f763b5c932c7",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "5727330de444",
+                "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "Package Includes:"
+              },
+              {
+                "_key": "bf8d0d329c43",
+                "_type": "span",
+                "marks": [],
+                "text": " 2.5\" Suspension, Falcon 2.1 Shock Kit, 37\" Tires, 20x9\" Wheels, Road Force Mount and Balance, Alignment, ADAS Calibration, Warranty Portfolio, and Professional Installation Premium Power Boards Paint to Match Fender Flares with wheel upgrade for offset Factory Match Leather 22\" Wheel and Tire Upgrade (not available on Sportsman)"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      }
+    ],
+    "manufacturer": {
+      "_ref": "manufacturer-ford",
+      "_type": "reference"
+    },
+    "model": "2500",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "ram-2500-timberline-overlook"
+    },
+    "specifications": {
+      "drivetrain": [
+        "4x4"
+      ]
+    },
+    "tags": [
+      "Timberline",
+      "Ram",
+      "2500",
+      "Package:Overlook",
+      "Overlook"
+    ],
+    "title": "Overlook",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "Standard mid-level tier that brings the adventure to new heights with improved quality, capability, and experience.",
+      "asset": {
+        "_ref": "image-5b85812a2462fab68bd6c77bcc7b833858a7ed1a-5120x2880-png",
+        "_type": "reference"
+      }
+    },
+    "vehicleType": "truck"
+  },
+  {
+    "_createdAt": "2025-09-22T21:21:36Z",
+    "_id": "ram-25003500-timberline-trailhead",
+    "_rev": "CLZyEnOmHFQ0HoyBtAMdbW",
+    "_system": {
+      "base": {
+        "id": "ram-25003500-timberline-trailhead",
+        "rev": "CLZyEnOmHFQ0HoyBtAMQaE"
+      }
+    },
+    "_type": "vehicle",
+    "_updatedAt": "2025-10-30T16:12:51Z",
+    "associatedVehicles": [
+      {
+        "_key": "9acdf463bd6b",
+        "_ref": "ram-25003500-timberline-overlook",
+        "_type": "reference"
+      },
+      {
+        "_key": "a120e03acda2",
+        "_ref": "jeep-wrangler-jl-timberline-trailhead",
+        "_type": "reference"
+      },
+      {
+        "_key": "ac0a9581e554",
+        "_ref": "jeep-gladiator-timberline-trailhead",
+        "_type": "reference"
+      }
+    ],
+    "brand": "Timberline",
+    "bulkUploadHelper": {
+      "gallery": [
+        {
+          "_key": "eee1668207be",
+          "_type": "image",
+          "gridSpan": {
+            "desktop": {
+              "col": 1,
+              "row": 1
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 1,
+              "row": 1
+            }
+          },
+          "isBuildCoverImage": false
+        },
+        {
+          "_key": "1d36d77e89c9",
+          "_type": "image",
+          "gridSpan": {
+            "desktop": {
+              "col": 1,
+              "row": 1
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 1,
+              "row": 1
+            }
+          },
+          "isBuildCoverImage": false
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM41qyK",
+          "_type": "image",
+          "alt": "8",
+          "asset": {
+            "_ref": "image-4b4a38ff4e0b3771c34f993694918af2f88f1610-3024x4032-jpg",
+            "_type": "reference"
+          },
+          "caption": "01",
+          "gridSpan": {
+            "desktop": {
+              "col": 1,
+              "row": 1
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 1,
+              "row": 1
+            }
+          },
+          "isBuildCoverImage": false,
+          "tags": [
+            "exterior"
+          ],
+          "view": "Exterior Front"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM41r03",
+          "_type": "image",
+          "alt": "4",
+          "asset": {
+            "_ref": "image-255855b767c5f27d6cc0e1dda53e5f4196f2836b-7008x4672-jpg",
+            "_type": "reference"
+          },
+          "caption": "01",
+          "gridSpan": {
+            "desktop": {
+              "col": 1,
+              "row": 1
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 1,
+              "row": 1
+            }
+          },
+          "isBuildCoverImage": false,
+          "tags": [
+            "exterior"
+          ],
+          "view": "Exterior Front"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM41r1m",
+          "_type": "image",
+          "alt": "5",
+          "asset": {
+            "_ref": "image-6385664c6a1f5e30ac7a47b1dff99f5144bef942-5712x4284-jpg",
+            "_type": "reference"
+          },
+          "caption": "01",
+          "gridSpan": {
+            "desktop": {
+              "col": 1,
+              "row": 1
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 1,
+              "row": 1
+            }
+          },
+          "isBuildCoverImage": false,
+          "tags": [
+            "exterior"
+          ],
+          "view": "Exterior Front"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM41r3V",
+          "_type": "image",
+          "alt": "7",
+          "asset": {
+            "_ref": "image-96dd1c7805cf03ff312ab1e0c4e67abc7d4cf365-5712x4284-jpg",
+            "_type": "reference"
+          },
+          "caption": "01",
+          "gridSpan": {
+            "desktop": {
+              "col": 1,
+              "row": 1
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 1,
+              "row": 1
+            }
+          },
+          "isBuildCoverImage": false,
+          "tags": [
+            "exterior"
+          ],
+          "view": "Exterior Front"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM41r5E",
+          "_type": "image",
+          "alt": "6",
+          "asset": {
+            "_ref": "image-99077db679db8cfbdf54debfd7c89812b7e49338-5712x4284-jpg",
+            "_type": "reference"
+          },
+          "caption": "01",
+          "gridSpan": {
+            "desktop": {
+              "col": 1,
+              "row": 1
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 1,
+              "row": 1
+            }
+          },
+          "isBuildCoverImage": false,
+          "tags": [
+            "exterior"
+          ],
+          "view": "Exterior Front"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM41r6x",
+          "_type": "image",
+          "alt": "2",
+          "asset": {
+            "_ref": "image-68c607c17c1a764c87f7fd631a41a0814d983acc-7008x4672-jpg",
+            "_type": "reference"
+          },
+          "caption": "01",
+          "gridSpan": {
+            "desktop": {
+              "col": 1,
+              "row": 1
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 1,
+              "row": 1
+            }
+          },
+          "isBuildCoverImage": false,
+          "tags": [
+            "exterior"
+          ],
+          "view": "Exterior Front"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM41r8g",
+          "_type": "image",
+          "alt": "3",
+          "asset": {
+            "_ref": "image-d5615985cefe7b4499eb71a4e0fb9d90a1311f01-7008x4672-jpg",
+            "_type": "reference"
+          },
+          "caption": "01",
+          "gridSpan": {
+            "desktop": {
+              "col": 1,
+              "row": 1
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 1,
+              "row": 1
+            }
+          },
+          "isBuildCoverImage": false,
+          "tags": [
+            "exterior"
+          ],
+          "view": "Exterior Front"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM41rAP",
+          "_type": "image",
+          "alt": "1",
+          "asset": {
+            "_ref": "image-a41e2a73ebc375b15fbd4f86b033c47bb1113ee4-7008x4672-jpg",
+            "_type": "reference"
+          },
+          "caption": "01",
+          "gridSpan": {
+            "desktop": {
+              "col": 1,
+              "row": 1
+            },
+            "mobile": {
+              "col": 1,
+              "row": 1
+            },
+            "tablet": {
+              "col": 1,
+              "row": 1
+            }
+          },
+          "isBuildCoverImage": false,
+          "tags": [
+            "exterior"
+          ],
+          "view": "Exterior Front"
+        }
+      ]
+    },
+    "coverImage": {
+      "_type": "image",
+      "alt": "Timberline TrailHead Build of RAM 2500 Truck",
+      "asset": {
+        "_ref": "image-166d3b744077d5b726c5afaa342aa53e30539157-600x400-png",
+        "_type": "reference"
+      }
+    },
+    "customizationOptions": [
+      {
+        "_key": "customization-1759520643152-ox6hc4wlm",
+        "category": "Wheels & Tires",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJcTs",
+            "description": "High-quality alloy wheels for enhanced performance",
+            "name": "Premium Alloy Wheels",
+            "price": 1200
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJcW2",
+            "description": "All-terrain tires for maximum capability",
+            "name": "Off-Road Tires",
+            "price": 800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520643152-8pw5vpz57",
+        "category": "Suspension",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJcYC",
+            "description": "Enhanced suspension system for improved handling",
+            "name": "Performance Suspension",
+            "price": 2500
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJcaM",
+            "description": "Increased ground clearance and off-road capability",
+            "name": "Lift Kit",
+            "price": 1800
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520643152-pcs5vwmlt",
+        "category": "Exterior Styling",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJccW",
+            "description": "Personalized exterior graphics and decals",
+            "name": "Custom Graphics Package",
+            "price": 600
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJceg",
+            "description": "High-performance LED lighting for visibility",
+            "name": "LED Light Bar",
+            "price": 400
+          }
+        ]
+      },
+      {
+        "_key": "customization-1759520643152-lqe524af3",
+        "category": "Interior Upgrades",
+        "options": [
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJcgq",
+            "description": "High-fidelity sound system upgrade",
+            "name": "Premium Audio System",
+            "price": 1500
+          },
+          {
+            "_key": "5v8OuqFn5O4X8PYE5JJcj0",
+            "description": "Premium leather seating and trim",
+            "name": "Leather Interior",
+            "price": 2000
+          }
+        ]
+      }
+    ],
+    "features": {
+      "additionalOptions": [
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AmeM",
+          "_ref": "o1s1H9EbIWJQn22Jk8mPg9",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9Amg5",
+          "_ref": "o1s1H9EbIWJQn22Jk8mPoH",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9Ammz",
+          "_ref": "o1s1H9EbIWJQn22Jk8mMX3",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AmqR",
+          "_ref": "MGIGwn16t0272nFgJnqyDg",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9AmsA",
+          "_ref": "o1s1H9EbIWJQn22Jk8mOPZ",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9An4F",
+          "_ref": "kyM5SM6pgmmk6pzYM8xFbN",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9An5y",
+          "_ref": "MGIGwn16t0272nFgJnqxeg",
+          "_type": "reference"
+        },
+        {
+          "_key": "kyM5SM6pgmmk6pzYM9An7h",
+          "_ref": "o1s1H9EbIWJQn22Jk8mPPt",
+          "_type": "reference"
+        }
+      ],
+      "baseFeatures": [
+        "2.5” Lift",
+        "37” Tires",
+        "20”x9” Wheels",
+        "Body Decals and Badging",
+        "ADAS System Calibration",
+        "Speedometer Calibration",
+        "Four-Wheel Alignment",
+        "Road Force Balancing",
+        "Install",
+        "Warranty Portfolio"
+      ]
+    },
+    "gallery": [
+      {
+        "_key": "26f3d04b22b2",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a41e2a73ebc375b15fbd4f86b033c47bb1113ee4-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "02d0c3ba1ab9",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-68c607c17c1a764c87f7fd631a41a0814d983acc-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "ae6f5c323d83",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-255855b767c5f27d6cc0e1dda53e5f4196f2836b-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "75455ba45148",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6385664c6a1f5e30ac7a47b1dff99f5144bef942-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "461b60047c5b",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-99077db679db8cfbdf54debfd7c89812b7e49338-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "57f5fd8050d7",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-96dd1c7805cf03ff312ab1e0c4e67abc7d4cf365-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "01",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "4c975277e1bd",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-3aabba7b3597a26dd2c4d1917659e77ab1d64741-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "6883f4965f61",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b40de66d2d964d5a75c8709a20b0e88e2b314ad9-3024x4032-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "2722da2df488",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e5bf7a1951701558e9018fb88dc23617f311a0a9-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "a404974b13f6",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-48eaeb8792e512a2ff1eb45a9460499aefe32873-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "1060dc9ed8c4",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-4ff03f1e93e67097d106fc0ed6b8796fd5043fa8-4032x3024-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "435613bfd574",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6e47bbf1eb3f3bccc8ca892894523d5b4e287592-5712x4284-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "b7cdfd677a9f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a803af848fd3ea24742002f33dc43c46bedc3c9d-3024x4032-jpg",
+          "_type": "reference"
+        },
+        "caption": "02",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "2244904f494a",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6c58bc548fcbf320681bc63358199534f4b0efec-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": true
+      },
+      {
+        "_key": "e60597cf8f98",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-d76fbcbd73927fd3a1b9fdf036ba7dc6f0a287f0-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "f90186b587bd",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-28678cc9dc957a11dc8a4b424f0d3eadea5d6a1d-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "226cc37f1e8d",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-53322bf1caa7fff75441dbdf404b18dc954cf2b5-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "df6547b7d937",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-08710a9fdac968ae43d83598b624d025e41168ee-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "a5a2c36bf683",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-cfb9157f3ad78c9fc52a653ccc87b602449e8715-7008x4672-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      },
+      {
+        "_key": "0056f1aac59d",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6d3487c0fa05f169253b88f833fbdb988cbf2e3b-4672x7008-jpg",
+          "_type": "reference"
+        },
+        "caption": "03",
+        "gridSpan": {
+          "desktop": {
+            "col": 1,
+            "row": 1
+          },
+          "mobile": {
+            "col": 1,
+            "row": 1
+          },
+          "tablet": {
+            "col": 1,
+            "row": 1
+          }
+        },
+        "isBuildCoverImage": false
+      }
+    ],
+    "headerVehicleImage": {
+      "_type": "image",
+      "alt": "RAM 2500 TrailHead Edition by TimberlineUpfitters"
+    },
+    "manufacturer": {
+      "_ref": "manufacturer-ford",
+      "_type": "reference"
+    },
+    "model": "2500",
+    "modelYear": 2025,
+    "slug": {
+      "_type": "slug",
+      "current": "ram-2500-timberline-trailhead"
+    },
+    "tags": [
+      "Timberline",
+      "Ram",
+      "2500",
+      "Package:Trailhead",
+      "Trailhead"
+    ],
+    "title": "Trailhead",
+    "vehicleDetailsPageHeaderBackgroundImage": {
+      "_type": "image",
+      "alt": "TrailHead– Modestly lifted offering the core features of Timberline Upfitters providing comprehensive onroad and offroad performance",
+      "asset": {
+        "_ref": "image-30b470ca9473470a019ff42f5b6976970bf82119-5120x2880-png",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0,
+        "left": 0.01657879601226995,
+        "right": 0.004220187883435584,
+        "top": 0
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 1,
+        "width": 0.9792010161042944,
+        "x": 0.5061793040644171,
+        "y": 0.5
+      }
+    },
+    "vehicleType": "truck"
+  }
+]
