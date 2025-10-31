@@ -1,6 +1,14 @@
 /**
  * This config is used to configure your Sanity Studio.
  * Learn more: https://www.sanity.io/docs/configuration
+ * 
+ * Document History & Audit Logs:
+ * - Document versioning and history are ENABLED BY DEFAULT in all Sanity projects
+ * - Cannot be disabled - it's a built-in feature
+ * - Every document change automatically creates a new version
+ * - Accessible in Studio via the History button in the document toolbar
+ * - Audit logs track all operations: create, update, delete with timestamps and user identity
+ * - To verify history/audit logs are working, run: npm run verify-history
  */
 
 import {defineConfig} from 'sanity'

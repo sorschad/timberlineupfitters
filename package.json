@@ -31,7 +31,8 @@
     "backup": "node backup-sanity.js",
     "restore": "node restore-sanity.mjs",
     "seed": "node scripts/seedVehiclesAndManufacturers.js",
-    "migrate-additional-options": "tsx scripts/migrateAdditionalOptions.ts"
+    "migrate-additional-options": "tsx scripts/migrateAdditionalOptions.ts",
+    "verify-history": "tsx scripts/verifyHistoryAndAuditLog.ts"
   },
   "prettier": "@sanity/prettier-config",
   "devDependencies": {
