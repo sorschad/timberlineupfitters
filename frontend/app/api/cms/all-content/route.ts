@@ -63,6 +63,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
     modelYear,
     brand,
     trim,
+    package,
     "manufacturer": manufacturer->{
       _id,
       name,
@@ -302,7 +303,9 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
       model,
       vehicleType,
       modelYear,
+      brand,
       trim,
+      package,
       tags,
       "manufacturer": manufacturer->{
         _id,
@@ -403,7 +406,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
       model,
       vehicleType,
       modelYear,
-      upfitter,
+      brand,
       package,
       tags,
       "manufacturer": manufacturer->{
@@ -417,7 +420,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
         },
         alt
       }
-    } | order(model asc, upfitter asc, package asc)
+    } | order(model asc, brand asc, package asc)
   },
   "additionalOptions": *[_type == "additionalOption" && defined(slug.current)] | order(sortOrder asc, name asc) {
     _id,
