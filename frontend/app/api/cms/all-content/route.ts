@@ -1,12 +1,56 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { client } from '@/sanity/lib/client'
 
-// Comprehensive query for all content types with nested relationships
+// Build comprehensive query for all content types with nested relationships
 // This mirrors the vehicle by-slug endpoint structure but fetches all records
 // Using GROQ object literal syntax to return multiple document types in one query
-const comprehensiveAllContentQuery = `
+function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
+  // Build tag filter conditions for vehicles
+  let vehicleTagFilterClause = ''
+  let vehicleTagFilterParams: Record<string, string> = {}
+  let vehicleTagFilterForArrays = '' // For filtering reference arrays before dereferencing
+  
+  if (vehicleTagFilter && vehicleTagFilter.trim()) {
+    // Sanitize input - remove potentially dangerous characters
+    const cleanTag = vehicleTagFilter.trim().replace(/[\\"'`]/g, '')
+    const cleanTagLower = cleanTag.toLowerCase()
+    const tagPattern = `*${cleanTag}*`
+    const tagPatternLower = `*${cleanTagLower}*`
+    
+    // Fuzzy, case-insensitive tag matching using GROQ match operator
+    vehicleTagFilterClause = `&& (tags[] match $tagPattern || lower(tags[]) match lower($tagPatternLower))`
+    vehicleTagFilterParams = {
+      tagPattern,
+      tagPatternLower
+    }
+    
+    // For filtering reference arrays, we need to check if the referenced vehicle matches
+    // This creates a filter that checks if the reference ID exists in matching vehicles
+    vehicleTagFilterForArrays = `[_ref in *[_type == "vehicle" && (tags[] match "*${cleanTag}*" || lower(tags[]) match "*${cleanTagLower}*")]._id]`
+  }
+  
+  // Build brands filter - only include brands that have vehicles matching the tag filter
+  // Note: For subqueries in filters, we need to embed the values directly
+  let brandsFilterClause = ''
+  let manufacturersFilterClause = ''
+  
+  if (vehicleTagFilter && vehicleTagFilter.trim()) {
+    // Sanitize input
+    const cleanTag = vehicleTagFilter.trim().replace(/[\\"'`]/g, '')
+    const cleanTagLower = cleanTag.toLowerCase()
+    
+    // Filter brands that have at least one vehicle with matching tags
+    // Using embedded values in subquery filter (safe after sanitization)
+    brandsFilterClause = `&& count(*[_type == "vehicle" && brand == ^.name && defined(slug.current) && (tags[] match "*${cleanTag}*" || lower(tags[]) match "*${cleanTagLower}*")]) > 0`
+    
+    // Filter manufacturers that have at least one vehicle with matching tags
+    manufacturersFilterClause = `&& count(*[_type == "vehicle" && references(^._id) && (tags[] match "*${cleanTag}*" || lower(tags[]) match "*${cleanTagLower}*")]) > 0`
+  }
+
+  return {
+    query: `
 {
-  "vehicles": *[_type == "vehicle" && defined(slug.current)] | order(modelYear desc, title asc) {
+  "vehicles": *[_type == "vehicle" && defined(slug.current)${vehicleTagFilterClause}] | order(modelYear desc, title asc) {
     _id,
     _type,
     _createdAt,
@@ -127,13 +171,14 @@ const comprehensiveAllContentQuery = `
         tags
       }
     },
-    "associatedVehicles": associatedVehicles[0...3]->{
+    "associatedVehicles": associatedVehicles${vehicleTagFilterForArrays || ''}[0...3]->{
       _id,
       title,
       slug,
       model,
       modelYear,
       brand,
+      tags,
       "manufacturer": manufacturer->{
         _id,
         name
@@ -173,7 +218,7 @@ const comprehensiveAllContentQuery = `
       keywords
     }
   },
-  "brands": *[_type == "brand" && defined(slug.current)] | order(name asc) {
+  "brands": *[_type == "brand" && defined(slug.current)${brandsFilterClause}] | order(name asc) {
     _id,
     _type,
     _createdAt,
@@ -250,7 +295,7 @@ const comprehensiveAllContentQuery = `
         alt
       }
     },
-    "vehicles": *[_type == "vehicle" && brand == ^.name && defined(slug.current)] | order(modelYear desc, title asc) {
+    "vehicles": *[_type == "vehicle" && brand == ^.name && defined(slug.current)${vehicleTagFilterClause}] | order(modelYear desc, title asc) {
       _id,
       title,
       slug,
@@ -258,6 +303,7 @@ const comprehensiveAllContentQuery = `
       vehicleType,
       modelYear,
       trim,
+      tags,
       "manufacturer": manufacturer->{
         _id,
         name
@@ -271,8 +317,8 @@ const comprehensiveAllContentQuery = `
       },
       excerpt
     }
-  },
-  "manufacturers": *[_type == "manufacturer" && defined(slug.current)] | order(name asc) {
+  } | order(name asc),
+  "manufacturers": *[_type == "manufacturer" && defined(slug.current)${manufacturersFilterClause}] | order(name asc) {
     _id,
     _type,
     _createdAt,
@@ -350,7 +396,7 @@ const comprehensiveAllContentQuery = `
       crop,
       alt
     },
-    "vehicles": *[_type == "vehicle" && references(^._id)] {
+    "vehicles": *[_type == "vehicle" && references(^._id)${vehicleTagFilterClause}] {
       _id,
       title,
       slug,
@@ -359,6 +405,7 @@ const comprehensiveAllContentQuery = `
       modelYear,
       upfitter,
       package,
+      tags,
       "manufacturer": manufacturer->{
         _id,
         name
@@ -417,13 +464,14 @@ const comprehensiveAllContentQuery = `
       isEstimate
     },
     availability,
-    "compatibleVehicles": compatibleVehicles[]->{
+    "compatibleVehicles": compatibleVehicles${vehicleTagFilterForArrays || ''}[]->{
       _id,
       title,
       slug,
       model,
       vehicleType,
       modelYear,
+      tags,
       "manufacturer": manufacturer->{
         _id,
         name
@@ -537,12 +585,22 @@ const comprehensiveAllContentQuery = `
     isActive
   }
 }
-`
+`,
+    params: vehicleTagFilterParams
+  }
+}
 
 export async function GET(request: NextRequest) {
   try {
+    // Get query parameters
+    const { searchParams } = new URL(request.url)
+    const vehicleTag = searchParams.get('vehicleTag') || undefined
+    
+    // Build query with optional tag filtering
+    const { query, params } = buildComprehensiveAllContentQuery(vehicleTag)
+    
     // Fetch all content with comprehensive nested relationships
-    const allContent = await client.fetch(comprehensiveAllContentQuery)
+    const allContent = await client.fetch(query, params)
 
     if (!allContent) {
       return NextResponse.json(
@@ -572,6 +630,9 @@ export async function GET(request: NextRequest) {
       data: allContent,
       meta: {
         counts,
+        filters: {
+          vehicleTag: vehicleTag || null
+        },
         timestamp: new Date().toISOString(),
         fetched: new Date().toISOString()
       }
