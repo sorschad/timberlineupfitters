@@ -158,21 +158,6 @@ export const vehicle = defineType({
       type: 'object',
       fields: [
         defineField({
-          name: 'engine',
-          title: 'Engine Options',
-          type: 'array',
-          of: [defineArrayMember({
-            type: 'object',
-            fields: [
-              defineField({ name: 'type', type: 'string', description: 'e.g., 3.5L EcoBoost V6' }),
-              defineField({ name: 'horsepower', type: 'number' }),
-              defineField({ name: 'torque', type: 'number' }),
-              defineField({ name: 'fuelType', type: 'string', options: { list: ['Gasoline', 'Diesel', 'Hybrid', 'Electric'] } }),
-              defineField({ name: 'transmission', type: 'string', description: 'e.g., 10-speed automatic' })
-            ]
-          })]
-        }),
-        defineField({
           name: 'drivetrain',
           title: 'Drivetrain Options',
           type: 'array',

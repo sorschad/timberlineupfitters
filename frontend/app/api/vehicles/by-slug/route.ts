@@ -72,13 +72,6 @@ const comprehensiveVehicleQuery = `
       description
     },
     specifications{
-      engine[]{
-        type,
-        horsepower,
-        torque,
-        fuelType,
-        transmission
-      },
       drivetrain,
       bedLength,
       cabStyle,
