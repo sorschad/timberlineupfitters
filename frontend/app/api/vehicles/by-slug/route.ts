@@ -50,15 +50,6 @@ const comprehensiveVehicleQuery = `
       crop,
       alt
     },
-    headerVehicleImage{
-      asset->{
-        _id,
-        url
-      },
-      hotspot,
-      crop,
-      alt
-    },
     gallery[]{
       asset->{
         _id,

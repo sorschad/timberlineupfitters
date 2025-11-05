@@ -4,10 +4,10 @@ import { client } from '@/sanity/lib/client'
 // Build comprehensive query for all content types with nested relationships
 // This mirrors the vehicle by-slug endpoint structure but fetches all records
 // Using GROQ object literal syntax to return multiple document types in one query
-function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
+function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilter?: string) {
   // Build tag filter conditions for vehicles
   let vehicleTagFilterClause = ''
-  let vehicleTagFilterParams: Record<string, string> = {}
+  let queryParams: Record<string, string> = {}
   let vehicleTagFilterForArrays = '' // For filtering reference arrays before dereferencing
   
   if (vehicleTagFilter && vehicleTagFilter.trim()) {
@@ -19,7 +19,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
     
     // Fuzzy, case-insensitive tag matching using GROQ match operator
     vehicleTagFilterClause = `&& (tags[] match $tagPattern || lower(tags[]) match lower($tagPatternLower))`
-    vehicleTagFilterParams = {
+    queryParams = {
       tagPattern,
       tagPatternLower
     }
@@ -29,28 +29,82 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
     vehicleTagFilterForArrays = `[_ref in *[_type == "vehicle" && (tags[] match "*${cleanTag}*" || lower(tags[]) match "*${cleanTagLower}*")]._id]`
   }
   
-  // Build brands filter - only include brands that have vehicles matching the tag filter
+  // Build brand filter conditions for vehicles
+  let brandFilterClause = ''
+  let brandFilterForArrays = ''
+  
+  if (brandFilter && brandFilter.trim()) {
+    // Sanitize input
+    const cleanBrand = brandFilter.trim().replace(/[\\"'`]/g, '')
+    const cleanBrandLower = cleanBrand.toLowerCase()
+    const brandPattern = `*${cleanBrand}*`
+    const brandPatternLower = `*${cleanBrandLower}*`
+    
+    // Fuzzy, case-insensitive brand matching
+    brandFilterClause = `&& (brand match $brandPattern || lower(brand) match lower($brandPatternLower))`
+    queryParams = {
+      ...queryParams,
+      brandPattern,
+      brandPatternLower
+    }
+    
+    // For filtering reference arrays by brand
+    brandFilterForArrays = `[_ref in *[_type == "vehicle" && (brand match "*${cleanBrand}*" || lower(brand) match "*${cleanBrandLower}*")]._id]`
+  }
+  
+  // Combine both filters for reference arrays
+  let combinedArrayFilter = ''
+  if (vehicleTagFilterForArrays && brandFilterForArrays) {
+    // Both filters - need to combine them
+    const cleanTag = vehicleTagFilter?.trim().replace(/[\\"'`]/g, '') || ''
+    const cleanTagLower = cleanTag.toLowerCase()
+    const cleanBrand = brandFilter?.trim().replace(/[\\"'`]/g, '') || ''
+    const cleanBrandLower = cleanBrand.toLowerCase()
+    combinedArrayFilter = `[_ref in *[_type == "vehicle" && (tags[] match "*${cleanTag}*" || lower(tags[]) match "*${cleanTagLower}*") && (brand match "*${cleanBrand}*" || lower(brand) match "*${cleanBrandLower}*")]._id]`
+  } else if (vehicleTagFilterForArrays) {
+    combinedArrayFilter = vehicleTagFilterForArrays
+  } else if (brandFilterForArrays) {
+    combinedArrayFilter = brandFilterForArrays
+  }
+  
+  // Combine filters for direct vehicle queries
+  const combinedVehicleFilter = vehicleTagFilterClause + brandFilterClause
+  
+  // Build brands filter - only include brands that have vehicles matching the filters
   // Note: For subqueries in filters, we need to embed the values directly
   let brandsFilterClause = ''
   let manufacturersFilterClause = ''
   
-  if (vehicleTagFilter && vehicleTagFilter.trim()) {
-    // Sanitize input
-    const cleanTag = vehicleTagFilter.trim().replace(/[\\"'`]/g, '')
-    const cleanTagLower = cleanTag.toLowerCase()
+  if (vehicleTagFilter?.trim() || brandFilter?.trim()) {
+    // Build combined filter conditions for subqueries
+    const tagConditions: string[] = []
+    const brandConditions: string[] = []
     
-    // Filter brands that have at least one vehicle with matching tags
-    // Using embedded values in subquery filter (safe after sanitization)
-    brandsFilterClause = `&& count(*[_type == "vehicle" && brand == ^.name && defined(slug.current) && (tags[] match "*${cleanTag}*" || lower(tags[]) match "*${cleanTagLower}*")]) > 0`
+    if (vehicleTagFilter?.trim()) {
+      const cleanTag = vehicleTagFilter.trim().replace(/[\\"'`]/g, '')
+      const cleanTagLower = cleanTag.toLowerCase()
+      tagConditions.push(`(tags[] match "*${cleanTag}*" || lower(tags[]) match "*${cleanTagLower}*")`)
+    }
     
-    // Filter manufacturers that have at least one vehicle with matching tags
-    manufacturersFilterClause = `&& count(*[_type == "vehicle" && references(^._id) && (tags[] match "*${cleanTag}*" || lower(tags[]) match "*${cleanTagLower}*")]) > 0`
+    if (brandFilter?.trim()) {
+      const cleanBrand = brandFilter.trim().replace(/[\\"'`]/g, '')
+      const cleanBrandLower = cleanBrand.toLowerCase()
+      brandConditions.push(`(brand match "*${cleanBrand}*" || lower(brand) match "*${cleanBrandLower}*")`)
+    }
+    
+    const allConditions = [...tagConditions, ...brandConditions].join(' && ')
+    
+    // Filter brands that have at least one vehicle matching the filters
+    brandsFilterClause = `&& count(*[_type == "vehicle" && brand == ^.name && defined(slug.current) && ${allConditions}]) > 0`
+    
+    // Filter manufacturers that have at least one vehicle matching the filters
+    manufacturersFilterClause = `&& count(*[_type == "vehicle" && references(^._id) && ${allConditions}]) > 0`
   }
 
   return {
     query: `
 {
-  "vehicles": *[_type == "vehicle" && defined(slug.current)${vehicleTagFilterClause}] | order(modelYear desc, title asc) {
+  "vehicles": *[_type == "vehicle" && defined(slug.current)${combinedVehicleFilter}] | order(modelYear desc, title asc) {
     _id,
     _type,
     _createdAt,
@@ -85,15 +139,6 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
       alt
     },
     vehicleDetailsPageHeaderBackgroundImage{
-      asset->{
-        _id,
-        url
-      },
-      hotspot,
-      crop,
-      alt
-    },
-    headerVehicleImage{
       asset->{
         _id,
         url
@@ -172,7 +217,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
         tags
       }
     },
-    "associatedVehicles": associatedVehicles${vehicleTagFilterForArrays || ''}[0...3]->{
+    "associatedVehicles": associatedVehicles${combinedArrayFilter || ''}[0...3]->{
       _id,
       title,
       slug,
@@ -296,7 +341,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
         alt
       }
     },
-    "vehicles": *[_type == "vehicle" && brand == ^.name && defined(slug.current)${vehicleTagFilterClause}] | order(modelYear desc, title asc) {
+    "vehicles": *[_type == "vehicle" && brand == ^.name && defined(slug.current)${combinedVehicleFilter}] | order(modelYear desc, title asc) {
       _id,
       title,
       slug,
@@ -399,7 +444,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
       crop,
       alt
     },
-    "vehicles": *[_type == "vehicle" && references(^._id)${vehicleTagFilterClause}] {
+    "vehicles": *[_type == "vehicle" && references(^._id)${combinedVehicleFilter}] {
       _id,
       title,
       slug,
@@ -467,7 +512,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
       isEstimate
     },
     availability,
-    "compatibleVehicles": compatibleVehicles${vehicleTagFilterForArrays || ''}[]->{
+    "compatibleVehicles": compatibleVehicles${combinedArrayFilter || ''}[]->{
       _id,
       title,
       slug,
@@ -589,7 +634,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string) {
   }
 }
 `,
-    params: vehicleTagFilterParams
+    params: queryParams
   }
 }
 
@@ -598,9 +643,10 @@ export async function GET(request: NextRequest) {
     // Get query parameters
     const { searchParams } = new URL(request.url)
     const vehicleTag = searchParams.get('vehicleTag') || undefined
+    const brand = searchParams.get('brand') || undefined
     
-    // Build query with optional tag filtering
-    const { query, params } = buildComprehensiveAllContentQuery(vehicleTag)
+    // Build query with optional tag and brand filtering
+    const { query, params } = buildComprehensiveAllContentQuery(vehicleTag, brand)
     
     // Fetch all content with comprehensive nested relationships
     const allContent = await client.fetch(query, params)
@@ -634,7 +680,8 @@ export async function GET(request: NextRequest) {
       meta: {
         counts,
         filters: {
-          vehicleTag: vehicleTag || null
+          vehicleTag: vehicleTag || null,
+          brand: brand || null
         },
         timestamp: new Date().toISOString(),
         fetched: new Date().toISOString()

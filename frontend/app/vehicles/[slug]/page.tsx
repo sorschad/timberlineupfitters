@@ -27,7 +27,6 @@ interface Vehicle {
     logo?: any
   }
   coverImage?: any
-  headerVehicleImage?: any
   vehicleDetailsPageHeaderBackgroundImage?: any
   gallery?: any[]
   videoTour?: any

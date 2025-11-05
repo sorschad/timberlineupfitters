@@ -24,7 +24,6 @@ interface Vehicle {
     logo?: any
   }
   coverImage?: any
-  headerVehicleImage?: any
   vehicleDetailsPageHeaderBackgroundImage?: {
     asset?: any
     alt?: string

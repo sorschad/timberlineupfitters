@@ -313,19 +313,6 @@ export type Vehicle = {
     alt?: string
     _type: 'image'
   }
-  headerVehicleImage?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
   bulkUploadHelper?: {
     placeholder?: string
   }
@@ -1793,19 +1780,6 @@ export type VehicleQueryResult = {
     _type: 'image'
   } | null
   vehicleDetailsPageHeaderBackgroundImage: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  } | null
-  headerVehicleImage: {
     asset?: {
       _ref: string
       _type: 'reference'

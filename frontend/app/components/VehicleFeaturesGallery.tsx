@@ -15,7 +15,6 @@ interface VehicleFeaturesGalleryProps {
     title: string
     gallery?: any[]
     coverImage?: any
-    headerVehicleImage?: any
     features?: Array<{
       id?: string
       title: string
@@ -59,9 +58,6 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
 
   // Get the main display image based on active view
   const getMainImage = () => {
-    if (activeView === 'interior' && vehicle.headerVehicleImage) {
-      return vehicle.headerVehicleImage
-    }
     if (activeView === 'exterior' && vehicle.coverImage) {
       return vehicle.coverImage
     }
@@ -86,7 +82,6 @@ export default function VehicleFeaturesGallery({ vehicle }: VehicleFeaturesGalle
     if (vehicle.gallery && vehicle.gallery.length > 0) {
       vehicle.gallery.forEach(pushImage)
     } else {
-      if (vehicle.headerVehicleImage) pushImage(vehicle.headerVehicleImage)
       if (vehicle.coverImage) pushImage(vehicle.coverImage)
     }
     return images
