@@ -59,15 +59,6 @@ const comprehensiveBrandQuery = `
       crop,
       alt
     },
-    sectionImage{
-      asset->{
-        _id,
-        url
-      },
-      hotspot,
-      crop,
-      alt
-    },
     primaryLogo{
       asset->{
         _id,
@@ -127,7 +118,7 @@ const comprehensiveBrandQuery = `
 `
 
 // Helper function to enhance image with responsive URLs
-function enhanceImageWithResponsiveUrls(image: any, imageType: 'cover' | 'section' | 'logo' | 'thumbnail' = 'cover') {
+function enhanceImageWithResponsiveUrls(image: any, imageType: 'cover' | 'logo' | 'thumbnail' = 'cover') {
   if (!image?.asset?._ref) return null
 
   try {
@@ -140,7 +131,6 @@ function enhanceImageWithResponsiveUrls(image: any, imageType: 'cover' | 'sectio
     // Define breakpoint widths based on image type
     const breakpointWidths = {
       cover: [640, 768, 1024, 1280, 1920],      // Full-width hero images
-      section: [640, 768, 1024, 1280],         // Section images
       logo: [120, 200, 300, 400],              // Logo images
       thumbnail: [150, 300, 400]                // Thumbnail images
     }
@@ -201,7 +191,6 @@ function enhanceImageWithResponsiveUrls(image: any, imageType: 'cover' | 'sectio
       // Recommended sizes attribute based on image type
       sizes: {
         cover: IMAGE_SIZES.hero,
-        section: IMAGE_SIZES.twoColumn,
         logo: IMAGE_SIZES.logo,
         thumbnail: IMAGE_SIZES.thumbnail,
       }[imageType] || IMAGE_SIZES.content,
@@ -280,7 +269,6 @@ export async function GET(request: NextRequest) {
     const enhancedBrand = {
       ...brand,
       coverImage: enhanceImageWithResponsiveUrls(brand.coverImage, 'cover'),
-      sectionImage: enhanceImageWithResponsiveUrls(brand.sectionImage, 'section'),
       primaryLogo: enhanceImageWithResponsiveUrls(brand.primaryLogo, 'logo'),
       secondaryLogo: enhanceImageWithResponsiveUrls(brand.secondaryLogo, 'logo'),
       manufacturers: brand.manufacturers?.map((manufacturer: any) => ({

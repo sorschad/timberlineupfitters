@@ -288,15 +288,6 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       crop,
       alt
     },
-    sectionImage{
-      asset->{
-        _id,
-        url
-      },
-      hotspot,
-      crop,
-      alt
-    },
     primaryLogo{
       asset->{
         _id,
