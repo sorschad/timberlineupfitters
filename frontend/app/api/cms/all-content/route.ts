@@ -584,9 +584,8 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     _rev,
     ...,
     appLogo{
-      "asset": asset->{
+      asset->{
         _id,
-        _ref,
         url
       },
       hotspot,
@@ -594,9 +593,8 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       alt
     },
     appSecondaryLogo{
-      "asset": asset->{
+      asset->{
         _id,
-        _ref,
         url
       },
       hotspot,
