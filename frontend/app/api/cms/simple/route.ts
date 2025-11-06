@@ -121,6 +121,12 @@ export async function GET(request: Request) {
             _id,
             url
           }
+        },
+        appSecondaryLogo{
+          asset->{
+            _id,
+            url
+          }
         }
       }`),
       client.fetch(allAdditionalOptionsQuery)

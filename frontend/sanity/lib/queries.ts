@@ -2,7 +2,8 @@ import {defineQuery} from 'next-sanity'
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]{
   ...,
-  appLogo
+  appLogo,
+  appSecondaryLogo
 }`)
 
 export const homepageQuery = defineQuery(`*[_type == "page" && name == "Homepage"][0]{

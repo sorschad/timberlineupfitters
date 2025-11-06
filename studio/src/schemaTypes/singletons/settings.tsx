@@ -185,6 +185,28 @@ export const settings = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'appSecondaryLogo',
+      title: 'Application Secondary Logo',
+      type: 'image',
+      description: 'Secondary logo is sparsely used across the application frontend',
+      options: {hotspot: true},
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt text',
+          type: 'string',
+          validation: (rule) => {
+            return rule.custom((alt, context) => {
+              if ((context.document?.appSecondaryLogo as any)?.asset?._ref && !alt) {
+                return 'Required'
+              }
+              return true
+            })
+          },
+        }),
+      ],
+    }),
   ],
   preview: {
     prepare() {
