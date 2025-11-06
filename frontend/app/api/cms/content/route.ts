@@ -13,6 +13,7 @@ import {
   additionalOptionsByPackageQuery,
   additionalOptionsByManufacturerQuery
 } from '@/sanity/lib/queries'
+import { transformImagesToWebP } from '@/sanity/lib/apiImageTransform'
 
 // Add CORS headers function
 function addCorsHeaders(response: Response) {
@@ -83,18 +84,22 @@ export async function GET(request: Request) {
         return addCorsHeaders(errorResponse)
     }
 
+    // Transform all images to WebP format for optimal performance
+    const transformedData = transformImagesToWebP(data)
+
     // Apply pagination if needed
-    if (limit && offset && Array.isArray(data)) {
-      data = data.slice(offset, offset + limit)
+    let paginatedData = transformedData
+    if (limit && offset && Array.isArray(transformedData)) {
+      paginatedData = transformedData.slice(offset, offset + limit)
     }
 
     const response = Response.json({
       success: true,
-      data,
+      data: paginatedData,
       meta: {
         type,
         slug,
-        count: Array.isArray(data) ? data.length : 1,
+        count: Array.isArray(paginatedData) ? paginatedData.length : 1,
         timestamp: new Date().toISOString()
       }
     })

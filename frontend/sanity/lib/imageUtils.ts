@@ -39,7 +39,7 @@ export const IMAGE_SIZES = {
   logo: '(max-width: 768px) 120px, 150px',
 } as const
 
-// Generate responsive srcSet for Sanity images
+// Generate responsive srcSet for Sanity images with WebP format
 export function generateResponsiveSrcSet(
   source: any,
   baseWidth: number = 800,
@@ -55,8 +55,36 @@ export function generateResponsiveSrcSet(
         ?.image(source)
         .width(width)
         .quality(quality)
-        .auto('format')
+        .format('webp')
         .url()
+      return url ? `${url} ${width}w` : null
+    })
+    .filter(Boolean)
+    .join(', ')
+  
+  return srcSetEntries
+}
+
+// Generate srcset with WebP format for a given image
+export function generateSrcSet(
+  source: any,
+  widths: number[] = [320, 640, 768, 1024, 1280, 1536, 1920],
+  options: {
+    quality?: number
+    fit?: 'clip' | 'crop' | 'fill' | 'fillmax' | 'max' | 'scale' | 'min'
+    height?: number
+  } = {}
+): string {
+  if (!source?.asset?._ref) return ''
+  
+  const { quality = 85, fit = 'max', height } = options
+  
+  const srcSetEntries = widths
+    .map(width => {
+      let builder = imageBuilder?.image(source).width(width).quality(quality).format('webp')
+      if (height) builder = builder?.height(height)
+      if (fit) builder = builder?.fit(fit)
+      const url = builder?.url()
       return url ? `${url} ${width}w` : null
     })
     .filter(Boolean)
@@ -106,7 +134,7 @@ export function urlForImageResponsive(
   if (width) builder = builder?.width(width)
   if (height) builder = builder?.height(height)
   
-  return builder?.quality(quality).fit(fit).auto(auto as any)
+  return builder?.quality(quality).fit(fit).format('webp')
 }
 
 // Get optimal image dimensions for a given container size

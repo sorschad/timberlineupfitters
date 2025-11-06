@@ -1,5 +1,6 @@
 // schemas/vehicle.ts
 import { defineType, defineField, defineArrayMember } from 'sanity'
+import { BulkImageUploadAction } from '../../components/BulkImageUploadAction'
 
 export const vehicle = defineType({
   name: 'vehicle',
@@ -157,21 +158,6 @@ export const vehicle = defineType({
       type: 'object',
       fields: [
         defineField({
-          name: 'engine',
-          title: 'Engine Options',
-          type: 'array',
-          of: [defineArrayMember({
-            type: 'object',
-            fields: [
-              defineField({ name: 'type', type: 'string', description: 'e.g., 3.5L EcoBoost V6' }),
-              defineField({ name: 'horsepower', type: 'number' }),
-              defineField({ name: 'torque', type: 'number' }),
-              defineField({ name: 'fuelType', type: 'string', options: { list: ['Gasoline', 'Diesel', 'Hybrid', 'Electric'] } }),
-              defineField({ name: 'transmission', type: 'string', description: 'e.g., 10-speed automatic' })
-            ]
-          })]
-        }),
-        defineField({
           name: 'drivetrain',
           title: 'Drivetrain Options',
           type: 'array',
@@ -208,36 +194,6 @@ export const vehicle = defineType({
       type: 'object',
       fields: [
         defineField({
-          name: 'exteriorFeatures',
-          title: 'Exterior Features',
-          type: 'array',
-          of: [{ type: 'string' }]
-        }),
-        defineField({
-          name: 'interiorFeatures',
-          title: 'Interior Features',
-          type: 'array',
-          of: [{ type: 'string' }]
-        }),
-        defineField({
-          name: 'safetyFeatures',
-          title: 'Safety Features',
-          type: 'array',
-          of: [{ type: 'string' }]
-        }),
-        defineField({
-          name: 'technologyFeatures',
-          title: 'Technology Features',
-          type: 'array',
-          of: [{ type: 'string' }]
-        }),
-        defineField({
-          name: 'performanceFeatures',
-          title: 'Performance Features',
-          type: 'array',
-          of: [{ type: 'string' }]
-        }),
-        defineField({
           name: 'baseFeatures',
           title: 'Base Features',
           type: 'array',
@@ -247,9 +203,47 @@ export const vehicle = defineType({
           name: 'additionalOptions',
           title: 'Additional Options',
           type: 'array',
-          of: [{ type: 'string' }]
+          description: 'Reference to Additional Option documents for this vehicle',
+          of: [
+            {
+              type: 'reference',
+              to: [{ type: 'additionalOption' }],
+              options: {
+                filter: 'isActive == true'
+              }
+            }
+          ]
         })
       ]
+    }),
+
+    // Associated Vehicles
+    defineField({
+      name: 'associatedVehicles',
+      title: 'Associated Vehicles',
+      type: 'array',
+      description: 'Select up to 3 related vehicles to display together',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'vehicle' }],
+          options: {
+            filter: ({ document }) => {
+              // Prevent self-reference by filtering out the current document's ID
+              return {
+                filter: `_id != "${document._id}"`,
+                params: {}
+              }
+            }
+          }
+        }
+      ],
+      validation: (Rule) => Rule.max(3).custom((vehicles, context) => {
+        if (vehicles && vehicles.length > 3) {
+          return 'Maximum 3 associated vehicles allowed'
+        }
+        return true
+      })
     }),
 
     // Media Assets
@@ -274,15 +268,23 @@ export const vehicle = defineType({
       ]
     }),
 
+    // Bulk Upload Helper Field
     defineField({
-      name: 'headerVehicleImage',
-      title: 'Header Vehicle Image',
-      type: 'image',
-      description: 'Foreground vehicle image displayed on the vehicle details page header. If not set, falls back to Cover Image.',
-      options: { hotspot: true },
+      name: 'bulkUploadHelper',
+      title: 'Bulk Upload Images',
+      type: 'object',
+      description: 'Click the button below to upload multiple images at once. They will be added to the gallery below.',
       fields: [
-        defineField({ name: 'alt', type: 'string', title: 'Alt Text' })
-      ]
+        {
+          name: 'placeholder',
+          type: 'string',
+          hidden: true
+        }
+      ],
+      components: {
+        input: BulkImageUploadAction
+      },
+      hidden: ({ document }) => !document?.gallery
     }),
 
     defineField({
@@ -297,13 +299,22 @@ export const vehicle = defineType({
             asset: 'asset',
             alt: 'alt',
             caption: 'caption',
-            isBuildCoverImage: 'isBuildCoverImage'
+            isBuildCoverImage: 'isBuildCoverImage',
+            isBuildTextSummaryBlock: 'isBuildTextSummaryBlock'
           },
           prepare(selection) {
-            const { asset, alt, caption, isBuildCoverImage } = selection
+            const { asset, alt, caption, isBuildCoverImage, isBuildTextSummaryBlock } = selection
+            let subtitle = 'Gallery Image'
+            if (isBuildCoverImage && isBuildTextSummaryBlock) {
+              subtitle = 'Cover Image + Text Summary'
+            } else if (isBuildCoverImage) {
+              subtitle = 'Cover Image'
+            } else if (isBuildTextSummaryBlock) {
+              subtitle = 'Text Summary Block'
+            }
             return {
               title: caption || alt || 'Gallery Image',
-              subtitle: isBuildCoverImage ? 'Cover Image' : 'Gallery Image',
+              subtitle: subtitle,
               media: asset
             }
           }
@@ -315,6 +326,47 @@ export const vehicle = defineType({
             type: 'boolean',
             description: 'Whether this image will be used for the build cover image to open the build gallery. When true, image will be shown on vehicle details page and clicking the image will open the build gallery.',
             initialValue: false
+          }),
+          defineField({
+            name: 'isBuildTextSummaryBlock',
+            title: 'Is Text Summary Block for Build',
+            type: 'boolean',
+            description: 'Whether this block will be used to display the text summary block on the build gallery expandable section.',
+            initialValue: false
+          }),
+          defineField({
+            name: 'isBuildTextSummaryContent',
+            title: 'Text Summary Content',
+            type: 'array',
+            of: [
+              defineArrayMember({
+                type: 'block',
+                styles: [
+                  { title: 'Normal', value: 'normal' },
+                  { title: 'H1', value: 'h1' },
+                  { title: 'H2', value: 'h2' },
+                  { title: 'H3', value: 'h3' },
+                  { title: 'Quote', value: 'blockquote' },
+                  { title: 'Medium', value: 'medium' },
+                  { title: 'Small', value: 'small' },
+                  { title: 'Extra Small', value: 'extra-small' },
+                  { title: 'Tiny', value: 'tiny' }
+                ],
+                lists: [
+                  { title: 'Bullet', value: 'bullet' },
+                  { title: 'Numbered', value: 'number' }
+                ]
+              })
+            ],
+            description: 'Rich text content displayed with the build text summary block.',
+            hidden: ({ parent }) => !parent?.isBuildTextSummaryBlock,
+            validation: (Rule) => Rule.custom((value, context) => {
+              const isSummary = (context as any)?.parent?.isBuildTextSummaryBlock
+              if (isSummary) {
+                return value && value.length > 0 ? true : 'Text summary content is required when marked as a Text Summary Block'
+              }
+              return true
+            })
           }),
           defineField({ name: 'alt', type: 'string', title: 'Alt Text' }),
           defineField({ name: 'caption', type: 'string', title: 'Caption' }),
@@ -384,17 +436,6 @@ export const vehicle = defineType({
           })
         ]
       })]
-    }),
-
-    defineField({
-      name: 'videoTour',
-      title: 'Video Tour',
-      type: 'object',
-      fields: [
-        defineField({ name: 'youtubeUrl', type: 'url', title: 'YouTube URL' }),
-        defineField({ name: 'thumbnail', type: 'image', title: 'Video Thumbnail' }),
-        defineField({ name: 'description', type: 'text', title: 'Video Description' })
-      ]
     }),
 
     // Customization Options (Based on TSportTruck's customization focus)

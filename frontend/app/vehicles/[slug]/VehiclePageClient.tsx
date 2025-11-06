@@ -24,7 +24,6 @@ interface Vehicle {
     logo?: any
   }
   coverImage?: any
-  headerVehicleImage?: any
   vehicleDetailsPageHeaderBackgroundImage?: {
     asset?: any
     alt?: string
@@ -36,13 +35,28 @@ interface Vehicle {
   specifications?: any
   features?: {
     baseFeatures?: string[]
-    exteriorFeatures?: string[]
-    interiorFeatures?: string[]
-    safetyFeatures?: string[]
-    technologyFeatures?: string[]
-    performanceFeatures?: string[]
     additionalOptions?: string[]
   }
+  associatedVehicles?: Array<{
+    _id: string
+    title: string
+    slug: { current: string }
+    model: string
+    modelYear: number
+    brand: string
+    manufacturer: {
+      _id: string
+      name: string
+    }
+    coverImage?: {
+      asset?: {
+        _id: string
+        url: string
+      }
+      alt?: string
+    }
+    excerpt?: string
+  }>
   customizationOptions?: any[]
   inventory?: any
   description?: any[]
@@ -122,7 +136,7 @@ export default function VehiclePageClient({ vehicle }: VehiclePageClientProps) {
 
         if (isVisible && scrollComplete) {
           // Trigger animation for first section when Features & Options comes into view
-          const firstSection = featuresSection.querySelector('[data-category="exteriorFeatures"]')
+          const firstSection = featuresSection.querySelector('[data-category="baseFeatures"]')
           if (firstSection) {
             setTimeout(() => {
               firstSection.classList.add('animate-expand')

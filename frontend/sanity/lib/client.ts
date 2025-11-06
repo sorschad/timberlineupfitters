@@ -9,7 +9,7 @@ export const client = createClient({
   apiVersion,
   useCdn: false,
   perspective: 'published',
-  token, // Required if you have a private dataset
+  token: token || undefined, // Only use token if available
   stega: {
     studioUrl,
     // Set logger to 'console' for more verbose logging

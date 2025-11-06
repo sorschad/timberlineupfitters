@@ -2,7 +2,8 @@ import {defineQuery} from 'next-sanity'
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]{
   ...,
-  appLogo
+  appLogo,
+  appSecondaryLogo
 }`)
 
 export const homepageQuery = defineQuery(`*[_type == "page" && name == "Homepage"][0]{
@@ -29,7 +30,6 @@ const brandFields = /* groq */ `
   excerpt,
   description,
   coverImage,
-  sectionImage,
   primaryLogo,
   secondaryLogo,
   website,
@@ -54,7 +54,6 @@ const brandFieldsWithSlogan = /* groq */ `
   "slug": slug.current,
   excerpt,
   coverImage,
-  sectionImage,
   logo,
   features,
   slogan,
@@ -284,7 +283,49 @@ export const allVehiclesQuery = defineQuery(`
       }
     },
     specifications,
-    features,
+    features{
+      baseFeatures,
+      "additionalOptions": additionalOptions[]->{
+        _id,
+        name,
+        slug,
+        description,
+        "manufacturer": manufacturer->{
+          _id,
+          name
+        },
+        "brand": brand->{
+          _id,
+          name
+        },
+        package,
+        image,
+        price,
+        availability,
+        features,
+        tags
+      }
+    },
+    "associatedVehicles": associatedVehicles[0...3]->{
+      _id,
+      title,
+      slug,
+      model,
+      modelYear,
+      brand,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      },
+      coverImage{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      excerpt
+    },
     inventory,
     tags
   }
@@ -318,7 +359,49 @@ export const timberlineVehiclesQuery = defineQuery(`
       }
     },
     specifications,
-    features,
+    features{
+      baseFeatures,
+      "additionalOptions": additionalOptions[]->{
+        _id,
+        name,
+        slug,
+        description,
+        "manufacturer": manufacturer->{
+          _id,
+          name
+        },
+        "brand": brand->{
+          _id,
+          name
+        },
+        package,
+        image,
+        price,
+        availability,
+        features,
+        tags
+      }
+    },
+    "associatedVehicles": associatedVehicles[0...3]->{
+      _id,
+      title,
+      slug,
+      model,
+      modelYear,
+      brand,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      },
+      coverImage{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      excerpt
+    },
     inventory,
     tags
   }
@@ -341,18 +424,51 @@ export const vehicleQuery = defineQuery(`
     },
     coverImage,
     vehicleDetailsPageHeaderBackgroundImage,
-    headerVehicleImage,
     gallery,
     videoTour,
     specifications,
     features{
       baseFeatures,
-      exteriorFeatures,
-      interiorFeatures,
-      safetyFeatures,
-      technologyFeatures,
-      performanceFeatures,
-      additionalOptions
+      "additionalOptions": additionalOptions[]->{
+        _id,
+        name,
+        slug,
+        description,
+        "manufacturer": manufacturer->{
+          _id,
+          name
+        },
+        "brand": brand->{
+          _id,
+          name
+        },
+        package,
+        image,
+        price,
+        availability,
+        features,
+        tags
+      }
+    },
+    "associatedVehicles": associatedVehicles[0...3]->{
+      _id,
+      title,
+      slug,
+      model,
+      modelYear,
+      brand,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      },
+      coverImage{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      excerpt
     },
     customizationOptions,
     inventory,
@@ -529,5 +645,160 @@ export const additionalOptionsByManufacturerQuery = defineQuery(`
     availability,
     features,
     isActive
+  }
+`)
+
+// Enhanced search queries for additional options
+export const searchAdditionalOptionsQuery = defineQuery(`
+  *[_type == "additionalOption" && isActive == true && (
+    name match "*$query*" ||
+    slug.current match "*$query*" ||
+    tags[] match "*$query*"
+  )] | order(sortOrder asc, name asc) {
+    _id,
+    name,
+    slug,
+    description,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    "brand": brand->{
+      _id,
+      name,
+      primaryColor
+    },
+    package,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt,
+      caption
+    },
+    price,
+    availability,
+    features,
+    tags,
+    isActive,
+    sortOrder
+  }
+`)
+
+export const searchAdditionalOptionsByVehicleMakeQuery = defineQuery(`
+  *[_type == "additionalOption" && isActive == true && 
+    compatibleVehicles[]->manufacturer->name match "*$makeQuery*" &&
+    (
+      name match "*$optionQuery*" ||
+      slug.current match "*$optionQuery*" ||
+      tags[] match "*$optionQuery*"
+    )
+  ] | order(sortOrder asc, name asc) {
+    _id,
+    name,
+    slug,
+    description,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    "brand": brand->{
+      _id,
+      name,
+      primaryColor
+    },
+    package,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt,
+      caption
+    },
+    price,
+    availability,
+    features,
+    tags,
+    "compatibleVehicles": compatibleVehicles[]->{
+      _id,
+      title,
+      slug,
+      model,
+      vehicleType,
+      modelYear,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      }
+    },
+    isActive,
+    sortOrder
+  }
+`)
+
+export const searchAdditionalOptionsByMakeOnlyQuery = defineQuery(`
+  *[_type == "additionalOption" && isActive == true && 
+    compatibleVehicles[]->manufacturer->name match "*$makeQuery*"
+  ] | order(sortOrder asc, name asc) {
+    _id,
+    name,
+    slug,
+    description,
+    "manufacturer": manufacturer->{
+      _id,
+      name,
+      logo{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    "brand": brand->{
+      _id,
+      name,
+      primaryColor
+    },
+    package,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt,
+      caption
+    },
+    price,
+    availability,
+    features,
+    tags,
+    "compatibleVehicles": compatibleVehicles[]->{
+      _id,
+      title,
+      slug,
+      model,
+      vehicleType,
+      modelYear,
+      "manufacturer": manufacturer->{
+        _id,
+        name
+      }
+    },
+    isActive,
+    sortOrder
   }
 `)

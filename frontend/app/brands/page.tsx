@@ -9,8 +9,6 @@ import {allBrandsQuery, timberlineVehiclesQuery} from '@/sanity/lib/queries'
 import {AllBrandsQueryResult} from '@/sanity.types'
 import {urlForImage} from '@/sanity/lib/utils'
 
-type BrandWithSectionImage = AllBrandsQueryResult[number]
-
 export const metadata: Metadata = {
   title: 'Our Brand Partners',
   description: 'Discover our three flagship brands and the stories behind our partnerships. From Alpine + Rebel Off Road to TSport and SuperDuty, explore how we\'ve built lasting relationships with industry leaders in off-road vehicle customization.',
@@ -170,7 +168,7 @@ export default async function BrandsPage() {
       <BrandsLandingPageHeader />
 
       {/* Dynamic Brand Sections */}
-      {brandsWithVehicles?.map((brand: BrandWithSectionImage & { vehicles: any[] }, index: number) => {
+      {brandsWithVehicles?.map((brand: AllBrandsQueryResult[number] & { vehicles: any[] }, index: number) => {
         const brandColors = getBrandColors(brand)
         return (
         <section 
@@ -241,14 +239,7 @@ export default async function BrandsPage() {
               <div className={`relative ${index % 2 === 1 ? 'order-2 lg:order-1 animate-fade-in-left' : 'animate-fade-in-right'}`}>
                 <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
                 
-                  {brand.sectionImage?.asset?._ref ? (
-                    <Image
-                      src={urlForImage(brand.sectionImage)?.width(2000).height(1500).fit('max').auto('format').url() || ''}
-                      alt={brand.sectionImage.alt || `${brand.name} section image`}
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : brand.coverImage?.asset?._ref ? (
+                  {brand.coverImage?.asset?._ref ? (
                     <Image
                       src={urlForImage(brand.coverImage)?.width(2000).height(1500).fit('max').auto('format').url() || ''}
                       alt={brand.coverImage.alt || `${brand.name} cover image`}

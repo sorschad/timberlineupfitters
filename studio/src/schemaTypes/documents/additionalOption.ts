@@ -45,7 +45,6 @@ export const additionalOption = defineType({
       type: 'reference',
       to: [{ type: 'manufacturer' }],
       description: 'The manufacturer of this additional option',
-      validation: (rule) => rule.required(),
     }),
 
     defineField({

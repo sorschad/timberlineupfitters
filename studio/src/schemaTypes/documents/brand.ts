@@ -64,9 +64,10 @@ export const brand = defineType({
     defineField({
       name: 'coverImage',
       title: 'Cover Image',
+      description: 'Image used on non-brand detail pages',
       type: 'image',
       options: {
-        hotspot: true,
+        hotspot: false,
         aiAssist: {
           imageDescriptionField: 'alt',
         },
@@ -91,12 +92,35 @@ export const brand = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'detailPageBgImage',
+      title: 'Detail Page Background Image',
+      type: 'image',
+      description: 'Background image for the brand detail page',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessibility.',
+          validation: (rule) => {
+            // Custom validation to ensure alt text is provided if the image is present. https://www.sanity.io/docs/validation
+            return rule.custom((alt, context) => {
+              if ((context.document?.detailPageBgImage as any)?.asset?._ref && !alt) {
+                return 'Required'
+              }
+              return true
+            })
+          },
+        },
+      ],
+    }),
+    defineField({
       name: 'primaryLogo',
       title: 'Primary Logo',
       type: 'image',
       description: 'Main brand logo used in headers and primary displays',
       options: {
-        hotspot: true,
+        hotspot: false,
         aiAssist: {
           imageDescriptionField: 'alt',
         },
@@ -140,7 +164,7 @@ export const brand = defineType({
       type: 'image',
       description: 'Alternative brand logo for different contexts',
       options: {
-        hotspot: true,
+        hotspot: false,
         aiAssist: {
           imageDescriptionField: 'alt',
         },
@@ -207,34 +231,6 @@ export const brand = defineType({
         name: 'hex',
         invert: true
       }).error('Please enter a valid hex color code (e.g., #0000ff)'),
-    }),
-    defineField({
-      name: 'sectionImage',
-      title: 'Section Image',
-      type: 'image',
-      description: 'Image displayed in the brand section on the brands landing page',
-      options: {
-        hotspot: true,
-        aiAssist: {
-          imageDescriptionField: 'alt',
-        },
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-          description: 'Important for SEO and accessibility.',
-          validation: (rule) => {
-            return rule.custom((alt, context) => {
-              if ((context.document?.sectionImage as any)?.asset?._ref && !alt) {
-                return 'Required'
-              }
-              return true
-            })
-          },
-        },
-      ],
     }),
     
     defineField({

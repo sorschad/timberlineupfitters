@@ -3,6 +3,7 @@
 import { useMemo, useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/utils'
+import PortableText from '@/app/components/PortableText'
 import { IMAGE_SIZES } from '@/sanity/lib/imageUtils'
 import Lightbox from 'yet-another-react-lightbox'
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
@@ -30,6 +31,7 @@ interface VehicleGalleryProps {
 interface BuildGallery {
   buildName: string
   images: any[]
+  textSummaryBlock?: any | null
 }
 
 export default function VehicleGallery({ gallery, originalGallery, vehicleTitle, activeFilter, onClearFilter, filterCards, onFilterChange, useBuildGallery = false }: VehicleGalleryProps) {
@@ -138,7 +140,8 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
       const defaultBuild = {
         buildName: '#1',
         coverImage: validImages[0],
-        images: validImages
+        images: validImages,
+        textSummaryBlock: validImages.find((image: any) => image?.isBuildTextSummaryBlock === true) || null
       }
       return [defaultBuild]
     }
@@ -156,10 +159,14 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
                (image?.caption === null && coverImage?.caption === null)
       })
       
+      // Find the text summary block for this build
+      const textSummaryBlock = buildImages.find((image: any) => image?.isBuildTextSummaryBlock === true) || null
+      
       return {
         buildName,
         coverImage,
-        images: buildImages
+        images: buildImages,
+        textSummaryBlock
       }
     })
     
@@ -280,6 +287,45 @@ export default function VehicleGallery({ gallery, originalGallery, vehicleTitle,
               )
             })}
           </div>
+
+          {/* Text Summary Blocks */}
+          {buildGalleries.some(build => build.textSummaryBlock) && (
+            <div className="mt-12 space-y-8">
+              {buildGalleries.map((build, buildIndex) => {
+                if (!build.textSummaryBlock) return null
+                
+                return (
+                  <div key={`text-summary-${buildIndex}`} className="bg-gray-50 rounded-lg p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0">
+                        <Image
+                          src={urlForImage(build.textSummaryBlock)!.width(200).height(150).fit('crop').url()}
+                          alt={build.textSummaryBlock.alt || `${vehicleTitle} ${build.buildName} summary`}
+                          width={200}
+                          height={150}
+                          className="rounded-lg object-cover"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                          {build.buildName} Summary
+                        </h3>
+                        {Array.isArray(build.textSummaryBlock.isBuildTextSummaryContent) && build.textSummaryBlock.isBuildTextSummaryContent.length > 0 ? (
+                          <PortableText value={build.textSummaryBlock.isBuildTextSummaryContent} />
+                        ) : (
+                          build.textSummaryBlock.caption && (
+                            <p className="text-gray-700 leading-relaxed">
+                              {build.textSummaryBlock.caption}
+                            </p>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )}
 
           {/* Lightbox with Thumbnails */}
           {buildGallerySlides.length > 0 && (

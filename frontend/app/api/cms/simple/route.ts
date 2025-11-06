@@ -1,5 +1,6 @@
 import { client } from '@/sanity/lib/client'
 import { allAdditionalOptionsQuery } from '@/sanity/lib/queries'
+import { transformImagesToWebP } from '@/sanity/lib/apiImageTransform'
 
 // Add CORS headers function
 function addCorsHeaders(response: Response) {
@@ -120,33 +121,54 @@ export async function GET(request: Request) {
             _id,
             url
           }
+        },
+        appSecondaryLogo{
+          asset->{
+            _id,
+            url
+          }
         }
       }`),
       client.fetch(allAdditionalOptionsQuery)
     ])
 
+    // Transform all images to WebP format for optimal performance
+    const transformedBrands = transformImagesToWebP(brands)
+    const transformedVehicles = transformImagesToWebP(vehicles)
+    const transformedManufacturers = transformImagesToWebP(manufacturers)
+    const transformedHomepage = transformImagesToWebP(homepage)
+    const transformedSettings = transformImagesToWebP(settings)
+    const transformedAdditionalOptions = transformImagesToWebP(additionalOptions)
+
     switch (contentType) {
       case 'brands':
-        content = { brands }
+        content = { brands: transformedBrands }
         break
       case 'vehicles':
-        content = { vehicles }
+        content = { vehicles: transformedVehicles }
         break
       case 'manufacturers':
-        content = { manufacturers }
+        content = { manufacturers: transformedManufacturers }
         break
       case 'homepage':
-        content = { homepage }
+        content = { homepage: transformedHomepage }
         break
       case 'settings':
-        content = { settings }
+        content = { settings: transformedSettings }
         break
       case 'additionalOptions':
-        content = { additionalOptions }
+        content = { additionalOptions: transformedAdditionalOptions }
         break
       case 'all':
       default:
-        content = { brands, vehicles, manufacturers, homepage, settings, additionalOptions }
+        content = { 
+          brands: transformedBrands, 
+          vehicles: transformedVehicles, 
+          manufacturers: transformedManufacturers, 
+          homepage: transformedHomepage, 
+          settings: transformedSettings, 
+          additionalOptions: transformedAdditionalOptions 
+        }
     }
 
     const response = Response.json({

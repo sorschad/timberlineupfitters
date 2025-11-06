@@ -18,7 +18,6 @@ interface Vehicle {
     logo?: any
   }
   coverImage?: any
-  headerVehicleImage?: any
   vehicleDetailsPageHeaderBackgroundImage?: {
     asset?: any
     alt?: string
@@ -76,17 +75,7 @@ export default function VehicleHeroSection({ vehicle, onScrollToFeatures, isScro
 
           {/* Vehicle Image - Mobile Only */}
           <div className="relative flex justify-center min-h-[400px]">
-            {(vehicle.headerVehicleImage && urlForImage(vehicle.headerVehicleImage)?.url()) ? (
-              <div className="relative">
-                <Image
-                  src={urlForImage(vehicle.headerVehicleImage)!.width(1200).height(800).fit('crop').url()}
-                  alt={vehicle.title}
-                  width={600}
-                  height={400}
-                  className="rounded-2xl shadow-2xl"
-                />
-              </div>
-            ) : (vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
+            {vehicle.coverImage && urlForImage(vehicle.coverImage)?.url() ? (
               <div className="relative">
                 <Image
                   src={urlForImage(vehicle.coverImage)!.width(1200).height(800).fit('crop').url()}
@@ -102,7 +91,7 @@ export default function VehicleHeroSection({ vehicle, onScrollToFeatures, isScro
                   {vehicle.manufacturer.name.charAt(0)}
                 </span>
               </div>
-            ))}
+            )}
           </div>
 
           {/* CTA Button - Mobile Only */}
