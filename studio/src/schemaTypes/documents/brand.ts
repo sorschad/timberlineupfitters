@@ -64,6 +64,7 @@ export const brand = defineType({
     defineField({
       name: 'coverImage',
       title: 'Cover Image',
+      description: 'Image used on non-brand detail pages',
       type: 'image',
       options: {
         hotspot: true,
