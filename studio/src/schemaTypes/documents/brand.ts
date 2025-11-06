@@ -91,6 +91,35 @@ export const brand = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'detailPageBgImage',
+      title: 'Detail Page Background Image',
+      type: 'image',
+      description: 'Background image for the brand detail page',
+      options: {
+        hotspot: true,
+        aiAssist: {
+          imageDescriptionField: 'alt',
+        },
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessibility.',
+          validation: (rule) => {
+            // Custom validation to ensure alt text is provided if the image is present. https://www.sanity.io/docs/validation
+            return rule.custom((alt, context) => {
+              if ((context.document?.detailPageBgImage as any)?.asset?._ref && !alt) {
+                return 'Required'
+              }
+              return true
+            })
+          },
+        },
+      ],
+    }),
+    defineField({
       name: 'primaryLogo',
       title: 'Primary Logo',
       type: 'image',
