@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { client } from '@/sanity/lib/client'
+import { transformImagesToWebP } from '@/sanity/lib/apiImageTransform'
 
 // Build comprehensive query for all content types with nested relationships
 // This mirrors the vehicle by-slug endpoint structure but fetches all records
@@ -656,20 +657,23 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    // Transform all images to WebP format for optimal performance
+    const transformedContent = transformImagesToWebP(allContent)
+
     // Calculate counts for metadata
     const counts = {
-      vehicles: allContent.vehicles?.length || 0,
-      brands: allContent.brands?.length || 0,
-      manufacturers: allContent.manufacturers?.length || 0,
-      additionalOptions: allContent.additionalOptions?.length || 0,
-      pages: allContent.pages?.length || 0,
-      salesRepresentatives: allContent.salesRepresentatives?.length || 0,
-      hasSettings: !!allContent.settings
+      vehicles: transformedContent.vehicles?.length || 0,
+      brands: transformedContent.brands?.length || 0,
+      manufacturers: transformedContent.manufacturers?.length || 0,
+      additionalOptions: transformedContent.additionalOptions?.length || 0,
+      pages: transformedContent.pages?.length || 0,
+      salesRepresentatives: transformedContent.salesRepresentatives?.length || 0,
+      hasSettings: !!transformedContent.settings
     }
 
     return NextResponse.json({
       success: true,
-      data: allContent,
+      data: transformedContent,
       meta: {
         counts,
         filters: {

@@ -31,16 +31,16 @@ export const urlForImage = (source: any) => {
     const left = Math.floor(width * crop.left)
     const top = Math.floor(height * crop.top)
 
-    // gather into a url
-    return imageBuilder?.image(source).rect(left, top, croppedWidth, croppedHeight).auto('format')
+    // gather into a url with WebP format
+    return imageBuilder?.image(source).rect(left, top, croppedWidth, croppedHeight).format('webp')
   }
 
-  return imageBuilder?.image(source).auto('format')
+  return imageBuilder?.image(source).format('webp')
 }
 
 export function resolveOpenGraphImage(image: any, width = 1200, height = 627) {
   if (!image) return
-  const url = urlForImage(image)?.width(1200).height(627).fit('crop').url()
+  const url = urlForImage(image)?.width(1200).height(627).fit('crop').format('webp').url()
   if (!url) return
   return {url, alt: image?.alt as string, width, height}
 }
