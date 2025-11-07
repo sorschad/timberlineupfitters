@@ -1,4 +1,5 @@
 import { defineType, defineField } from 'sanity'
+import { SortOrderInput } from '../../components/SortOrderInput'
 
 export const teamMember = defineType({
   name: 'teamMember',
@@ -38,6 +39,16 @@ export const teamMember = defineType({
       title: 'Fax Number',
       type: 'string',
       description: 'Fax number (e.g., +1-555-123-4568)'
+    }),
+
+    defineField({
+      name: 'sortOrder',
+      title: 'Sort Order',
+      type: 'number',
+      description: 'Numeric order for sorting team members. Lower numbers appear first. Automatically set to next available value + 5 for new members.',
+      components: {
+        input: SortOrderInput
+      }
     }),
 
     defineField({

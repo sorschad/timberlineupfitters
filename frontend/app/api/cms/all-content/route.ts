@@ -926,7 +926,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       alt
     }
   },
-  "teamMembers": *[_type == "teamMember"] | order(name asc) {
+  "teamMembers": *[_type == "teamMember"] | order(sortOrder asc) {
     _id,
     _type,
     _createdAt,
@@ -937,6 +937,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     email,
     phone,
     fax,
+    sortOrder,
     image{
       asset->{
         _id,
