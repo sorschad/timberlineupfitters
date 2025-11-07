@@ -122,6 +122,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     "manufacturer": manufacturer->{
       _id,
       name,
+      slug,
       logo{
         asset->{
           _id,
@@ -140,6 +141,15 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       alt
     },
     vehicleDetailsPageHeaderBackgroundImage{
+      asset->{
+        _id,
+        url
+      },
+      hotspot,
+      crop,
+      alt
+    },
+    headerVehicleImage{
       asset->{
         _id,
         url
@@ -170,6 +180,13 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       description
     },
     specifications{
+      engine[]{
+        type,
+        horsepower,
+        torque,
+        fuelType,
+        transmission
+      },
       drivetrain,
       bedLength,
       cabStyle,
@@ -202,6 +219,8 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
             _id,
             url
           },
+          hotspot,
+          crop,
           alt,
           caption
         },
@@ -228,6 +247,8 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
           _id,
           url
         },
+        hotspot,
+        crop,
         alt
       },
       excerpt
@@ -328,6 +349,10 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     },
     "vehicles": *[_type == "vehicle" && brand == ^.name && defined(slug.current)${combinedVehicleFilter}] | order(modelYear desc, title asc) {
       _id,
+      _type,
+      _createdAt,
+      _updatedAt,
+      _rev,
       title,
       slug,
       model,
@@ -336,19 +361,162 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       brand,
       trim,
       package,
-      tags,
       "manufacturer": manufacturer->{
         _id,
-        name
+        name,
+        logo{
+          asset->{
+            _id,
+            url
+          },
+          alt
+        }
       },
       coverImage{
         asset->{
           _id,
           url
         },
+        hotspot,
+        crop,
         alt
       },
-      excerpt
+      vehicleDetailsPageHeaderBackgroundImage{
+        asset->{
+          _id,
+          url
+        },
+        hotspot,
+        crop,
+        alt
+      },
+      headerVehicleImage{
+        asset->{
+          _id,
+          url
+        },
+        hotspot,
+        crop,
+        alt
+      },
+      gallery[]{
+        asset->{
+          _id,
+          url
+        },
+        hotspot,
+        crop,
+        alt,
+        caption,
+        isBuildCoverImage,
+        isBuildTextSummaryBlock,
+        isBuildTextSummaryContent,
+        view,
+        tags,
+        gridSpan
+      },
+      videoTour{
+        url,
+        title,
+        description
+      },
+      specifications{
+        engine[]{
+          type,
+          horsepower,
+          torque,
+          fuelType,
+          transmission
+        },
+        drivetrain,
+        bedLength,
+        cabStyle,
+        towingCapacity,
+        payloadCapacity,
+        fuelEconomy{
+          city,
+          highway,
+          combined
+        }
+      },
+      features{
+        baseFeatures,
+        "additionalOptions": additionalOptions[]->{
+          _id,
+          name,
+          slug,
+          description,
+          "manufacturer": manufacturer->{
+            _id,
+            name
+          },
+          "brand": brand->{
+            _id,
+            name
+          },
+          package,
+          image{
+            asset->{
+              _id,
+              url
+            },
+            alt,
+            caption
+          },
+          price,
+          availability,
+          features,
+          tags
+        }
+      },
+      "associatedVehicles": associatedVehicles${combinedArrayFilter || ''}[0...3]->{
+        _id,
+        title,
+        slug,
+        model,
+        modelYear,
+        brand,
+        tags,
+        "manufacturer": manufacturer->{
+          _id,
+          name
+        },
+        coverImage{
+          asset->{
+            _id,
+            url
+          },
+          hotspot,
+          crop,
+          alt
+        },
+        excerpt
+      },
+      customizationOptions[]{
+        name,
+        description,
+        price,
+        category,
+        isStandard,
+        isAvailable
+      },
+      inventory{
+        availability,
+        stockNumber,
+        vin,
+        msrp,
+        salePrice,
+        location
+      },
+      description,
+      excerpt,
+      tags,
+      sidebarSortOrder,
+      seo{
+        title,
+        description,
+        keywords
+      }
     }
   } | order(name asc),
   "manufacturers": *[_type == "manufacturer" && defined(slug.current)${manufacturersFilterClause}] | order(name asc) {
@@ -431,24 +599,173 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     },
     "vehicles": *[_type == "vehicle" && references(^._id)${combinedVehicleFilter}] {
       _id,
+      _type,
+      _createdAt,
+      _updatedAt,
+      _rev,
       title,
       slug,
       model,
       vehicleType,
       modelYear,
       brand,
+      trim,
       package,
-      tags,
       "manufacturer": manufacturer->{
         _id,
-        name
+        name,
+        logo{
+          asset->{
+            _id,
+            url
+          },
+          alt
+        }
       },
       coverImage{
         asset->{
           _id,
           url
         },
+        hotspot,
+        crop,
         alt
+      },
+      vehicleDetailsPageHeaderBackgroundImage{
+        asset->{
+          _id,
+          url
+        },
+        hotspot,
+        crop,
+        alt
+      },
+      headerVehicleImage{
+        asset->{
+          _id,
+          url
+        },
+        hotspot,
+        crop,
+        alt
+      },
+      gallery[]{
+        asset->{
+          _id,
+          url
+        },
+        hotspot,
+        crop,
+        alt,
+        caption,
+        isBuildCoverImage,
+        isBuildTextSummaryBlock,
+        isBuildTextSummaryContent,
+        view,
+        tags,
+        gridSpan
+      },
+      videoTour{
+        url,
+        title,
+        description
+      },
+      specifications{
+        engine[]{
+          type,
+          horsepower,
+          torque,
+          fuelType,
+          transmission
+        },
+        drivetrain,
+        bedLength,
+        cabStyle,
+        towingCapacity,
+        payloadCapacity,
+        fuelEconomy{
+          city,
+          highway,
+          combined
+        }
+      },
+      features{
+        baseFeatures,
+        "additionalOptions": additionalOptions[]->{
+          _id,
+          name,
+          slug,
+          description,
+          "manufacturer": manufacturer->{
+            _id,
+            name
+          },
+          "brand": brand->{
+            _id,
+            name
+          },
+          package,
+          image{
+            asset->{
+              _id,
+              url
+            },
+            alt,
+            caption
+          },
+          price,
+          availability,
+          features,
+          tags
+        }
+      },
+      "associatedVehicles": associatedVehicles${combinedArrayFilter || ''}[0...3]->{
+        _id,
+        title,
+        slug,
+        model,
+        modelYear,
+        brand,
+        tags,
+        "manufacturer": manufacturer->{
+          _id,
+          name
+        },
+        coverImage{
+          asset->{
+            _id,
+            url
+          },
+          hotspot,
+          crop,
+          alt
+        },
+        excerpt
+      },
+      customizationOptions[]{
+        name,
+        description,
+        price,
+        category,
+        isStandard,
+        isAvailable
+      },
+      inventory{
+        availability,
+        stockNumber,
+        vin,
+        msrp,
+        salePrice,
+        location
+      },
+      description,
+      excerpt,
+      tags,
+      sidebarSortOrder,
+      seo{
+        title,
+        description,
+        keywords
       }
     } | order(model asc, brand asc, package asc)
   },
@@ -464,6 +781,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     "manufacturer": manufacturer->{
       _id,
       name,
+      slug,
       logo{
         asset->{
           _id,
