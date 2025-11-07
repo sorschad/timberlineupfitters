@@ -2,7 +2,6 @@ import {page} from './documents/page'
 import {brand} from './documents/brand'
 import {manufacturer} from './documents/manufacturer'
 import {vehicle} from './documents/vehicle'
-import {salesRepresentative} from './documents/salesRepresentative'
 import {additionalOption} from './documents/additionalOption'
 import {teamMember} from './documents/teamMember'
 import {callToAction} from './objects/callToAction'
@@ -21,7 +20,6 @@ export const schemaTypes = [
   brand,
   manufacturer,
   vehicle,
-  salesRepresentative,
   additionalOption,
   teamMember,
   // Objects

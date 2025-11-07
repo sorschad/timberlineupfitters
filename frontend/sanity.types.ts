@@ -176,50 +176,6 @@ export type AdditionalOption = {
   sortOrder?: number
 }
 
-export type SalesRepresentative = {
-  _id: string
-  _type: 'salesRepresentative'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name: string
-  territoryRegion: string
-  territoryZipCodes: Array<string>
-  email: string
-  phone: {
-    countryCode: string
-    number: string
-    extension?: string
-  }
-  mobile?: {
-    countryCode: string
-    number: string
-    extension?: string
-  }
-  fax?: {
-    countryCode?: string
-    number?: string
-    extension?: string
-  }
-  profileImage?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-  bio?: string
-  specialties?: Array<string>
-  isActive?: boolean
-  sortOrder?: number
-}
-
 export type Vehicle = {
   _id: string
   _type: 'vehicle'
@@ -975,7 +931,6 @@ export type AllSanitySchemaTypes =
   | InfoSection
   | BlockContent
   | AdditionalOption
-  | SalesRepresentative
   | Vehicle
   | Manufacturer
   | Settings

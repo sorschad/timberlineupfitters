@@ -926,30 +926,6 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       alt
     }
   },
-  "salesRepresentatives": *[_type == "salesRepresentative"] | order(name asc) {
-    _id,
-    _type,
-    _createdAt,
-    _updatedAt,
-    _rev,
-    name,
-    email,
-    phone,
-    title,
-    photo{
-      asset->{
-        _id,
-        url
-      },
-      hotspot,
-      crop,
-      alt
-    },
-    bio,
-    territory,
-    specialties,
-    isActive
-  },
   "teamMembers": *[_type == "teamMember"] | order(name asc) {
     _id,
     _type,
@@ -1012,7 +988,6 @@ export async function GET(request: NextRequest) {
       manufacturers: transformedContent.manufacturers?.length || 0,
       additionalOptions: transformedContent.additionalOptions?.length || 0,
       pages: transformedContent.pages?.length || 0,
-      salesRepresentatives: transformedContent.salesRepresentatives?.length || 0,
       teamMembers: transformedContent.teamMembers?.length || 0,
       hasSettings: !!transformedContent.settings
     }
