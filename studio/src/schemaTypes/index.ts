@@ -4,6 +4,7 @@ import {manufacturer} from './documents/manufacturer'
 import {vehicle} from './documents/vehicle'
 import {salesRepresentative} from './documents/salesRepresentative'
 import {additionalOption} from './documents/additionalOption'
+import {teamMember} from './documents/teamMember'
 import {callToAction} from './objects/callToAction'
 import {infoSection} from './objects/infoSection'
 import {settings} from './singletons/settings'
@@ -22,6 +23,7 @@ export const schemaTypes = [
   vehicle,
   salesRepresentative,
   additionalOption,
+  teamMember,
   // Objects
   blockContent,
   infoSection,

@@ -949,6 +949,27 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     territory,
     specialties,
     isActive
+  },
+  "teamMembers": *[_type == "teamMember"] | order(name asc) {
+    _id,
+    _type,
+    _createdAt,
+    _updatedAt,
+    _rev,
+    name,
+    jobTitle,
+    email,
+    phone,
+    fax,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      hotspot,
+      crop,
+      alt
+    }
   }
 }
 `,
@@ -992,6 +1013,7 @@ export async function GET(request: NextRequest) {
       additionalOptions: transformedContent.additionalOptions?.length || 0,
       pages: transformedContent.pages?.length || 0,
       salesRepresentatives: transformedContent.salesRepresentatives?.length || 0,
+      teamMembers: transformedContent.teamMembers?.length || 0,
       hasSettings: !!transformedContent.settings
     }
 
