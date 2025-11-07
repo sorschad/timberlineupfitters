@@ -1,0 +1,72 @@
+[
+  {
+    "_createdAt": "2025-09-19T17:57:05Z",
+    "_id": "siteSettings",
+    "_rev": "6FGiNia5tWM9A0y141rfun",
+    "_system": {
+      "base": {
+        "id": "siteSettings",
+        "rev": "6FGiNia5tWM9A0y141o7ZV"
+      }
+    },
+    "_type": "settings",
+    "_updatedAt": "2025-11-06T21:58:05Z",
+    "appLogo": {
+      "_type": "image",
+      "alt": "Adventure Begins, Where the Timberline Ends",
+      "asset": {
+        "_ref": "image-2277935b4ee3112b7fad433610ea78694f492569-800x990-heif",
+        "_type": "reference"
+      }
+    },
+    "appSecondaryLogo": {
+      "_type": "image",
+      "alt": "Timberline Upfitters Mountain Vista Logo",
+      "asset": {
+        "_ref": "image-2feebb1dd88f1510a0734db7e746a85804efb34f-1545x2000-webp",
+        "_type": "reference"
+      }
+    },
+    "contactEmail": "sales@timberlineupfitters.com",
+    "contactPhone": "1-888-250-3012",
+    "description": [
+      {
+        "_key": "780cbad022b6",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1f2f95ff0141",
+            "_type": "span",
+            "marks": [],
+            "text": "Official Trusted Upfitter for Ford, RAM, & Jeep. Timberline Upfitters crafts its iconic builds—the TrailHead, Overlook, WayPoint & NorthTrail—while providing expert manufacturing for partner brands Alpine and TSport."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "ogImage": {
+      "_type": "image",
+      "alt": "a logo for timberline upfitters with a mountain and trees",
+      "asset": {
+        "_ref": "image-2277935b4ee3112b7fad433610ea78694f492569-800x990-heif",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0.004234919451832027,
+        "left": 0,
+        "right": 0,
+        "top": 0
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.9957650805481679,
+        "width": 1,
+        "x": 0.5,
+        "y": 0.49788254027408396
+      }
+    },
+    "title": "Trusted Upfitter for Ford, RAM, Jeep | TimberlineUpfitters"
+  }
+]
