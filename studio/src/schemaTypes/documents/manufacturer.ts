@@ -25,10 +25,7 @@ export const manufacturer = defineType({
     defineField({
       name: 'logo',
       title: 'Logo',
-      type: 'image',
-      options: {
-        hotspot: true
-      }
+      type: 'image'
     }),
     defineField({
       name: 'description',
@@ -42,9 +39,6 @@ export const manufacturer = defineType({
       title: 'Hero Background Image',
       type: 'image',
       description: 'Full-screen background image for the hero section',
-      options: {
-        hotspot: true
-      },
       validation: (Rule) => Rule.required()
     }),
     defineField({
@@ -92,9 +86,6 @@ export const manufacturer = defineType({
               name: 'image',
               title: 'Background Image',
               type: 'image',
-              options: {
-                hotspot: true
-              },
               validation: (Rule) => Rule.required()
             },
             {
@@ -130,9 +121,6 @@ export const manufacturer = defineType({
               name: 'image',
               title: 'Image',
               type: 'image',
-              options: {
-                hotspot: true
-              },
               validation: (Rule) => Rule.required()
             },
             {

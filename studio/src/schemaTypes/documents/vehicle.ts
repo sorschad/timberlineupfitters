@@ -251,7 +251,6 @@ export const vehicle = defineType({
       name: 'coverImage',
       title: 'Cover Image',
       type: 'image',
-      options: { hotspot: true },
       fields: [
         defineField({ name: 'alt', type: 'string', title: 'Alt Text' })
       ]
@@ -262,7 +261,6 @@ export const vehicle = defineType({
       title: 'Vehicle Details Page Header Background Image',
       type: 'image',
       description: 'Optional background image specifically for the vehicle details page hero/header section. Falls back to Cover Image if not set.',
-      options: { hotspot: true },
       fields: [
         defineField({ name: 'alt', type: 'string', title: 'Alt Text' })
       ]
@@ -293,7 +291,6 @@ export const vehicle = defineType({
       type: 'array',
       of: [defineArrayMember({
         type: 'image',
-        options: { hotspot: true },
         preview: {
           select: {
             asset: 'asset',

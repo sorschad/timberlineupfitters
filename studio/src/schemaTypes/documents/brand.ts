@@ -66,12 +66,6 @@ export const brand = defineType({
       title: 'Cover Image',
       description: 'Image used on non-brand detail pages',
       type: 'image',
-      options: {
-        hotspot: false,
-        aiAssist: {
-          imageDescriptionField: 'alt',
-        },
-      },
       fields: [
         {
           name: 'alt',
@@ -119,12 +113,6 @@ export const brand = defineType({
       title: 'Primary Logo',
       type: 'image',
       description: 'Main brand logo used in headers and primary displays',
-      options: {
-        hotspot: false,
-        aiAssist: {
-          imageDescriptionField: 'alt',
-        },
-      },
       fields: [
         {
           name: 'alt',
@@ -163,12 +151,6 @@ export const brand = defineType({
       title: 'Secondary Logo',
       type: 'image',
       description: 'Alternative brand logo for different contexts',
-      options: {
-        hotspot: false,
-        aiAssist: {
-          imageDescriptionField: 'alt',
-        },
-      },
       fields: [
         {
           name: 'alt',

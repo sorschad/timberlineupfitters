@@ -45,9 +45,6 @@ export const teamMember = defineType({
       title: 'Profile Image',
       type: 'image',
       description: 'Profile photo for the team member. Supports responsive images with width, height, format, and srcset via Sanity CDN.',
-      options: { 
-        hotspot: true 
-      },
       fields: [
         defineField({ 
           name: 'alt', 

@@ -47,9 +47,6 @@ export const page = defineType({
       of: [
         {
           type: 'image',
-          options: {
-            hotspot: true,
-          },
           fields: [
             {
               name: 'alt',

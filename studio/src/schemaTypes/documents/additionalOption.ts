@@ -82,9 +82,6 @@ export const additionalOption = defineType({
       title: 'Option Image',
       type: 'image',
       description: 'Image showing the additional option',
-      options: {
-        hotspot: true,
-      },
       fields: [
         defineField({
           name: 'alt',

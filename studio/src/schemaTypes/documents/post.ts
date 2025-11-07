@@ -45,12 +45,6 @@ export const brand = defineType({
       name: 'coverImage',
       title: 'Cover Image',
       type: 'image',
-      options: {
-        hotspot: true,
-        aiAssist: {
-          imageDescriptionField: 'alt',
-        },
-      },
       fields: [
         {
           name: 'alt',

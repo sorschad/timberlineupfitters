@@ -116,12 +116,6 @@ export const settings = defineType({
       title: 'Open Graph Image',
       type: 'image',
       description: 'Displayed on social cards and search engine results.',
-      options: {
-        hotspot: true,
-        aiAssist: {
-          imageDescriptionField: 'alt',
-        },
-      },
       fields: [
         defineField({
           name: 'alt',
@@ -168,7 +162,6 @@ export const settings = defineType({
       title: 'Application Logo',
       type: 'image',
       description: 'Logo shown in the center of the global header when provided.',
-      options: {hotspot: true},
       fields: [
         defineField({
           name: 'alt',
@@ -190,7 +183,6 @@ export const settings = defineType({
       title: 'Application Secondary Logo',
       type: 'image',
       description: 'Secondary logo is sparsely used across the application frontend',
-      options: {hotspot: true},
       fields: [
         defineField({
           name: 'alt',
