@@ -789,6 +789,13 @@
         },
         "optional": true
       },
+      "sortOrder": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
       "image": {
         "type": "objectAttribute",
         "value": {
