@@ -44,7 +44,7 @@ export const teamMember = defineType({
       name: 'image',
       title: 'Profile Image',
       type: 'image',
-      description: 'Profile photo for the team member. Supports responsive images with width, height, format, and srcset via Sanity CDN.',
+      description: 'Profile photo for the team member. Supported formats: JPEG, PNG, GIF, WebP. AVIF and other formats are not supported by Sanity.',
       fields: [
         defineField({ 
           name: 'alt', 
