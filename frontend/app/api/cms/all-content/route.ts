@@ -279,7 +279,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       keywords
     }
   },
-  "brands": *[_type == "brand" && defined(slug.current)${brandsFilterClause}] | order(name asc) {
+  "brands": *[_type == "brand" && defined(slug.current)${brandsFilterClause}] | order(sidebarMenuSortOrder asc, name asc) {
     _id,
     _type,
     _createdAt,
