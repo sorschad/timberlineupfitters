@@ -364,6 +364,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       "manufacturer": manufacturer->{
         _id,
         name,
+        slug,
         logo{
           asset->{
             _id,
@@ -460,6 +461,8 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
               _id,
               url
             },
+            hotspot,
+            crop,
             alt,
             caption
           },
@@ -614,6 +617,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       "manufacturer": manufacturer->{
         _id,
         name,
+        slug,
         logo{
           asset->{
             _id,
@@ -710,6 +714,8 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
               _id,
               url
             },
+            hotspot,
+            crop,
             alt,
             caption
           },
