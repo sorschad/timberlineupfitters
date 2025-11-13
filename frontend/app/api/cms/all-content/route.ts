@@ -113,6 +113,12 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     _rev,
     title,
     slug,
+    slugHistory[] {
+      slug,
+      activeFrom,
+      activeTo
+    },
+    slugAliases,
     model,
     vehicleType,
     modelYear,
@@ -355,6 +361,12 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       _rev,
       title,
       slug,
+      slugHistory[] {
+        slug,
+        activeFrom,
+        activeTo
+      },
+      slugAliases,
       model,
       vehicleType,
       modelYear,
@@ -608,6 +620,12 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       _rev,
       title,
       slug,
+      slugHistory[] {
+        slug,
+        activeFrom,
+        activeTo
+      },
+      slugAliases,
       model,
       vehicleType,
       modelYear,

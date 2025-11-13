@@ -262,6 +262,12 @@ export const allVehiclesQuery = defineQuery(`
     _id,
     title,
     slug,
+    slugHistory[] {
+      slug,
+      activeFrom,
+      activeTo
+    },
+    slugAliases,
     model,
     vehicleType,
     modelYear,
@@ -337,6 +343,12 @@ export const timberlineVehiclesQuery = defineQuery(`
     _id,
     title,
     slug,
+    slugHistory[] {
+      slug,
+      activeFrom,
+      activeTo
+    },
+    slugAliases,
     model,
     vehicleType,
     modelYear,
@@ -412,6 +424,12 @@ export const vehicleQuery = defineQuery(`
     _id,
     title,
     slug,
+    slugHistory[] {
+      slug,
+      activeFrom,
+      activeTo
+    },
+    slugAliases,
     model,
     vehicleType,
     modelYear,

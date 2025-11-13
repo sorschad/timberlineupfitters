@@ -27,6 +27,77 @@ export const vehicle = defineType({
       validation: (Rule) => Rule.required()
     }),
 
+    // Historical Slug Tracking
+    defineField({
+      name: 'slugHistory',
+      title: 'Slug History (Auto-managed)',
+      description: 'Automatically tracks previous slugs when the slug changes. This field is managed by the system and should not be edited manually.',
+      type: 'array',
+      readOnly: true,
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            {
+              name: 'slug',
+              title: 'Previous Slug',
+              type: 'string',
+              validation: (Rule: any) => Rule.required()
+            },
+            {
+              name: 'activeFrom',
+              title: 'Active From',
+              type: 'datetime',
+              validation: (Rule: any) => Rule.required()
+            },
+            {
+              name: 'activeTo',
+              title: 'Active To',
+              type: 'datetime',
+              validation: (Rule: any) => Rule.required()
+            }
+          ],
+          preview: {
+            select: {
+              slug: 'slug',
+              activeFrom: 'activeFrom',
+              activeTo: 'activeTo'
+            },
+            prepare({ slug, activeFrom, activeTo }: { slug?: string; activeFrom?: string; activeTo?: string }) {
+              let subtitle = 'No dates'
+              if (activeFrom && activeTo) {
+                try {
+                  const fromDate = new Date(activeFrom)
+                  const toDate = new Date(activeTo)
+                  if (!isNaN(fromDate.getTime()) && !isNaN(toDate.getTime())) {
+                    subtitle = `${fromDate.toLocaleDateString()} - ${toDate.toLocaleDateString()}`
+                  }
+                } catch (e) {
+                  // Ignore date parsing errors
+                }
+              }
+              return {
+                title: slug || 'Previous Slug',
+                subtitle
+              }
+            }
+          }
+        })
+      ]
+    }),
+
+    // Manual Slug Aliases
+    defineField({
+      name: 'slugAliases',
+      title: 'Slug Aliases (Manual)',
+      description: 'Additional slugs that should redirect to this vehicle. Useful for marketing campaigns or legacy URLs.',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags'
+      }
+    }),
+
     // Inventory & Availability
     defineField({
       name: 'inventory',
