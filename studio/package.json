@@ -11,11 +11,13 @@
     "prebuild": "npm run extract-types",
     "build": "sanity build",
     "deploy": "sanity deploy",
+    "postdeploy": "tsx scripts/regenerateSitemap.ts",
     "dev": "sanity dev",
     "extract-types": "sanity schema extract --enforce-required-fields",
     "start": "sanity start",
     "type-check": "tsc --noEmit",
-    "init-slug-history": "tsx scripts/initializeSlugHistory.ts"
+    "init-slug-history": "tsx scripts/initializeSlugHistory.ts",
+    "regenerate-sitemap": "tsx scripts/regenerateSitemap.ts"
   },
   "dependencies": {
     "@sanity/assist": "^5.0.0",

@@ -90,12 +90,113 @@ export const vehicle = defineType({
     defineField({
       name: 'slugAliases',
       title: 'Slug Aliases (Manual)',
-      description: 'Additional slugs that should redirect to this vehicle. Useful for marketing campaigns or legacy URLs.',
+      description: 'Additional slugs that should redirect to this vehicle. Useful for marketing campaigns or legacy URLs. Each alias must be unique across all vehicles and cannot conflict with current slugs or slug history.',
       type: 'array',
       of: [{ type: 'string' }],
       options: {
         layout: 'tags'
-      }
+      },
+      validation: (Rule) => Rule.custom(async (aliases, context) => {
+        if (!aliases || aliases.length === 0) {
+          return true // Empty is fine
+        }
+
+        // Ensure aliases is an array of strings
+        if (!Array.isArray(aliases)) {
+          return 'Slug aliases must be an array'
+        }
+
+        // Check for duplicates within the same document
+        const uniqueAliases = new Set(aliases)
+        if (uniqueAliases.size !== aliases.length) {
+          return 'Duplicate aliases are not allowed within the same vehicle'
+        }
+
+        // Get the current document ID and slug
+        const currentDocId = (context.document as any)?._id
+        const currentSlug = (context.document as any)?.slug?.current
+
+        // Get client for cross-document validation
+        const client = context.getClient({ apiVersion: '2024-01-01' })
+
+        // Validate each alias
+        for (const alias of aliases) {
+          // Ensure alias is a string and trim it
+          if (typeof alias !== 'string') {
+            return 'All aliases must be strings'
+          }
+
+          const trimmedAlias = alias.trim()
+          if (!trimmedAlias) {
+            return 'Empty aliases are not allowed'
+          }
+
+          // Check if alias conflicts with current slug of this vehicle
+          if (currentSlug && trimmedAlias === currentSlug) {
+            return `Alias "${trimmedAlias}" cannot be the same as the current slug`
+          }
+
+          // Check if alias conflicts with slug history of this vehicle
+          const slugHistory = (context.document as any)?.slugHistory || []
+          if (Array.isArray(slugHistory)) {
+            const inHistory = slugHistory.some((entry: any) => entry?.slug === trimmedAlias)
+            if (inHistory) {
+              return `Alias "${trimmedAlias}" is already in this vehicle's slug history`
+            }
+          }
+
+          // Check for uniqueness across all vehicles (current slugs)
+          const vehiclesWithSlug = await client.fetch(
+            `*[_type == "vehicle" && slug.current == $alias && _id != $currentId] {
+              _id,
+              title
+            }`,
+            { alias: trimmedAlias, currentId: currentDocId || '' }
+          )
+
+          if (vehiclesWithSlug && vehiclesWithSlug.length > 0) {
+            return `Alias "${trimmedAlias}" conflicts with current slug of vehicle: ${vehiclesWithSlug[0].title}`
+          }
+
+          // Check for uniqueness across all vehicles (slug aliases)
+          const vehiclesWithAlias = await client.fetch(
+            `*[_type == "vehicle" && $alias in slugAliases && _id != $currentId] {
+              _id,
+              title
+            }`,
+            { alias: trimmedAlias, currentId: currentDocId || '' }
+          )
+
+          if (vehiclesWithAlias && vehiclesWithAlias.length > 0) {
+            return `Alias "${trimmedAlias}" is already used by vehicle: ${vehiclesWithAlias[0].title}`
+          }
+
+          // Check for conflicts with slug history of other vehicles
+          const vehiclesWithHistoryMatch = await client.fetch(
+            `*[_type == "vehicle" && _id != $currentId && defined(slugHistory)] {
+              _id,
+              title,
+              slugHistory[] {
+                slug
+              }
+            }`,
+            { currentId: currentDocId || '' }
+          )
+
+          if (vehiclesWithHistoryMatch) {
+            for (const vehicle of vehiclesWithHistoryMatch) {
+              const hasMatchingHistory = vehicle.slugHistory?.some(
+                (entry: any) => entry?.slug === trimmedAlias
+              )
+              if (hasMatchingHistory) {
+                return `Alias "${trimmedAlias}" conflicts with slug history of vehicle: ${vehicle.title}`
+              }
+            }
+          }
+        }
+
+        return true
+      })
     }),
 
     // Inventory & Availability
