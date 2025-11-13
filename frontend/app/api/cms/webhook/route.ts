@@ -1,4 +1,9 @@
 import { client } from '@/sanity/lib/client'
+import { projectId, dataset, apiVersion } from '@/sanity/lib/api'
+import { token } from '@/sanity/lib/token'
+
+// Get write token for webhook operations (needed for transactions API and document history)
+const writeToken = process.env.SANITY_API_WRITE_TOKEN || process.env.SANITY_WRITE_TOKEN || token
 
 interface SlugHistoryEntry {
   _type: 'object'
@@ -24,6 +29,36 @@ function addCorsHeaders(response: Response) {
  */
 async function trackSlugHistory(documentId: string, mutations: any[]) {
   try {
+    // First, check if the mutation actually changed the slug
+    let slugChanged = false
+    let previousSlugFromMutation: string | null = null
+
+    // Check mutations for slug changes
+    for (const mutation of mutations) {
+      if (mutation.patch && mutation.patch.id === documentId) {
+        // Check if slug field is being set
+        if (mutation.patch.set && typeof mutation.patch.set === 'object') {
+          // Check for slug.current in the set operation
+          if (mutation.patch.set['slug.current']) {
+            slugChanged = true
+            console.log(`🔍 Detected slug change in mutation for ${documentId}`)
+          }
+        }
+        // Check for nested slug updates
+        if (mutation.patch.set && mutation.patch.set.slug && mutation.patch.set.slug.current) {
+          slugChanged = true
+          console.log(`🔍 Detected nested slug change in mutation for ${documentId}`)
+        }
+        // Check for unset operations (might indicate a slug change)
+        if (mutation.patch.unset && Array.isArray(mutation.patch.unset)) {
+          if (mutation.patch.unset.includes('slug') || mutation.patch.unset.includes('slug.current')) {
+            slugChanged = true
+            console.log(`🔍 Detected slug unset in mutation for ${documentId}`)
+          }
+        }
+      }
+    }
+
     // Fetch the current published document (after mutation)
     const currentDoc = await client.fetch(
       `*[_type == "vehicle" && _id == $id][0] {
@@ -33,10 +68,12 @@ async function trackSlugHistory(documentId: string, mutations: any[]) {
         "currentSlug": slug.current,
         slugHistory
       }`,
-      { id: documentId }
+      { id: documentId },
+      { useCdn: false } // Always fetch fresh data
     )
 
     if (!currentDoc) {
+      console.log(`⚠️  Vehicle document not found: ${documentId}`)
       return
     }
 
@@ -57,20 +94,108 @@ async function trackSlugHistory(documentId: string, mutations: any[]) {
       return
     }
 
-    // Try to find the previous published version by checking document revisions
-    // We'll query for all published versions and get the one before the current
-    const allVersions = await client.fetch(
-      `*[_id == $id && !(_id in path("drafts.**"))] | order(_updatedAt desc) {
-        _id,
-        _updatedAt,
-        "slug": slug.current
-      }`,
-      { id: documentId }
-    )
+    // Get the previous published version using Sanity's transactions API
+    let previousSlug: string | null = null
+    let previousUpdatedAt: string | null = null
 
-    // Find the previous published version (second in the list, since first is current)
-    const previousVersion = allVersions && allVersions.length > 1 ? allVersions[1] : null
-    const previousSlug = previousVersion?.slug
+    try {
+      // Use Sanity's Management API to get document transactions
+      // This gives us access to the full document history
+      if (writeToken && projectId) {
+        // Try the transactions endpoint for the specific document
+        const transactionsUrl = `https://${projectId}.api.sanity.io/v${apiVersion}/data/history/${dataset}/transactions/${documentId}`
+        
+        try {
+          const transactionsResponse = await fetch(transactionsUrl, {
+            headers: {
+              'Authorization': `Bearer ${writeToken}`,
+              'Content-Type': 'application/json'
+            }
+          })
+
+          if (transactionsResponse.ok) {
+            const transactions = await transactionsResponse.json()
+            
+            if (Array.isArray(transactions) && transactions.length > 0) {
+              // Transactions are ordered by most recent first
+              // We need to find the most recent transaction that had a different slug
+              // To do this, we'll need to reconstruct the document state at each transaction
+              // For now, let's try a simpler approach: fetch the document at previous revisions
+              
+              // Get the second most recent transaction (first is current)
+              if (transactions.length > 1) {
+                const previousTransaction = transactions[1]
+                const previousRev = previousTransaction.resultRev || previousTransaction.previousRev
+                
+                if (previousRev) {
+                  // Fetch the document at the previous revision using HTTP API
+                  // GROQ doesn't support querying by revision directly, so we use the HTTP API
+                  try {
+                    const docAtRevUrl = `https://${projectId}.api.sanity.io/v${apiVersion}/data/doc/${dataset}/${documentId}?rev=${previousRev}`
+                    const docResponse = await fetch(docAtRevUrl, {
+                      headers: {
+                        'Authorization': `Bearer ${writeToken}`,
+                        'Content-Type': 'application/json'
+                      }
+                    })
+
+                    if (docResponse.ok) {
+                      const docAtRevision = await docResponse.json()
+                      const prevSlug = docAtRevision.documents?.[0]?.slug?.current
+                      
+                      if (prevSlug && prevSlug !== currentDoc.currentSlug) {
+                        previousSlug = prevSlug
+                        previousUpdatedAt = docAtRevision.documents?.[0]?._updatedAt || previousTransaction.timestamp
+                        console.log(`✅ Found previous slug from revision: ${previousSlug}`)
+                      }
+                    }
+                  } catch (revError) {
+                    console.error(`Error fetching document at revision ${previousRev}:`, revError)
+                  }
+                }
+              }
+            }
+          }
+        } catch (apiError) {
+          console.error(`Error fetching transactions API for ${documentId}:`, apiError)
+        }
+      }
+    } catch (transError) {
+      console.error(`Error fetching document history for ${documentId}:`, transError)
+    }
+
+    // Fallback: Try a simpler approach - query for the document's revision history
+    // by fetching it with different perspectives or using the document's _rev field
+    if (!previousSlug && slugChanged) {
+      try {
+        // Get the current document's revision
+        const currentDocWithRev = await client.fetch(
+          `*[_id == $id][0] {
+            _rev,
+            _updatedAt
+          }`,
+          { id: documentId },
+          { useCdn: false }
+        )
+
+        if (currentDocWithRev && currentDocWithRev._rev) {
+          // Try to use Sanity's document at time feature
+          // We'll query for the document just before the current update
+          // by using a timestamp slightly before _updatedAt
+          const currentUpdateTime = new Date(currentDocWithRev._updatedAt)
+          const beforeUpdateTime = new Date(currentUpdateTime.getTime() - 1000) // 1 second before
+          
+          // Unfortunately, GROQ doesn't support querying documents at specific times directly
+          // So we'll need to rely on the transactions API or use a different approach
+          
+          console.log(`⚠️  Slug change detected but could not determine previous slug from transactions for ${documentId}`)
+          console.log(`   Current slug: ${currentDoc.currentSlug}`)
+          console.log(`   This might be the first slug change, or transactions API access is limited`)
+        }
+      } catch (altError) {
+        console.error(`Error with alternative history fetch for ${documentId}:`, altError)
+      }
+    }
 
     // Check if slug has changed
     if (previousSlug && previousSlug !== currentDoc.currentSlug) {
@@ -85,7 +210,7 @@ async function trackSlugHistory(documentId: string, mutations: any[]) {
           _type: 'object',
           _key: `slug-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
           slug: previousSlug,
-          activeFrom: previousVersion._updatedAt || currentDoc._createdAt || now,
+          activeFrom: previousUpdatedAt || currentDoc._createdAt || now,
           activeTo: now
         }
 
@@ -98,6 +223,8 @@ async function trackSlugHistory(documentId: string, mutations: any[]) {
           .commit()
 
         console.log(`✅ Slug history updated for vehicle ${documentId}: ${previousSlug} → ${currentDoc.currentSlug}`)
+      } else {
+        console.log(`ℹ️  Slug ${previousSlug} already in history for vehicle ${documentId}`)
       }
     } else if (!Array.isArray(currentDoc.slugHistory)) {
       // Initialize empty array if it doesn't exist (for new documents or documents without history)
@@ -107,9 +234,11 @@ async function trackSlugHistory(documentId: string, mutations: any[]) {
         .commit()
       
       console.log(`📝 Slug history initialized for vehicle: ${documentId}`)
+    } else {
+      console.log(`ℹ️  No slug change detected for vehicle ${documentId}. Current slug: ${currentDoc.currentSlug}, Previous: ${previousSlug || 'none'}`)
     }
   } catch (error) {
-    console.error('Error tracking slug history:', error)
+    console.error(`❌ Error tracking slug history for ${documentId}:`, error)
     // Don't throw - webhook should still succeed even if slug tracking fails
   }
 }
