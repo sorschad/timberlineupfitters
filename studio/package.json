@@ -16,7 +16,8 @@
     "start": "sanity start",
     "type-check": "tsc --noEmit",
     "init-slug-history": "tsx scripts/initializeSlugHistory.ts",
-    "regenerate-sitemap": "tsx scripts/regenerateSitemap.ts"
+    "regenerate-sitemap": "tsx scripts/regenerateSitemap.ts",
+    "generate-seo-meta": "tsx scripts/generateSeoMeta.ts"
   },
   "dependencies": {
     "@sanity/assist": "^5.0.0",
