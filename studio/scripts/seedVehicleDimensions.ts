@@ -14,6 +14,8 @@
 
 import { createClient } from '@sanity/client'
 import dotenv from 'dotenv'
+import * as fs from 'fs'
+import * as path from 'path'
 
 // Load environment variables from studio/.env
 dotenv.config({ path: './.env' })
@@ -62,15 +64,24 @@ interface VehicleDimensionData {
 
 // Vehicle dimension data (in inches)
 const dimensionData: VehicleDimensionData[] = [
-  { vehicleTitle: 'Ford F-150 TSport', lengthInches: 243.7, widthInches: 79.9, heightInches: 77.6 },
-  { vehicleTitle: 'Jeep Wrangler Alpine', lengthInches: 188.4, widthInches: 73.8, heightInches: 73.6 },
-  { vehicleTitle: 'Ford Bronco TSport', lengthInches: 189.4, widthInches: 75.9, heightInches: 73.9 },
-  { vehicleTitle: 'Ford SuperDuty TSport', lengthInches: 266.2, widthInches: 96.0, heightInches: 81.7 },
-  { vehicleTitle: 'Ram 2500 Timberline', lengthInches: 242.9, widthInches: 82.1, heightInches: 80.6 },
-  { vehicleTitle: 'Ford Maverick TSport', lengthInches: 199.7, widthInches: 72.6, heightInches: 68.7 },
-  { vehicleTitle: 'Jeep Gladiator Timberline', lengthInches: 218.0, widthInches: 73.8, heightInches: 75.0 },
-  { vehicleTitle: 'Ford Dually TSport', lengthInches: 266.2, widthInches: 96.0, heightInches: 81.7 },
-  { vehicleTitle: 'Ford Ranger Ford', lengthInches: 210.8, widthInches: 77.5, heightInches: 71.5 }
+  { vehicleTitle: 'Valor', lengthInches: 189.4, widthInches: 75.9, heightInches: 73.9 },
+  { vehicleTitle: 'Valor', lengthInches: 243.7, widthInches: 79.9, heightInches: 77.6 },
+  { vehicleTitle: 'Sportsman', lengthInches: 243.7, widthInches: 79.9, heightInches: 77.6 },
+  { vehicleTitle: 'Anthem', lengthInches: 243.7, widthInches: 79.9, heightInches: 77.6 },
+  { vehicleTitle: 'Ocean', lengthInches: 188.4, widthInches: 73.8, heightInches: 73.6 },
+  { vehicleTitle: 'Brigade', lengthInches: 188.4, widthInches: 73.8, heightInches: 73.6 },
+  { vehicleTitle: 'Valor', lengthInches: 266.2, widthInches: 96, heightInches: 81.7 },
+  { vehicleTitle: 'Sportsman', lengthInches: 266.2, widthInches: 96, heightInches: 81.7 },
+  { vehicleTitle: 'Anthem', lengthInches: 266.2, widthInches: 96, heightInches: 81.7 },
+  { vehicleTitle: 'Trailhead', lengthInches: 242.9, widthInches: 82.1, heightInches: 80.6 },
+  { vehicleTitle: 'Overlook', lengthInches: 242.9, widthInches: 82.1, heightInches: 80.6 },
+  { vehicleTitle: 'Sportsman', lengthInches: 199.7, widthInches: 72.6, heightInches: 68.7 },
+  { vehicleTitle: 'Valor', lengthInches: 199.7, widthInches: 72.6, heightInches: 68.7 },
+  { vehicleTitle: 'Trailhead', lengthInches: 218, widthInches: 73.8, heightInches: 75 },
+  { vehicleTitle: 'Overlook', lengthInches: 218, widthInches: 73.8, heightInches: 75 },
+  { vehicleTitle: 'Sportsman', lengthInches: 266.2, widthInches: 96, heightInches: 81.7 },
+  { vehicleTitle: 'Sportsman', lengthInches: 210.8, widthInches: 77.5, heightInches: 71.5 },
+  { vehicleTitle: 'Valor', lengthInches: 210.8, widthInches: 77.5, heightInches: 71.5 },
 ]
 
 /**
@@ -234,6 +245,54 @@ async function updateVehicleDimensions(vehicleId: string, lengthFeet: number, wi
 }
 
 /**
+ * Update the seed data array in the script file with corrected vehicle titles
+ */
+function updateSeedDataInFile(matches: Array<{ originalTitle: string; matchedTitle: string; data: VehicleDimensionData }>, notFound: Array<{ title: string; data: VehicleDimensionData }>): void {
+  try {
+    // Get the script file path (works with both tsx and compiled JS)
+    const scriptDir = __dirname || path.dirname(new URL(import.meta.url).pathname)
+    let scriptPath = path.join(scriptDir, 'seedVehicleDimensions.ts')
+    
+    // Fallback: try relative path from current working directory
+    let fileContent: string
+    try {
+      fileContent = fs.readFileSync(scriptPath, 'utf8')
+    } catch {
+      // Try relative path from studio directory
+      scriptPath = path.join(process.cwd(), 'scripts', 'seedVehicleDimensions.ts')
+      fileContent = fs.readFileSync(scriptPath, 'utf8')
+    }
+
+    // Build the new dimension data array
+    const newDataLines: string[] = []
+    for (const match of matches) {
+      const { data } = match
+      newDataLines.push(`  { vehicleTitle: '${match.matchedTitle}', lengthInches: ${data.lengthInches}, widthInches: ${data.widthInches}, heightInches: ${data.heightInches} },`)
+    }
+    for (const item of notFound) {
+      const { data } = item
+      newDataLines.push(`  { vehicleTitle: '${item.title}', lengthInches: ${data.lengthInches}, widthInches: ${data.widthInches}, heightInches: ${data.heightInches} },`)
+    }
+
+    const newDataArray = `const dimensionData: VehicleDimensionData[] = [\n${newDataLines.join('\n')}\n]`
+
+    // Replace the dimensionData array in the file
+    const dataArrayRegex = /const dimensionData: VehicleDimensionData\[\] = \[[\s\S]*?\]/
+    if (dataArrayRegex.test(fileContent)) {
+      fileContent = fileContent.replace(dataArrayRegex, newDataArray)
+      fs.writeFileSync(scriptPath, fileContent, 'utf8')
+      console.log('✅ Updated seed data array in script file with corrected vehicle titles')
+      return
+    }
+
+    console.log('⚠️  Could not find dimensionData array in script file to update')
+  } catch (error) {
+    console.error('⚠️  Error updating seed data in file:', error)
+    console.log('   (This is not critical - the script will still work)')
+  }
+}
+
+/**
  * Main execution
  */
 async function main() {
@@ -310,6 +369,13 @@ async function main() {
   console.log(`   ⚠️  Not found: ${notFound.length}`)
   console.log('')
 
+  // Update seed data array in file with corrected vehicle titles
+  if (matches.length > 0) {
+    console.log('📝 Updating seed data references in script file...')
+    updateSeedDataInFile(matches, notFound)
+    console.log('')
+  }
+
   // Show matches that need review (fuzzy matches with lower scores)
   const needsReview = matches.filter(m => m.matchType === 'fuzzy' && m.score && m.score < 0.8)
   if (needsReview.length > 0) {
@@ -382,23 +448,6 @@ async function main() {
     console.log(`   ⚠️  Not found: ${notFound.length}`)
     console.log(`   📦 Total processed: ${dimensionData.length}`)
     console.log('')
-
-    // Show updated seed data references
-    if (matches.length > 0) {
-      console.log('📝 Updated seed data references:')
-      console.log('')
-      console.log('const dimensionData: VehicleDimensionData[] = [')
-      for (const match of matches) {
-        const { data } = match
-        console.log(`  { vehicleTitle: '${match.matchedTitle}', lengthInches: ${data.lengthInches}, widthInches: ${data.widthInches}, heightInches: ${data.heightInches} },`)
-      }
-      for (const item of notFound) {
-        const { data } = item
-        console.log(`  { vehicleTitle: '${item.title}', lengthInches: ${data.lengthInches}, widthInches: ${data.widthInches}, heightInches: ${data.heightInches} },`)
-      }
-      console.log(']')
-      console.log('')
-    }
 
     if (errorCount > 0) {
       console.log('❌ Some vehicles failed to update. Check the errors above.')
