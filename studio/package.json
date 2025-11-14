@@ -18,7 +18,8 @@
     "init-slug-history": "tsx scripts/initializeSlugHistory.ts",
     "regenerate-sitemap": "tsx scripts/regenerateSitemap.ts",
     "generate-seo-meta": "tsx scripts/generateSeoMeta.ts",
-    "migrate-packages": "tsx scripts/migratePackages.ts"
+    "migrate-packages": "tsx scripts/migratePackages.ts",
+    "seed-vehicle-dimensions": "tsx scripts/seedVehicleDimensions.ts"
   },
   "dependencies": {
     "@sanity/assist": "^5.0.0",

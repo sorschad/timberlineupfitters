@@ -214,7 +214,10 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
         city,
         highway,
         combined
-      }
+      },
+      vehicle_length,
+      vehicle_width,
+      vehicle_height
     },
     features{
       baseFeatures,
@@ -468,7 +471,10 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
           city,
           highway,
           combined
-        }
+        },
+        vehicle_length,
+        vehicle_width,
+        vehicle_height
       },
       features{
         baseFeatures,
@@ -721,7 +727,10 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
           city,
           highway,
           combined
-        }
+        },
+        vehicle_length,
+        vehicle_width,
+        vehicle_height
       },
       features{
         baseFeatures,
