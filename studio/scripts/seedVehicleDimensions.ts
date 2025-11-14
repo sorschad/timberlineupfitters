@@ -242,72 +242,178 @@ async function main() {
   console.log(`📦 Vehicles to update: ${dimensionData.length}`)
   console.log('')
 
-  let successCount = 0
-  let notFoundCount = 0
-  let errorCount = 0
+  // Fetch all vehicles from Sanity first
+  console.log('📥 Fetching all vehicles from Sanity...')
+  const allVehicles = await client.fetch(
+    `*[_type == "vehicle"] {
+      _id,
+      title,
+      model,
+      brand,
+      "manufacturer": manufacturer->name
+    }`
+  )
+  console.log(`   Found ${allVehicles.length} vehicles in Sanity`)
+  console.log('')
+
+  // Track matches and updates
+  const matches: Array<{
+    originalTitle: string
+    matchedTitle: string
+    matchType: string
+    score?: number
+    vehicleId: string
+    data: VehicleDimensionData
+  }> = []
+
+  const notFound: Array<{ title: string; data: VehicleDimensionData }> = []
+
+  // First pass: Find matches for all vehicles
+  console.log('🔍 Finding best matches for each vehicle...')
+  console.log('')
 
   for (const data of dimensionData) {
-    const { vehicleTitle, lengthInches, widthInches, heightInches } = data
+    const { vehicleTitle } = data
 
-    // Convert to feet
-    const lengthFeet = inchesToFeet(lengthInches)
-    const widthFeet = inchesToFeet(widthInches)
-    const heightFeet = inchesToFeet(heightInches)
+    console.log(`   Searching: "${vehicleTitle}"`)
 
-    console.log(`🔍 Looking for vehicle: "${vehicleTitle}"`)
-    console.log(`   Dimensions: ${lengthInches}" × ${widthInches}" × ${heightInches}"`)
-    console.log(`   Converting to: ${lengthFeet}ft × ${widthFeet}ft × ${heightFeet}ft`)
+    const matchResult = await findVehicleByTitle(vehicleTitle, allVehicles)
 
-    // Find vehicle
-    const vehicle = await findVehicleByTitle(vehicleTitle)
-
-    if (!vehicle) {
-      console.log(`   ⚠️  Vehicle not found: "${vehicleTitle}"`)
-      notFoundCount++
+    if (!matchResult) {
+      console.log(`   ⚠️  No match found`)
+      notFound.push({ title: vehicleTitle, data })
       console.log('')
       continue
     }
 
-    console.log(`   ✅ Found vehicle: "${vehicle.title}" (ID: ${vehicle._id})`)
-
-    // Update dimensions
-    const success = await updateVehicleDimensions(
-      vehicle._id,
-      lengthFeet,
-      widthFeet,
-      heightFeet
-    )
-
-    if (success) {
-      console.log(`   ✅ Successfully updated dimensions`)
-      successCount++
-    } else {
-      console.log(`   ❌ Failed to update dimensions`)
-      errorCount++
+    const { vehicle, matchType, score } = matchResult
+    const matchInfo = {
+      originalTitle: vehicleTitle,
+      matchedTitle: vehicle.title,
+      matchType,
+      score,
+      vehicleId: vehicle._id,
+      data
     }
 
+    matches.push(matchInfo)
+
+    const scoreDisplay = score ? ` (similarity: ${(score * 100).toFixed(1)}%)` : ''
+    const matchTypeDisplay = matchType === 'exact' ? '✅' : matchType === 'case-insensitive' ? '✅' : matchType === 'contains' ? '🔍' : '🎯'
+    console.log(`   ${matchTypeDisplay} Matched: "${vehicle.title}" [${matchType}${scoreDisplay}]`)
     console.log('')
   }
 
-  // Summary
-  console.log('📊 Summary:')
-  console.log(`   ✅ Successfully updated: ${successCount}`)
-  console.log(`   ⚠️  Not found: ${notFoundCount}`)
-  console.log(`   ❌ Errors: ${errorCount}`)
-  console.log(`   📦 Total processed: ${dimensionData.length}`)
+  // Show summary of matches
+  console.log('📋 Match Summary:')
+  console.log(`   ✅ Matched: ${matches.length}`)
+  console.log(`   ⚠️  Not found: ${notFound.length}`)
   console.log('')
 
-  if (notFoundCount > 0) {
-    console.log('⚠️  Some vehicles were not found. Please verify the vehicle titles in Sanity Studio.')
+  // Show matches that need review (fuzzy matches with lower scores)
+  const needsReview = matches.filter(m => m.matchType === 'fuzzy' && m.score && m.score < 0.8)
+  if (needsReview.length > 0) {
+    console.log('⚠️  The following matches have lower confidence scores and may need review:')
+    for (const match of needsReview) {
+      console.log(`   "${match.originalTitle}" → "${match.matchedTitle}" (${(match.score! * 100).toFixed(1)}%)`)
+    }
+    console.log('')
   }
 
-  if (errorCount > 0) {
-    console.log('❌ Some vehicles failed to update. Check the errors above.')
+  // Show not found vehicles
+  if (notFound.length > 0) {
+    console.log('❌ Vehicles not found:')
+    for (const item of notFound) {
+      console.log(`   - "${item.title}"`)
+      
+      // Try to find similar vehicles
+      const similar = findBestMatch(item.title, allVehicles)
+      if (similar && similar.score > 0.3) {
+        console.log(`     💡 Did you mean: "${similar.vehicle.title}"? (${(similar.score * 100).toFixed(1)}% similar)`)
+      }
+    }
+    console.log('')
+  }
+
+  // Update matched vehicles
+  if (matches.length > 0) {
+    console.log('🔄 Updating vehicle dimensions...')
+    console.log('')
+
+    let successCount = 0
+    let errorCount = 0
+
+    for (const match of matches) {
+      const { matchedTitle, vehicleId, data } = match
+      const { lengthInches, widthInches, heightInches } = data
+
+      // Convert to feet
+      const lengthFeet = inchesToFeet(lengthInches)
+      const widthFeet = inchesToFeet(widthInches)
+      const heightFeet = inchesToFeet(heightInches)
+
+      console.log(`   Updating: "${matchedTitle}"`)
+      console.log(`   Dimensions: ${lengthInches}" × ${widthInches}" × ${heightInches}"`)
+      console.log(`   Converting to: ${lengthFeet}ft × ${widthFeet}ft × ${heightFeet}ft`)
+
+      // Update dimensions
+      const success = await updateVehicleDimensions(
+        vehicleId,
+        lengthFeet,
+        widthFeet,
+        heightFeet
+      )
+
+      if (success) {
+        console.log(`   ✅ Successfully updated`)
+        successCount++
+      } else {
+        console.log(`   ❌ Failed to update`)
+        errorCount++
+      }
+
+      console.log('')
+    }
+
+    // Final summary
+    console.log('📊 Final Summary:')
+    console.log(`   ✅ Successfully updated: ${successCount}`)
+    console.log(`   ❌ Update errors: ${errorCount}`)
+    console.log(`   ⚠️  Not found: ${notFound.length}`)
+    console.log(`   📦 Total processed: ${dimensionData.length}`)
+    console.log('')
+
+    // Show updated seed data references
+    if (matches.length > 0) {
+      console.log('📝 Updated seed data references:')
+      console.log('')
+      console.log('const dimensionData: VehicleDimensionData[] = [')
+      for (const match of matches) {
+        const { data } = match
+        console.log(`  { vehicleTitle: '${match.matchedTitle}', lengthInches: ${data.lengthInches}, widthInches: ${data.widthInches}, heightInches: ${data.heightInches} },`)
+      }
+      for (const item of notFound) {
+        const { data } = item
+        console.log(`  { vehicleTitle: '${item.title}', lengthInches: ${data.lengthInches}, widthInches: ${data.widthInches}, heightInches: ${data.heightInches} },`)
+      }
+      console.log(']')
+      console.log('')
+    }
+
+    if (errorCount > 0) {
+      console.log('❌ Some vehicles failed to update. Check the errors above.')
+      process.exit(1)
+    }
+
+    if (successCount === matches.length && notFound.length === 0) {
+      console.log('🎉 All vehicle dimensions successfully updated!')
+    } else if (successCount === matches.length) {
+      console.log('✅ All matched vehicles updated successfully!')
+      console.log('⚠️  Some vehicles were not found. Please verify the vehicle titles.')
+    }
+  } else {
+    console.log('❌ No vehicles were matched. Please check the vehicle titles in the seed data.')
     process.exit(1)
-  }
-
-  if (successCount === dimensionData.length) {
-    console.log('🎉 All vehicle dimensions successfully updated!')
   }
 }
 
