@@ -7,6 +7,15 @@ export const vehicle = defineType({
   title: 'Vehicle',
   type: 'document',
   fields: [
+    // Visibility Control
+    defineField({
+      name: 'hideOnWebsite',
+      title: 'Hide on Website',
+      type: 'boolean',
+      description: 'When checked, this vehicle will be hidden from the public website. Uncheck to make it visible.',
+      initialValue: false
+    }),
+
     // Basic Vehicle Information
     defineField({
       name: 'title',
@@ -199,41 +208,6 @@ export const vehicle = defineType({
       })
     }),
 
-    // Inventory & Availability
-    defineField({
-      name: 'inventory',
-      title: 'Inventory Information',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'availability',
-          title: 'Availability Status',
-          type: 'string',
-          options: {
-            list: [
-              'In Stock', 'Available Soon'
-            ]
-          }
-        }),
-      ]
-    }),
-
-    defineField({
-      name: 'vehicleType',
-      title: 'Vehicle Type',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Truck', value: 'truck' },
-          { title: 'SUV', value: 'suv' },
-          { title: 'Car', value: 'car' },
-          { title: 'Van', value: 'van' },
-          { title: 'Utility', value: 'utility' }
-        ]
-      },
-      initialValue: 'truck'
-    }),
-
     // Manufacturer & Model Details
     defineField({
       name: 'manufacturer',
@@ -264,13 +238,6 @@ export const vehicle = defineType({
       title: 'Trim Level',
       type: 'string',
       description: 'e.g., XL, XLT, Lariat, King Ranch, Platinum'
-    }),
-
-    defineField({
-      name: 'modelYear',
-      title: 'Model Year',
-      type: 'number',
-      validation: (Rule) => Rule.required().min(1900).max(2030)
     }),
 
      // Additional Content
@@ -330,31 +297,55 @@ export const vehicle = defineType({
       type: 'object',
       fields: [
         defineField({
-          name: 'drivetrain',
-          title: 'Drivetrain Options',
-          type: 'array',
-          of: [{ type: 'string' }],
-          options: {
-            list: [
-              '2WD', '4WD', 'AWD', '4x4'
-            ]
-          }
+          name: 'vehicle_length',
+          title: 'Vehicle Length (ft)',
+          type: 'number',
+          description: 'Vehicle length in feet with up to 2 decimal places (e.g., 19.50)',
+          validation: (Rule) => Rule.positive().custom((value) => {
+            if (value === undefined || value === null) {
+              return true // Optional field
+            }
+            // Check if the number has more than 2 decimal places
+            const decimalPlaces = (value.toString().split('.')[1] || '').length
+            if (decimalPlaces > 2) {
+              return 'Vehicle length must have no more than 2 decimal places'
+            }
+            return true
+          })
         }),
         defineField({
-          name: 'bedLength',
-          title: 'Bed Length',
-          type: 'string',
-          options: {
-            list: ['5.5 ft', '6.5 ft', '8 ft']
-          }
+          name: 'vehicle_width',
+          title: 'Vehicle Width (ft)',
+          type: 'number',
+          description: 'Vehicle width in feet with up to 2 decimal places (e.g., 6.75)',
+          validation: (Rule) => Rule.positive().custom((value) => {
+            if (value === undefined || value === null) {
+              return true // Optional field
+            }
+            // Check if the number has more than 2 decimal places
+            const decimalPlaces = (value.toString().split('.')[1] || '').length
+            if (decimalPlaces > 2) {
+              return 'Vehicle width must have no more than 2 decimal places'
+            }
+            return true
+          })
         }),
         defineField({
-          name: 'cabStyle',
-          title: 'Cab Style',
-          type: 'string',
-          options: {
-            list: ['Regular Cab', 'SuperCab', 'SuperCrew']
-          }
+          name: 'vehicle_height',
+          title: 'Vehicle Height (ft)',
+          type: 'number',
+          description: 'Vehicle height in feet with up to 2 decimal places (e.g., 6.25)',
+          validation: (Rule) => Rule.positive().custom((value) => {
+            if (value === undefined || value === null) {
+              return true // Optional field
+            }
+            // Check if the number has more than 2 decimal places
+            const decimalPlaces = (value.toString().split('.')[1] || '').length
+            if (decimalPlaces > 2) {
+              return 'Vehicle height must have no more than 2 decimal places'
+            }
+            return true
+          })
         })
       ]
     }),
@@ -607,43 +598,6 @@ export const vehicle = defineType({
       })]
     }),
 
-    // Customization Options (Based on TSportTruck's customization focus)
-    defineField({
-      name: 'customizationOptions',
-      title: 'Customization Options',
-      type: 'array',
-      of: [defineArrayMember({
-        type: 'object',
-        fields: [
-          defineField({
-            name: 'category',
-            title: 'Customization Category',
-            type: 'string',
-            options: {
-              list: [
-                'Wheels & Tires', 'Suspension', 'Exterior Styling', 'Interior Upgrades',
-                'Performance', 'Lighting', 'Bed Accessories', 'Protection'
-              ]
-            }
-          }),
-          defineField({
-            name: 'options',
-            title: 'Available Options',
-            type: 'array',
-            of: [defineArrayMember({
-              type: 'object',
-              fields: [
-                defineField({ name: 'name', type: 'string' }),
-                defineField({ name: 'price', type: 'number' }),
-                defineField({ name: 'description', type: 'text' }),
-                defineField({ name: 'image', type: 'image' })
-              ]
-            })]
-          })
-        ]
-      })]
-    }),
-
     // SEO & Metadata
     defineField({
       name: 'seo',
@@ -689,14 +643,19 @@ export const vehicle = defineType({
     select: {
       title: 'title',
       manufacturer: 'manufacturer.name',
-      modelYear: 'modelYear',
+      model: 'model',
+      brand: 'brand',
       media: 'coverImage'
     },
     prepare(selection) {
-      const { title, manufacturer, modelYear, media } = selection
+      const { title, manufacturer, model, brand, media } = selection
+      const parts = []
+      if (manufacturer) parts.push(manufacturer)
+      if (model) parts.push(model)
+      if (brand) parts.push(brand)
       return {
         title: title,
-        subtitle: `${modelYear} • ${manufacturer || 'No manufacturer'}`,
+        subtitle: parts.length > 0 ? parts.join(' • ') : 'No manufacturer',
         media: media
       }
     }

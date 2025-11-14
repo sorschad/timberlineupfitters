@@ -1162,6 +1162,13 @@
           "type": "string"
         }
       },
+      "hideOnWebsite": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
+      },
       "title": {
         "type": "objectAttribute",
         "value": {
@@ -1231,61 +1238,6 @@
         },
         "optional": true
       },
-      "inventory": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "object",
-          "attributes": {
-            "availability": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "union",
-                "of": [
-                  {
-                    "type": "string",
-                    "value": "In Stock"
-                  },
-                  {
-                    "type": "string",
-                    "value": "Available Soon"
-                  }
-                ]
-              },
-              "optional": true
-            }
-          }
-        },
-        "optional": true
-      },
-      "vehicleType": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "union",
-          "of": [
-            {
-              "type": "string",
-              "value": "truck"
-            },
-            {
-              "type": "string",
-              "value": "suv"
-            },
-            {
-              "type": "string",
-              "value": "car"
-            },
-            {
-              "type": "string",
-              "value": "van"
-            },
-            {
-              "type": "string",
-              "value": "utility"
-            }
-          ]
-        },
-        "optional": true
-      },
       "manufacturer": {
         "type": "objectAttribute",
         "value": {
@@ -1336,13 +1288,6 @@
           "type": "string"
         },
         "optional": true
-      },
-      "modelYear": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "number"
-        },
-        "optional": false
       },
       "description": {
         "type": "objectAttribute",
@@ -1540,55 +1485,24 @@
         "value": {
           "type": "object",
           "attributes": {
-            "drivetrain": {
+            "vehicle_length": {
               "type": "objectAttribute",
               "value": {
-                "type": "array",
-                "of": {
-                  "type": "string"
-                }
+                "type": "number"
               },
               "optional": true
             },
-            "bedLength": {
+            "vehicle_width": {
               "type": "objectAttribute",
               "value": {
-                "type": "union",
-                "of": [
-                  {
-                    "type": "string",
-                    "value": "5.5 ft"
-                  },
-                  {
-                    "type": "string",
-                    "value": "6.5 ft"
-                  },
-                  {
-                    "type": "string",
-                    "value": "8 ft"
-                  }
-                ]
+                "type": "number"
               },
               "optional": true
             },
-            "cabStyle": {
+            "vehicle_height": {
               "type": "objectAttribute",
               "value": {
-                "type": "union",
-                "of": [
-                  {
-                    "type": "string",
-                    "value": "Regular Cab"
-                  },
-                  {
-                    "type": "string",
-                    "value": "SuperCab"
-                  },
-                  {
-                    "type": "string",
-                    "value": "SuperCrew"
-                  }
-                ]
+                "type": "number"
               },
               "optional": true
             }
@@ -2281,183 +2195,6 @@
                   "type": "string",
                   "value": "image"
                 }
-              }
-            },
-            "rest": {
-              "type": "object",
-              "attributes": {
-                "_key": {
-                  "type": "objectAttribute",
-                  "value": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "optional": true
-      },
-      "customizationOptions": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "array",
-          "of": {
-            "type": "object",
-            "attributes": {
-              "category": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "union",
-                  "of": [
-                    {
-                      "type": "string",
-                      "value": "Wheels & Tires"
-                    },
-                    {
-                      "type": "string",
-                      "value": "Suspension"
-                    },
-                    {
-                      "type": "string",
-                      "value": "Exterior Styling"
-                    },
-                    {
-                      "type": "string",
-                      "value": "Interior Upgrades"
-                    },
-                    {
-                      "type": "string",
-                      "value": "Performance"
-                    },
-                    {
-                      "type": "string",
-                      "value": "Lighting"
-                    },
-                    {
-                      "type": "string",
-                      "value": "Bed Accessories"
-                    },
-                    {
-                      "type": "string",
-                      "value": "Protection"
-                    }
-                  ]
-                },
-                "optional": true
-              },
-              "options": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "array",
-                  "of": {
-                    "type": "object",
-                    "attributes": {
-                      "name": {
-                        "type": "objectAttribute",
-                        "value": {
-                          "type": "string"
-                        },
-                        "optional": true
-                      },
-                      "price": {
-                        "type": "objectAttribute",
-                        "value": {
-                          "type": "number"
-                        },
-                        "optional": true
-                      },
-                      "description": {
-                        "type": "objectAttribute",
-                        "value": {
-                          "type": "string"
-                        },
-                        "optional": true
-                      },
-                      "image": {
-                        "type": "objectAttribute",
-                        "value": {
-                          "type": "object",
-                          "attributes": {
-                            "asset": {
-                              "type": "objectAttribute",
-                              "value": {
-                                "type": "object",
-                                "attributes": {
-                                  "_ref": {
-                                    "type": "objectAttribute",
-                                    "value": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "_type": {
-                                    "type": "objectAttribute",
-                                    "value": {
-                                      "type": "string",
-                                      "value": "reference"
-                                    }
-                                  },
-                                  "_weak": {
-                                    "type": "objectAttribute",
-                                    "value": {
-                                      "type": "boolean"
-                                    },
-                                    "optional": true
-                                  }
-                                },
-                                "dereferencesTo": "sanity.imageAsset"
-                              },
-                              "optional": true
-                            },
-                            "media": {
-                              "type": "objectAttribute",
-                              "value": {
-                                "type": "unknown"
-                              },
-                              "optional": true
-                            },
-                            "hotspot": {
-                              "type": "objectAttribute",
-                              "value": {
-                                "type": "inline",
-                                "name": "sanity.imageHotspot"
-                              },
-                              "optional": true
-                            },
-                            "crop": {
-                              "type": "objectAttribute",
-                              "value": {
-                                "type": "inline",
-                                "name": "sanity.imageCrop"
-                              },
-                              "optional": true
-                            },
-                            "_type": {
-                              "type": "objectAttribute",
-                              "value": {
-                                "type": "string",
-                                "value": "image"
-                              }
-                            }
-                          }
-                        },
-                        "optional": true
-                      }
-                    },
-                    "rest": {
-                      "type": "object",
-                      "attributes": {
-                        "_key": {
-                          "type": "objectAttribute",
-                          "value": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "optional": true
               }
             },
             "rest": {

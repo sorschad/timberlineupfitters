@@ -111,6 +111,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     _createdAt,
     _updatedAt,
     _rev,
+    hideOnWebsite,
     title,
     slug,
     slugHistory[] {
@@ -258,32 +259,24 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
         alt
       },
       excerpt
-    },
-    customizationOptions[]{
-      name,
+      },
+      customizationOptions[]{
+        name,
+        description,
+        price,
+        category,
+        isStandard,
+        isAvailable
+      },
       description,
-      price,
-      category,
-      isStandard,
-      isAvailable
-    },
-    inventory{
-      availability,
-      stockNumber,
-      vin,
-      msrp,
-      salePrice,
-      location
-    },
-    description,
-    excerpt,
-    tags,
-    sidebarSortOrder,
-    seo{
-      title,
-      description,
-      keywords
-    }
+      excerpt,
+      tags,
+      sidebarSortOrder,
+      seo{
+        title,
+        description,
+        keywords
+      }
   },
   "brands": *[_type == "brand" && defined(slug.current)${brandsFilterClause}] | order(sidebarMenuSortOrder asc, name asc) {
     _id,
@@ -359,6 +352,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       _createdAt,
       _updatedAt,
       _rev,
+      hideOnWebsite,
       title,
       slug,
       slugHistory[] {
@@ -514,14 +508,6 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
         category,
         isStandard,
         isAvailable
-      },
-      inventory{
-        availability,
-        stockNumber,
-        vin,
-        msrp,
-        salePrice,
-        location
       },
       description,
       excerpt,
@@ -618,6 +604,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       _createdAt,
       _updatedAt,
       _rev,
+      hideOnWebsite,
       title,
       slug,
       slugHistory[] {
@@ -773,14 +760,6 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
         category,
         isStandard,
         isAvailable
-      },
-      inventory{
-        availability,
-        stockNumber,
-        vin,
-        msrp,
-        salePrice,
-        location
       },
       description,
       excerpt,
