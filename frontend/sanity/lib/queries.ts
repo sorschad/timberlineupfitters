@@ -235,9 +235,21 @@ export const manufacturerQuery = defineQuery(`
       vehicleType,
       modelYear,
       upfitter,
-      package,
+      "package": package->{
+        _id,
+        name,
+        "slug": slug.current,
+        logo{
+          asset->{
+            _id,
+            url
+          },
+          alt
+        },
+        description
+      },
       "manufacturer": manufacturer->name
-    } | order(model asc, upfitter asc, package asc)
+    } | order(model asc, upfitter asc, package->name asc)
   }
 `)
 
@@ -271,7 +283,20 @@ export const allVehiclesQuery = defineQuery(`
     model,
     vehicleType,
     modelYear,
-    trim,
+    brand,
+    "package": package->{
+      _id,
+      name,
+      "slug": slug.current,
+      logo{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      description
+    },
     "manufacturer": manufacturer->{
       _id,
       name,
@@ -319,6 +344,19 @@ export const allVehiclesQuery = defineQuery(`
       model,
       modelYear,
       brand,
+      "package": package->{
+        _id,
+        name,
+        "slug": slug.current,
+        logo{
+          asset->{
+            _id,
+            url
+          },
+          alt
+        },
+        description
+      },
       "manufacturer": manufacturer->{
         _id,
         name
@@ -352,7 +390,20 @@ export const timberlineVehiclesQuery = defineQuery(`
     model,
     vehicleType,
     modelYear,
-    trim,
+    brand,
+    "package": package->{
+      _id,
+      name,
+      "slug": slug.current,
+      logo{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      description
+    },
     sidebarSortOrder,
     "manufacturer": manufacturer->{
       _id,
@@ -401,6 +452,19 @@ export const timberlineVehiclesQuery = defineQuery(`
       model,
       modelYear,
       brand,
+      "package": package->{
+        _id,
+        name,
+        "slug": slug.current,
+        logo{
+          asset->{
+            _id,
+            url
+          },
+          alt
+        },
+        description
+      },
       "manufacturer": manufacturer->{
         _id,
         name
@@ -434,7 +498,19 @@ export const vehicleQuery = defineQuery(`
     vehicleType,
     modelYear,
     brand,
-    trim,
+    "package": package->{
+      _id,
+      name,
+      "slug": slug.current,
+      logo{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      description
+    },
     "manufacturer": manufacturer->{
       _id,
       name,
@@ -475,6 +551,19 @@ export const vehicleQuery = defineQuery(`
       model,
       modelYear,
       brand,
+      "package": package->{
+        _id,
+        name,
+        "slug": slug.current,
+        logo{
+          asset->{
+            _id,
+            url
+          },
+          alt
+        },
+        description
+      },
       "manufacturer": manufacturer->{
         _id,
         name
@@ -517,7 +606,6 @@ export const vehiclesByBrandQuery = defineQuery(`
     model,
     vehicleType,
     modelYear,
-    trim,
     coverImage{
       asset->{
         _id,

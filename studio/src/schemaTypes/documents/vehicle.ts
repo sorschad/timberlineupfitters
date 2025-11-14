@@ -234,10 +234,11 @@ export const vehicle = defineType({
     }),
 
     defineField({
-      name: 'trim',
-      title: 'Trim Level',
-      type: 'string',
-      description: 'e.g., XL, XLT, Lariat, King Ranch, Platinum'
+      name: 'package',
+      title: 'Package',
+      type: 'reference',
+      to: [{ type: 'package' }],
+      description: 'Select the vehicle package/trim package'
     }),
 
      // Additional Content
@@ -645,14 +646,16 @@ export const vehicle = defineType({
       manufacturer: 'manufacturer.name',
       model: 'model',
       brand: 'brand',
+      packageName: 'package.name',
       media: 'coverImage'
     },
     prepare(selection) {
-      const { title, manufacturer, model, brand, media } = selection
+      const { title, manufacturer, model, brand, packageName, media } = selection
       const parts = []
       if (manufacturer) parts.push(manufacturer)
       if (model) parts.push(model)
       if (brand) parts.push(brand)
+      if (packageName) parts.push(packageName)
       return {
         title: title,
         subtitle: parts.length > 0 ? parts.join(' • ') : 'No manufacturer',

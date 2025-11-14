@@ -124,8 +124,19 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     vehicleType,
     modelYear,
     brand,
-    trim,
-    package,
+    "package": package->{
+      _id,
+      name,
+      "slug": slug.current,
+      logo{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      description
+    },
     "manufacturer": manufacturer->{
       _id,
       name,
@@ -244,6 +255,19 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       model,
       modelYear,
       brand,
+      "package": package->{
+        _id,
+        name,
+        "slug": slug.current,
+        logo{
+          asset->{
+            _id,
+            url
+          },
+          alt
+        },
+        description
+      },
       tags,
       "manufacturer": manufacturer->{
         _id,
@@ -485,6 +509,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
         model,
         modelYear,
         brand,
+        package,
         tags,
         "manufacturer": manufacturer->{
           _id,
@@ -737,6 +762,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
         model,
         modelYear,
         brand,
+        package,
         tags,
         "manufacturer": manufacturer->{
           _id,
@@ -770,7 +796,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
         description,
         keywords
       }
-    } | order(model asc, brand asc, package asc)
+    } | order(model asc, brand asc, package->name asc)
   },
   "additionalOptions": *[_type == "additionalOption" && defined(slug.current)] | order(sortOrder asc, name asc) {
     _id,
@@ -825,6 +851,20 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       model,
       vehicleType,
       modelYear,
+      brand,
+      "package": package->{
+        _id,
+        name,
+        "slug": slug.current,
+        logo{
+          asset->{
+            _id,
+            url
+          },
+          alt
+        },
+        description
+      },
       tags,
       "manufacturer": manufacturer->{
         _id,

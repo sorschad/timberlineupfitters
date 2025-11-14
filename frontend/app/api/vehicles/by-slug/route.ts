@@ -27,7 +27,19 @@ const comprehensiveVehicleQuery = `
     vehicleType,
     modelYear,
     brand,
-    trim,
+    "package": package->{
+      _id,
+      name,
+      "slug": slug.current,
+      logo{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      description
+    },
     "manufacturer": manufacturer->{
       _id,
       name,
@@ -231,7 +243,19 @@ export async function GET(request: NextRequest) {
             vehicleType,
             modelYear,
             brand,
-            trim,
+            "package": package->{
+              _id,
+              name,
+              "slug": slug.current,
+              logo{
+                asset->{
+                  _id,
+                  url
+                },
+                alt
+              },
+              description
+            },
             "manufacturer": manufacturer->{
               _id,
               name,
