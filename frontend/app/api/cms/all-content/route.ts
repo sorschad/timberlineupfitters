@@ -188,6 +188,7 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       isBuildCoverImage,
       isBuildTextSummaryBlock,
       isBuildTextSummaryContent,
+      coverImageOverlayText,
       view,
       tags,
       gridSpan

@@ -529,6 +529,28 @@ export const vehicle = defineType({
               return true
             })
           }),
+          defineField({
+            name: 'coverImageOverlayText',
+            title: 'Cover Image Overlay Text',
+            type: 'array',
+            of: [
+              defineArrayMember({
+                type: 'block',
+                styles: [
+                  { title: 'Normal', value: 'normal' },
+                  { title: 'H1', value: 'h1' },
+                  { title: 'H2', value: 'h2' },
+                  { title: 'H3', value: 'h3' },
+                  { title: 'Quote', value: 'blockquote' }
+                ],
+                lists: [
+                  { title: 'Bullet', value: 'bullet' },
+                  { title: 'Numbered', value: 'number' }
+                ]
+              })
+            ],
+            description: 'Optional WYSIWYG text field for overlay text on the cover image.'
+          }),
           defineField({ name: 'alt', type: 'string', title: 'Alt Text' }),
           defineField({ name: 'caption', type: 'string', title: 'Caption' }),
           defineField({ 
