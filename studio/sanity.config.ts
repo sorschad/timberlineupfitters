@@ -18,6 +18,7 @@ import {schemaTypes} from './src/schemaTypes'
 import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
 import {assist} from '@sanity/assist'
 import {slugHistoryTracker} from './src/plugins/slugHistoryTracker'
+import {googleDriveAssetSource} from './src/plugins/googleDriveAssetSource'
 
 // Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID'
@@ -36,6 +37,7 @@ export default defineConfig({
     structureTool(),
     // Additional plugins for enhanced functionality
     unsplashImageAsset(),
+    googleDriveAssetSource(),
     assist(),
     visionTool(),
     // Slug history tracking for vehicle documents
