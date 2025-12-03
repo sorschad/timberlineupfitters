@@ -547,6 +547,17 @@ export const vehicle = defineType({
                   { title: 'Bullet', value: 'bullet' },
                   { title: 'Numbered', value: 'number' }
                 ]
+              }),
+              defineArrayMember({
+                type: 'image',
+                fields: [
+                  defineField({
+                    name: 'alt',
+                    type: 'string',
+                    title: 'Alternative text',
+                    description: 'Important for SEO and accessibility.'
+                  })
+                ]
               })
             ],
             description: 'Optional WYSIWYG text field for overlay text on the cover image.'

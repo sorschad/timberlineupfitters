@@ -10,6 +10,8 @@
 
 import React from 'react'
 import {PortableText, type PortableTextComponents, type PortableTextBlock} from 'next-sanity'
+import Image from 'next/image'
+import {urlForImage} from '@/sanity/lib/utils'
 
 import ResolvedLink from '@/app/components/ResolvedLink'
 
@@ -108,6 +110,65 @@ export default function CustomPortableText({
     marks: {
       link: ({children, value: link}) => {
         return <ResolvedLink link={link}>{children}</ResolvedLink>
+      },
+    },
+    types: {
+      image: ({value}) => {
+        if (!value?.asset) {
+          return null
+        }
+        
+        // Handle both cases: direct URL from GROQ or need to build URL
+        let imageUrlString: string | null = null
+        
+        if (value.asset.url) {
+          // Direct URL from GROQ query
+          imageUrlString = value.asset.url
+        } else if (value.asset._id) {
+          // Try to build URL using urlForImage
+          // Convert _id to _ref format if needed
+          const imageWithRef = {
+            ...value,
+            asset: {
+              ...value.asset,
+              _ref: value.asset._id,
+              _type: 'reference'
+            }
+          }
+          const imageUrl = urlForImage(imageWithRef)
+          imageUrlString = imageUrl?.url() || null
+        } else if (value.asset._ref) {
+          // Has _ref, use urlForImage
+          const imageUrl = urlForImage(value)
+          imageUrlString = imageUrl?.url() || null
+        }
+        
+        if (!imageUrlString) {
+          return null
+        }
+        
+        const alt = value.alt || ''
+        
+        return (
+          <figure className="my-4">
+            <Image
+              src={imageUrlString}
+              alt={alt}
+              width={800}
+              height={600}
+              className="w-full h-auto rounded-lg"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+            {alt && (
+              <figcaption className="mt-2 text-sm text-gray-600 text-center">
+                {alt}
+              </figcaption>
+            )}
+          </figure>
+        )
       },
     },
   }

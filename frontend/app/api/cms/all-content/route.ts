@@ -188,7 +188,13 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
       isBuildCoverImage,
       isBuildTextSummaryBlock,
       isBuildTextSummaryContent,
-      coverImageOverlayText,
+      coverImageOverlayText[]{
+        ...,
+        asset->{
+          _id,
+          url
+        }
+      },
       view,
       tags,
       gridSpan
