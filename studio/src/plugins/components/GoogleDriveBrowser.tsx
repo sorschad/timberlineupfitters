@@ -65,6 +65,7 @@ export function GoogleDriveBrowser(props: AssetSourceComponentProps) {
   const [files, setFiles] = useState<DriveItem[]>([])
   const [error, setError] = useState<string | null>(null)
   const [folderIdInput, setFolderIdInput] = useState<string>('')
+  const [bulkCaption, setBulkCaption] = useState<string>('')
 
   const apiKey = process.env.SANITY_STUDIO_GOOGLE_API_KEY
   const defaultFolderId = process.env.SANITY_STUDIO_GOOGLE_DRIVE_DEFAULT_FOLDER_ID || 'root'
@@ -340,6 +341,24 @@ export function GoogleDriveBrowser(props: AssetSourceComponentProps) {
             title="Refresh to see newly added files and folders"
           />
         </Flex>
+
+        {/* Bulk Caption Input */}
+        <Card padding={3} radius={2} tone="transparent" style={{ border: '1px solid #e5e7eb' }}>
+          <Stack space={2}>
+            <Text size={0} weight="semibold" muted>
+              Bulk Caption (Optional)
+            </Text>
+            <Text size={0} muted>
+              This caption will be applied to all selected images. Leave empty to use file names.
+            </Text>
+            <TextInput
+              value={bulkCaption}
+              onChange={(e) => setBulkCaption(e.currentTarget.value)}
+              placeholder="Enter caption for all images..."
+              fontSize={1}
+            />
+          </Stack>
+        </Card>
 
         {/* Folder Navigation */}
         {defaultFolderId === 'root' && (
