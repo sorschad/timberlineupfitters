@@ -1,6 +1,7 @@
 // schemas/vehicle.ts
 import { defineType, defineField, defineArrayMember } from 'sanity'
 import { BulkImageUploadAction } from '../../components/BulkImageUploadAction'
+import { GalleryWithGoogleDrive } from '../../components/GalleryWithGoogleDrive'
 
 export const vehicle = defineType({
   name: 'vehicle',
@@ -453,6 +454,9 @@ export const vehicle = defineType({
       name: 'gallery',
       title: 'Image Gallery',
       type: 'array',
+      components: {
+        input: GalleryWithGoogleDrive
+      },
       of: [defineArrayMember({
         type: 'image',
         preview: {
