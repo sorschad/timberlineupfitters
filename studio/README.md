@@ -29,7 +29,12 @@ Create a `.env.local` file in the studio directory with:
 
 ```bash
 SANITY_STUDIO_GOOGLE_API_KEY=your_google_api_key_here
+SANITY_STUDIO_GOOGLE_DRIVE_DEFAULT_FOLDER_ID=you_google_drive_folder_id_here
 ```
+
+**Environment Variables:**
+- `SANITY_STUDIO_GOOGLE_API_KEY` (required): Your Google API key from GCP Console
+- `SANITY_STUDIO_GOOGLE_DRIVE_DEFAULT_FOLDER_ID` (optional): Default Google Drive folder ID to open when the asset source loads. If not set, defaults to 'root' (My Drive).
 
 ### 4. Restart Sanity Studio
 After adding the environment variable, restart your Sanity Studio to load the Google Drive integration.

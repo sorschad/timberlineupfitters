@@ -63,12 +63,15 @@ export function GoogleDriveBrowser(props: AssetSourceComponentProps) {
   const {onSelect, onClose} = props
   const [isLoading, setIsLoading] = useState(false)
   const [files, setFiles] = useState<DriveItem[]>([])
-  const [currentFolderId, setCurrentFolderId] = useState<string>('root')
-  const [folderStack, setFolderStack] = useState<string[]>(['root'])
   const [error, setError] = useState<string | null>(null)
   const [folderIdInput, setFolderIdInput] = useState<string>('')
 
   const apiKey = process.env.SANITY_STUDIO_GOOGLE_API_KEY
+  const defaultFolderId = process.env.SANITY_STUDIO_GOOGLE_DRIVE_DEFAULT_FOLDER_ID || 'root'
+  
+  // Initialize with default folder ID from environment variable
+  const [currentFolderId, setCurrentFolderId] = useState<string>(defaultFolderId)
+  const [folderStack, setFolderStack] = useState<string[]>([defaultFolderId])
 
   // Function to load files from current folder
   const loadFiles = useCallback(async () => {
@@ -114,6 +117,31 @@ export function GoogleDriveBrowser(props: AssetSourceComponentProps) {
     loadFiles()
   }, [loadFiles])
 
+  // Auto-refresh when dialog opens and when it regains focus
+  useEffect(() => {
+    const handleFocus = () => {
+      // Refresh files when window regains focus
+      loadFiles()
+    }
+    
+    // Refresh when the browser tab/window becomes visible again
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        loadFiles()
+      }
+    }
+    
+    // Set up event listeners
+    window.addEventListener('focus', handleFocus)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    // Cleanup event listeners on unmount
+    return () => {
+      window.removeEventListener('focus', handleFocus)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [loadFiles])
+
   const handleNavigateToFolder = useCallback(() => {
     if (!folderIdInput.trim()) {
       setError('Please enter a folder ID or share link')
@@ -150,7 +178,7 @@ export function GoogleDriveBrowser(props: AssetSourceComponentProps) {
     setError(null)
 
     try {
-      let downloadUrl = file.webContentLink
+      let downloadUrl: string
       let mimeType = file.mimeType
       let fileName = file.name
 
@@ -177,27 +205,47 @@ export function GoogleDriveBrowser(props: AssetSourceComponentProps) {
                          exportMimeType.includes('presentation') ? 'pptx' :
                          exportMimeType.includes('png') ? 'png' : 'pdf'
         fileName = `${file.name}.${extension}`
-      } else if (!downloadUrl) {
-        // For other files without webContentLink, use the files.get endpoint
+      } else {
+        // For regular files, always use the Drive API endpoint with API key
+        // webContentLink requires OAuth, so we use the API endpoint instead
         downloadUrl = `${GOOGLE_DRIVE_API_BASE}/files/${file.id}?` + new URLSearchParams({
           alt: 'media',
           key: apiKey,
         })
-      } else {
-        // Add API key to existing webContentLink if it doesn't have one
-        const url = new URL(downloadUrl)
-        if (!url.searchParams.has('key')) {
-          url.searchParams.set('key', apiKey)
-          downloadUrl = url.toString()
-        }
       }
 
-      // Download file from Google Drive
-      const response = await fetch(downloadUrl)
+      // Download file from Google Drive using the API endpoint
+      const response = await fetch(downloadUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': mimeType,
+        },
+      })
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}))
-        throw new Error(errorData.error?.message || `Failed to download file: ${response.statusText}`)
+        // Try to get error details from response
+        let errorMessage = `HTTP ${response.status}: ${response.statusText}`
+        try {
+          const errorData = await response.json()
+          if (errorData.error?.message) {
+            errorMessage = errorData.error.message
+          }
+        } catch {
+          // If response is not JSON, use the status text
+          const text = await response.text().catch(() => '')
+          if (text) {
+            errorMessage = text.substring(0, 200)
+          }
+        }
+        
+        // Provide helpful error messages
+        if (response.status === 403) {
+          throw new Error(`Access denied. Make sure the file is shared with "Anyone with the link" permission. ${errorMessage}`)
+        } else if (response.status === 404) {
+          throw new Error(`File not found. The file may have been moved or deleted. ${errorMessage}`)
+        } else {
+          throw new Error(`Failed to download file: ${errorMessage}`)
+        }
       }
 
       const blob = await response.blob()
@@ -212,7 +260,7 @@ export function GoogleDriveBrowser(props: AssetSourceComponentProps) {
           source: {
             name: 'google-drive',
             id: file.id,
-            url: file.webContentLink || downloadUrl,
+            url: downloadUrl,
           },
         },
       }
@@ -220,7 +268,8 @@ export function GoogleDriveBrowser(props: AssetSourceComponentProps) {
       onSelect([asset])
     } catch (err) {
       console.error('Error selecting file:', err)
-      setError(`Failed to import file: ${err instanceof Error ? err.message : 'Unknown error'}`)
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error'
+      setError(`Failed to import file: ${errorMessage}`)
     } finally {
       setIsLoading(false)
     }
@@ -270,10 +319,10 @@ export function GoogleDriveBrowser(props: AssetSourceComponentProps) {
               />
             )}
             <Button
-              text="Home"
+              text="Default Folder"
               onClick={() => {
-                setCurrentFolderId('root')
-                setFolderStack(['root'])
+                setCurrentFolderId(defaultFolderId)
+                setFolderStack([defaultFolderId])
               }}
               mode="ghost"
               fontSize={1}
@@ -282,34 +331,71 @@ export function GoogleDriveBrowser(props: AssetSourceComponentProps) {
               Google Drive
             </Text>
           </Flex>
+          <Button
+            text="Refresh"
+            onClick={loadFiles}
+            mode="ghost"
+            fontSize={1}
+            disabled={isLoading}
+            title="Refresh to see newly added files and folders"
+          />
         </Flex>
 
         {/* Folder Navigation */}
-        <Card padding={3} radius={2} tone="transparent">
-          <Stack space={2}>
-            <Text size={0} weight="semibold" muted>
-              Navigate to Folder (by ID)
-            </Text>
-            <Flex gap={2}>
-              <TextInput
-                value={folderIdInput}
-                onChange={(e) => setFolderIdInput(e.currentTarget.value)}
-                placeholder="Enter folder ID or share link"
-                fontSize={1}
-                style={{flex: 1}}
-              />
-              <Button
-                text="Go"
-                onClick={handleNavigateToFolder}
-                tone="primary"
-                fontSize={1}
-              />
-            </Flex>
-            <Text size={0} muted>
-              Paste a Google Drive folder ID or share link to browse that folder
-            </Text>
-          </Stack>
-        </Card>
+        {defaultFolderId === 'root' && (
+          <Card padding={3} radius={2} tone="transparent">
+            <Stack space={2}>
+              <Text size={0} weight="semibold" muted>
+                Navigate to Folder (by ID)
+              </Text>
+              <Flex gap={2}>
+                <TextInput
+                  value={folderIdInput}
+                  onChange={(e) => setFolderIdInput(e.currentTarget.value)}
+                  placeholder="Enter folder ID or share link"
+                  fontSize={1}
+                  style={{flex: 1}}
+                />
+                <Button
+                  text="Go"
+                  onClick={handleNavigateToFolder}
+                  tone="primary"
+                  fontSize={1}
+                />
+              </Flex>
+              <Text size={0} muted>
+                Paste a Google Drive folder ID or share link to browse that folder
+              </Text>
+            </Stack>
+          </Card>
+        )}
+        {defaultFolderId !== 'root' && (
+          <Card padding={3} radius={2} tone="transparent">
+            <Stack space={2}>
+              <Text size={0} weight="semibold" muted>
+                Navigate to Different Folder
+              </Text>
+              <Flex gap={2}>
+                <TextInput
+                  value={folderIdInput}
+                  onChange={(e) => setFolderIdInput(e.currentTarget.value)}
+                  placeholder="Enter folder ID or share link"
+                  fontSize={1}
+                  style={{flex: 1}}
+                />
+                <Button
+                  text="Go"
+                  onClick={handleNavigateToFolder}
+                  tone="primary"
+                  fontSize={1}
+                />
+              </Flex>
+              <Text size={0} muted>
+                Currently viewing default folder. Enter a different folder ID or share link to navigate.
+              </Text>
+            </Stack>
+          </Card>
+        )}
 
         {/* Error message */}
         {error && (
