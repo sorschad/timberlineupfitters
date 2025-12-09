@@ -935,7 +935,8 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
         }
       },
       _type == "infoSection" => {
-        content[]{
+        contentType,
+        richTextContent[]{
           ...,
           markDefs[]{
             ...,
@@ -944,7 +945,116 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
               "brand": brand->slug.current
             }
           }
-        }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
+      },
+      _type == "textBlock" => {
+        contentType,
+        richTextContent[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
+      },
+      _type == "twoColumnLayout" => {
+        leftColumnContentType,
+        leftColumnRichText[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        },
+        leftColumnMarkdown,
+        leftColumnHtml,
+        leftColumnPlainText,
+        rightColumnContentType,
+        rightColumnRichText[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        },
+        rightColumnMarkdown,
+        rightColumnHtml,
+        rightColumnPlainText
+      },
+      _type == "threeColumnLayout" => {
+        leftColumnContentType,
+        leftColumnRichText[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        },
+        leftColumnMarkdown,
+        leftColumnHtml,
+        leftColumnPlainText,
+        middleColumnContentType,
+        middleColumnRichText[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        },
+        middleColumnMarkdown,
+        middleColumnHtml,
+        middleColumnPlainText,
+        rightColumnContentType,
+        rightColumnRichText[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        },
+        rightColumnMarkdown,
+        rightColumnHtml,
+        rightColumnPlainText
+      },
+      _type == "fullWidthLayout" => {
+        contentType,
+        richTextContent[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
       }
     },
     seo{

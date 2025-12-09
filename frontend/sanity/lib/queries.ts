@@ -102,14 +102,103 @@ export const getPageQuery = defineQuery(`
         ${linkFields},
       },
       _type == "infoSection" => {
-        content[]{
+        contentType,
+        richTextContent[]{
           ...,
           markDefs[]{
             ...,
             ${linkReference}
           }
-        }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
       },
+      _type == "textBlock" => {
+        contentType,
+        richTextContent[]{
+          ...,
+          markDefs[]{
+            ...,
+            ${linkReference}
+          }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
+      },
+      _type == "twoColumnLayout" => {
+        leftColumnContentType,
+        leftColumnRichText[]{
+          ...,
+          markDefs[]{
+            ...,
+            ${linkReference}
+          }
+        },
+        leftColumnMarkdown,
+        leftColumnHtml,
+        leftColumnPlainText,
+        rightColumnContentType,
+        rightColumnRichText[]{
+          ...,
+          markDefs[]{
+            ...,
+            ${linkReference}
+          }
+        },
+        rightColumnMarkdown,
+        rightColumnHtml,
+        rightColumnPlainText
+      },
+      _type == "threeColumnLayout" => {
+        leftColumnContentType,
+        leftColumnRichText[]{
+          ...,
+          markDefs[]{
+            ...,
+            ${linkReference}
+          }
+        },
+        leftColumnMarkdown,
+        leftColumnHtml,
+        leftColumnPlainText,
+        middleColumnContentType,
+        middleColumnRichText[]{
+          ...,
+          markDefs[]{
+            ...,
+            ${linkReference}
+          }
+        },
+        middleColumnMarkdown,
+        middleColumnHtml,
+        middleColumnPlainText,
+        rightColumnContentType,
+        rightColumnRichText[]{
+          ...,
+          markDefs[]{
+            ...,
+            ${linkReference}
+          }
+        },
+        rightColumnMarkdown,
+        rightColumnHtml,
+        rightColumnPlainText
+      },
+      _type == "fullWidthLayout" => {
+        contentType,
+        richTextContent[]{
+          ...,
+          markDefs[]{
+            ...,
+            ${linkReference}
+          }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
+      }
     },
   }
 `)

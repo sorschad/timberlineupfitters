@@ -1,10 +1,18 @@
+import ContentRenderer from '@/app/components/ContentRenderer'
 import {type PortableTextBlock} from 'next-sanity'
 
-import PortableText from '@/app/components/PortableText'
-import {InfoSection} from '@/sanity.types'
-
 type InfoProps = {
-  block: InfoSection
+  block: {
+    _key: string
+    _type: 'infoSection'
+    heading?: string
+    subheading?: string
+    contentType?: 'richText' | 'markdown' | 'html' | 'plainText'
+    richTextContent?: PortableTextBlock[]
+    markdownContent?: string
+    htmlContent?: string
+    plainTextContent?: string
+  }
   index: number
 }
 
@@ -21,9 +29,14 @@ export default function CTA({block}: InfoProps) {
           </span>
         )}
         <div className="mt-4">
-          {block?.content?.length && (
-            <PortableText className="" value={block.content as PortableTextBlock[]} />
-          )}
+          <ContentRenderer
+            contentType={block?.contentType || 'richText'}
+            richTextContent={block?.richTextContent}
+            markdownContent={block?.markdownContent}
+            htmlContent={block?.htmlContent}
+            plainTextContent={block?.plainTextContent}
+            className="prose prose-lg max-w-none"
+          />
         </div>
       </div>
     </div>

@@ -1,25 +1,21 @@
 import {defineField, defineType} from 'sanity'
-import {TextIcon} from '@sanity/icons'
+import {DocumentTextIcon} from '@sanity/icons'
 
 /**
- * Info Section - Content section with heading and subheading
+ * Text Block - Repeatable text content block for Terms, Privacy Policy, etc.
  * Supports Rich Text (WYSIWYG), Markdown, HTML, and Plain Text
  */
-export const infoSection = defineType({
-  name: 'infoSection',
-  title: 'Info Section',
+export const textBlock = defineType({
+  name: 'textBlock',
+  title: 'Text Block',
   type: 'object',
-  icon: TextIcon,
+  icon: DocumentTextIcon,
   fields: [
     defineField({
       name: 'heading',
       title: 'Heading',
       type: 'string',
-    }),
-    defineField({
-      name: 'subheading',
-      title: 'Subheading',
-      type: 'string',
+      description: 'Optional heading for this text section',
     }),
     defineField({
       name: 'contentType',
@@ -70,13 +66,29 @@ export const infoSection = defineType({
   preview: {
     select: {
       title: 'heading',
-      subtitle: 'subheading',
+      contentType: 'contentType',
+      richText: 'richTextContent',
+      markdown: 'markdownContent',
+      html: 'htmlContent',
+      plainText: 'plainTextContent',
     },
-    prepare({title}) {
+    prepare({title, contentType, richText, markdown, html, plainText}) {
+      let preview = 'No content'
+      if (contentType === 'richText' && richText?.[0]) {
+        preview = richText[0]?.children?.[0]?.text || 'Rich text'
+      } else if (contentType === 'markdown' && markdown) {
+        preview = markdown.length > 50 ? `${markdown.substring(0, 50)}...` : markdown
+      } else if (contentType === 'html' && html) {
+        preview = html.length > 50 ? `${html.substring(0, 50)}...` : html
+      } else if (contentType === 'plainText' && plainText) {
+        preview = plainText.length > 50 ? `${plainText.substring(0, 50)}...` : plainText
+      }
+
       return {
-        title: title || 'Untitled Info Section',
-        subtitle: 'Info Section',
+        title: title || 'Text Block',
+        subtitle: `${contentType || 'richText'}: ${preview}`,
       }
     },
   },
 })
+
