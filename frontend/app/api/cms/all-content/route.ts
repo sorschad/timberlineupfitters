@@ -945,6 +945,84 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
             }
           }
         }
+      },
+      _type == "textBlock" => {
+        content[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        }
+      },
+      _type == "twoColumnLayout" => {
+        leftColumn[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        },
+        rightColumn[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        }
+      },
+      _type == "threeColumnLayout" => {
+        leftColumn[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        },
+        middleColumn[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        },
+        rightColumn[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        }
+      },
+      _type == "fullWidthLayout" => {
+        content[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "link" => {
+              "page": page->slug.current,
+              "brand": brand->slug.current
+            }
+          }
+        }
       }
     },
     seo{

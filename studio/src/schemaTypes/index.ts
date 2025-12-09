@@ -7,6 +7,10 @@ import {teamMember} from './documents/teamMember'
 import {packageDocument} from './documents/package'
 import {callToAction} from './objects/callToAction'
 import {infoSection} from './objects/infoSection'
+import {textBlock} from './objects/textBlock'
+import {twoColumnLayout} from './objects/twoColumnLayout'
+import {threeColumnLayout} from './objects/threeColumnLayout'
+import {fullWidthLayout} from './objects/fullWidthLayout'
 import {settings} from './singletons/settings'
 import {link} from './objects/link'
 import {blockContent} from './objects/blockContent'
@@ -28,5 +32,9 @@ export const schemaTypes = [
   blockContent,
   infoSection,
   callToAction,
+  textBlock,
+  twoColumnLayout,
+  threeColumnLayout,
+  fullWidthLayout,
   link,
 ]

@@ -2,6 +2,10 @@ import React from 'react'
 
 import Cta from '@/app/components/Cta'
 import Info from '@/app/components/InfoSection'
+import TextBlock from '@/app/components/TextBlock'
+import TwoColumnLayout from '@/app/components/TwoColumnLayout'
+import ThreeColumnLayout from '@/app/components/ThreeColumnLayout'
+import FullWidthLayout from '@/app/components/FullWidthLayout'
 import {dataAttr} from '@/sanity/lib/utils'
 
 type BlocksType = {
@@ -23,6 +27,10 @@ type BlockProps = {
 const Blocks: BlocksType = {
   callToAction: Cta,
   infoSection: Info,
+  textBlock: TextBlock,
+  twoColumnLayout: TwoColumnLayout,
+  threeColumnLayout: ThreeColumnLayout,
+  fullWidthLayout: FullWidthLayout,
 }
 
 /**
