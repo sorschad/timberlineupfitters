@@ -935,7 +935,8 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
         }
       },
       _type == "infoSection" => {
-        content[]{
+        contentType,
+        richTextContent[]{
           ...,
           markDefs[]{
             ...,
@@ -944,10 +945,14 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
               "brand": brand->slug.current
             }
           }
-        }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
       },
       _type == "textBlock" => {
-        content[]{
+        contentType,
+        richTextContent[]{
           ...,
           markDefs[]{
             ...,
@@ -956,10 +961,14 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
               "brand": brand->slug.current
             }
           }
-        }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
       },
       _type == "twoColumnLayout" => {
-        leftColumn[]{
+        leftColumnContentType,
+        leftColumnRichText[]{
           ...,
           markDefs[]{
             ...,
@@ -969,7 +978,11 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
             }
           }
         },
-        rightColumn[]{
+        leftColumnMarkdown,
+        leftColumnHtml,
+        leftColumnPlainText,
+        rightColumnContentType,
+        rightColumnRichText[]{
           ...,
           markDefs[]{
             ...,
@@ -978,10 +991,14 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
               "brand": brand->slug.current
             }
           }
-        }
+        },
+        rightColumnMarkdown,
+        rightColumnHtml,
+        rightColumnPlainText
       },
       _type == "threeColumnLayout" => {
-        leftColumn[]{
+        leftColumnContentType,
+        leftColumnRichText[]{
           ...,
           markDefs[]{
             ...,
@@ -991,7 +1008,11 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
             }
           }
         },
-        middleColumn[]{
+        leftColumnMarkdown,
+        leftColumnHtml,
+        leftColumnPlainText,
+        middleColumnContentType,
+        middleColumnRichText[]{
           ...,
           markDefs[]{
             ...,
@@ -1001,7 +1022,11 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
             }
           }
         },
-        rightColumn[]{
+        middleColumnMarkdown,
+        middleColumnHtml,
+        middleColumnPlainText,
+        rightColumnContentType,
+        rightColumnRichText[]{
           ...,
           markDefs[]{
             ...,
@@ -1010,10 +1035,14 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
               "brand": brand->slug.current
             }
           }
-        }
+        },
+        rightColumnMarkdown,
+        rightColumnHtml,
+        rightColumnPlainText
       },
       _type == "fullWidthLayout" => {
-        content[]{
+        contentType,
+        richTextContent[]{
           ...,
           markDefs[]{
             ...,
@@ -1022,7 +1051,10 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
               "brand": brand->slug.current
             }
           }
-        }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
       }
     },
     seo{

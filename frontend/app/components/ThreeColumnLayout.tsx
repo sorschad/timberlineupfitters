@@ -1,15 +1,26 @@
+import ContentRenderer from '@/app/components/ContentRenderer'
 import {type PortableTextBlock} from 'next-sanity'
-
-import PortableText from '@/app/components/PortableText'
 
 type ThreeColumnLayoutProps = {
   block: {
     _key: string
     _type: 'threeColumnLayout'
     heading?: string
-    leftColumn?: PortableTextBlock[]
-    middleColumn?: PortableTextBlock[]
-    rightColumn?: PortableTextBlock[]
+    leftColumnContentType?: 'richText' | 'markdown' | 'html' | 'plainText'
+    leftColumnRichText?: PortableTextBlock[]
+    leftColumnMarkdown?: string
+    leftColumnHtml?: string
+    leftColumnPlainText?: string
+    middleColumnContentType?: 'richText' | 'markdown' | 'html' | 'plainText'
+    middleColumnRichText?: PortableTextBlock[]
+    middleColumnMarkdown?: string
+    middleColumnHtml?: string
+    middleColumnPlainText?: string
+    rightColumnContentType?: 'richText' | 'markdown' | 'html' | 'plainText'
+    rightColumnRichText?: PortableTextBlock[]
+    rightColumnMarkdown?: string
+    rightColumnHtml?: string
+    rightColumnPlainText?: string
     gap?: 'small' | 'medium' | 'large'
   }
   index: number
@@ -42,25 +53,34 @@ export default function ThreeColumnLayout({block}: ThreeColumnLayoutProps) {
       )}
       <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ${gapClass}`}>
         <div className="w-full">
-          <div className="prose prose-lg max-w-none">
-            {block?.leftColumn?.length && (
-              <PortableText value={block.leftColumn as PortableTextBlock[]} />
-            )}
-          </div>
+          <ContentRenderer
+            contentType={block?.leftColumnContentType || 'richText'}
+            richTextContent={block?.leftColumnRichText}
+            markdownContent={block?.leftColumnMarkdown}
+            htmlContent={block?.leftColumnHtml}
+            plainTextContent={block?.leftColumnPlainText}
+            className="prose prose-lg max-w-none"
+          />
         </div>
         <div className="w-full">
-          <div className="prose prose-lg max-w-none">
-            {block?.middleColumn?.length && (
-              <PortableText value={block.middleColumn as PortableTextBlock[]} />
-            )}
-          </div>
+          <ContentRenderer
+            contentType={block?.middleColumnContentType || 'richText'}
+            richTextContent={block?.middleColumnRichText}
+            markdownContent={block?.middleColumnMarkdown}
+            htmlContent={block?.middleColumnHtml}
+            plainTextContent={block?.middleColumnPlainText}
+            className="prose prose-lg max-w-none"
+          />
         </div>
         <div className="w-full">
-          <div className="prose prose-lg max-w-none">
-            {block?.rightColumn?.length && (
-              <PortableText value={block.rightColumn as PortableTextBlock[]} />
-            )}
-          </div>
+          <ContentRenderer
+            contentType={block?.rightColumnContentType || 'richText'}
+            richTextContent={block?.rightColumnRichText}
+            markdownContent={block?.rightColumnMarkdown}
+            htmlContent={block?.rightColumnHtml}
+            plainTextContent={block?.rightColumnPlainText}
+            className="prose prose-lg max-w-none"
+          />
         </div>
       </div>
     </div>

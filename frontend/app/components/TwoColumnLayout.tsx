@@ -1,14 +1,21 @@
+import ContentRenderer from '@/app/components/ContentRenderer'
 import {type PortableTextBlock} from 'next-sanity'
-
-import PortableText from '@/app/components/PortableText'
 
 type TwoColumnLayoutProps = {
   block: {
     _key: string
     _type: 'twoColumnLayout'
     heading?: string
-    leftColumn?: PortableTextBlock[]
-    rightColumn?: PortableTextBlock[]
+    leftColumnContentType?: 'richText' | 'markdown' | 'html' | 'plainText'
+    leftColumnRichText?: PortableTextBlock[]
+    leftColumnMarkdown?: string
+    leftColumnHtml?: string
+    leftColumnPlainText?: string
+    rightColumnContentType?: 'richText' | 'markdown' | 'html' | 'plainText'
+    rightColumnRichText?: PortableTextBlock[]
+    rightColumnMarkdown?: string
+    rightColumnHtml?: string
+    rightColumnPlainText?: string
     columnRatio?: 'equal' | 'wideLeft' | 'wideRight'
     reverseOnMobile?: boolean
     gap?: 'small' | 'medium' | 'large'
@@ -69,18 +76,24 @@ export default function TwoColumnLayout({block}: TwoColumnLayoutProps) {
       )}
       <div className={`flex ${orderClass} ${gapClass}`}>
         <div className={columnClasses.left}>
-          <div className="prose prose-lg max-w-none">
-            {block?.leftColumn?.length && (
-              <PortableText value={block.leftColumn as PortableTextBlock[]} />
-            )}
-          </div>
+          <ContentRenderer
+            contentType={block?.leftColumnContentType || 'richText'}
+            richTextContent={block?.leftColumnRichText}
+            markdownContent={block?.leftColumnMarkdown}
+            htmlContent={block?.leftColumnHtml}
+            plainTextContent={block?.leftColumnPlainText}
+            className="prose prose-lg max-w-none"
+          />
         </div>
         <div className={columnClasses.right}>
-          <div className="prose prose-lg max-w-none">
-            {block?.rightColumn?.length && (
-              <PortableText value={block.rightColumn as PortableTextBlock[]} />
-            )}
-          </div>
+          <ContentRenderer
+            contentType={block?.rightColumnContentType || 'richText'}
+            richTextContent={block?.rightColumnRichText}
+            markdownContent={block?.rightColumnMarkdown}
+            htmlContent={block?.rightColumnHtml}
+            plainTextContent={block?.rightColumnPlainText}
+            className="prose prose-lg max-w-none"
+          />
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
+import ContentRenderer from '@/app/components/ContentRenderer'
 import {type PortableTextBlock} from 'next-sanity'
-
-import PortableText from '@/app/components/PortableText'
 
 type FullWidthLayoutProps = {
   block: {
@@ -8,7 +7,11 @@ type FullWidthLayoutProps = {
     _type: 'fullWidthLayout'
     heading?: string
     subheading?: string
-    content?: PortableTextBlock[]
+    contentType?: 'richText' | 'markdown' | 'html' | 'plainText'
+    richTextContent?: PortableTextBlock[]
+    markdownContent?: string
+    htmlContent?: string
+    plainTextContent?: string
     maxWidth?: 'full' | '7xl' | '6xl' | '4xl' | '2xl'
     backgroundStyle?: 'none' | 'light' | 'dark' | 'primary'
     padding?: 'none' | 'small' | 'medium' | 'large'
@@ -86,11 +89,14 @@ export default function FullWidthLayout({block}: FullWidthLayoutProps) {
               {block.subheading}
             </p>
           )}
-          <div className="prose prose-lg max-w-none">
-            {block?.content?.length && (
-              <PortableText value={block.content as PortableTextBlock[]} />
-            )}
-          </div>
+          <ContentRenderer
+            contentType={block?.contentType || 'richText'}
+            richTextContent={block?.richTextContent}
+            markdownContent={block?.markdownContent}
+            htmlContent={block?.htmlContent}
+            plainTextContent={block?.plainTextContent}
+            className="prose prose-lg max-w-none"
+          />
         </div>
       </div>
     </div>

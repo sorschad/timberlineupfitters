@@ -1,13 +1,16 @@
+import ContentRenderer from '@/app/components/ContentRenderer'
 import {type PortableTextBlock} from 'next-sanity'
-
-import PortableText from '@/app/components/PortableText'
 
 type TextBlockProps = {
   block: {
     _key: string
     _type: 'textBlock'
     heading?: string
-    content: PortableTextBlock[]
+    contentType?: 'richText' | 'markdown' | 'html' | 'plainText'
+    richTextContent?: PortableTextBlock[]
+    markdownContent?: string
+    htmlContent?: string
+    plainTextContent?: string
   }
   index: number
 }
@@ -21,11 +24,14 @@ export default function TextBlock({block}: TextBlockProps) {
             {block.heading}
           </h2>
         )}
-        <div className="prose prose-lg max-w-none">
-          {block?.content?.length && (
-            <PortableText className="" value={block.content as PortableTextBlock[]} />
-          )}
-        </div>
+        <ContentRenderer
+          contentType={block?.contentType || 'richText'}
+          richTextContent={block?.richTextContent}
+          markdownContent={block?.markdownContent}
+          htmlContent={block?.htmlContent}
+          plainTextContent={block?.plainTextContent}
+          className="prose prose-lg max-w-none"
+        />
       </div>
     </div>
   )

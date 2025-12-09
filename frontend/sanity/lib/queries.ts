@@ -102,70 +102,102 @@ export const getPageQuery = defineQuery(`
         ${linkFields},
       },
       _type == "infoSection" => {
-        content[]{
+        contentType,
+        richTextContent[]{
           ...,
           markDefs[]{
             ...,
             ${linkReference}
           }
-        }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
       },
       _type == "textBlock" => {
-        content[]{
+        contentType,
+        richTextContent[]{
           ...,
           markDefs[]{
             ...,
             ${linkReference}
           }
-        }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
       },
       _type == "twoColumnLayout" => {
-        leftColumn[]{
+        leftColumnContentType,
+        leftColumnRichText[]{
           ...,
           markDefs[]{
             ...,
             ${linkReference}
           }
         },
-        rightColumn[]{
+        leftColumnMarkdown,
+        leftColumnHtml,
+        leftColumnPlainText,
+        rightColumnContentType,
+        rightColumnRichText[]{
           ...,
           markDefs[]{
             ...,
             ${linkReference}
           }
-        }
+        },
+        rightColumnMarkdown,
+        rightColumnHtml,
+        rightColumnPlainText
       },
       _type == "threeColumnLayout" => {
-        leftColumn[]{
+        leftColumnContentType,
+        leftColumnRichText[]{
           ...,
           markDefs[]{
             ...,
             ${linkReference}
           }
         },
-        middleColumn[]{
+        leftColumnMarkdown,
+        leftColumnHtml,
+        leftColumnPlainText,
+        middleColumnContentType,
+        middleColumnRichText[]{
           ...,
           markDefs[]{
             ...,
             ${linkReference}
           }
         },
-        rightColumn[]{
+        middleColumnMarkdown,
+        middleColumnHtml,
+        middleColumnPlainText,
+        rightColumnContentType,
+        rightColumnRichText[]{
           ...,
           markDefs[]{
             ...,
             ${linkReference}
           }
-        }
+        },
+        rightColumnMarkdown,
+        rightColumnHtml,
+        rightColumnPlainText
       },
       _type == "fullWidthLayout" => {
-        content[]{
+        contentType,
+        richTextContent[]{
           ...,
           markDefs[]{
             ...,
             ${linkReference}
           }
-        }
+        },
+        markdownContent,
+        htmlContent,
+        plainTextContent
       }
     },
   }
