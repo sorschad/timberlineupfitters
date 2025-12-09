@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {ColumnsIcon} from '@sanity/icons'
+import {ThLargeIcon} from '@sanity/icons'
 
 /**
  * Two Column Layout - Responsive two-column layout block
@@ -8,7 +8,7 @@ export const twoColumnLayout = defineType({
   name: 'twoColumnLayout',
   title: 'Two Column Layout',
   type: 'object',
-  icon: ColumnsIcon,
+  icon: ThLargeIcon,
   fields: [
     defineField({
       name: 'heading',

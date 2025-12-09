@@ -111,6 +111,310 @@
     }
   },
   {
+    "name": "fullWidthLayout",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "fullWidthLayout"
+          }
+        },
+        "heading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "subheading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "content": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "blockContent"
+          },
+          "optional": true
+        },
+        "maxWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "full"
+              },
+              {
+                "type": "string",
+                "value": "7xl"
+              },
+              {
+                "type": "string",
+                "value": "6xl"
+              },
+              {
+                "type": "string",
+                "value": "4xl"
+              },
+              {
+                "type": "string",
+                "value": "2xl"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "backgroundStyle": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "light"
+              },
+              {
+                "type": "string",
+                "value": "dark"
+              },
+              {
+                "type": "string",
+                "value": "primary"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "padding": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "small"
+              },
+              {
+                "type": "string",
+                "value": "medium"
+              },
+              {
+                "type": "string",
+                "value": "large"
+              }
+            ]
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "threeColumnLayout",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "threeColumnLayout"
+          }
+        },
+        "heading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "leftColumn": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "blockContent"
+          },
+          "optional": true
+        },
+        "middleColumn": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "blockContent"
+          },
+          "optional": true
+        },
+        "rightColumn": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "blockContent"
+          },
+          "optional": true
+        },
+        "gap": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "small"
+              },
+              {
+                "type": "string",
+                "value": "medium"
+              },
+              {
+                "type": "string",
+                "value": "large"
+              }
+            ]
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "twoColumnLayout",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "twoColumnLayout"
+          }
+        },
+        "heading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "leftColumn": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "blockContent"
+          },
+          "optional": true
+        },
+        "rightColumn": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "blockContent"
+          },
+          "optional": true
+        },
+        "columnRatio": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "equal"
+              },
+              {
+                "type": "string",
+                "value": "wideLeft"
+              },
+              {
+                "type": "string",
+                "value": "wideRight"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "reverseOnMobile": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
+        "gap": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "small"
+              },
+              {
+                "type": "string",
+                "value": "medium"
+              },
+              {
+                "type": "string",
+                "value": "large"
+              }
+            ]
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "textBlock",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "textBlock"
+          }
+        },
+        "heading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "content": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "blockContent"
+          },
+          "optional": false
+        }
+      }
+    }
+  },
+  {
     "name": "callToAction",
     "type": "type",
     "value": {
@@ -4272,6 +4576,66 @@
                 "rest": {
                   "type": "inline",
                   "name": "infoSection"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "textBlock"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "twoColumnLayout"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "threeColumnLayout"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "fullWidthLayout"
                 }
               }
             ]

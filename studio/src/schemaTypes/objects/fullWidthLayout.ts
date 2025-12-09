@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {MaximizeIcon} from '@sanity/icons'
+import {DocumentIcon} from '@sanity/icons'
 
 /**
  * Full Width Layout - Full-width content block with optional background
@@ -8,7 +8,7 @@ export const fullWidthLayout = defineType({
   name: 'fullWidthLayout',
   title: 'Full Width Layout',
   type: 'object',
-  icon: MaximizeIcon,
+  icon: DocumentIcon,
   fields: [
     defineField({
       name: 'heading',
