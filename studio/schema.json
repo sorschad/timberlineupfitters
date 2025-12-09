@@ -137,11 +137,57 @@
           },
           "optional": true
         },
-        "content": {
+        "contentType": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "richText"
+              },
+              {
+                "type": "string",
+                "value": "markdown"
+              },
+              {
+                "type": "string",
+                "value": "html"
+              },
+              {
+                "type": "string",
+                "value": "plainText"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "richTextContent": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
             "name": "blockContent"
+          },
+          "optional": true
+        },
+        "markdownContent": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "htmlContent": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "plainTextContent": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         },
@@ -247,7 +293,32 @@
           },
           "optional": true
         },
-        "leftColumn": {
+        "leftColumnContentType": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "richText"
+              },
+              {
+                "type": "string",
+                "value": "markdown"
+              },
+              {
+                "type": "string",
+                "value": "html"
+              },
+              {
+                "type": "string",
+                "value": "plainText"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "leftColumnRichText": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
@@ -255,7 +326,53 @@
           },
           "optional": true
         },
-        "middleColumn": {
+        "leftColumnMarkdown": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "leftColumnHtml": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "leftColumnPlainText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "middleColumnContentType": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "richText"
+              },
+              {
+                "type": "string",
+                "value": "markdown"
+              },
+              {
+                "type": "string",
+                "value": "html"
+              },
+              {
+                "type": "string",
+                "value": "plainText"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "middleColumnRichText": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
@@ -263,11 +380,78 @@
           },
           "optional": true
         },
-        "rightColumn": {
+        "middleColumnMarkdown": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "middleColumnHtml": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "middleColumnPlainText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "rightColumnContentType": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "richText"
+              },
+              {
+                "type": "string",
+                "value": "markdown"
+              },
+              {
+                "type": "string",
+                "value": "html"
+              },
+              {
+                "type": "string",
+                "value": "plainText"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "rightColumnRichText": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
             "name": "blockContent"
+          },
+          "optional": true
+        },
+        "rightColumnMarkdown": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "rightColumnHtml": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "rightColumnPlainText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         },
@@ -315,7 +499,32 @@
           },
           "optional": true
         },
-        "leftColumn": {
+        "leftColumnContentType": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "richText"
+              },
+              {
+                "type": "string",
+                "value": "markdown"
+              },
+              {
+                "type": "string",
+                "value": "html"
+              },
+              {
+                "type": "string",
+                "value": "plainText"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "leftColumnRichText": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
@@ -323,11 +532,78 @@
           },
           "optional": true
         },
-        "rightColumn": {
+        "leftColumnMarkdown": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "leftColumnHtml": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "leftColumnPlainText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "rightColumnContentType": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "richText"
+              },
+              {
+                "type": "string",
+                "value": "markdown"
+              },
+              {
+                "type": "string",
+                "value": "html"
+              },
+              {
+                "type": "string",
+                "value": "plainText"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "rightColumnRichText": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
             "name": "blockContent"
+          },
+          "optional": true
+        },
+        "rightColumnMarkdown": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "rightColumnHtml": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "rightColumnPlainText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         },
@@ -403,13 +679,59 @@
           },
           "optional": true
         },
-        "content": {
+        "contentType": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "richText"
+              },
+              {
+                "type": "string",
+                "value": "markdown"
+              },
+              {
+                "type": "string",
+                "value": "html"
+              },
+              {
+                "type": "string",
+                "value": "plainText"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "richTextContent": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
             "name": "blockContent"
           },
-          "optional": false
+          "optional": true
+        },
+        "markdownContent": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "htmlContent": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "plainTextContent": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
         }
       }
     }
@@ -486,11 +808,57 @@
           },
           "optional": true
         },
-        "content": {
+        "contentType": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "richText"
+              },
+              {
+                "type": "string",
+                "value": "markdown"
+              },
+              {
+                "type": "string",
+                "value": "html"
+              },
+              {
+                "type": "string",
+                "value": "plainText"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "richTextContent": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
             "name": "blockContent"
+          },
+          "optional": true
+        },
+        "markdownContent": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "htmlContent": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "plainTextContent": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         }
