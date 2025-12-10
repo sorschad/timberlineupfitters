@@ -1,0 +1,198 @@
+[
+  {
+    "_createdAt": "2025-10-01T17:14:21Z",
+    "_id": "6254c499-533d-4fa9-9645-b7cf3499d3c0",
+    "_rev": "kyM5SM6pgmmk6pzYM4qtIH",
+    "_system": {
+      "base": {
+        "id": "6254c499-533d-4fa9-9645-b7cf3499d3c0",
+        "rev": "o1s1H9EbIWJQn22Jk2BTq5"
+      }
+    },
+    "_type": "page",
+    "_updatedAt": "2025-10-28T20:48:45Z",
+    "heading": "Our Off Road Heritage",
+    "heroBackgroundImages": [
+      {
+        "_key": "8b7dbcc1868f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e6ddcd6e085420f9ddc61a56c06383091bc7a709-2358x1416-webp",
+          "_type": "reference"
+        }
+      }
+    ],
+    "name": "Heritage",
+    "slug": {
+      "_type": "slug",
+      "current": "heritage"
+    },
+    "subheading": "We are Off Road "
+  },
+  {
+    "_createdAt": "2025-09-24T14:07:01Z",
+    "_id": "66e11e1e-3970-47d0-8df9-402a7f420dfb",
+    "_rev": "4pQNGijWxc7XslGPDDrEsj",
+    "_system": {
+      "base": {
+        "id": "66e11e1e-3970-47d0-8df9-402a7f420dfb",
+        "rev": "4pQNGijWxc7XslGPDDrEU3"
+      }
+    },
+    "_type": "page",
+    "_updatedAt": "2025-12-09T21:21:20Z",
+    "heading": "Warranty",
+    "name": "Warranty",
+    "pageBuilder": [
+      {
+        "_key": "d3c17e71e22a",
+        "_type": "infoSection",
+        "contentType": "html",
+        "htmlContent": "Lorem Ipsum dolor sit amet......."
+      }
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "portal/warranty"
+    },
+    "subheading": "Warranty Program Information and Resources"
+  },
+  {
+    "_createdAt": "2025-10-07T17:44:36Z",
+    "_id": "e9bf4e7e-2233-4f06-a8f8-53f4fa2f47c1",
+    "_rev": "qf2UbyWwLrt4Xbl2xi8BAp",
+    "_system": {
+      "base": {
+        "id": "e9bf4e7e-2233-4f06-a8f8-53f4fa2f47c1",
+        "rev": "okq71qNZBzH4UhgUKhZ0wL"
+      }
+    },
+    "_type": "page",
+    "_updatedAt": "2025-11-05T15:34:35Z",
+    "heading": "Homepage",
+    "heroBackgroundImages": [
+      {
+        "_key": "2a2b703e0796",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-fcbf11e4a9976be224952fd13b7dfbe4d2a4251d-7230x4052-png",
+          "_type": "reference"
+        },
+        "title": "Built Bold, Styled Smarter."
+      },
+      {
+        "_key": "db40fc5478c5",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a6aa98771a16cbeddcb575a9298c7e835247fc1e-3840x2160-png",
+          "_type": "reference"
+        },
+        "title": "Command every surface"
+      },
+      {
+        "_key": "6837365ce3a2",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a0e075968288ddaf367f7fa87d222c4e38e040d0-9871x5364-png",
+          "_type": "reference"
+        },
+        "title": "THE Ocean "
+      },
+      {
+        "_key": "938084851747",
+        "_type": "image",
+        "alt": "Timberline Upfitters Off-road Packages and Options for Truck & SUV Builds",
+        "asset": {
+          "_ref": "image-28a37cbad7b23bb573cb7396d1fca7128b8ae039-8410x4672-png",
+          "_type": "reference"
+        },
+        "subtitle": "Crafted builds for exploration, performance, and style",
+        "title": "PICK AN ADVENTURE"
+      },
+      {
+        "_key": "f4910fa21039",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b3282a7136ea9ff80d26f36a70496260b4e939a8-8410x4958-png",
+          "_type": "reference"
+        },
+        "title": "Overlook"
+      }
+    ],
+    "name": "Homepage",
+    "slug": {
+      "_type": "slug",
+      "current": "/"
+    },
+    "subheading": "Subtitle test on homepage"
+  },
+  {
+    "_createdAt": "2025-12-09T21:32:58Z",
+    "_id": "f15af67c-14de-4e0c-8f11-a21cae0e9747",
+    "_rev": "4pQNGijWxc7XslGPDDt4eM",
+    "_system": {
+      "base": {
+        "id": "f15af67c-14de-4e0c-8f11-a21cae0e9747",
+        "rev": "sM7n53OMIcIIWKUP4kJbcm"
+      }
+    },
+    "_type": "page",
+    "_updatedAt": "2025-12-09T21:34:43Z",
+    "heading": "Dashboard",
+    "name": "Dealer Portal",
+    "pageBuilder": [
+      {
+        "_key": "754426e78ec6",
+        "_type": "infoSection",
+        "contentType": "html",
+        "htmlContent": "<h1>Just an example header</h1>\n<p>You made it to the authenticated portal for Dealer!</p>"
+      }
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "portal/dashboard"
+    }
+  },
+  {
+    "_createdAt": "2025-09-24T14:08:20Z",
+    "_id": "f334da50-9221-4ab2-aef7-f6f7a445a838",
+    "_rev": "sM7n53OMIcIIWKUP4kGypi",
+    "_system": {
+      "base": {
+        "id": "f334da50-9221-4ab2-aef7-f6f7a445a838",
+        "rev": "eKxU9gPvYyma5GEgR6Nlyv"
+      }
+    },
+    "_type": "page",
+    "_updatedAt": "2025-12-09T21:14:33Z",
+    "heading": "Privacy",
+    "name": "Privacy Policy",
+    "pageBuilder": [
+      {
+        "_key": "29d3ae4bad96",
+        "_type": "textBlock",
+        "contentType": "html",
+        "htmlContent": "<div class=\"main-panel text-neutral-400\">\n  <div class=\"content-panel\">\n    <p><strong>Effective Date:</strong> December 2025</p>\n<br>\n    <p>\n      This Privacy Policy (“Policy”) explains how \n      <strong>Southern Off-road Specialists Company</strong> doing business as \n      <strong>Timberline Upfitters</strong> (“Company”, “we”, “us”, or “our”) \n      collects, uses, shares, and protects personal information when you access or use \n      <a href=\"https://timberlineupfitters.com\" rel=\"nofollow noreferrer noopener\" target=\"_blank\">\n        timberlineupfitters.com\n      </a>\n      (the “Website”) and any related products, services, or communication channels\n      (collectively, the “Services”).\n    </p>\n\n    <p>\n      By accessing or using the Website, you acknowledge that you have read and understood \n      this Policy. If you do not agree with this Policy, please discontinue use of the Website and Services.\n    </p>\n<br>\n    <h2>1. Information We Collect</h2>\n    <p>We may collect the following types of information:</p>\n<br>\n    <h3>Personal Information You Provide</h3>\n    <ul>\n      <li>Name, phone number, email address, or mailing address</li>\n      <li>Account information or submitted forms</li>\n      <li>Purchase or inquiry details</li>\n    </ul>\n<br>\n    <h3>Automatically Collected Information</h3>\n    <p>When you interact with the Website, we may automatically collect:</p>\n    <ul>\n      <li>IP address and general location (city, region)</li>\n      <li>Browser type, device type, operating system</li>\n      <li>Pages viewed, referral links, and usage patterns</li>\n      <li>Cookie and tracking identifiers</li>\n    </ul>\n<br>\n    <h3>Cookies & Tracking Technologies</h3>\n    <p>\n      Cookies help improve browsing experience, enable analytics, and support Website functionality. \n      You may disable cookies through your browser settings, but some features may not function properly.\n    </p>\n<br>\n    <h2>2. How We Use Your Information</h2>\n    <p>Your information may be used for the following purposes:</p>\n    <ul>\n      <li>To operate and maintain the Website and Services</li>\n      <li>To respond to inquiries, support requests, or service questions</li>\n      <li>To process transactions or send order-related information</li>\n      <li>To improve Website performance, design, and functionality</li>\n      <li>To send marketing communications (if consented)</li>\n    </ul>\n<br>\n    <h2>3. Sharing of Information</h2>\n    <p>We do not sell or rent personal information. We may share information with:</p>\n    <ul>\n      <li>Service providers (hosting, analytics, payment processors)</li>\n      <li>Professional partners performing business functions on our behalf</li>\n      <li>Legal authorities if required by law or to protect our rights</li>\n    </ul>\n<br>\n    <h2>4. Data Security</h2>\n    <p>\n      We implement reasonable administrative, technical, and physical safeguards to protect your information. \n      However, no method of data transmission online is guaranteed to be 100% secure.\n    </p>\n<br>\n    <h2>5. Data Retention</h2>\n    <p>\n      We retain information only as long as necessary for business, legal, or compliance purposes.\n    </p>\n<br>\n    <h2>6. Do Not Track Signals</h2>\n    <p>\n      Some browsers include a “Do Not Track” setting. At this time, our Website may not respond \n      to such signals.\n    </p>\n<br>\n    <h2>7. Children's Privacy</h2>\n    <p>\n      The Website is not intended for children under 13. We do not knowingly collect information \n      from minors. If information is submitted unknowingly, contact us to request deletion.\n    </p>\n<br>\n    <h2>8. External Links</h2>\n    <p>\n      Our Website may include links to third-party websites. We are not responsible for their \n      content, privacy policies, or security practices.\n    </p>\n<br>\n    <h2>9. Your Choices & Rights</h2>\n    <ul>\n      <li>Request access to personal information we hold</li>\n      <li>Update or correct inaccurate information</li>\n      <li>Request deletion where legally applicable</li>\n      <li>Opt-out of marketing communications</li>\n    </ul>\n<br>\n    <h2>10. Changes to This Policy</h2>\n    <p>\n      We may update this Policy from time to time. Updates will be posted on this page with the revised effective date.\n    </p>\n<br>\n    <h2>11. Contacting Us</h2>\n    <p>If you have questions or requests regarding this Privacy Policy, you may contact us at:</p>\n<br>\n    <p>\n      <strong>Timberline Upfitters</strong><br>\n      Southern Off-road Specialists Company<br>\n      Email: support@timberlineupfitters.com\n    </p>\n\n    <p><em>Continued use of the Website signifies acceptance of this Privacy Policy.</em></p>\n\n  </div>\n</div>\n"
+      }
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "privacy"
+    },
+    "subheading": "Policy Information"
+  },
+  {
+    "_createdAt": "2025-09-19T20:25:26Z",
+    "_id": "f80c50df-fbc7-4219-b351-f394b2be23cd",
+    "_rev": "pRlcpvz6Xc5z2Mc0MGI78O",
+    "_type": "page",
+    "_updatedAt": "2025-10-09T15:48:03Z",
+    "heading": "Our Brands",
+    "name": "Brands",
+    "slug": {
+      "_type": "slug",
+      "current": "brands"
+    },
+    "subheading": "The Brands We Are Proud to Build"
+  }
+]
