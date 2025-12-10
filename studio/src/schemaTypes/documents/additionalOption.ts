@@ -40,14 +40,6 @@ export const additionalOption = defineType({
     }),
 
     defineField({
-      name: 'manufacturer',
-      title: 'Manufacturer',
-      type: 'reference',
-      to: [{ type: 'manufacturer' }],
-      description: 'The manufacturer of this additional option',
-    }),
-
-    defineField({
       name: 'brand',
       title: 'Brand',
       type: 'reference',
@@ -212,14 +204,14 @@ export const additionalOption = defineType({
   preview: {
     select: {
       title: 'name',
-      subtitle: 'manufacturer.name',
+      subtitle: 'brand.name',
       media: 'image',
     },
     prepare(selection) {
       const { title, subtitle, media } = selection
       return {
         title: title || 'Untitled Option',
-        subtitle: subtitle ? `by ${subtitle}` : 'No manufacturer',
+        subtitle: subtitle ? `Brand: ${subtitle}` : 'No brand',
         media: media,
       }
     },
@@ -237,9 +229,9 @@ export const additionalOption = defineType({
       by: [{ field: 'name', direction: 'desc' }],
     },
     {
-      title: 'Manufacturer',
-      name: 'manufacturer',
-      by: [{ field: 'manufacturer.name', direction: 'asc' }],
+      title: 'Brand',
+      name: 'brand',
+      by: [{ field: 'brand.name', direction: 'asc' }],
     },
     {
       title: 'Sort Order',

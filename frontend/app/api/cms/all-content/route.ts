@@ -823,18 +823,6 @@ function buildComprehensiveAllContentQuery(vehicleTagFilter?: string, brandFilte
     name,
     slug,
     description,
-    "manufacturer": manufacturer->{
-      _id,
-      name,
-      slug,
-      logo{
-        asset->{
-          _id,
-          url
-        },
-        alt
-      }
-    },
     "brand": brand->{
       _id,
       name,

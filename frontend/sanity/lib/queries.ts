@@ -711,16 +711,6 @@ export const allAdditionalOptionsQuery = defineQuery(`
     name,
     slug,
     description,
-    "manufacturer": manufacturer->{
-      _id,
-      name,
-      logo{
-        asset->{
-          _id,
-          url
-        }
-      }
-    },
     "brand": brand->{
       _id,
       name,
@@ -749,16 +739,6 @@ export const additionalOptionQuery = defineQuery(`
     name,
     slug,
     description,
-    "manufacturer": manufacturer->{
-      _id,
-      name,
-      logo{
-        asset->{
-          _id,
-          url
-        }
-      }
-    },
     "brand": brand->{
       _id,
       name,
@@ -798,16 +778,6 @@ export const additionalOptionsByPackageQuery = defineQuery(`
     name,
     slug,
     description,
-    "manufacturer": manufacturer->{
-      _id,
-      name,
-      logo{
-        asset->{
-          _id,
-          url
-        }
-      }
-    },
     image{
       asset->{
         _id,
@@ -822,26 +792,8 @@ export const additionalOptionsByPackageQuery = defineQuery(`
   }
 `)
 
-export const additionalOptionsByManufacturerQuery = defineQuery(`
-  *[_type == "additionalOption" && references($manufacturerId) && defined(slug.current)] | order(sortOrder asc, name asc) {
-    _id,
-    name,
-    slug,
-    description,
-    package,
-    image{
-      asset->{
-        _id,
-        url
-      },
-      alt
-    },
-    price,
-    availability,
-    features,
-    isActive
-  }
-`)
+// Removed: additionalOptionsByManufacturerQuery - manufacturer field no longer exists on additionalOption
+// Use additionalOptionsByBrandQuery or filter by compatibleVehicles instead
 
 // Enhanced search queries for additional options
 export const searchAdditionalOptionsQuery = defineQuery(`
@@ -854,16 +806,6 @@ export const searchAdditionalOptionsQuery = defineQuery(`
     name,
     slug,
     description,
-    "manufacturer": manufacturer->{
-      _id,
-      name,
-      logo{
-        asset->{
-          _id,
-          url
-        }
-      }
-    },
     "brand": brand->{
       _id,
       name,
@@ -900,16 +842,6 @@ export const searchAdditionalOptionsByVehicleMakeQuery = defineQuery(`
     name,
     slug,
     description,
-    "manufacturer": manufacturer->{
-      _id,
-      name,
-      logo{
-        asset->{
-          _id,
-          url
-        }
-      }
-    },
     "brand": brand->{
       _id,
       name,
@@ -953,16 +885,6 @@ export const searchAdditionalOptionsByMakeOnlyQuery = defineQuery(`
     name,
     slug,
     description,
-    "manufacturer": manufacturer->{
-      _id,
-      name,
-      logo{
-        asset->{
-          _id,
-          url
-        }
-      }
-    },
     "brand": brand->{
       _id,
       name,

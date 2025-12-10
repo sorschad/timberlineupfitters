@@ -31,8 +31,7 @@ export async function GET() {
       'Get specific vehicle': 'GET /api/cms/content?type=vehicle&slug=vehicle-name',
       'Get specific manufacturer': 'GET /api/cms/content?type=manufacturer&slug=manufacturer-name',
       'Get specific additional option': 'GET /api/cms/content?type=additionalOption&slug=option-name',
-      'Get additional options by package': 'GET /api/cms/content?type=additionalOptionsByPackage&package=performance',
-      'Get additional options by manufacturer': 'GET /api/cms/content?type=additionalOptionsByManufacturer&manufacturerId=manufacturer-id'
+      'Get additional options by package': 'GET /api/cms/content?type=additionalOptionsByPackage&package=performance'
     }
   })
 

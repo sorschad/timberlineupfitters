@@ -10,8 +10,7 @@ import {
   manufacturerQuery,
   allAdditionalOptionsQuery,
   additionalOptionQuery,
-  additionalOptionsByPackageQuery,
-  additionalOptionsByManufacturerQuery
+  additionalOptionsByPackageQuery
 } from '@/sanity/lib/queries'
 import { transformImagesToWebP } from '@/sanity/lib/apiImageTransform'
 
@@ -73,11 +72,6 @@ export async function GET(request: Request) {
         const packageType = searchParams.get('package')
         if (!packageType) throw new Error('Package parameter required')
         data = await client.fetch(additionalOptionsByPackageQuery, { package: packageType })
-        break
-      case 'additionalOptionsByManufacturer':
-        const manufacturerId = searchParams.get('manufacturerId')
-        if (!manufacturerId) throw new Error('Manufacturer ID parameter required')
-        data = await client.fetch(additionalOptionsByManufacturerQuery, { manufacturerId })
         break
       default:
         const errorResponse = Response.json({ error: 'Invalid type parameter' }, { status: 400 })

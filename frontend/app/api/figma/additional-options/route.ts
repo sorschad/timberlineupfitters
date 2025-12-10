@@ -53,16 +53,6 @@ function buildAdditionalOptionsQuery(filters: {
       name,
       slug,
       description,
-      "manufacturer": manufacturer->{
-        _id,
-        name,
-        logo{
-          asset->{
-            _id,
-            url
-          }
-        }
-      },
       "brand": brand->{
         _id,
         name,
